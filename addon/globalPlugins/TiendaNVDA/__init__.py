@@ -285,7 +285,18 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 					nombreFile = ""
 					webbrowser.open_new(url)
 					return
-		HiloGuardarArchivo(self, nombreFile, url)
+		if nombreFile == "downloads":
+			msg = \
+_("""Este complemento necesita ser descargado desde su página web.
+
+Se abrirá con su navegador predefinido en la pagina de descarga del complemento.""")
+			gui.messageBox(msg,
+				_("Información"), wx.ICON_INFORMATION)
+
+			webbrowser.open_new(datos['links'][event.GetId()]['link'])
+			return
+		else:
+			HiloGuardarArchivo(self, nombreFile, url)
 
 	def TrueDescarga(self, fichero_final, url, path):
 		dlg = DescargaDialogo(_("Descargando %s...") % fichero_final, url, path, 15)
