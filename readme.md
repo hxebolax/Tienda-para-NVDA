@@ -1,11 +1,5 @@
 # Manual de Tienda para NVDA
-## Advertencia
-
-Este complemento sale de manera urgente para intentar ayudar a actualizar muchos complementos.
-
-Es un complemento que todavía es un experimento y tiene muchos fallos, pero se saca por que puede ayudar a muchos usuarios con el follón que hay con NVDA 2021.1.
-
-# Modo de uso
+## Modo de uso
 
 El complemento viene sin atajos y podemos otorgarle dos que son:
 
@@ -13,31 +7,53 @@ El complemento viene sin atajos y podemos otorgarle dos que son:
 
 * Busca actualizaciones de los complementos instalados: Analizara los complementos que tenemos y de los que encuentre actualización nos ofrecerá la posibilidad de actualizarlos de manera automática.
 
-## Muestra la ventana con todos los complementos y su información
+### Muestra la ventana con todos los complementos y su información
 
 En esta pantalla tendremos todos los complementos junto a una ficha y la posibilidad de ir a su repositorio y descargar.
 
-##  Busca actualizaciones de los complementos instalados
+Si recorremos la ventana tendremos una lista con todos los complementos, un cuadro de solo lectura con la ficha del complemento que tengamos seleccionado, un botón descargar, un botón para ir a la pagina del complemento y un botón cerrar.
+
+Además tendremos un cuadro de búsqueda en el cual podremos poner lo que deseemos buscar y si pulsamos intro se mostrara los resultados en la lista.
+
+Bien para volver a tener toda la lista de complementos solo tendremos que volver al campo de búsqueda y borrar y pulsar intro con el campo vacío.
+
+En el campo de la ficha en el caso que el complemento tenga más de una rama de desarrollo también se nos mostrara la información.
+
+El botón descargar nos desplegara un menú con las distintas ramas de desarrollo del complemento, tendremos que elegir una para descargar. En caso que solo tenga una solo se nos dará esa opción.
+
+En esta pantalla tenemos las siguientes teclas rápidas para movernos por la interface:
+
+* Alt+B: Ir al cuadro de búsqueda.
+* Alt+L: Ir a la lista de complementos.
+* Alt+I: Ir al campo de la ficha para ver la información del complemento seleccionado.
+* Alt+D: Ejecutar el botón descargar.
+* Alt+P: Ir a la página del complemento.
+* Alt+C, Escape, Alt+F4: Cerrar la ventana.
+
+###  Busca actualizaciones de los complementos instalados
 
 Nos dejara actualizar aquellos complementos que en https://www.nvda.es sean más nuevos que los que tenemos en nuestro equipo.
 
-## Opciones
+En esta pantalla podremos seleccionar en caso de que allá actualizaciones aquellos complementos que deseemos actualizar.
 
-Hay en Herramientas / Tienda NVDA un apartado de opciones.
+Tendremos que marcar con espacio el complemento y darle a Actualizar.
 
-Bien podemos decir si queremos que nos de los complementos ordenados, si se instalara el complemento después de descargar, podemos elegir que rama de desarrollo queremos para cada complemento (esto posicionado en cada complemento barra espaciadora).
+Actualmente solo se permite actualizar la rama principal del complemento. Si tenemos un complemento que tiene varias ramas y estamos en la rama de desarrollo tendremos que actualizar de manera manual.
 
-Las ramas de desarrollo solo ofrecerá varias aquellos complementos que tengan.
+En caso que solo sea un complemento que tenga rama de desarrollo y sea su única rama se podrá actualizar sin problemas.
 
-# IMPORTANTE
+Solo se actualizara la rama principal del complemento.
 
-Quiero volver a repetirlo, esto es un experimento y seguro que dará muchos fallos sobre todo uno que dice que no se puede conectar al servidor.
+Se esta trabajando para poder ofrecer el elegir que rama deseamos para cada complemento.
 
-Tendremos que ir a nuestra carpeta de usuario de NVDA y borrar la carpeta llamada TiendaNVDA que contiene la configuración, con esto ya volverá a funcionar.
+En esta pantalla tenemos las siguientes teclas:
 
-Esto sucede cuando instalamos varios complementos y no han podido ser gestionados correctamente por la tienda.
+* Alt+A: Empezara la actualización de aquellos complementos que tengamos seleccionados.
+* Alt+C, Alt+F4 o Escape: Cerrara la ventana.
 
-Si el proyecto sigue esto se solucionara.
+## Observaciones
 
-Me repito esto es un parche de urgencia.
+Este complemento esta en fase de prueba por lo que le pedimos que entienda que pueden haber errores.
+
+Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la mayor brevedad.
 

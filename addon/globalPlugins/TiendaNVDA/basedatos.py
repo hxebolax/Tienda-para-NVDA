@@ -1,24 +1,51 @@
 import addonHandler
+import logHandler
 import json
 import urllib.request
-import funciones
-import ajustes
+import os, sys
 
-class JsonNVDAes():
+def obtenFile(url):
+	opener = urllib.request.build_opener()
+	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+	p = urllib.request.urlopen(url)
+	fichero = p.headers.get_filename()
+	nombreFile = os.path.splitext(fichero)[0]
+	return nombreFile
+
+def obtenFileAlt(url):
+	opener = urllib.request.build_opener()
+	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+	urllib.request.install_opener(opener)
+	p = urllib.request.urlopen(url)
+	fichero = p.headers.get_filename()
+	nombreFile = os.path.splitext(fichero)[0]
+	return nombreFile
+
+class NVDAStoreClient(object):
 	def __init__(self):
-		super(JsonNVDAes, self).__init__()
+		super(NVDAStoreClient, self).__init__()
 
-		opener = urllib.request.build_opener()
-		opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-		self.dataServidor = json.loads(opener.open('https://nvda.es/files/get.php?addonslist').read().decode("utf-8"))
-		self.dataLocal = list(addonHandler.getAvailableAddons())
+		self.opener = urllib.request.build_opener()
+		self.opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+		urllib.request.install_opener(self.opener)
+		self.dataServidor = json.loads(self.opener.open('https://nvda.es/files/get.php?addonslist').read().decode("utf-8"))
 		self.urlBase = "https://nvda.es/files/get.php?file="
+		self.dataLocal = list(addonHandler.getAvailableAddons())
 
-	def indiceName(self, valor):
+	def GetFilenameDownload(self, valor):
 		for x in range(0, len(self.dataServidor)):
-			if self.dataServidor[x]['name'].lower() == valor.lower():
-				return x
-		return False
+			num = len(self.dataServidor[x]['links'])
+			for i in range(num):
+				if self.dataServidor[x]['links'][i]['file'] == valor:
+					temp = self.dataServidor[x]['links'][i]['link']
+					return os.path.basename(temp)
+
+	def GetLinkDownload(self, valor):
+		for x in range(0, len(self.dataServidor)):
+			num = len(self.dataServidor[x]['links'])
+			for i in range(num):
+				if self.dataServidor[x]['links'][i]['file'] == valor:
+					return self.dataServidor[x]['links'][i]['link']
 
 	def indiceSummary(self, valor):
 		for x in range(0, len(self.dataServidor)):
@@ -26,31 +53,11 @@ class JsonNVDAes():
 				return x
 		return False
 
-	def obtenerNameLocal(self, valor):
-		for i in self.dataLocal:
-			if i.manifest["summary"].lower() == valor.lower():
-				p = i.manifest["name"]
-		return p
-
-	def nombrEntero(self, orden = False):
-		lista = []
-		for i in range(0, len(self.dataServidor)):
-			lista.append(self.dataServidor[i]['summary'])
-		if orden == False:
-			return lista
+	def chkVersion(self, verServidor, verLocal):
+		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
+			return False
 		else:
-			lista.sort()
-			return lista
-
-	def listaComplementosInstalados(self):
-		lista1 = []
-		lista2 = []
-		for i in self.dataLocal:
-			for x in range(0, len(self.dataServidor)):
-				if i.manifest["name"].lower() == self.dataServidor[x]['name'].lower():
-					lista1.append(i.manifest["summary"])
-					lista2.append(self.dataServidor[x]['links'][0]['channel'])
-		return dict(zip(lista1, lista2))
+			return True
 
 	def chkActualizaS(self):
 		lstActualizar = []
@@ -60,15 +67,20 @@ class JsonNVDAes():
 		for i in self.dataLocal:
 			for x in range(0, len(self.dataServidor)):
 				if self.dataServidor[x]['name'].lower() == i.manifest["name"].lower():
-					canal = ajustes.listaComplementos.get(i.manifest["summary"])
-					for z in range(len(self.dataServidor[x]['links'])):
-						if self.dataServidor[x]['links'][z]['channel'].lower() == canal.lower():
-							if funciones.chkVersion(self.dataServidor[x]['links'][z]['version'], i.manifest["version"]) == True:
-								lstActualizar.append("{}".format(i.manifest["summary"]))
-								lstUrl.append(self.urlBase + self.dataServidor[x]['links'][z]['file'])
-								lstVerServidor.append(self.dataServidor[x]['links'][z]['version'])
-								lstVerLocal.append(i.manifest["version"])
+					if self.chkVersion(self.dataServidor[x]['links'][0]['version'], i.manifest["version"]) == True:
+						lstActualizar.append("{}".format(i.manifest["summary"]))
+						lstUrl.append(self.urlBase + self.dataServidor[x]['links'][0]['file'])
+						lstVerServidor.append(self.dataServidor[x]['links'][0]['version'])
+						lstVerLocal.append(i.manifest["version"])
 		if len(lstActualizar) == 0:
 			return False, False, False
 		else:
 			return dict(zip(lstActualizar, lstUrl)), lstVerLocal, lstVerServidor
+
+#name = "zRadio para NVDA"
+#p = NVDAStoreClient().GetLinkDownload("nvdaremote-old") #.GetFilenameDownload()
+#p = NVDAStoreClient().indiceSummary(name)
+#if p:
+#	print(p)
+#else:
+#	print("No se pudo obtener el nombre")
