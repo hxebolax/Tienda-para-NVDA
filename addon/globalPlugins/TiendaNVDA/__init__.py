@@ -264,7 +264,7 @@ Desarrollo: {}\n""").format(
 	datos['summary'],
 	datos['name'],
 	datos['description'],
-	'Con soporte' if datos['legacy'] == 0 else 'Sin soporte',
+	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte"),
 	)
 		self.txtResultado.SetValue(ficha)
 
