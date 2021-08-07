@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 'TiendaNVDA' '0.3.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2021-08-07 16:36+0200\n"
-"PO-Revision-Date: 2021-08-07 17:04+0100\n"
+"PO-Revision-Date: 2021-08-07 20:10+0100\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -111,15 +111,15 @@ msgstr "Select update check interval"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:200
 msgid "&Buscar:"
-msgstr "&Search"
+msgstr "&Search:"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:205
 msgid "&Lista complementos:"
-msgstr "&List of add-ons"
+msgstr "&List of add-ons:"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:213
 msgid "&Información:"
-msgstr "&Information"
+msgstr "&Information:"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:217
 msgid "&Descargar complemento"
@@ -145,7 +145,7 @@ msgstr ""
 "Add-on name: {}\n"
 "Internal name: {}\n"
 "Description: {}\n"
-"Developer: {}\n"
+"Development: {}\n"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:273
 msgid ""
@@ -226,7 +226,7 @@ msgstr "Error"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:553
 #: addon\globalPlugins\TiendaNVDA\__init__.py:644
 msgid "&Aceptar"
-msgstr "&Accept"
+msgstr "&OK"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:625
 msgid "Actualizando complementos"
