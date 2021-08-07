@@ -34,7 +34,7 @@ En esta pantalla tenemos las siguientes teclas rápidas para movernos por la int
 
 Nos dejara actualizar aquellos complementos que en https://www.nvda.es sean más nuevos que los que tenemos en nuestro equipo.
 
-En esta pantalla podremos seleccionar en caso de que allá actualizaciones aquellos complementos que deseemos actualizar.
+En esta pantalla podremos seleccionar en caso de que hubiese actualizaciones aquellos complementos que deseemos actualizar.
 
 Tendremos que marcar con espacio el complemento y darle a Actualizar.
 
@@ -51,7 +51,30 @@ En esta pantalla tenemos las siguientes teclas:
 * Alt+A: Empezara la actualización de aquellos complementos que tengamos seleccionados.
 * Alt+C, Alt+F4 o Escape: Cerrara la ventana.
 
+### Panel de opciones
+
+Podremos configurar algunos aspectos de la tienda en NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
+
+Actualmente podremos seleccionar si deseamos Activar o desactivar la comprobación de actualizaciones.
+
+Si activamos esta casilla se activará un cuadro combinado en el cual podremos elegir cuanto tiempo transcurrirá entre una comprobación y otra.
+
+Decir que Activar o desactivar la comprobación de actualizaciones viene desactivado por defecto.
+
+El comportamiento de esta opción es simple, buscara en el servidor si existen actualizaciones en el rango de tiempo dado y nos notificara con una notificación de sistema diciendo cuantas actualizaciones hay y que abramos la correspondiente opción de la tienda para actualizar.
+
+Decir que si esta opción se activa buscara 10 veces el rango del tiempo dado y luego se desactivara. Esto es para no saturar a llamadas al servidor.
+
+Por lo tanto, si tenemos 15 minutos asignados y no encuentra actualizaciones a las 2h 30 min dejara de buscar actualizaciones.
+
+En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo dado y luego se desactivara, cada vez nos avisara de que se encontraron actualizaciones hasta que actualicemos.
+
 ## Observaciones
+
+Se agrego una protección la cual no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
+Si tenemos activada la búsqueda de actualizaciones automática cada vez que busque y detecte que no hemos reiniciado NVDA se nos notificara con una notificación de sistema.
+
+Igualmente, si intentamos activar la pantalla de buscar actualizaciones y no hemos reiniciado NVDA el lector nos hablara el mensaje que tenemos que reiniciar el NVDA para aplicar las actualizaciones.
 
 Este complemento esta en fase de prueba por lo que le pedimos que entienda que pueden haber errores.
 

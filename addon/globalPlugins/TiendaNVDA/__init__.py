@@ -14,13 +14,12 @@ import ui
 from scriptHandler import script
 import core
 from logHandler import log
-import config
 from gui.settingsDialogs import NVDASettingsDialog, SettingsPanel
 from gui import guiHelper, nvdaControls
 import wx
 import wx.adv
 import webbrowser
-from threading import Thread, Timer
+from threading import Thread
 import urllib.request
 import socket
 import time
@@ -39,11 +38,64 @@ try:
 except Exception as e:
 	log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
 
+def function_ChkUpdate():
+	if ajustes.reiniciarTrue == False:
+		try:
+			datos = basedatos.NVDAStoreClient()
+			nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
+			if nombreUrl == False:
+				if ajustes.contadorRepeticionSn <= 9:
+					ajustes.contadorRepeticionSn = ajustes.contadorRepeticionSn + 1
+					pass
+				else:
+					chkUpdate.stop()
+			else:
+				if ajustes.contadorRepeticion <= 4:
+					ajustes.contadorRepeticion = ajustes.contadorRepeticion + 1
+					if len(nombreUrl) == 1:
+						msg = \
+_("""Se encontró una actualización. 
+
+Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""")
+						# Translators: Title of the notification
+						notify = wx.adv.NotificationMessage(title=_("Información"),
+							# Translators: Notification message
+							message=msg, parent=None, flags=wx.ICON_INFORMATION)
+						notify.Show(timeout=10)
+					else:
+						msg = \
+_("""Se encontraron  {} actualizaciones. 
+
+Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(len(nombreUrl))
+						# Translators: Title of the notification
+						notify = wx.adv.NotificationMessage(title=_("Información"),
+							# Translators: Notification message
+							message=msg, parent=None, flags=wx.ICON_INFORMATION)
+						notify.Show(timeout=10)
+				else:
+					chkUpdate.stop()
+		except Exception as e:
+			log.info("Error al comprobar actualizaciones automáticas")
+			chkUpdate.stop()
+	else:
+		msg = \
+		_("""Necesita reiniciar NVDA para aplicar las actualizaciones.""")
+		# Translators: Title of the notification
+		notify = wx.adv.NotificationMessage(title=_("Información"),
+			# Translators: Notification message
+			message=msg, parent=None, flags=wx.ICON_INFORMATION)
+		notify.Show(timeout=10)
+
+chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
+if ajustes.tempChk == False:
+	chkUpdate.stop()
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 
 		if globalVars.appArgs.secure: return
+
+		NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
 		self.menu = wx.Menu()
 		tools_menu = gui.mainFrame.sysTrayIcon.toolsMenu
@@ -58,6 +110,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self):
 		try:
+			NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
 			if not self._MainWindows:
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):
@@ -73,11 +126,63 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= "TiendaNVDA")
 	def script_menu2(self, event):
-		if ajustes.IS_WinON == False:
-			self._MainWindows = HiloComplemento(2)
-			self._MainWindows.start()
+		if ajustes.reiniciarTrue == False:
+			if ajustes.IS_WinON == False:
+				self._MainWindows = HiloComplemento(2)
+				self._MainWindows.start()
+			else:
+				ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
 		else:
-			ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
+			ui.message(_("Necesita reiniciar NVDA para aplicar las actualizaciones."))
+
+class TiendaPanel(SettingsPanel):
+	#TRANSLATORS: title for the Update Channel settings category
+	title=_("Tienda NVDA.ES")
+
+	def makeSettings(self, sizer):
+		helper=guiHelper.BoxSizerHelper(self, sizer=sizer)
+
+		self.autoChk = helper.addItem(wx.CheckBox(self, label=_("Activar o desactivar la comprobación de actualizaciones")))
+		self.autoChk.Bind(wx.EVT_CHECKBOX,self.onChecked)
+
+		self.choiceTimer = helper.addLabeledControl(_("Seleccione un tiempo para comprobar si hay actualizaciones"), wx.Choice, choices=ajustes.tiempoChk)
+		self.choiceTimer.Bind(wx.EVT_CHOICE, self.onChoice)
+
+		self.autoChk.Value = ajustes.tempChk
+		if self.autoChk.Value == True:
+			self.choiceTimer.Enable()
+		else:
+			self.choiceTimer.Disable()
+
+		index = ajustes.tempTimer
+		self.choiceTimer.Selection = index
+
+	def onSave(self):
+		ajustes.setConfig("autoChk", self.autoChk.Value)
+		ajustes.setConfig("timerChk", self.choiceTimer.Selection)
+
+	def onChecked(self, event):
+		global chkUpdate
+		chk = event.GetEventObject()
+		if chk.GetValue() == True:
+			self.choiceTimer.Enable()
+			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
+			chkUpdate.start()
+		else:
+			self.choiceTimer.Disable()
+			chkUpdate.stop()
+			ajustes.contadorRepeticion = 0
+			ajustes.contadorRepeticionSn = 0
+		ajustes.tempChk = chk.GetValue()
+
+	def onChoice(self, event):
+		global chkUpdate
+		ajustes.tempTimer = self.choiceTimer.Selection
+		chkUpdate.stop()
+		ajustes.contadorRepeticion = 0
+		ajustes.contadorRepeticionSn = 0
+		chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
+		chkUpdate.start()
 
 class tiendaApp(wx.Dialog):
 	def __init__(self, parent):
@@ -153,11 +258,13 @@ class tiendaApp(wx.Dialog):
 _("""Autor: {}
 Nombre del complemento: {}
 Nombre interno: {}
-Descripción: {}\n""").format(
+Descripción: {}
+Desarrollo: {}\n""").format(
 	datos['author'],
 	datos['summary'],
 	datos['name'],
 	datos['description'],
+	'Con soporte' if datos['legacy'] == 0 else 'Sin soporte',
 	)
 		self.txtResultado.SetValue(ficha)
 
@@ -331,7 +438,12 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 
 		super(BuscarActualizacionesDialogo,self).__init__(parent, -1, title=_("Tienda NVDA.ES - Actualizaciones disponibles"), size = (WIDTH, HEIGHT))
 
+		global chkUpdate
+		if ajustes.tempChk == True:
+			chkUpdate.stop()
+
 		ajustes.IS_WinON = True
+
 		# Dict con nombre complemento, url descarga
 		self.nombreUrl = nombreUrl
 		self.verInstalada = verInstalada
@@ -378,6 +490,7 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 #		print(self.listIndex)
 
 	def onBoton(self, event):
+		global chkUpdate
 		obj = event.GetEventObject()
 		botonID = obj.GetId()
 		if botonID == 101:
@@ -393,16 +506,23 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 				self.Destroy()
 				gui.mainFrame.postPopup()
 		elif botonID == 102:
+			if ajustes.tempChk == True:
+				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			ajustes.IS_WinON = False
 			self.Destroy()
 			gui.mainFrame.postPopup()
 		else:
+			if ajustes.tempChk == True:
+				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			ajustes.IS_WinON = False
 			self.Destroy()
 			gui.mainFrame.postPopup()
 
 	def onkeyVentanaDialogo(self, event):
+		global chkUpdate
 		if event.GetKeyCode() == 27: # Pulsamos ESC y cerramos la ventana
+			if ajustes.tempChk == True:
+				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			ajustes.IS_WinON = False
 			self.Destroy()
 			gui.mainFrame.postPopup()
@@ -587,6 +707,9 @@ class ActualizacionDialogo(wx.Dialog):
 		core.restart()
 
 	def onAceptarFALSE(self, event):
+		global chkUpdate
+		if ajustes.tempChk == True:
+			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 		ajustes.IS_WinON = False
 		self.Destroy()
 		gui.mainFrame.postPopup()
@@ -756,6 +879,7 @@ class HiloActualizacion(Thread):
 							break
 					addonHandler.installAddonBundle(bundle)
 				wx.CallAfter(self.frame.onActualizacion, i+1)
+			ajustes.reiniciarTrue = True
 			wx.CallAfter(self.frame.done, _("La actualización se completó.\n") + _("NVDA necesita reiniciarse para aplicar las actualizaciones.\n") + _("¿Desea reiniciar NVDA ahora?"))
 		except:
 			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
