@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 'TiendaNVDA' '0.3.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2021-08-07 16:36+0200\n"
-"PO-Revision-Date: 2021-08-07 16:52+0100\n"
+"PO-Revision-Date: 2021-08-07 17:04+0100\n"
 "Last-Translator: Nikola Jović <wwenikola123@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Check for add-on updates"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:140
 #: addon\globalPlugins\TiendaNVDA\__init__.py:193
 msgid "Tienda NVDA.ES"
-msgstr "nvda.es store"
+msgstr "NVDA.es store"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:119
 msgid "Muestra la ventana con todos los complementos y su información"
@@ -202,7 +202,7 @@ msgstr "Downloading %s..."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:439
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
-msgstr "nvda.es store - updates available"
+msgstr "NVDA.es store - updates available"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:460
 msgid "&Actualizar"
