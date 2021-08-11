@@ -9,6 +9,7 @@ import wx
 import os
 import sys
 import shutil
+import basedatos
 
 # For translation
 addonHandler.initTranslation()
@@ -17,6 +18,7 @@ def initConfiguration():
 	confspec = {
 		"autoChk": "boolean(default=False)",
 		"timerChk": "integer(default=1, min=0, max=3)",
+		"ordenChk": "boolean(default=False)",
 	}
 	config.conf.spec['TiendaES'] = confspec
 
@@ -33,16 +35,17 @@ def setConfig(key, value):
 initConfiguration()
 tempChk = getConfig("autoChk")
 tempTimer = getConfig("timerChk")
+tempOrden = getConfig("ordenChk")
 
 dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
 if os.path.exists(dirDatos) == False:
 	os.mkdir(dirDatos)
 else:
-	try:
-		shutil.rmtree(dirDatos, ignore_errors=True)
-		os.mkdir(dirDatos)
-	except:
-		pass
+	if os.path.exists(os.path.join(dirDatos, "temp")) == True:
+		try:
+			shutil.rmtree(os.path.join(dirDatos, "temp"), ignore_errors=True)
+		except:
+			pass
 
 IS_WinON = False
 reiniciarTrue = False
@@ -51,6 +54,9 @@ ID_TRUE = wx.NewIdRef() # para botón aceptar
 ID_FALSE = wx.NewIdRef() # para botón cancelar
 contadorRepeticion = 0
 contadorRepeticionSn = 0
+listaAddonsSave = basedatos.libreriaLocal().fileJsonAddon(2)
+listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
+basedatos.libreriaLocal().actualizaJson()
 
 # Lista tiempo chk notificaciones
 tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora")]

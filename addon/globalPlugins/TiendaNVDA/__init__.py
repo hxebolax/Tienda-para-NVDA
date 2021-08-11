@@ -5,7 +5,11 @@
 # Agradecimientos:
 #
 # Idioma inglés: Nikola Jović
-# Idioma portugués: Ângelo Miguel Abrantes
+# Idioma y documentación portugués: Ângelo Miguel Abrantes
+# Idiomas croata y polaco: Zvonimir Stanečić
+# Idioma Ruso: comunidad rusa NVDA.RU
+# Idioma y documentación francés: Rémy Ruiz
+# Idioma ucraniano: Volodymyr Pyrih
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler
@@ -40,8 +44,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
 	import ajustes
 	import basedatos
+	inicio = True
 except Exception as e:
 	log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
+	inicio = False
 
 def function_ChkUpdate():
 	if ajustes.reiniciarTrue == False:
@@ -91,31 +97,43 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 			message=msg, parent=None, flags=wx.ICON_INFORMATION)
 		notify.Show(timeout=10)
 
-chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
-if ajustes.tempChk == False:
-	chkUpdate.stop()
+if inicio == True:
+	chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
+	if ajustes.tempChk == False:
+		chkUpdate.stop()
+
+	## Pruebas base con addons.
+#	basedatos.libreriaLocal().actualizaJson()
+
+else:
+	log.info(_("Inicio del complemento cancelado."))
+
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 
 		if globalVars.appArgs.secure: return
 
-		NVDASettingsDialog.categoryClasses.append(TiendaPanel)
+		if inicio == True:
+			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
-		self.menu = wx.Menu()
-		tools_menu = gui.mainFrame.sysTrayIcon.toolsMenu
-		# Translators: Nombre del submenú para tienda de complementos
-		self.tiendaComplementos = self.menu.Append(wx.ID_ANY, _("Listado de complementos"))
-		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu1, self.tiendaComplementos)
-		# Translators: Nombre del submenú para buscar actualizaciones
-		self.tiendaActualizaciones = self.menu.Append(wx.ID_ANY, _("Buscar actualizaciones de complementos"))
-		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
-		# Translators: Nombre del menú Tienda de complementos
-		self.tiendaMenu = tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
+			self.menu = wx.Menu()
+			tools_menu = gui.mainFrame.sysTrayIcon.toolsMenu
+			# Translators: Nombre del submenú para tienda de complementos
+			self.tiendaComplementos = self.menu.Append(wx.ID_ANY, _("Listado de complementos"))
+			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu1, self.tiendaComplementos)
+			# Translators: Nombre del submenú para buscar actualizaciones
+			self.tiendaActualizaciones = self.menu.Append(wx.ID_ANY, _("Buscar actualizaciones de complementos"))
+			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
+			# Translators: Nombre del menú Tienda de complementos
+			self.tiendaMenu = tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
+		else:
+			return
 
 	def terminate(self):
 		try:
-			NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
+			if inicio == True:
+				NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
 			if not self._MainWindows:
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):
@@ -123,35 +141,63 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= "TiendaNVDA")
 	def script_menu1(self, event):
-		if ajustes.IS_WinON == False:
-			self._MainWindows = HiloComplemento(1)
-			self._MainWindows.start()
-		else:
-			ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
-
-	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= "TiendaNVDA")
-	def script_menu2(self, event):
-		if ajustes.reiniciarTrue == False:
+		if inicio == True:
 			if ajustes.IS_WinON == False:
-				self._MainWindows = HiloComplemento(2)
+				self._MainWindows = HiloComplemento(1)
 				self._MainWindows.start()
 			else:
 				ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
 		else:
-			ui.message(_("Necesita reiniciar NVDA para aplicar las actualizaciones."))
+			msg = \
+_("""El complemento fallo al iniciar NVDA.
+
+Una de las causas es que NVDA arrancara antes de tener conexión a internet.
+
+Reinicie NVDA para intentar solucionar el problema.""")
+			ui.message(msg)
+	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= "TiendaNVDA")
+	def script_menu2(self, event):
+		if inicio == True:
+			if ajustes.reiniciarTrue == False:
+				if ajustes.IS_WinON == False:
+					self._MainWindows = HiloComplemento(2)
+					self._MainWindows.start()
+				else:
+					ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
+			else:
+				ui.message(_("Necesita reiniciar NVDA para aplicar las actualizaciones."))
+		else:
+			msg = \
+_("""El complemento fallo al iniciar NVDA.
+
+Una de las causas es que NVDA arrancara antes de tener conexión a internet.
+
+Reinicie NVDA para intentar solucionar el problema.""")
+			ui.message(msg)
 
 class TiendaPanel(SettingsPanel):
 	#TRANSLATORS: title for the Update Channel settings category
-	title=_("Tienda NVDA.ES")
+	title = _("Tienda NVDA.ES")
 
 	def makeSettings(self, sizer):
 		helper=guiHelper.BoxSizerHelper(self, sizer=sizer)
 
 		self.autoChk = helper.addItem(wx.CheckBox(self, label=_("Activar o desactivar la comprobación de actualizaciones")))
-		self.autoChk.Bind(wx.EVT_CHECKBOX,self.onChecked)
+		self.autoChk.Bind(wx.EVT_CHECKBOX,self.onAutoChk)
 
 		self.choiceTimer = helper.addLabeledControl(_("Seleccione un tiempo para comprobar si hay actualizaciones"), wx.Choice, choices=ajustes.tiempoChk)
-		self.choiceTimer.Bind(wx.EVT_CHOICE, self.onChoice)
+
+		self.ordenChk = helper.addItem(wx.CheckBox(self, label=_("Ordenar por orden alfabético los complementos de la tienda y las búsquedas")))
+
+		self.datos = basedatos.NVDAStoreClient()
+		self.datosServidor = self.datos.dataServidor
+		self.listbox = helper.addLabeledControl(_("Complementos instalados que hay en el servidor:"), wx.ListBox)
+		for i in ajustes.listaAddonsSave:
+			for x in range(0, len(self.datosServidor)):
+				if self.datosServidor[x]['name'].lower() == i[0].lower():
+					self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+		self.listbox.SetSelection(0)
+		self.listbox.Bind(wx.EVT_KEY_UP, self.onListBox)
 
 		self.autoChk.Value = ajustes.tempChk
 		if self.autoChk.Value == True:
@@ -162,35 +208,73 @@ class TiendaPanel(SettingsPanel):
 		index = ajustes.tempTimer
 		self.choiceTimer.Selection = index
 
+		self.ordenChk.Value =ajustes.tempOrden
+		self.listaGuarda = []
+
 	def onSave(self):
+		global chkUpdate
 		ajustes.setConfig("autoChk", self.autoChk.Value)
 		ajustes.setConfig("timerChk", self.choiceTimer.Selection)
+		ajustes.setConfig("ordenChk", self.ordenChk.Value)
+		ajustes.tempChk = self.autoChk.Value
+		ajustes. tempTimer= self.choiceTimer.Selection
+		ajustes.tempOrden = self.ordenChk.Value
 
-	def onChecked(self, event):
-		global chkUpdate
-		chk = event.GetEventObject()
-		if chk.GetValue() == True:
-			self.choiceTimer.Enable()
+		if ajustes.tempChk == True:
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			chkUpdate.start()
 		else:
-			self.choiceTimer.Disable()
 			chkUpdate.stop()
 			ajustes.contadorRepeticion = 0
 			ajustes.contadorRepeticionSn = 0
-		ajustes.tempChk = chk.GetValue()
 
-	def onChoice(self, event):
-		global chkUpdate
-		ajustes.tempTimer = self.choiceTimer.Selection
-		chkUpdate.stop()
-		ajustes.contadorRepeticion = 0
-		ajustes.contadorRepeticionSn = 0
-		chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
-		chkUpdate.start()
+		if len(self.listaGuarda) == 0:
+			pass
+		else:
+			for i in range(0, len(self.listaGuarda)):
+				ajustes.listaAddonsSave[self.listaGuarda[i][0]][1] = self.listaGuarda[i][1]
+		basedatos.libreriaLocal().fileJsonAddon(1, basedatos.libreriaLocal().ordenaLista(ajustes.listaAddonsSave))
+
+	def onAutoChk(self, event):
+		chk = event.GetEventObject()
+		if chk.GetValue() == True:
+			self.choiceTimer.Enable()
+		else:
+			self.choiceTimer.Disable()
+
+	def onListBox(self, event):
+		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
+		nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
+		indice = self.datos.indiceName(nombreLocal)
+		datos = self.datosServidor[indice]
+		if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
+			self.menuDescarga = wx.Menu()
+			for i in range(len(datos['links'])):
+				item = self.menuDescarga.Append(i, "Canal {}".format(datos['links'][i]['channel']))
+				self.Bind(wx.EVT_MENU, self.onSelect, item)
+
+			position = self.listbox.GetPosition()
+			self.PopupMenu(self.menuDescarga,position)
+			pass
+
+	def modificaListBox(self, canalID):
+		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
+		nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
+		indice = self.datos.indiceName(nombreLocal)
+		datos = self.datosServidor[indice]
+		nombreCanal = datos['links'][canalID]['channel']
+		nombreCompuesto = nombre[0] + " -- " + nombreCanal
+		pos = self.listbox.GetSelection()
+		self.listbox.Delete(pos)
+		self.listbox.Insert(nombreCompuesto, pos)
+		self.listbox.SetSelection(pos)
+		self.listaGuarda.append([pos, canalID])
+
+	def onSelect(self, event):
+		self.modificaListBox(event.GetId())
 
 class tiendaApp(wx.Dialog):
-	def __init__(self, parent):
+	def __init__(self, parent, dataServidor):
 
 		WIDTH = 1600
 		HEIGHT = 800
@@ -198,7 +282,7 @@ class tiendaApp(wx.Dialog):
 		super(tiendaApp,self).__init__(parent, -1, title=_("Tienda NVDA.ES"), size = (WIDTH, HEIGHT))
 
 		ajustes.IS_WinON = True
-		self.datos = basedatos.NVDAStoreClient()
+		self.datos = dataServidor
 
 		self.Panel = wx.Panel(self, 1)
 
@@ -209,8 +293,15 @@ class tiendaApp(wx.Dialog):
 
 		labelComplementos = wx.StaticText(self.Panel, wx.ID_ANY, _("&Lista complementos:"))
 		self.listboxComplementos = wx.ListBox(self.Panel, 3, style = wx.LB_NO_SB)
+
+		self.temporal = []
 		for x in range(0, len(self.datos.dataServidor)):
-			self.listboxComplementos.Append(self.datos.dataServidor[x]['summary'])
+			self.temporal.append(self.datos.dataServidor[x]['summary'])
+
+		if ajustes.tempOrden == False:
+			self.listboxComplementos.Append(self.temporal)
+		else:
+			self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 		self.listboxComplementos.SetSelection(0)
 		self.listboxComplementos.SetFocus()
 		self.listboxComplementos.Bind(wx.EVT_KEY_UP, self.onLisbox)
@@ -314,8 +405,10 @@ Total descargas: {}\n""").format(
 	def onBusqueda(self, event):
 		if self.textoBusqueda.GetValue() == "":
 			self.listboxComplementos.Clear()
-			for x in range(0, len(self.datos.dataServidor)):
-				self.listboxComplementos.Append(self.datos.dataServidor[x]['summary'])
+			if ajustes.tempOrden == False:
+				self.listboxComplementos.Append(self.temporal)
+			else:
+				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 			self.listboxComplementos.SetSelection(0)
 			self.listboxComplementos.SetFocus()
 		else:
@@ -330,7 +423,10 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.SetSelection(0)
 				self.listboxComplementos.SetFocus()
 			else:
-				self.listboxComplementos.Append(filtro)
+				if ajustes.tempOrden == False:
+					self.listboxComplementos.Append(filtro)
+				else:
+					self.listboxComplementos.Append(sorted(filtro, key=str.lower))
 				self.listboxComplementos.SetSelection(0)
 				self.listboxComplementos.SetFocus()
 
@@ -408,7 +504,21 @@ Se abrirá con su navegador predefinido en la pagina de descarga del complemento
 			webbrowser.open_new(datos['links'][event.GetId()]['link'])
 			return
 		else:
-			HiloGuardarArchivo(self, nombreFile, url)
+			caracteres = '\/:*?"<>| '
+			if any(c in caracteres for c in nombreFile):
+				msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][event.GetId()]['channel'])
+				gui.messageBox(msg,
+					_("Información"), wx.ICON_INFORMATION)
+				nombreFile = ""
+				webbrowser.open_new(url)
+				return
+			else:
+				HiloGuardarArchivo(self, nombreFile, url)
 
 	def TrueDescarga(self, fichero_final, url, path):
 		dlg = DescargaDialogo(_("Descargando %s...") % fichero_final, url, path, 15)
@@ -462,16 +572,25 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 		self.chkListBox.Select(0)
 		self.chkListBox.Bind(wx.EVT_CHECKLISTBOX, self.onAddonsChecked)
 
-		self.ActualizarBTN = wx.Button(self.Panel, 101, _("&Actualizar"))
-		self.CerrarBTN = wx.Button(self.Panel, 102, _("&Cerrar"))
+		self.selectionAllBTN = wx.Button(self.Panel, 101, _("&Seleccionar todo"))
+		self.unselectionAllBTN = wx.Button(self.Panel, 102, _("&Deseleccionar todo"))
+		self.ActualizarBTN = wx.Button(self.Panel, 103, _("&Actualizar"))
+		self.CerrarBTN = wx.Button(self.Panel, 104, _("&Cerrar"))
 		self.Bind(wx.EVT_BUTTON,self.onBoton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
 		self.Bind(wx.EVT_CLOSE, self.onBoton)
 
 		sizeMain = wx.BoxSizer(wx.VERTICAL)
+		szBotoneSelect = wx.BoxSizer(wx.HORIZONTAL)
 		szBotones = wx.BoxSizer(wx.HORIZONTAL)
 
 		sizeMain.Add(self.chkListBox, 1, wx.EXPAND)
+
+		szBotoneSelect.Add(self.selectionAllBTN, 2, wx.CENTER)
+		szBotoneSelect.Add(self.unselectionAllBTN, 2, wx.CENTER)
+
+		sizeMain.Add(szBotoneSelect, 0, wx.EXPAND)
+
 		szBotones.Add(self.ActualizarBTN, 2, wx.CENTER)
 		szBotones.Add(self.CerrarBTN, 2, wx.CENTER)
 
@@ -482,35 +601,42 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 		self.CenterOnScreen()
 
 	def onAddonsChecked(self, event):
-#		if any([self.addonsList.IsChecked(addon) for addon in range(self.addonsList.GetItemCount())]):
-
 		index = event.GetSelection()
 		label = self.chkListBox.GetString(index)
-#		print(index)
 		status = False
 		if self.chkListBox.IsChecked(index):
 			status = True
-#		print('Box %s is %s checked \n' % (label, status))
 		self.chkListBox.SetSelection(index)    # so that (un)checking also selects (moves the highlight)
-#		print(self.listIndex)
 
 	def onBoton(self, event):
 		global chkUpdate
 		obj = event.GetEventObject()
 		botonID = obj.GetId()
 		if botonID == 101:
+			num = self.chkListBox.GetCount()
+			for i in range(num):
+				self.chkListBox.Check(	i, True)
+			self.chkListBox.SetSelection(0)
+			self.chkListBox.SetFocus()
+		elif botonID == 102:
+			self.chkListBox.Clear()
+			for i in range(0, len(self.nombreUrl)):
+				self.chkListBox.Append("{} {}-{}".format(list(self.nombreUrl.keys())[i], self.verInstalada[i], self.verInstalar[i]))
+			self.chkListBox.Select(0)
+			self.chkListBox.SetFocus()
+		elif botonID == 103:
 			listaSeleccion = [i for i in range(self.chkListBox.GetCount()) if self.chkListBox.IsChecked(i)]
 			if len(listaSeleccion) == 0:
 				gui.messageBox(_("Tiene que seleccionar una actualización para poder continuar."),
 					_("Error"), wx.ICON_ERROR)
-				self.self.chkListBox.SetFocus()
+				self.chkListBox.SetFocus()
 			else:
 				hilo =HiloLanzaActualizacion(self.nombreUrl, listaSeleccion)
 				hilo.start()
 				ajustes.IS_WinON = False
 				self.Destroy()
 				gui.mainFrame.postPopup()
-		elif botonID == 102:
+		elif botonID == 104:
 			if ajustes.tempChk == True:
 				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			ajustes.IS_WinON = False
@@ -860,7 +986,7 @@ class HiloActualizacion(Thread):
 			wx.CallAfter(self.frame.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(readsofar))
 
 	def run(self):
-
+		lstError = []
 		try:
 			for i in self.listaSeleccion:
 				fichero = self.generaFichero()
@@ -869,24 +995,48 @@ class HiloActualizacion(Thread):
 				opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 				urllib.request.install_opener(opener)
 				urllib.request.urlretrieve(list(self.nombreUrl.values())[i], fichero, reporthook=self.__call__)
+				wx.CallAfter(self.frame.onActualizacion, i+1)
 				bundle = addonHandler.AddonBundle(fichero)
 				if not addonVersionCheck.hasAddonGotRequiredSupport(bundle):
 					pass #Podemos crear un control de errores aquí para complementos que no se pueden instalar por incompatibilidad y luego dar un mensaje
 				else:
-					bundleName = bundle.manifest['name']
-					isDisabled = False
-					for addon in addonHandler.getAvailableAddons():
-						if bundleName == addon.manifest['name']:
-							if addon.isDisabled:
-								isDisabled = True
-							if not addon.isPendingRemove:
-								addon.requestRemove()
-							break
-					addonHandler.installAddonBundle(bundle)
-				wx.CallAfter(self.frame.onActualizacion, i+1)
-			ajustes.reiniciarTrue = True
-			wx.CallAfter(self.frame.done, _("La actualización se completó.\n") + _("NVDA necesita reiniciarse para aplicar las actualizaciones.\n") + _("¿Desea reiniciar NVDA ahora?"))
-		except:
+					if addonHandler.addonVersionCheck.isAddonTested(bundle):
+						bundleName = bundle.manifest['name']
+						isDisabled = False
+						for addon in addonHandler.getAvailableAddons():
+							if bundleName == addon.manifest['name']:
+								if addon.isDisabled:
+									isDisabled = True
+								if not addon.isPendingRemove:
+									addon.requestRemove()
+								break
+						addonHandler.installAddonBundle(bundle)
+					else:
+						lstError.append(bundle.manifest['summary'])
+			if len(lstError) == 0:
+				ajustes.reiniciarTrue = True
+				wx.CallAfter(self.frame.done, _("La actualización se completó.\n") + _("NVDA necesita reiniciarse para aplicar las actualizaciones.\n") + _("¿Desea reiniciar NVDA ahora?"))
+			else:
+				if len(lstError) == len(self.listaSeleccion):
+					wx.CallAfter(self.frame.error, _("No se pudo instalar el complemento.\n") + _("Fallo de compatibilidad.\n") + _("Busque una actualización compatible."))
+				else:
+					temp = []
+					for i in lstError:
+						temp.append(i)
+					msg = \
+_("""Se completo la instalación correctamente.
+
+Pero hay complementos que no se pudieron instalar.
+
+Los siguientes complementos son incompatibles, busque una versión compatible:
+
+{}
+
+NVDA necesita reiniciarse para aplicar las instalaciones.
+¿Desea reiniciar NVDA ahora?""").format("\n".join(str(x) for x in temp))
+					ajustes.reiniciarTrue = True
+					wx.CallAfter(self.frame.done, msg)
+		except Exception as e:
 			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
 		try:
 			shutil.rmtree(self.directorio, ignore_errors=True)
@@ -899,8 +1049,8 @@ class HiloComplemento(Thread):
 		self.daemon = True
 		self.opcion = opcion
 	def run(self):
-		def tiendaAppDialogo():
-			self._MainWindows = tiendaApp(gui.mainFrame)
+		def tiendaAppDialogo(data):
+			self._MainWindows = tiendaApp(gui.mainFrame, data)
 			gui.mainFrame.prePopup()
 			self._MainWindows.Show()
 
@@ -912,7 +1062,7 @@ class HiloComplemento(Thread):
 		try:
 			datos = basedatos.NVDAStoreClient()
 			if self.opcion == 1:
-				wx.CallAfter(tiendaAppDialogo)
+				wx.CallAfter(tiendaAppDialogo, datos)
 			elif self.opcion == 2:
 				nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
 				if nombreUrl == False:

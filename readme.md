@@ -38,16 +38,12 @@ En esta pantalla podremos seleccionar en caso de que hubiese actualizaciones aqu
 
 Tendremos que marcar con espacio el complemento y darle a Actualizar.
 
-Actualmente solo se permite actualizar la rama principal del complemento. Si tenemos un complemento que tiene varias ramas y estamos en la rama de desarrollo tendremos que actualizar de manera manual.
-
-En caso que solo sea un complemento que tenga rama de desarrollo y sea su única rama se podrá actualizar sin problemas.
-
-Solo se actualizara la rama principal del complemento.
-
-Se esta trabajando para poder ofrecer el elegir que rama deseamos para cada complemento.
+En esta pantalla se nos mostrara la actualización correspondiente si la hay a la rama que tengamos elegida en NVDA / Preferencias / Opciones / Tienda NVDA.ES y allí podremos elegir si hay más de una rama de desarrollo la que deseemos (explicado bien en el siguiente apartado)
 
 En esta pantalla tenemos las siguientes teclas:
 
+* Alt+S: Seleccionara para instalar todas las actualizaciones que tengamos.
+* Alt+D: Nos deseleccionara todas las actualizaciones si habían marcadas.
 * Alt+A: Empezara la actualización de aquellos complementos que tengamos seleccionados.
 * Alt+C, Alt+F4 o Escape: Cerrara la ventana.
 
@@ -55,7 +51,7 @@ En esta pantalla tenemos las siguientes teclas:
 
 Podremos configurar algunos aspectos de la tienda en NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
 
-Actualmente podremos seleccionar si deseamos Activar o desactivar la comprobación de actualizaciones.
+* Activar o desactivar la comprobación de actualizaciones.
 
 Si activamos esta casilla se activará un cuadro combinado en el cual podremos elegir cuanto tiempo transcurrirá entre una comprobación y otra.
 
@@ -69,12 +65,54 @@ Por lo tanto, si tenemos 15 minutos asignados y no encuentra actualizaciones a l
 
 En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo dado y luego se desactivara, cada vez nos avisara de que se encontraron actualizaciones hasta que actualicemos.
 
+* Ordenar por orden alfabético los complementos de la tienda y las búsquedas.
+
+Si marcamos esta casilla, cuando abramos la tienda se nos mostrara por orden alfabético. También si buscamos las búsquedas se mostrarán en orden alfabético.
+
+* Complementos instalados que hay en el servidor.
+
+Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.
+
+Solo se mostrarán aquellos que además tengan compatibilidad con la Api actual de NVDA.
+
+En esta lista podremos elegir que rama de actualización queremos para el complemento. Si pulsamos espacio encima de un complemento se nos desplegara todas las ramas de desarrollo para ese complemento. Podremos elegir la que deseemos con intro y se nos quedara guardada la selección en la lista.
+
+ADVERTENCIA: Los cambios en la lista solo se guardarán si damos al botón aceptar o aplicar del dialogo de opciones.
+
+Esta lista se actualiza cada vez que reiniciemos NVDA añadiendo si hay nuevos complementos o eliminando aquellos que ya no estén.
+
+Por lo tanto si eliminamos un complemento y luego lo volvemos a instalar tendremos que volver a seleccionar la rama que deseamos de nuevo.
+
+Esta lista tanto la primera vez que se genere como cada vez que se agregue un complemento siempre pondrá por defecto la primera rama de desarrollo que hay en el servidor.
+
 ## Observaciones
+
+Cuando compruebe si hay actualizaciones ahora tiene dos protecciones:
+
+1º Comprobara si hay complementos que van a ser desinstalados.
+
+Si es a si esos complementos se excluyen, aunque haya actualizaciones.
+
+2º Se validará que el complemento que hay en el servidor cumple con los requisitos de API del NVDA que tenemos instalado.
+
+Si esto no se cumple, el complemento no podrá ser instalado, aunque la versión del servidor sea más nueva y el servidor nos ofrezca ese complemento.
+
+A la hora de instalar se han incluido también varias protecciones:
+
+1º Ahora nos avisará si algún complemento no a podido ser actualizado y nos dará su nombre.
+
+2º En este paso también se comprobará si el complemento para instalar tiene la versión mínima para ser usado en el NVDA que tengamos instalado.
 
 Se agrego una protección la cual no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
 Si tenemos activada la búsqueda de actualizaciones automática cada vez que busque y detecte que no hemos reiniciado NVDA se nos notificara con una notificación de sistema.
 
 Igualmente, si intentamos activar la pantalla de buscar actualizaciones y no hemos reiniciado NVDA el lector nos hablara el mensaje que tenemos que reiniciar el NVDA para aplicar las actualizaciones.
+
+Se agrego protección por si las librerías no dejan cargar por que no tengamos internet, se nos mostrara mensajes de información en el registro de NVDA y además si intentamos acceder a la tienda se nos avisara con un mensaje hablado.
+
+Se mejoro la función que busca actualizaciones, ahora es mucho más fiable y además añade a su vez las protecciones mencionadas con anterioridad.
+
+Se hicieron muchas mejoras internas para hacerlo más robusto.
 
 Este complemento esta en fase de prueba por lo que le pedimos que entienda que pueden haber errores.
 

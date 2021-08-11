@@ -3,10 +3,13 @@
 # This file is covered by the GNU General Public License.
 
 import addonHandler
+import globalVars
+import addonAPIVersion
 import json
 import urllib.request
 import os, sys
 from threading import Timer
+import ajustes
 
 def obtenFile(url):
 	opener = urllib.request.build_opener()
@@ -57,29 +60,120 @@ class NVDAStoreClient(object):
 				return x
 		return False
 
+	def indiceName(self, valor):
+		for x in range(0, len(self.dataServidor)):
+			if self.dataServidor[x]['name'].lower() == valor.lower():
+				return x
+		return False
+
 	def chkVersion(self, verServidor, verLocal):
 		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
 			return False
 		else:
 			return True
 
+	def isAddonTested(self, version, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
+		"""True if this add-on is tested for the given API version.
+		By default, the current version of NVDA is evaluated.
+		"""
+		return tuple(map(int, version.split('.'))) >= backwardsCompatToVersion
+
 	def chkActualizaS(self):
 		lstActualizar = []
 		lstUrl = []
 		lstVerServidor = []
 		lstVerLocal = []
-		for i in self.dataLocal:
+		for i in ajustes.listaAddonsSave:
 			for x in range(0, len(self.dataServidor)):
-				if self.dataServidor[x]['name'].lower() == i.manifest["name"].lower():
-					if self.chkVersion(self.dataServidor[x]['links'][0]['version'], i.manifest["version"]) == True:
-						lstActualizar.append("{}".format(i.manifest["summary"]))
-						lstUrl.append(self.urlBase + self.dataServidor[x]['links'][0]['file'])
-						lstVerServidor.append(self.dataServidor[x]['links'][0]['version'])
-						lstVerLocal.append(i.manifest["version"])
+				if self.dataServidor[x]['name'].lower() == i[0].lower():
+					for z in self.dataLocal:
+						if i[0].lower() == z.manifest["name"].lower():
+							if not z.isPendingRemove:
+								if self.isAddonTested(self.dataServidor[x]['links'][i[1]]['lasttested']):
+									if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
+										lstActualizar.append("{}".format(z.manifest["summary"]))
+										lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
+										lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
+										lstVerLocal.append(z.manifest["version"])
 		if len(lstActualizar) == 0:
 			return False, False, False
 		else:
 			return dict(zip(lstActualizar, lstUrl)), lstVerLocal, lstVerServidor
+
+class libreriaLocal(object):
+	def __init__(self):
+
+		super(libreriaLocal, self).__init__()
+
+		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data.json")
+		self.local = list(addonHandler.getAvailableAddons())
+
+	def fileJsonAddon(self, opcion, lista=[]):
+		if opcion == 1: # Guardar
+			with open(self.file, "w") as fp:
+				json.dump(lista, fp)
+		elif opcion == 2: # Cargar
+			if os.path.isfile(self.file):
+				with open(self.file, "r") as fp:
+					return json.load(fp)
+			else:
+				self.servidor = NVDAStoreClient().dataServidor
+				lista = []
+				for i in self.local:
+					for x in range(0, len(self.servidor)):
+						if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+							lista.append([i.manifest['name'], 0])
+				self.fileJsonAddon(1, lista)
+				return lista
+
+	def addonsInstalados(self):
+		self.servidor = NVDAStoreClient().dataServidor
+		lista = []
+		for i in self.local:
+			for x in range(0, len(self.servidor)):
+				if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+					lista.append([i.manifest['name'], 0])
+		return lista
+
+	def returnNotMatches(self, a, b):
+		"""Pasar dos listas, a lista guardada, b lista cargada
+Devuelve 2 listas: lista1 borrar, lista2 copiar a lista1."""
+		temp1 = []
+		temp2 = []
+		for i in range(0, len(a)):
+			temp1.append(a[i][0])
+		for i in range(0, len(b)):
+			temp2.append(b[i][0])
+		return [[x for x in temp1 if x not in temp2], [x for x in temp2 if x not in temp1]]
+
+	def GetPos(self, lista, valor):
+		temp = []
+		for x in range(0, len(lista)):
+			temp.append(lista[x][0])
+		return temp.index(valor)
+
+	def ordenaLista(self, lista):
+		return sorted(lista, key = lambda x:(x[0], x[0]))
+
+	def actualizaJson(self):
+		p = self.returnNotMatches(ajustes.listaAddonsSave, ajustes.listaAddonsInstalados)
+		if len(p[0]) == 0:
+			pass # Sin items para eliminar
+		else:
+			temp = []
+			for x in range(0, len(p[0])):
+				temp.append(p[0][x])
+				z = self.GetPos(ajustes.listaAddonsSave, p[0][x])
+				del ajustes.listaAddonsSave[z]
+		if len(p[1]) == 0:
+			pass # Sin items para añadir
+		else:
+			temp = []
+			for x in range(0, len(p[1])):
+				temp.append(p[1][x])
+				z = self.GetPos(ajustes.listaAddonsInstalados, p[1][x])
+				ajustes.listaAddonsSave.append(ajustes.listaAddonsInstalados[z])
+		self.fileJsonAddon(1, self.ordenaLista(ajustes.listaAddonsSave))
 
 class RepeatTimer(object):
 	def __init__(self, interval, function, *args, **kwargs):
