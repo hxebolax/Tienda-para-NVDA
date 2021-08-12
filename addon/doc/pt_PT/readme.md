@@ -15,7 +15,7 @@ Se navegarmos pela janela, teremos uma lista com todos os extras, uma caixa some
 
 Teremos também uma caixa de pesquisa na qual podemos colocar o que queremos pesquisar e, se pressionarmos enter, os resultados serão mostrados na lista.
 
-Para voltarmos a ter toda a lista de extras, teremos apenas que voltar à caixa de pesquisa, apagar o texto que anteriormente e pressionar "enter", com a caixa vazia.
+Para voltarmos a ter toda a lista de extras, teremos apenas que voltar à caixa de pesquisa, apagar o texto que tínhamos escrito anteriormente e pressionar "enter", com a caixa vazia.
 
 No campo do ficheiro, caso o extra possua mais de um ramo de desenvolvimento, a informação também será mostrada.
 
@@ -38,24 +38,21 @@ Neste ecrã poderemos seleccionar, em caso de actualizações, os extras que que
 
 Teremos que marcar o extra, com um espaço, e clicar em Actualizar.
 
-Actualmente, apenas o ramo principal do extra pode ser actualizado. Se tivermos um extra que possui vários ramos e estivermos no ramo de desenvolvimento, teremos que actualizar manualmente.
-
-No caso de ser apenas um extra que possui um ramo de desenvolvimento que e é o seu único ramo, ele pode ser atualizado sem problemas.
-
-Apenas o ramo principal do extra será actualizado.
-
-Estamos a trabalhar para podermos oferecer a escolha de qual o ramo queremos para cada extra.
+Neste ecrã será mostrada a actualização correspondente, se houver alguma para o ramo que escolhemos em NVDA / Preferências / configurações do extra /   e aí podemos escolher se houver mais de um  ramo. (isto será melhor explicado na secção seguinte).
 
 Neste ecrã, temos as seguintes teclas:
 
+* Alt+S: Seleccionará, para instalar, todas as actualizações que tenhamos.
+* Alt+D: Retirará todas as selecções que tivermos feito.
 * Alt + A: A actualização dos extras que seleccionámos começará.
 * Alt + C, Alt + F4 ou Escape: Fecha a janela.
+
 
 ### Painel de opções
 
 Podemos configurar alguns aspectos da loja em NVDA / Preferências / definir comandos e procurar a categoria Loja NVDA.ES.
 
-Actualmente podemos seleccionar se queremos activar ou desactivar a verificação de actualizações.
+* Activar ou desactivar a verificação de actualizações.
 
 Se activarmos esta caixa, será activada uma caixa de combinação na qual podemos escolher quanto tempo irá decorrer entre uma verificação e outra.
 
@@ -68,12 +65,72 @@ Se esta opção estiver activada, pesquisará 10 vezes, no intervalo de tempo de
 Portanto, se tivermos 15 minutos atribuídos e  não encontrar actualizações às 2h30, parará de procurar por actualizações.
 No caso de haver actualizações, irá pesquisar mais 5 vezes o intervalo de tempo determinado e, em seguida, desativá-lo, a cada vez que iniciemos o computador, nos notificará que as atualizações foram encontradas até que atualizemos.
 
+* Ordenar por orden alfabético los complementos de la tienda y las búsquedas.
+
+Si marcamos esta casilla, cuando abramos la tienda se nos mostrara por orden alfabético. También si buscamos las búsquedas se mostrarán en orden alfabético.
+
+* Complementos instalados que hay en el servidor.
+
+Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.
+
+Solo se mostrarán aquellos que además tengan compatibilidad con la Api actual de NVDA.
+
+En esta lista podremos elegir que rama de actualización queremos para el complemento. Si pulsamos espacio encima de un complemento se nos desplegara todas las ramas de desarrollo para ese complemento. Podremos elegir la que deseemos con intro y se nos quedara guardada la selección en la lista.
+
+ADVERTENCIA: Los cambios en la lista solo se guardarán si damos al botón aceptar o aplicar del dialogo de opciones.
+
+Esta lista se actualiza cada vez que reiniciemos NVDA añadiendo si hay nuevos complementos o eliminando aquellos que ya no estén.
+
+Por lo tanto si eliminamos un complemento y luego lo volvemos a instalar tendremos que volver a seleccionar la rama que deseamos de nuevo.
+
+* Classificar por ordem alfabética os extras da loja e as pesquisas.
+
+Se marcarmos esta caixa, ao abrirmos a loja ela será mostrada em ordem alfabética. Além disso, se pesquisarmos, as pesquisas serão mostradas em ordem alfabética.
+
+* Extras instalados no nosso computador que estão no servidor.
+
+esta lista mostrará os extras que temos instalados e que, por sua vez, estão no servidor.
+
+Só serão mostrados aqueles que  têm compatibilidade com a Api do NVDA actual.
+
+Nesta lista, podemos escolher qual o ramo de actualização do extra queremos. Se pressionarmos a barra de espaço em cima de um extra, todos os ramos de desenvolvimento desse extra serão mostrados. Podemos escolher o que queremos   e a selecção será guardada na lista.
+
+AVISO: As alterações na lista só serão guardadas se clicarmos no botão "aceitar" ou "aplicar", na caixa de diálogo de configurações.
+
+Esta lista é actualizada de cada vez que reiniciamos o NVDA adicionando novos extras, se os houver, ou removendo aqueles que já lá não estão.
+
+Portanto, se removermos um  extra e, depois, voltarmos a reinstalá-lo, teremos que selecionar, novamente o ramo que queremos.
+
+Esta lista, quando o NVDA for reinciado ou façamos alterações, sempre assumirá, por padrão, o ramo de desenvolvimento.
+
 ## Observações
 
-Foi adicionada uma protecção que não permitirá continuar a procurar por actualizações se já tivermos feito uma actualização de um ou mais extras e não tivermos decidido reiniciar o NVDA.
-Se activarmos a busca automática de atualizações, toda a vez que busca e detecta que não reiniciámos o NVDA, seremos notificados com uma notificação do sistema.
+Ao verificar se há atualizações, agora tem duas protecções:
 
-Da mesma forma, se tentarmos activar o ecrã de verificação de actualizações e não reiniciarmos o NVDA, o leitor dirá a mensagem de que precisamos de reiniciar o NVDA para aplicar as actualizações.
+1 ° Verifica se há complementos que foram desinstalados.
+
+ Nesse caso, os extras  serão excluídos, mesmo se houver actualizações.
+
+2º Será validado se o complemento que se encontra no servidor cumpre os requisitos da API do NVDA que temos instalado.
+
+Se isso não for verdade, o extra não pode ser instalado, mesmo se a versão do servidor for mais recente e o servidor nos oferecer esse extra.
+
+Ao instalar, várias proteções também foram incluídas:
+
+1º Se algum dos extras não puder ser instalado, seremos informados desse facto.
+
+2º Neste passo também será verificado se o extra a instalar tem a versão mínima a ser utilizada no NVDA que temos instalado.
+
+Foi adicionada uma protecção que não permitirá continuar a procurar por actualizações se já tivermos feito uma actualização de um ou mais extras e não tivermos decidido reiniciar o NVDA.
+Se tivermos activado a pesquisa por actualizações automáticas, toda a vez que ela pesquisar e detectar que não reiniciámos o NVDA, seremos notificados com uma notificação do sistema.
+
+Da mesma forma, se tentarmos activar o ecrã de verificação de actualizações e não reiniciarmos o NVDA, o leitor nos dirá a mensagem de que precisamos reiniciar o NVDA para aplicar as atualizações.
+
+Foi adicionada uma protecção caso as bibliotecas não nos permitam carregar por não termos internet, serão mostradas mensagens de informação no registo do NVDA e também se tentarmos aceder à loja, seremos avisados , com uma mensagem falada.
+
+A função de busca por actualizações foi aprimorada, agora é muito mais confiável e também adiciona as protecções mencionadas acima.
+
+Muitas melhorias internas foram feitas para tornar o extra mais robusto.
 
 Este extra está em fase de teste, por isso pedimos que entenda que pode haver erros.
 
@@ -81,4 +138,4 @@ Agradecemos  que entre em contato conosco, para relatá-los e podermos resolvê-
 
 Equipa Portuguesa do NVDA: Ângelo Abrantes <ampa4374@gmail.com> e Rui Fontes <Rui Fontes <rui.fontes@tiflotecnia.com>
 
-7 de Agosto de 2021.
+11 de Agosto de 2021.

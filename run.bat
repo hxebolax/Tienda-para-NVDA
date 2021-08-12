@@ -1,3 +1,3 @@
 scons --clean
 scons
-TiendaNVDA-0.3.3.nvda-addon
+TiendaNVDA-0.4.nvda-addon

@@ -50,6 +50,7 @@ except Exception as e:
 	inicio = False
 
 def function_ChkUpdate():
+	"""Función para controlar el hilo que busca con tiempo actualizaciones"""
 	if ajustes.reiniciarTrue == False:
 		try:
 			datos = basedatos.NVDAStoreClient()
@@ -101,10 +102,6 @@ if inicio == True:
 	chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 	if ajustes.tempChk == False:
 		chkUpdate.stop()
-
-	## Pruebas base con addons.
-#	basedatos.libreriaLocal().actualizaJson()
-
 else:
 	log.info(_("Inicio del complemento cancelado."))
 
@@ -155,6 +152,7 @@ Una de las causas es que NVDA arrancara antes de tener conexión a internet.
 
 Reinicie NVDA para intentar solucionar el problema.""")
 			ui.message(msg)
+
 	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= "TiendaNVDA")
 	def script_menu2(self, event):
 		if inicio == True:
@@ -205,10 +203,10 @@ class TiendaPanel(SettingsPanel):
 		else:
 			self.choiceTimer.Disable()
 
-		index = ajustes.tempTimer
-		self.choiceTimer.Selection = index
+		self.choiceTimer.Selection = ajustes.tempTimer
 
 		self.ordenChk.Value =ajustes.tempOrden
+
 		self.listaGuarda = []
 
 	def onSave(self):
@@ -250,7 +248,7 @@ class TiendaPanel(SettingsPanel):
 		if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
 			self.menuDescarga = wx.Menu()
 			for i in range(len(datos['links'])):
-				item = self.menuDescarga.Append(i, "Canal {}".format(datos['links'][i]['channel']))
+				item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
 				self.Bind(wx.EVT_MENU, self.onSelect, item)
 
 			position = self.listbox.GetPosition()

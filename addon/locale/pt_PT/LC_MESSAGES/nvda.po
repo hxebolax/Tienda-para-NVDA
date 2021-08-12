@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Loja do NVDA versão 0.3.1\n"
+"Project-Id-Version: Loja do NVDA versão 0.3.3\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2021-08-07 23:46+0200\n"
-"PO-Revision-Date: 2021-08-07 23:38+0100\n"
+"POT-Creation-Date: 2021-08-11 14:51+0100\n"
+"PO-Revision-Date: 2021-08-11 14:59+0100\n"
 "Last-Translator: Ângelo Abrantes <ampa4374@gmail.com>\n"
 "Language-Team: Equipa Portuguesa do NVDA: Ângelo Abrantes <ampa4374@gmail."
 "com> e Rui Fontes <Rui Fontes <rui.fontes@tiflotecnia.com>\n"
@@ -17,24 +17,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#. Add-on summary, usually the user visible name of the addon.
-#. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
-#: buildVars.py:23
-msgid "Tienda para NVDA"
-msgstr "loja para o NVDA"
-
-#. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-#: buildVars.py:26
-msgid "Tienda de complementos no oficial de https://www.nvda.es"
-msgstr "Loja de extras não-oficial https://www.nvda.es"
-
-#: addon\globalPlugins\TiendaNVDA\__init__.py:44
+#: TiendaNVDA/__init__.py:48
 msgid "No se pudieron cargar las librerías necesarias para la Tienda"
 msgstr "Não foi possível carregar as bibliotecas necessárias para a Loja"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:62
+#: TiendaNVDA/__init__.py:67
 msgid ""
 "Se encontró una actualización. \n"
 "\n"
@@ -44,17 +31,14 @@ msgstr ""
 "\n"
 "Executar a verificação de actualizações adicionais a partir da loja NVDA.ES"
 
-#. Translators: Title of the notification
-#: addon\globalPlugins\TiendaNVDA\__init__.py:66
-#: addon\globalPlugins\TiendaNVDA\__init__.py:76
-#: addon\globalPlugins\TiendaNVDA\__init__.py:89
-#: addon\globalPlugins\TiendaNVDA\__init__.py:396
-#: addon\globalPlugins\TiendaNVDA\__init__.py:406
-#: addon\globalPlugins\TiendaNVDA\__init__.py:921
+#: TiendaNVDA/__init__.py:71 TiendaNVDA/__init__.py:81
+#: TiendaNVDA/__init__.py:94 TiendaNVDA/__init__.py:491
+#: TiendaNVDA/__init__.py:501 TiendaNVDA/__init__.py:515
+#: TiendaNVDA/__init__.py:1070
 msgid "Información"
 msgstr "Informação"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:72
+#: TiendaNVDA/__init__.py:77
 msgid ""
 "Se encontraron  {} actualizaciones. \n"
 "\n"
@@ -64,75 +48,97 @@ msgstr ""
 "\n"
 "Executar a verificação de actualizações adicionais a partir da loja NVDA.ES"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:87
-#: addon\globalPlugins\TiendaNVDA\__init__.py:141
+#: TiendaNVDA/__init__.py:92 TiendaNVDA/__init__.py:167
 msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
 msgstr "É necessário reiniciar o NVDA para aplicar as actualizações."
 
-#. Translators: Nombre del submenú para tienda de complementos
-#: addon\globalPlugins\TiendaNVDA\__init__.py:108
+#: TiendaNVDA/__init__.py:108
+msgid "Inicio del complemento cancelado."
+msgstr "Início do extra cancelado."
+
+#: TiendaNVDA/__init__.py:122
 msgid "Listado de complementos"
 msgstr "Lista de extras"
 
-#. Translators: Nombre del submenú para buscar actualizaciones
-#: addon\globalPlugins\TiendaNVDA\__init__.py:111
+#: TiendaNVDA/__init__.py:125
 msgid "Buscar actualizaciones de complementos"
 msgstr "Procurar actualizações de extras"
 
-#. Translators: Nombre del menú Tienda de complementos
-#. TRANSLATORS: title for the Update Channel settings category
-#: addon\globalPlugins\TiendaNVDA\__init__.py:114
-#: addon\globalPlugins\TiendaNVDA\__init__.py:145
-#: addon\globalPlugins\TiendaNVDA\__init__.py:198
+#: TiendaNVDA/__init__.py:128 TiendaNVDA/__init__.py:179
+#: TiendaNVDA/__init__.py:281
 msgid "Tienda NVDA.ES"
 msgstr "Loja NVDA.es"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:124
+#: TiendaNVDA/__init__.py:141
 msgid "Muestra la ventana con todos los complementos y su información"
 msgstr "Mostra a janela com todos os extras e as suas informações"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:130
-#: addon\globalPlugins\TiendaNVDA\__init__.py:139
+#: TiendaNVDA/__init__.py:148 TiendaNVDA/__init__.py:165
 msgid "Ya hay una instancia de la Tienda NVDA abierta."
 msgstr "Uma instância da Loja NVDA já está aberta."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:132
+#: TiendaNVDA/__init__.py:151 TiendaNVDA/__init__.py:170
+msgid ""
+"El complemento fallo al iniciar NVDA.\n"
+"\n"
+"Una de las causas es que NVDA arrancara antes de tener conexión a "
+"internet.\n"
+"\n"
+"Reinicie NVDA para intentar solucionar el problema."
+msgstr ""
+"O extra falhou ao iniciar o NVDA.\n"
+"\n"
+"Uma das causas pode ser o facto de que o NVDA começou antes de ter uma "
+"ligação à Internet.\n"
+"\n"
+"Reiniciar o NVDA para tentar resolver o problema."
+
+#: TiendaNVDA/__init__.py:157
 msgid "Busca actualizaciones de los complementos instalados"
 msgstr "Procura actualizações dos extras instalados"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:150
+#: TiendaNVDA/__init__.py:184
 msgid "Activar o desactivar la comprobación de actualizaciones"
 msgstr "Activar ou desactivar a verificação de actualizações"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:153
+#: TiendaNVDA/__init__.py:187
 msgid "Seleccione un tiempo para comprobar si hay actualizaciones"
 msgstr "Seleccione um momento para verificar as actualizações"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:205
+#: TiendaNVDA/__init__.py:189
+msgid ""
+"Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
+msgstr "Ordenar alfabeticamente os extras da loja e das pesquisas"
+
+#: TiendaNVDA/__init__.py:193
+msgid "Complementos instalados que hay en el servidor:"
+msgstr "Extras instalados que existem no servidor"
+
+#: TiendaNVDA/__init__.py:288
 msgid "&Buscar:"
 msgstr "&Pesquisar:"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:210
+#: TiendaNVDA/__init__.py:293
 msgid "&Lista complementos:"
 msgstr "&Lista de extras:"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:218
+#: TiendaNVDA/__init__.py:308
 msgid "&Información:"
 msgstr "&Informação:"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:222
+#: TiendaNVDA/__init__.py:312
 msgid "&Descargar complemento"
 msgstr "&Descarregar o extra"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:223
+#: TiendaNVDA/__init__.py:313
 msgid "Visitar &página WEB"
 msgstr "Visitar  a página &web"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:224
+#: TiendaNVDA/__init__.py:314
 msgid "&Salir"
 msgstr "&Sair"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:263
+#: TiendaNVDA/__init__.py:353
 msgid ""
 "Autor: {}\n"
 "Nombre del complemento: {}\n"
@@ -146,15 +152,15 @@ msgstr ""
 "Descrição: {}\n"
 "Desenvolvimento: {}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:272
+#: TiendaNVDA/__init__.py:362
 msgid "Con soporte"
 msgstr "Com suporte"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:272
+#: TiendaNVDA/__init__.py:362
 msgid "Sin soporte"
 msgstr "Sem suporte"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:278
+#: TiendaNVDA/__init__.py:368
 msgid ""
 "Canal: {}\n"
 "Versión: {}\n"
@@ -168,16 +174,15 @@ msgstr ""
 "Testado até à versão do NVDA: {}\n"
 "Total de descargas: {}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:329
-#: addon\globalPlugins\TiendaNVDA\__init__.py:341
+#: TiendaNVDA/__init__.py:421 TiendaNVDA/__init__.py:436
 msgid "No se encontraron resultados"
 msgstr "Não foram encontrados resultados"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:356
+#: TiendaNVDA/__init__.py:451
 msgid "Versión {}"
 msgstr "Versão {}"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:390
+#: TiendaNVDA/__init__.py:485 TiendaNVDA/__init__.py:509
 msgid ""
 "No se pudo obtener el nombre del archivo a descargar.\n"
 "\n"
@@ -191,7 +196,7 @@ msgstr ""
 "\n"
 "Procederá ao download com o seu navegador predefinido."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:402
+#: TiendaNVDA/__init__.py:497
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
@@ -202,104 +207,139 @@ msgstr ""
 "\n"
 "Abrirá com o seu navegador predefinido na página de download do extra."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:414
+#: TiendaNVDA/__init__.py:523
 #, python-format
 msgid "Descargando %s..."
 msgstr "A Descarregar %s..."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:444
+#: TiendaNVDA/__init__.py:553
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
 msgstr "Loja NVDA.es - actualizações disponíveis"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:465
+#: TiendaNVDA/__init__.py:574
+msgid "&Seleccionar todo"
+msgstr "&Seleccionar tudo"
+
+#: TiendaNVDA/__init__.py:575
+msgid "&Deseleccionar todo"
+msgstr "&Retirar a selecção"
+
+#: TiendaNVDA/__init__.py:576
 msgid "&Actualizar"
 msgstr "&Actualizar"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:466
-#: addon\globalPlugins\TiendaNVDA\__init__.py:562
-#: addon\globalPlugins\TiendaNVDA\__init__.py:653
+#: TiendaNVDA/__init__.py:577 TiendaNVDA/__init__.py:687
+#: TiendaNVDA/__init__.py:778
 msgid "&Cerrar"
 msgstr "&Fechar"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:504
+#: TiendaNVDA/__init__.py:629
 msgid "Tiene que seleccionar una actualización para poder continuar."
 msgstr "Tem que seleccionar uma actualização para poder continuar"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:505
-#: addon\globalPlugins\TiendaNVDA\__init__.py:931
+#: TiendaNVDA/__init__.py:630 TiendaNVDA/__init__.py:1080
 msgid "Error"
 msgstr "Erro"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:558
-#: addon\globalPlugins\TiendaNVDA\__init__.py:649
+#: TiendaNVDA/__init__.py:683 TiendaNVDA/__init__.py:774
 msgid "&Aceptar"
 msgstr "&Aceitar"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:630
+#: TiendaNVDA/__init__.py:755
 msgid "Actualizando complementos"
 msgstr "A Actualizar os extras."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:732
+#: TiendaNVDA/__init__.py:857
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
 msgstr "extra para o NVDA (*.nvda-addon)|*.nvda-addon"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:733
+#: TiendaNVDA/__init__.py:858
 msgid "Guardar en..."
 msgstr "Guardar em..."
 
-#. Si la descarga es solo el tamaño
-#: addon\globalPlugins\TiendaNVDA\__init__.py:779
-#: addon\globalPlugins\TiendaNVDA\__init__.py:783
-#: addon\globalPlugins\TiendaNVDA\__init__.py:856
-#: addon\globalPlugins\TiendaNVDA\__init__.py:860
+#: TiendaNVDA/__init__.py:904 TiendaNVDA/__init__.py:908
+#: TiendaNVDA/__init__.py:981 TiendaNVDA/__init__.py:985
 msgid "Espere por favor...\n"
 msgstr "Por favor aguarde...\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:779
-#: addon\globalPlugins\TiendaNVDA\__init__.py:783
-#: addon\globalPlugins\TiendaNVDA\__init__.py:856
-#: addon\globalPlugins\TiendaNVDA\__init__.py:860
+#: TiendaNVDA/__init__.py:904 TiendaNVDA/__init__.py:908
+#: TiendaNVDA/__init__.py:981 TiendaNVDA/__init__.py:985
 #, python-format
 msgid "Descargando: %s"
 msgstr "A Descarregar: %s"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:789
+#: TiendaNVDA/__init__.py:914
 msgid "La descarga se completó.\n"
 msgstr "O download foi concluído.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:789
-#: addon\globalPlugins\TiendaNVDA\__init__.py:791
-#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+#: TiendaNVDA/__init__.py:914 TiendaNVDA/__init__.py:916
+#: TiendaNVDA/__init__.py:1039
 msgid "Ya puede cerrar esta ventana."
 msgstr "Já Pode fechar esta janela."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:791
-#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+#: TiendaNVDA/__init__.py:916 TiendaNVDA/__init__.py:1039
 msgid "Algo salió mal.\n"
 msgstr "Alguma coisa correu mal.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:791
-#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+#: TiendaNVDA/__init__.py:916 TiendaNVDA/__init__.py:1039
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr "Verifique se tem uma ligação à Internet e tente novamente.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:888
+#: TiendaNVDA/__init__.py:1017
 msgid "La actualización se completó.\n"
 msgstr "A actualização foi concluída.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:888
+#: TiendaNVDA/__init__.py:1017
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
 msgstr "o NVDA precisa de ser reiniciado para aplicar as actualizações.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:888
+#: TiendaNVDA/__init__.py:1017
 msgid "¿Desea reiniciar NVDA ahora?"
 msgstr "Quer reiniciar o NVDA agora?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:920
+#: TiendaNVDA/__init__.py:1020
+msgid "No se pudo instalar el complemento.\n"
+msgstr "Não foi possível instalar o extra\n"
+
+#: TiendaNVDA/__init__.py:1020
+msgid "Fallo de compatibilidad.\n"
+msgstr "Falha de compatibilidade.\n"
+
+#: TiendaNVDA/__init__.py:1020
+msgid "Busque una actualización compatible."
+msgstr "Procure uma actualização compatível"
+
+#: TiendaNVDA/__init__.py:1026
+msgid ""
+"Se completo la instalación correctamente.\n"
+"\n"
+"Pero hay complementos que no se pudieron instalar.\n"
+"\n"
+"Los siguientes complementos son incompatibles, busque una versión "
+"compatible:\n"
+"\n"
+"{}\n"
+"\n"
+"NVDA necesita reiniciarse para aplicar las instalaciones.\n"
+"¿Desea reiniciar NVDA ahora?"
+msgstr ""
+"A instalação foi concluída com sucesso.\n"
+"\n"
+"Mas há extras que não puderam ser instalados.\n"
+"\n"
+"Os seguintes extras são incompatíveis, por favor procure uma versão "
+"compatível:\n"
+"\n"
+"{}\n"
+"\n"
+"O NVDA precisa de ser reiniciado para aplicar as instalações.\n"
+"Quer reiniciar o NVDA agora?"
+
+#: TiendaNVDA/__init__.py:1069
 msgid "No hay actualizaciones."
 msgstr "Sem actualizações"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:927
+#: TiendaNVDA/__init__.py:1076
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -309,22 +349,27 @@ msgstr ""
 "\n"
 "Por favor, tente novamente dentro de alguns minutos."
 
-#. Lista tiempo chk notificaciones
-#: addon\globalPlugins\TiendaNVDA\ajustes.py:56
+#: TiendaNVDA/ajustes.py:62
 msgid "15 minutos"
 msgstr "15 minutos"
 
-#: addon\globalPlugins\TiendaNVDA\ajustes.py:56
+#: TiendaNVDA/ajustes.py:62
 msgid "30 minutos"
 msgstr "30 minutos"
 
-#: addon\globalPlugins\TiendaNVDA\ajustes.py:56
+#: TiendaNVDA/ajustes.py:62
 msgid "45 minutos"
 msgstr "45 minutos"
 
-#: addon\globalPlugins\TiendaNVDA\ajustes.py:56
+#: TiendaNVDA/ajustes.py:62
 msgid "1 hora"
 msgstr "1 hora"
+
+#~ msgid "Tienda para NVDA"
+#~ msgstr "loja para o NVDA"
+
+#~ msgid "Tienda de complementos no oficial de https://www.nvda.es"
+#~ msgstr "Loja de extras não-oficial https://www.nvda.es"
 
 #~ msgid "Opciones"
 #~ msgstr "Opções"
