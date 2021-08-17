@@ -128,15 +128,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			return
 
 	def terminate(self):
+		global chkUpdate
 		try:
 			if inicio == True:
+				chkUpdate.stop()
 				NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
 			if not self._MainWindows:
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):
 			pass
 
-	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= "TiendaNVDA")
+	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= _("Tienda para NVDA.ES"))
 	def script_menu1(self, event):
 		if inicio == True:
 			if ajustes.IS_WinON == False:
@@ -153,7 +155,7 @@ Una de las causas es que NVDA arrancara antes de tener conexión a internet.
 Reinicie NVDA para intentar solucionar el problema.""")
 			ui.message(msg)
 
-	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= "TiendaNVDA")
+	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= _("Tienda para NVDA.ES"))
 	def script_menu2(self, event):
 		if inicio == True:
 			if ajustes.reiniciarTrue == False:
@@ -187,6 +189,8 @@ class TiendaPanel(SettingsPanel):
 
 		self.ordenChk = helper.addItem(wx.CheckBox(self, label=_("Ordenar por orden alfabético los complementos de la tienda y las búsquedas")))
 
+		self.installChk = helper.addItem(wx.CheckBox(self, label=_("Instalar complementos después de descargar")))
+
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
 		self.listbox = helper.addLabeledControl(_("Complementos instalados que hay en el servidor:"), wx.ListBox)
@@ -207,6 +211,8 @@ class TiendaPanel(SettingsPanel):
 
 		self.ordenChk.Value =ajustes.tempOrden
 
+		self.installChk.Value =ajustes.tempInstall
+
 		self.listaGuarda = []
 
 	def onSave(self):
@@ -214,9 +220,12 @@ class TiendaPanel(SettingsPanel):
 		ajustes.setConfig("autoChk", self.autoChk.Value)
 		ajustes.setConfig("timerChk", self.choiceTimer.Selection)
 		ajustes.setConfig("ordenChk", self.ordenChk.Value)
+		ajustes.setConfig("installChk", self.installChk.Value)
+
 		ajustes.tempChk = self.autoChk.Value
 		ajustes. tempTimer= self.choiceTimer.Selection
 		ajustes.tempOrden = self.ordenChk.Value
+		ajustes.tempInstall = self.installChk.Value
 
 		if ajustes.tempChk == True:
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
@@ -286,8 +295,8 @@ class tiendaApp(wx.Dialog):
 
 		labelBusqueda = wx.StaticText(self.Panel, wx.ID_ANY, _("&Buscar:"))
 		self.textoBusqueda = wx.TextCtrl(self.Panel, 2,style = wx.TE_PROCESS_ENTER)
-		self.textoBusqueda.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 		self.textoBusqueda.Bind(wx.EVT_TEXT_ENTER, self.onBusqueda)
+		self.textoBusqueda.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 
 		labelComplementos = wx.StaticText(self.Panel, wx.ID_ANY, _("&Lista complementos:"))
 		self.listboxComplementos = wx.ListBox(self.Panel, 3, style = wx.LB_NO_SB)
@@ -457,86 +466,68 @@ Total descargas: {}\n""").format(
 		elif botonID == 202:
 			webbrowser.open_new(datos['url'])
 		elif botonID == 203:
-			ajustes.IS_WinON = False
+			if ajustes.IS_Download == False:
+				ajustes.IS_WinON = False
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
 		else:
-			ajustes.IS_WinON = False
+			if ajustes.IS_Download == False:
+				ajustes.IS_WinON = False
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
 
 	def onDescarga(self, event):
-		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
-		indice = self.datos.indiceSummary(nombre)
-		datos = self.datos.dataServidor[indice]
-		url = self.datos.urlBase+datos['links'][event.GetId()]['file']
-		nombreFile = self.datos.GetFilenameDownload(datos['links'][event.GetId()]['file'])
-		if nombreFile.split(".")[0] == "get":
-			try:
-				nombreFile = basedatos.obtenFile(datos['links'][event.GetId()]['link'])
-			except:
-				try:
-					nombreFile = basedatos.obtenFileAlt(url)
-				except:
-					msg = \
-_("""No se pudo obtener el nombre del archivo a descargar.
-
-{} del canal {}
-
-Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][event.GetId()]['channel'])
-					gui.messageBox(msg,
-						_("Información"), wx.ICON_INFORMATION)
-					nombreFile = ""
-					webbrowser.open_new(url)
-					return
-		if nombreFile == "downloads":
-			msg = \
-_("""Este complemento necesita ser descargado desde su página web.
-
-Se abrirá con su navegador predefinido en la pagina de descarga del complemento.""")
-			gui.messageBox(msg,
-				_("Información"), wx.ICON_INFORMATION)
-
-			webbrowser.open_new(datos['links'][event.GetId()]['link'])
-			return
+		if ajustes.IS_Download == False:
+			HiloGuardarArchivo(self, event.GetId())
 		else:
-			caracteres = '\/:*?"<>| '
-			if any(c in caracteres for c in nombreFile):
-				msg = \
-_("""No se pudo obtener el nombre del archivo a descargar.
-
-{} del canal {}
-
-Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][event.GetId()]['channel'])
-				gui.messageBox(msg,
-					_("Información"), wx.ICON_INFORMATION)
-				nombreFile = ""
-				webbrowser.open_new(url)
-				return
-			else:
-				HiloGuardarArchivo(self, nombreFile, url)
+			msg = \
+_("""Ya tiene un proceso de descarga activo, espere a que termine.""")
+						# Translators: Title of the notification
+			notify = wx.adv.NotificationMessage(title=_("Información"),
+							# Translators: Notification message
+				message=msg, parent=None, flags=wx.ICON_INFORMATION)
+			notify.Show(timeout=10)
 
 	def TrueDescarga(self, fichero_final, url, path):
 		dlg = DescargaDialogo(_("Descargando %s...") % fichero_final, url, path, 15)
 		result = dlg.ShowModal()
 		if result == ajustes.ID_TRUE:
-			if ajustes.installDescarga == True:
+			if ajustes.tempInstall == True:
 				addonGui.handleRemoteAddonInstall(path)
-			self.listboxComplementos.SetFocus()
+			try:
+				ajustes.IS_Download = False
+				self.listboxComplementos.SetFocus()
+			except:
+				ajustes.IS_Download = False
+				ajustes.IS_WinON = False
+				pass
 			dlg.Destroy()
 		else:
-			self.listboxComplementos.SetFocus()
+			try:
+				ajustes.IS_Download = False
+				self.listboxComplementos.SetFocus()
+			except:
+				ajustes.IS_Download = False
+				ajustes.IS_WinON = False
+				pass
 			dlg.Destroy()
 
 	def FalseDescarga(self):
+		try:
+			ajustes.IS_Download = False
 			getattr(self, ajustes.focoActual).SetFocus()
+			pass
+		except:
+			ajustes.IS_Download = False
+			ajustes.IS_WinON = False
 			pass
 
 	def onkeyVentanaDialogo(self, event):
 		if event.GetKeyCode() == 27: # Pulsamos ESC y cerramos la ventana
-			ajustes.IS_WinON = False
+			if ajustes.IS_Download == False:
+				ajustes.IS_WinON = False
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
@@ -844,15 +835,88 @@ class ActualizacionDialogo(wx.Dialog):
 		gui.mainFrame.postPopup()
 
 class HiloGuardarArchivo(Thread):
-	def __init__(self, frame, nombreFile, url):
+	def __init__(self, frame, id):
 		super(HiloGuardarArchivo, self).__init__()
 
 		self.frame = frame
-		self.nombreFile = nombreFile
-		self.url = url
+		self.id = id
+		self.nombreFile = ""
+		self.url = ""
+		ajustes.IS_Download = True
+		try:
+			winsound.PlaySound(os.path.join(os.path.dirname(os.path.abspath(__file__)), "progress.wav"), winsound.SND_LOOP + winsound.SND_ASYNC)
+		except:
+			pass
+
 		self.daemon = True
 		self.start()
 	def run(self):
+		nombre = self.frame.listboxComplementos.GetString(self.frame.listboxComplementos.GetSelection())
+		indice = self.frame.datos.indiceSummary(nombre)
+		datos = self.frame.datos.dataServidor[indice]
+		self.url = self.frame.datos.urlBase+datos['links'][self.id]['file']
+		self.nombreFile = self.frame.datos.GetFilenameDownload(datos['links'][self.id]['file'])
+		if self.nombreFile.split(".")[0] == "get":
+			try:
+				self.nombreFile = basedatos.obtenFile(datos['links'][self.id]['link'])
+			except:
+				try:
+					self.nombreFile = basedatos.obtenFileAlt(self.url)
+				except:
+					try:
+						self.nombreFile = basedatos.ultimoAlternativo(self.url)
+					except:
+						try:
+							self.nombreFile = basedatos.ultimoAlternativo(datos['links'][self.id]['link'])
+							self.url = datos['links'][self.id]['link']
+						except:
+							winsound.PlaySound(None, winsound.SND_PURGE)
+							msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][self.id]['channel'])
+							gui.messageBox(msg,
+								_("Información"), wx.ICON_INFORMATION)
+							self.nombreFile = ""
+							webbrowser.open_new(self.url)
+							return
+		if self.nombreFile == "downloads":
+			winsound.PlaySound(None, winsound.SND_PURGE)
+			msg = \
+_("""Este complemento necesita ser descargado desde su página web.
+
+Se abrirá con su navegador predefinido en la pagina de descarga del complemento.""")
+			gui.messageBox(msg,
+				_("Información"), wx.ICON_INFORMATION)
+
+			webbrowser.open_new(datos['links'][self.id]['link'])
+			return
+		else:
+			caracteres = '\/:*?"<>| '
+			if any(c in caracteres for c in self.nombreFile):
+				try:
+					self.nombreFile = basedatos.ultimoAlternativo(self.url)
+				except:
+					try:
+						self.nombreFile = basedatos.ultimoAlternativo(datos['links'][self.id]['link'])
+						self.url = datos['links'][self.id]['link']
+					except:
+						winsound.PlaySound(None, winsound.SND_PURGE)
+						msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][self.id]['channel'])
+						gui.messageBox(msg,
+							_("Información"), wx.ICON_INFORMATION)
+						self.nombreFile = ""
+						webbrowser.open_new(self.url)
+						return
+
+		winsound.PlaySound(None, winsound.SND_PURGE)
 		wildcard = _("Complemento de NVDA (*.nvda-addon)|*.nvda-addon")
 		dlg = wx.FileDialog(None, message=_("Guardar en..."), defaultDir=os.environ['SYSTEMDRIVE'], defaultFile=self.nombreFile, wildcard=wildcard, style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
 		if dlg.ShowModal() == wx.ID_OK:
@@ -909,7 +973,12 @@ class HiloDescarga(Thread):
 	def run(self):
 		try:
 			socket.setdefaulttimeout(self.tiempo) # Dara error si pasan 30 seg sin internet
-			urllib.request.urlretrieve(self.url, self.ruta, reporthook=self.__call__)
+			try:
+				req = urllib.request.Request(self.url, headers={'User-Agent': 'Mozilla/5.0'})
+				obj = urllib.request.urlopen(req).geturl()
+				urllib.request.urlretrieve(obj, self.ruta, reporthook=self.__call__)
+			except:
+				urllib.request.urlretrieve(self.url, self.ruta, reporthook=self.__call__)
 			wx.CallAfter(self.frame.done, _("La descarga se completó.\n") + _("Ya puede cerrar esta ventana."))
 		except:
 			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
@@ -989,10 +1058,9 @@ class HiloActualizacion(Thread):
 			for i in self.listaSeleccion:
 				fichero = self.generaFichero()
 				socket.setdefaulttimeout(self.tiempo)
-				opener = urllib.request.build_opener()
-				opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-				urllib.request.install_opener(opener)
-				urllib.request.urlretrieve(list(self.nombreUrl.values())[i], fichero, reporthook=self.__call__)
+				req = urllib.request.Request(list(self.nombreUrl.values())[i], headers={'User-Agent': 'Mozilla/5.0'})
+				obj = urllib.request.urlopen(req).geturl()
+				urllib.request.urlretrieve(obj, fichero, reporthook=self.__call__)
 				wx.CallAfter(self.frame.onActualizacion, i+1)
 				bundle = addonHandler.AddonBundle(fichero)
 				if not addonVersionCheck.hasAddonGotRequiredSupport(bundle):

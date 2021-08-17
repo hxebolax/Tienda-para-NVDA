@@ -12,30 +12,35 @@ from threading import Timer
 import ajustes
 
 def obtenFile(url):
-	opener = urllib.request.build_opener()
-	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-	p = urllib.request.urlopen(url)
+	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+	p = urllib.request.urlopen(req).geturl()
 	fichero = p.headers.get_filename()
 	nombreFile = os.path.splitext(fichero)[0]
 	return nombreFile
 
 def obtenFileAlt(url):
-	opener = urllib.request.build_opener()
-	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-	urllib.request.install_opener(opener)
-	p = urllib.request.urlopen(url)
+	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}, method="GET")
+	p = urllib.request.urlopen(req).geturl()
 	fichero = p.headers.get_filename()
 	nombreFile = os.path.splitext(fichero)[0]
 	return nombreFile
+
+def ultimoAlternativo(url):
+	try:
+		req = urllib.request.Request(url, method='HEAD')
+		p = urllib.request.urlopen(req)
+	except:
+		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}, method="GET")
+		p = urllib.request.urlopen(req).geturl()
+	return p.info().get_filename()
 
 class NVDAStoreClient(object):
 	def __init__(self):
 		super(NVDAStoreClient, self).__init__()
 
-		self.opener = urllib.request.build_opener()
-		self.opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-		urllib.request.install_opener(self.opener)
-		self.dataServidor = json.loads(self.opener.open('https://nvda.es/files/get.php?addonslist').read().decode("utf-8"))
+		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
+		p = urllib.request.Request('https://nvda.es/files/get.php?addonslist', headers=Headers, method="GET")
+		self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
 		self.urlBase = "https://nvda.es/files/get.php?file="
 		self.dataLocal = list(addonHandler.getAvailableAddons())
 
@@ -175,6 +180,37 @@ Devuelve 2 listas: lista1 borrar, lista2 copiar a lista1."""
 				ajustes.listaAddonsSave.append(ajustes.listaAddonsInstalados[z])
 		self.fileJsonAddon(1, self.ordenaLista(ajustes.listaAddonsSave))
 
+class busquedas(object):
+	def __init__(self):
+
+		super(busquedas, self).__init__()
+
+		self.base = NVDAStoreClient().dataServidor
+		self.author = []
+		self.name = []
+		self.summary = []
+		self.lasttested = []
+		for x in range(0, len(self.base)):
+			self.author.append(self.base[x]['author'])
+			self.name.append(self.base[x]['name'])
+			self.summary.append(self.base[x]['summary'])
+			self.lasttested.append(self.base[x]['links'][0]['lasttested'])
+
+	def indice(self, variable, busqueda):
+		"""Devuelve una lista con los indices encontrados. Podemos buscar por author, name, summary, lasttested"""
+		#print(busqueda().indice("lasttested", "2020"))
+		return [i for i, s in enumerate(			eval("self.{}".format(variable))) if busqueda in s]
+
+	def strBusqueda(self, variable, busqueda):
+		"""Devuelve una lista con los strings encontrados. Podemos buscar por author, name, summary, lasttested"""
+		# Ejemplo: print(busquedas().strBusqueda("summary", "Tienda"))
+		return [item for item in eval("self.{}".format(variable)) if busqueda.lower() in item.lower()]
+
+	def completeRetSearch(self, variable, busqueda):
+		"""Devuelbe json con todos los valores tomados del servidor, aquellos que coincidan con la busqueda"""
+		# Ejemplo: print(busquedas().completeRetSearch("['links'][0]['lasttested'].split('.')[0]", "2021"))
+		return [x for x in self.base if eval("x{}".format(variable)) == busqueda]
+
 class RepeatTimer(object):
 	def __init__(self, interval, function, *args, **kwargs):
 
@@ -184,6 +220,7 @@ class RepeatTimer(object):
 		self.args       = args
 		self.kwargs     = kwargs
 		self.is_running = False
+		self.daemon = True
 		self.start()
 
 	def _run(self):

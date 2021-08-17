@@ -19,6 +19,7 @@ def initConfiguration():
 		"autoChk": "boolean(default=False)",
 		"timerChk": "integer(default=1, min=0, max=3)",
 		"ordenChk": "boolean(default=False)",
+		"installChk": "boolean(default=False)",
 	}
 	config.conf.spec['TiendaES'] = confspec
 
@@ -36,6 +37,7 @@ initConfiguration()
 tempChk = getConfig("autoChk")
 tempTimer = getConfig("timerChk")
 tempOrden = getConfig("ordenChk")
+tempInstall = getConfig("installChk")
 
 dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
 if os.path.exists(dirDatos) == False:
@@ -48,6 +50,7 @@ else:
 			pass
 
 IS_WinON = False
+IS_Download = False
 reiniciarTrue = False
 focoActual = "listboxComplementos"
 ID_TRUE = wx.NewIdRef() # para botón aceptar

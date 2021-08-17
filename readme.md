@@ -71,6 +71,10 @@ En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo d
 
 Si marcamos esta casilla de verificación, cuando abramos la tienda se nos mostrara los complementos por orden alfabético. También si buscamos algún complemento los resultados de las búsquedas se mostrarán en orden alfabético.
 
+* Instalar complementos después de descargar
+
+Si marcamos esta casilla cuando se termine de descargar un complemento nos pedirá desde el asistente de instalación de complementos de NVDA que si queremos instalar.
+
 * Complementos instalados que hay en el servidor.
 
 Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.
