@@ -844,7 +844,7 @@ class HiloGuardarArchivo(Thread):
 		self.url = ""
 		ajustes.IS_Download = True
 		try:
-			winsound.PlaySound(os.path.join(os.path.dirname(os.path.abspath(__file__)), "progress.wav"), winsound.SND_LOOP + winsound.SND_ASYNC)
+			winsound.PlaySound('C:\\Windows\\Media\\Windows Proximity Connection.wav', winsound.SND_LOOP + winsound.SND_ASYNC)
 		except:
 			pass
 
@@ -880,6 +880,7 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 							gui.messageBox(msg,
 								_("Información"), wx.ICON_INFORMATION)
 							self.nombreFile = ""
+							ajustes.IS_Download = False
 							webbrowser.open_new(self.url)
 							return
 		if self.nombreFile == "downloads":
@@ -890,7 +891,7 @@ _("""Este complemento necesita ser descargado desde su página web.
 Se abrirá con su navegador predefinido en la pagina de descarga del complemento.""")
 			gui.messageBox(msg,
 				_("Información"), wx.ICON_INFORMATION)
-
+			ajustes.IS_Download = False
 			webbrowser.open_new(datos['links'][self.id]['link'])
 			return
 		else:
@@ -913,6 +914,7 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 						gui.messageBox(msg,
 							_("Información"), wx.ICON_INFORMATION)
 						self.nombreFile = ""
+						ajustes.IS_Download = False
 						webbrowser.open_new(self.url)
 						return
 
