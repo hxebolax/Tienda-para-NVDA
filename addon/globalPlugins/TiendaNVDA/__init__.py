@@ -7,9 +7,10 @@
 # Idioma inglés: Nikola Jović
 # Idioma y documentación portugués: Ângelo Miguel Abrantes
 # Idiomas croata y polaco: Zvonimir Stanečić
-# Idioma Ruso: comunidad rusa NVDA.RU
+# Idioma Ruso: Valentine (comunidad rusa NVDA.RU)
 # Idioma y documentación francés: Rémy Ruiz
 # Idioma ucraniano: Volodymyr Pyrih
+# Idioma árabe: Wafiq Taher
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler
