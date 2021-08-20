@@ -69,6 +69,9 @@ No caso de haver actualizações, irá pesquisar mais 5 vezes o intervalo de tem
 
 Si marcamos esta casilla, cuando abramos la tienda se nos mostrara por orden alfabético. También si buscamos las búsquedas se mostrarán en orden alfabético.
 
+* Instalar extras depois de descarregar
+ Se marcarmos esta caixa, quando a descarga acabar, ser-nos-á perguntado se desejamos instalar.
+
 * Complementos instalados que hay en el servidor.
 
 Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.

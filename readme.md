@@ -7,7 +7,7 @@ El complemento viene sin atajos asignados y podemos otorgarle dos que son:
 
 * Busca actualizaciones de los complementos instalados: Analizará los complementos que tenemos y de los que encuentre actualización nos ofrecerá la posibilidad de actualizarlos de manera automática.
 
-Podemos asignar un gesto de entrada para estas dos opciones yendo al menú de NVDA / Preferencias / Gestos de entrada y buscar Tienda NVDA.
+Podemos asignar un gesto de entrada para estas dos opciones yendo al menú de NVDA / Preferencias / Gestos de entrada y buscar Tienda para NVDA.ES.
 
 ### Muestra la ventana con todos los complementos y su información
 
@@ -71,9 +71,9 @@ En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo d
 
 Si marcamos esta casilla de verificación, cuando abramos la tienda se nos mostrara los complementos por orden alfabético. También si buscamos algún complemento los resultados de las búsquedas se mostrarán en orden alfabético.
 
-* Instalar complementos después de descargar
+* Instalar complementos después de descargar.
 
-Si marcamos esta casilla cuando se termine de descargar un complemento nos pedirá desde el asistente de instalación de complementos de NVDA que si queremos instalar.
+Si marcamos esta casilla de verificación, cuando se termine de descargar un complemento nos pedirá desde el asistente de instalación de complementos de NVDA que si queremos instalar.
 
 * Complementos instalados que hay en el servidor.
 

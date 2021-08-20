@@ -87,6 +87,9 @@ Por lo tanto si eliminamos un complemento y luego lo volvemos a instalar tendrem
 
 Se marcarmos esta caixa, ao abrirmos a loja ela será mostrada em ordem alfabética. Além disso, se pesquisarmos, as pesquisas serão mostradas em ordem alfabética.
 
+* Instalar extras depois de descarregar
+ Se marcarmos esta caixa, quando a descarga acabar, ser-nos-á perguntado se desejamos instalar.
+
 * Extras instalados no nosso computador que estão no servidor.
 
 esta lista mostrará os extras que temos instalados e que, por sua vez, estão no servidor.
