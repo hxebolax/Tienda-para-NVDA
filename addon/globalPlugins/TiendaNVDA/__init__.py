@@ -7,10 +7,9 @@
 # Idioma inglés: Nikola Jović
 # Idioma y documentación portugués: Ângelo Miguel Abrantes
 # Idiomas croata y polaco: Zvonimir Stanečić
-# Idioma Ruso: Valentine (comunidad rusa NVDA.RU)
+# Idioma Ruso: comunidad rusa NVDA.RU
 # Idioma y documentación francés: Rémy Ruiz
 # Idioma ucraniano: Volodymyr Pyrih
-# Idioma árabe: Wafiq Taher
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler
@@ -287,10 +286,12 @@ class tiendaApp(wx.Dialog):
 		WIDTH = 1600
 		HEIGHT = 800
 
-		super(tiendaApp,self).__init__(parent, -1, title=_("Tienda NVDA.ES"), size = (WIDTH, HEIGHT))
+		super(tiendaApp,self).__init__(parent, -1, title=ajustes.titulo, size = (WIDTH, HEIGHT))
 
 		ajustes.IS_WinON = True
 		self.datos = dataServidor
+		self.indiceFiltro = ajustes.indiceFiltro
+		self.temporal = []
 
 		self.Panel = wx.Panel(self, 1)
 
@@ -301,18 +302,9 @@ class tiendaApp(wx.Dialog):
 
 		labelComplementos = wx.StaticText(self.Panel, wx.ID_ANY, _("&Lista complementos:"))
 		self.listboxComplementos = wx.ListBox(self.Panel, 3, style = wx.LB_NO_SB)
-
-		self.temporal = []
-		for x in range(0, len(self.datos.dataServidor)):
-			self.temporal.append(self.datos.dataServidor[x]['summary'])
-
-		if ajustes.tempOrden == False:
-			self.listboxComplementos.Append(self.temporal)
-		else:
-			self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
-		self.listboxComplementos.SetSelection(0)
-		self.listboxComplementos.SetFocus()
+		wx.CallAfter(self.onCargaFiltro, self.indiceFiltro)
 		self.listboxComplementos.Bind(wx.EVT_KEY_UP, self.onLisbox)
+		self.listboxComplementos.Bind(wx.EVT_CONTEXT_MENU, self.menuListBox)
 
 		labelResultado = wx.StaticText(self.Panel, wx.ID_ANY, _("&Información:"))
 		self.txtResultado = wx.TextCtrl(self.Panel, 4, style =wx.TE_MULTILINE|wx.TE_READONLY|wx.LB_NO_SB)
@@ -350,7 +342,7 @@ class tiendaApp(wx.Dialog):
 		self.Panel.SetSizer(szMain)
 
 		self.onLisbox(None)
-		self.onFocus()
+#		self.onFocus()
 
 		self.CenterOnScreen()
 
@@ -410,33 +402,154 @@ Total descargas: {}\n""").format(
 	def skip(self, event):
 		return
 
+	def menuListBox(self, event):
+		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
+		indice = self.datos.indiceSummary(nombre)
+		datos = self.datos.dataServidor[indice]
+		self.menu = wx.Menu()
+
+		self.menuFiltro = wx.Menu()
+		item1 = self.menuFiltro.Append(1, _("Mostrar todos los complementos"))
+		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item1)
+		item2 = self.menuFiltro.Append(2, _("Mostrar los complementos con compatibilidad de API 2021"))
+		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item2)
+		item3 = self.menuFiltro.Append(3, _("Mostrar los complementos ordenados por autor"))
+		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item3)
+		item4 = self.menuFiltro.Append(4, _("Mostrar por descargas de mayor a menor"))
+		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item4)
+		self.menu.AppendSubMenu(self.menuFiltro, _("&Filtros"))
+
+		self.menuPortapapeles = wx.Menu()
+		item5 = self.menuPortapapeles.Append(11, _("Copiar información"))
+		self.Bind(wx.EVT_MENU, self.onPortapapeles, item5)
+		item6 = self.menuPortapapeles.Append(12, _("Copiar enlace a la página web del complemento"))
+		self.Bind(wx.EVT_MENU, self.onPortapapeles, item6)
+		self.menuPortapapelesDescarga = wx.Menu()
+		for i in range(len(datos['links'])):
+			itemx = self.menuPortapapelesDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
+			self.Bind(wx.EVT_MENU, self.onPortapapeles, itemx)
+		self.menuPortapapeles.AppendSubMenu(self.menuPortapapelesDescarga, _("Copiar enlace de descarga del complemento"))
+		self.menu.AppendSubMenu(self.menuPortapapeles, _("&Copiar al portapapeles"))
+
+		position = self.listboxComplementos.GetPosition()
+		self.PopupMenu(self.menu,position)
+#		pass
+
 	def onBusqueda(self, event):
 		if self.textoBusqueda.GetValue() == "":
 			self.listboxComplementos.Clear()
-			if ajustes.tempOrden == False:
-				self.listboxComplementos.Append(self.temporal)
+			if self.indiceFiltro == 1:
+				if ajustes.tempOrden == False:
+					self.listboxComplementos.Append(self.temporal)
+				else:
+					self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+			elif self.indiceFiltro == 2:
+				if ajustes.tempOrden == False:
+					self.listboxComplementos.Append(self.temporal)
+				else:
+					self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 			else:
-				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+				self.listboxComplementos.Append(self.temporal)
 			self.listboxComplementos.SetSelection(0)
 			self.listboxComplementos.SetFocus()
 		else:
 			pattern = self.textoBusqueda.GetValue()
-			listTemp = []
-			for x in range(0, len(self.datos.dataServidor)):
-				listTemp.append(self.datos.dataServidor[x]['summary'])
-			filtro = [item for item in listTemp if pattern.lower() in item.lower()]
+			filtro = [item for item in self.temporal if pattern.lower() in item.lower()]
 			self.listboxComplementos.Clear()
 			if len(filtro) == 0:
 				self.listboxComplementos.Append(_("No se encontraron resultados"))
 				self.listboxComplementos.SetSelection(0)
 				self.listboxComplementos.SetFocus()
 			else:
-				if ajustes.tempOrden == False:
-					self.listboxComplementos.Append(filtro)
+				if self.indiceFiltro == 0:
+					if ajustes.tempOrden == False:
+						self.listboxComplementos.Append(filtro)
+					else:
+						self.listboxComplementos.Append(sorted(filtro, key=str.lower))
 				else:
-					self.listboxComplementos.Append(sorted(filtro, key=str.lower))
+					self.listboxComplementos.Append(filtro)
 				self.listboxComplementos.SetSelection(0)
 				self.listboxComplementos.SetFocus()
+
+	def onCargaFiltro (self, event):
+		try:
+			indice = event.GetId()
+		except:
+			indice = event
+		self.indiceFiltro =indice
+		ajustes.indiceFiltro = indice
+		del self.temporal[:]
+		self.listboxComplementos.Clear()
+		self.textoBusqueda.Clear()
+		if indice == 1:
+			self.SetTitle(ajustes.titulo + _(" - Todos los complementos"))
+			for x in range(0, len(self.datos.dataServidor)):
+				self.temporal.append(self.datos.dataServidor[x]['summary'])
+			if ajustes.tempOrden == False:
+				self.listboxComplementos.Append(self.temporal)
+			else:
+				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+		if indice == 2:
+			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2021"))
+			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2021"]
+			for x in range(0, len(dataserver)):
+					self.temporal.append(dataserver[x]['summary'])
+			if ajustes.tempOrden == False:
+				self.listboxComplementos.Append(self.temporal)
+			else:
+				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+		if indice == 3:
+			self.SetTitle(ajustes.titulo + _(" - Complementos por autor"))
+			dataserver = sorted(self.datos.dataServidor, key=lambda k: k.get('author', 0), reverse=False)
+
+			for x in range(0, len(dataserver)):
+					self.temporal.append(dataserver[x]['summary'])
+			self.listboxComplementos.Append(self.temporal)
+		if indice == 4:
+			self.SetTitle(ajustes.titulo + _(" - Complementos por descarga de mayor a menor"))
+			dataserver = sorted(self.datos.dataServidor, key=lambda k: k['links'][0].get('downloads', 0), reverse=True)
+			for x in range(0, len(dataserver)):
+					self.temporal.append(dataserver[x]['summary'])
+			self.listboxComplementos.Append(self.temporal)
+
+		self.listboxComplementos.SetSelection(0)
+		self.listboxComplementos.SetFocus()
+		self.onLisbox(None)
+
+	def onPortapapeles(self, event):
+		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
+		indice = self.datos.indiceSummary(nombre)
+		datos = self.datos.dataServidor[indice]
+		if event.GetId() == 11:
+			msg = \
+_("""Se copio la información del complemento al portapapeles""")
+			self.onCopiaPortapapeles(msg, self.txtResultado.GetValue())
+		elif event.GetId() == 12:
+			msg = \
+_("""Se copio la URL de la página oficial del complemento al portapapeles""")
+			self.onCopiaPortapapeles(msg, datos['url'])
+		else:
+			msg = \
+_("""Se copio la URL de descarga al portapapeles""")
+			self.onCopiaPortapapeles(msg, "{}{}".format(self.datos.urlBase, datos['links'][event.GetId()]['file']))
+
+	def onCopiaPortapapeles(self, msg, valor):
+		self.dataObj = wx.TextDataObject()
+		self.dataObj.SetText(valor)
+		if wx.TheClipboard.Open():
+			wx.TheClipboard.SetData(self.dataObj)
+			wx.TheClipboard.Flush()
+			# Translators: Title of the notification
+			notify = wx.adv.NotificationMessage(title=_("Información"),
+				# Translators: Notification message
+				message=msg, parent=None, flags=wx.ICON_INFORMATION)
+			notify.Show(timeout=10)
+		else:
+			# Translators: Title of the notification
+			notify = wx.adv.NotificationMessage(title=_("Error"),
+				# Translators: Notification message
+				message=_("No se pudo llevar a cabo la copia al portapapeles"), parent=None, flags=wx.ICON_ERROR)
+			notify.Show(timeout=10)
 
 	def onLisbox(self, event):
 		if self.listboxComplementos.GetSelection() == -1:
@@ -499,7 +612,7 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 				addonGui.handleRemoteAddonInstall(path)
 			try:
 				ajustes.IS_Download = False
-				self.listboxComplementos.SetFocus()
+				self.onSetFocus(None)
 			except:
 				ajustes.IS_Download = False
 				ajustes.IS_WinON = False
@@ -508,7 +621,7 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 		else:
 			try:
 				ajustes.IS_Download = False
-				self.listboxComplementos.SetFocus()
+				self.onSetFocus(None)
 			except:
 				ajustes.IS_Download = False
 				ajustes.IS_WinON = False
@@ -518,7 +631,7 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 	def FalseDescarga(self):
 		try:
 			ajustes.IS_Download = False
-			getattr(self, ajustes.focoActual).SetFocus()
+			self.onSetFocus(None)
 			pass
 		except:
 			ajustes.IS_Download = False

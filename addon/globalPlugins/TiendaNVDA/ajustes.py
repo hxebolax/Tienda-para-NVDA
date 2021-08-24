@@ -49,10 +49,12 @@ else:
 		except:
 			pass
 
+titulo = _("Tienda NVDA.ES")
 IS_WinON = False
 IS_Download = False
 reiniciarTrue = False
 focoActual = "listboxComplementos"
+indiceFiltro = 1
 ID_TRUE = wx.NewIdRef() # para botón aceptar
 ID_FALSE = wx.NewIdRef() # para botón cancelar
 contadorRepeticion = 0

@@ -23,6 +23,7 @@ En el campo de la ficha en el caso que el complemento tenga más de una rama de 
 
 El botón llamado "Descargar complemento", nos desplegara un menú con las distintas ramas de desarrollo del complemento, tendremos que elegir una para descargar. En caso de que solo tenga una solo se nos dará esa opción.
 
+
 En esta pantalla tenemos las siguientes teclas rápidas para movernos por la interface:
 
 * Alt+B: Ir al cuadro de búsqueda.
@@ -31,6 +32,49 @@ En esta pantalla tenemos las siguientes teclas rápidas para movernos por la int
 * Alt+D: Ejecutar el botón "Descargar complemento".
 * Alt+P: Ir a la página del complemento.
 * Alt+S, Escape, Alt+F4: Cerrar la ventana.
+
+#### Menú contextual en la lista de complementos
+
+En la lista de complementos podemos desplegar un menú contextual ya sea con la tecla aplicaciones de nuestro teclado o bien Shift + F10 para aquellos teclados que no dispongan de la tecla aplicaciones.
+
+Dicho menú consta de dos submenús:
+
+Filtros y Copiar al portapapeles.
+
+En el submenú Filtros tenemos las siguientes opciones:
+
+* Mostrar todos los complementos: Esta opción es la predefinida siempre que el complemento se ejecute por primera vez.
+
+Dicha opción nos mostrara todos los complementos que hay en la base de datos.
+
+Igualmente esta opción está supeditada si tenemos marcada la casilla Ordenar por orden alfabético los complementos de la tienda y las búsquedas, por lo tanto si dicha casilla en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+
+* Mostrar los complementos con compatibilidad de API 2021: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
+
+Igualmente esta opción está supeditada si tenemos marcada la casilla Ordenar por orden alfabético los complementos de la tienda y las búsquedas, por lo tanto si dicha casilla en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+
+Advertir que en esta lista se omitirán aquellos complementos que los autores en su manifiesto han ignorado la buena praxis y han puesto compatibilidad con APIS que todavía no han llegado.
+
+* Mostrar los complementos ordenados por autor: Esta opción nos mostrara la lista de complementos pero se ordenara por nombre de autor.
+
+* Mostrar por descargas de mayor a menor: Esta opción nos mostrara todos los complementos pero será ordenada por el número de descargas que tenga el complemento.
+
+Estas opciones se ejecutan individualmente no siendo acumulable su resultado.
+
+Cada opción cuando la elijamos cambiara el titulo de la ventana para informarnos que filtro esta activo.
+
+Las opciones se mantienen para las siguientes veces que se active la tienda hasta que NVDA sea reiniciado. Una vez reiniciado el complemento vuelve a su valor predefinido y la lista cargada por primera vez será Mostrar todos los complementos
+
+Salvo la opción Mostrar todos los complementos, el resto de opciones solo se filtra por la primera rama de desarrollo. Si un complemento tiene más de una rama no se tendrán en cuenta salvo la rama principal para filtrar los resultados en cada opción.
+
+En el submenú Copiar al portapapeles tenemos las siguientes opciones:
+
+* Copiar información: Si elegimos esta opción se copiara la ficha entera del complemento que tengamos elegido al portapapeles.
+
+* Copiar enlace a la página web del complemento: Si elegimos esta opción se copiara la URL de la página oficial del complemento al portapapeles.
+
+* Copiar enlace de descarga del complemento: Bien esto es un submenú que contendrá dentro las ramas de desarrollo del complemento. Cuando elijamos alguna si tiene más de una nos copiara al portapapeles la URL para poder descargar el complemento.
+
 
 ### Busca actualizaciones de los complementos instalados
 
