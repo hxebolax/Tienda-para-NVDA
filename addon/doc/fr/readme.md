@@ -1,4 +1,4 @@
-# Manuel de Boutique pour NVDA
+# Manuel de Boutique pour NVDA.ES
 ## Mode d'utilisation
 
 L'extension vient sans raccourcis assignés et nous pouvons vous donner deux qui sont:
@@ -32,6 +32,48 @@ Sur cet écran, nous avons les raccourcis  clavier suivants pour nous déplacer 
 * Alt+S: Aller au site Web de l'extension.
 * Alt+Q, Échap, Alt+F4: Fermer la fenêtre.
 
+#### Menu contextuel dans la liste des extensions
+
+Dans la liste des extensions, nous pouvons déployer un menu contextuel avec la touche Applications sur notre clavier ou Maj + F10 sur les claviers  ne disposant pas de la touche Applications.
+
+Ledit menu se compose de deux sous-menus:
+
+Filtres et Copier dans le presse-papiers.
+
+Dans le sous-menu "Filtres", nous avons les options suivantes:
+
+* Afficher toutes les extensions: Cette option est prédéfinie tant que l'extension est exécutée pour la première fois.
+
+Cette option nous affichera toutes les extensions existantes de la base de données.
+
+De même, cette option est soumise si nous avons coché la case à cocher "Trier par ordre alphabétique Les extensions de la boutique et les recherches", par conséquent, si la case à cocher dans Paramètres est coché la liste sera triée par ordre alphabétique ainsi que les recherches sur cette liste.
+
+* Afficher les extensions avec la compatibilité de l'API 2021: Cette option ne nous affichera que ces extensions que dans le manifeste sont marquées avec cette compatibilité.
+
+De même, cette option est soumise si nous avons coché la case à cocher "Trier par ordre alphabétique Les extensions de la boutique et les recherches", par conséquent, si la case à cocher dans Paramètres est coché la liste sera triée par ordre alphabétique ainsi que les recherches sur cette liste.
+
+Avertir que dans cette liste, elles seront omis ces extensions que les auteurs dans leur manifeste ont ignoré la bonne praxis et ont mis la compatibilité avec les API qui ne sont pas encore arrivés.
+
+* Afficher les extensions triées par auteur: Cette option nous affichera la liste des extensions mais se trieront par le nom de l'auteur.
+
+* Afficher par téléchargements de majeur à mineur: Cette option nous affichera toutes les extensions mais il sera trié par le nombre de téléchargements que l'extension a.
+
+Ces options sont exécutées individuellement, son résultat n'est pas cumulatif.
+
+Chaque option lorsque nous la choisissons, il changera le titre de la fenêtre pour vous informer que le filtre est actif.
+
+Les options sont maintenues pour les prochaines fois que la boutique est activée jusqu'à ce que NVDA soit redémarré. Une fois que l'extension est redémarrée, elle revient à sa valeur prédéfinie et la liste chargée pour la première fois sera "Afficher toutes les extensions"
+
+À l'exception de l'option "Afficher toutes les extensions", le reste des options ne sont filtrées que par la première branche de développement. Si une extension comporte plus d'une branche, la branche principale ne sera pas prise en compte pour filtrer les résultats dans chaque option.
+
+Dans le sous-menu "Copier dans le presse-papiers" nous avons les options suivantes:
+
+* Copier les informations: Si nous choisissons cette option, la totalité de la fiche de l'extension que nous avons choisie sera copiée dans le presse-papiers.
+
+* Copier le lien du site Web de l'extension: Si nous choisissons cette option, l'URL du site officiel de l'extension sera copiée dans le presse-papiers.
+
+* Copier le lien de téléchargement de l'extension: Eh bien, c'est un sous-menu qui contiendra à l'intérieur,  les branches de développement de l'extension. Lorsque nous choisissons une s'il y a plus d'une nous copiera dans le presse-papiers l'URL afin de pouvoir télécharger l'extension.
+
 ### Recherche des mises à jour pour les extensions installées
 
 Nous allons mettre à jour ces extensions  depuis https://www.nvda.es qui sont plus récentes que celles que nous avons sur notre ordinateur.
@@ -51,7 +93,7 @@ Sur cet écran, nous avons les raccourcis  clavier suivants:
 
 ### Écran de paramètres
 
-Nous pouvons configurer certains aspects de l'extension Tienda NVDA en allant dans le menu NVDA / Préférences / Paramètres et rechercher la catégorie Boutique NVDA.ES.
+Nous pouvons configurer certains aspects de l'extension "TiendaNVDA" en allant dans le menu NVDA / Préférences / Paramètres et rechercher la catégorie Boutique NVDA.ES.
 
 * Activer ou désactiver la vérification des mises à jour.
 
@@ -109,7 +151,7 @@ Lors de l'installation plusieurs protections ont également été incluses:
 
 2º Dans cette étape, il sera également vérifié si l'extension à installer a la version minimale à utiliser dans notre NVDA que nous avons installée.
 
-3º L'extension Tienda NVDA ne vous permettra pas de continuer à chercher des mises à jour si nous avons déjà effectué une mise à jour d'une extension ou de plusieurs et nous n'avons pas décidé de redémarrer NVDA.
+3º L'extension "TiendaNVDA" ne vous permettra pas de continuer à chercher des mises à jour si nous avons déjà effectué une mise à jour d'une extension ou de plusieurs et nous n'avons pas décidé de redémarrer NVDA.
 
 4º Si nous avons activé cette option appelée "Recherche des mises à jour pour les extensions installées" chaque fois qu'elle recherche et détecte que nous n'avons pas redémarré NVDA nous serons notifiés avec une notification système.
 
@@ -125,4 +167,4 @@ Cette extension est en phase de test donc c'est pour cela que nous vous demandon
 
 Nous vous remercions de bien vouloir nous contacter pour signaler ce désagrément et le résoudre dès que possible.
 
-Profitez de la Boutique pour NVDA !
+Profitez de la Boutique pour NVDA.ES !

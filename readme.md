@@ -1,4 +1,4 @@
-# Manual de Tienda para NVDA
+# Manual de Tienda para NVDA.ES
 ## Modo de uso
 
 El complemento viene sin atajos asignados y podemos otorgarle dos que son:
@@ -34,23 +34,23 @@ En esta pantalla tenemos las siguientes teclas rápidas para movernos por la int
 
 #### Menú contextual en la lista de complementos
 
-En la lista de complementos podemos desplegar un menú contextual ya sea con la tecla aplicaciones de nuestro teclado o bien Shift + F10 para aquellos teclados que no dispongan de la tecla aplicaciones.
+En la lista de complementos podemos desplegar un menú contextual ya sea con la tecla Aplicaciones de nuestro teclado o bien Shift + F10 para aquellos teclados que no dispongan de la tecla Aplicaciones.
 
 Dicho menú consta de dos submenús:
 
 Filtros y Copiar al portapapeles.
 
-En el submenú Filtros tenemos las siguientes opciones:
+En el submenú "Filtros" tenemos las siguientes opciones:
 
 * Mostrar todos los complementos: Esta opción es la predefinida siempre que el complemento se ejecute por primera vez.
 
 Dicha opción nos mostrara todos los complementos que hay en la base de datos.
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla Ordenar por orden alfabético los complementos de la tienda y las búsquedas, por lo tanto si dicha casilla en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
 
 * Mostrar los complementos con compatibilidad de API 2021: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla Ordenar por orden alfabético los complementos de la tienda y las búsquedas, por lo tanto si dicha casilla en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
 
 Advertir que en esta lista se omitirán aquellos complementos que los autores en su manifiesto han ignorado la buena praxis y han puesto compatibilidad con APIS que todavía no han llegado.
 
@@ -62,11 +62,11 @@ Estas opciones se ejecutan individualmente no siendo acumulable su resultado.
 
 Cada opción cuando la elijamos cambiara el titulo de la ventana para informarnos que filtro esta activo.
 
-Las opciones se mantienen para las siguientes veces que se active la tienda hasta que NVDA sea reiniciado. Una vez reiniciado el complemento vuelve a su valor predefinido y la lista cargada por primera vez será Mostrar todos los complementos
+Las opciones se mantienen para las siguientes veces que se active la tienda hasta que NVDA sea reiniciado. Una vez reiniciado el complemento vuelve a su valor predefinido y la lista cargada por primera vez será "Mostrar todos los complementos"
 
-Salvo la opción Mostrar todos los complementos, el resto de opciones solo se filtra por la primera rama de desarrollo. Si un complemento tiene más de una rama no se tendrán en cuenta salvo la rama principal para filtrar los resultados en cada opción.
+Salvo la opción "Mostrar todos los complementos", el resto de opciones solo se filtra por la primera rama de desarrollo. Si un complemento tiene más de una rama no se tendrán en cuenta salvo la rama principal para filtrar los resultados en cada opción.
 
-En el submenú Copiar al portapapeles tenemos las siguientes opciones:
+En el submenú "Copiar al portapapeles" tenemos las siguientes opciones:
 
 * Copiar información: Si elegimos esta opción se copiara la ficha entera del complemento que tengamos elegido al portapapeles.
 
@@ -93,7 +93,7 @@ En esta pantalla tenemos las siguientes teclas:
 
 ### Panel de opciones
 
-Podremos configurar algunos aspectos del complemento TiendaNVDA yendo al menú de NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
+Podremos configurar algunos aspectos del complemento "TiendaNVDA" yendo al menú de NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
 
 * Activar o desactivar la comprobación de actualizaciones.
 
@@ -151,7 +151,7 @@ A la hora de instalar se han incluido también varias protecciones:
 
 2º En este paso también se comprobará si el complemento para instalar tiene la versión mínima para ser usado en el NVDA que tengamos instalado.
 
-3º El complemento Tienda NVDA no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
+3º El complemento "TiendaNVDA" no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
 
 4º Si tenemos activada la opción llamada "Busca actualizaciones de los complementos instalados" cada vez que busque y detecte que no hemos reiniciado NVDA se nos notificara con una notificación de sistema.
 
@@ -167,4 +167,4 @@ Este complemento esta en fase de prueba por lo que le pedimos que entienda que p
 
 Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la mayor brevedad.
 
-¡Disfruta de la Tienda para NVDA!
+¡Disfruta de la Tienda para NVDA.ES!
