@@ -7,9 +7,9 @@ import globalVars
 import addonAPIVersion
 import json
 import urllib.request
-import os, sys
+import os
 from threading import Timer
-import ajustes
+from . import ajustes
 
 def obtenFile(url):
 	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
