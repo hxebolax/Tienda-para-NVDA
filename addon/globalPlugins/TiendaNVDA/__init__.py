@@ -33,15 +33,12 @@ import socket
 import time
 import winsound
 import shutil
-import os
-import sys
 
 # For translation
 addonHandler.initTranslation()
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import ajustes
-import basedatos
+from . import ajustes
+from . import basedatos
 inicio = None
 
 def function_ChkUpdate():

@@ -7,9 +7,8 @@ import addonHandler
 import config
 import wx
 import os
-import sys
 import shutil
-import basedatos
+from . import basedatos
 
 # For translation
 addonHandler.initTranslation()
