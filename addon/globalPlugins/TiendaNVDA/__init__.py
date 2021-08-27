@@ -40,13 +40,9 @@ import sys
 addonHandler.initTranslation()
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try:
-	import ajustes
-	import basedatos
-	inicio = True
-except Exception as e:
-	log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
-	inicio = False
+import ajustes
+import basedatos
+inicio = None
 
 def function_ChkUpdate():
 	"""Función para controlar el hilo que busca con tiempo actualizaciones"""
@@ -97,20 +93,22 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 			message=msg, parent=None, flags=wx.ICON_INFORMATION)
 		notify.Show(timeout=10)
 
-if inicio == True:
-	chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
-	if ajustes.tempChk == False:
-		chkUpdate.stop()
-else:
-	log.info(_("Inicio del complemento cancelado."))
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
-
 		if globalVars.appArgs.secure: return
-
-		if inicio == True:
+		global inicio
+		try:
+			ajustes.setup()
+			inicio = True
+		except Exception as e:
+			log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
+			inicio = False
+		if inicio:
+			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
+			if ajustes.tempChk == False:
+				chkUpdate.stop()
 			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
 			self.menu = wx.Menu()
@@ -124,6 +122,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			# Translators: Nombre del menú Tienda de complementos
 			self.tiendaMenu = tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
 		else:
+			log.info(_("Inicio del complemento cancelado."))
 			return
 
 	def terminate(self):

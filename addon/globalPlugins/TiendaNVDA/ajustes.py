@@ -33,21 +33,33 @@ def setConfig(key, value):
 	except:
 		config.conf["TiendaES"][key] = value
 
-initConfiguration()
-tempChk = getConfig("autoChk")
-tempTimer = getConfig("timerChk")
-tempOrden = getConfig("ordenChk")
-tempInstall = getConfig("installChk")
+	tempChk = None
+	tempTimer = None
+	tempOrden = None
+	tempInstall = None
+dirDatos = None
+listaAddonsSave = None
+	listaAddonsInstalados = None
 
-dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
-if os.path.exists(dirDatos) == False:
-	os.mkdir(dirDatos)
-else:
-	if os.path.exists(os.path.join(dirDatos, "temp")) == True:
-		try:
-			shutil.rmtree(os.path.join(dirDatos, "temp"), ignore_errors=True)
-		except:
-			pass
+def setup():
+	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer
+	initConfiguration()
+	tempChk = getConfig("autoChk")
+	tempTimer = getConfig("timerChk")
+	tempOrden = getConfig("ordenChk")
+	tempInstall = getConfig("installChk")
+	dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
+	if os.path.exists(dirDatos) == False:
+		os.mkdir(dirDatos)
+	else:
+		if os.path.exists(os.path.join(dirDatos, "temp")) == True:
+			try:
+				shutil.rmtree(os.path.join(dirDatos, "temp"), ignore_errors=True)
+			except:
+				pass
+	listaAddonsSave = basedatos.libreriaLocal().fileJsonAddon(2)
+	listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
+	basedatos.libreriaLocal().actualizaJson()
 
 titulo = _("Tienda NVDA.ES")
 IS_WinON = False
@@ -59,9 +71,6 @@ ID_TRUE = wx.NewIdRef() # para botón aceptar
 ID_FALSE = wx.NewIdRef() # para botón cancelar
 contadorRepeticion = 0
 contadorRepeticionSn = 0
-listaAddonsSave = basedatos.libreriaLocal().fileJsonAddon(2)
-listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
-basedatos.libreriaLocal().actualizaJson()
 
 # Lista tiempo chk notificaciones
 tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora")]
