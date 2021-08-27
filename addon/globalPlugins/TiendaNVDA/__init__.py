@@ -91,11 +91,18 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 			message=msg, parent=None, flags=wx.ICON_INFORMATION)
 		notify.Show(timeout=10)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6230355bfcf23e66b498524e612cc09919429598
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 		if globalVars.appArgs.secure: return
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6230355bfcf23e66b498524e612cc09919429598
 		global inicio
 		try:
 			ajustes.setup()
