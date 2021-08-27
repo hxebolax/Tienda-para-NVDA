@@ -33,13 +33,13 @@ def setConfig(key, value):
 	except:
 		config.conf["TiendaES"][key] = value
 
-	tempChk = None
-	tempTimer = None
-	tempOrden = None
-	tempInstall = None
+tempChk = None
+tempTimer = None
+tempOrden = None
+tempInstall = None
 dirDatos = None
 listaAddonsSave = None
-	listaAddonsInstalados = None
+listaAddonsInstalados = None
 
 def setup():
 	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer
