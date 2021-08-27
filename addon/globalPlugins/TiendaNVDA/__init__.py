@@ -40,6 +40,7 @@ addonHandler.initTranslation()
 from . import ajustes
 from . import basedatos
 inicio = None
+chkUpdate = None
 
 def function_ChkUpdate():
 	"""Función para controlar el hilo que busca con tiempo actualizaciones"""
@@ -103,6 +104,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
 			inicio = False
 		if inicio:
+			global chkUpdate
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			if ajustes.tempChk == False:
 				chkUpdate.stop()
