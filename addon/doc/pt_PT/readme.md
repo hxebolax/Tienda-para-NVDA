@@ -30,6 +30,40 @@ Neste ecrã, temos as seguintes teclas rápidas para navegar pela interface:
 * Alt + P: Ir para a página do extra.
 * Alt + C, Escape, Alt + F4: Fechar a janela.
 
+#### menu de contexto na lista de extras
+
+Na lista de extras, pode aceder ao menu de contexto, com a tecla de Aplicações ou Shift + F10, para aqueles teclados que não têm esta tecla.
+
+Este menu consiste em dois submenus:
+
+ Filtros e copiar para a área de transferência.
+
+No submenu de  filtros temos as seguintes opções:
+
+ * Mostrar todos os extras: Esta opção surge como padrão, enquanto o extra está a ser executado pela primeira vez.
+Esta opção irá mostrar-nos todos os extras no banco de dados.
+Se tivermos marcada a opção "mostrar por ordem alfabética", Esta opção deixará de estar activa, tanto nas listas como nas pesquisas.
+
+ * Mostrar extras com compatibilidade de API 2021: Esta opção irá mostrar-nos apenas os extras que tenham marcada esta compatibilidade no manifesto.ini.
+Não serão respeitados os extras para os quais os seus autores tenham indicado a compatibilidade para versões que ainda não chegaram.
+ 
+* Mostrar extras classificados por autor: Esta opção mostrará os extras ordenados por autor.
+
+ * Mostrar por downloads do maior para o menor número: mostrará a ordenação dos extras pelo número de downloads de cada um, do que tenha mais para o que tenha menos.
+ Estas opções são executadas individualmente, não sendo o seu resultado cumulativo.
+Quando escolhemos uma destas opções, o título da janela indica-nos qual delas se encontra activa.
+Estas opções manter-se-ão até que o NVDA seja reiniciado, voltando, então, à forma inicial (mostrar todos os extras)
+
+Excepto para a opção "Mostrar todos os extras", o resto das opções são filtradas apenas pelo primeiro ramo de desenvolvimento. Se um extra tem mais de um ramo, o ramo principal não será tido em conta para filtrar os resultados de cada opção.
+
+ No submenu  de cópia para a área de transferência, temos as seguintes opções:
+
+ * Copiar informações: Todas as informações do extra serão copiadas para a área de transferência.
+
+ * Copiar o Link para a página web do extra: Se escolhermos esta opção, o endereço da página do extra será copiado para a área de transferência.
+
+ * Copiar o link de download do extra: Se o extra tiver vários ramos, depois de escolhermos um deles, a ligação de descarga será copiada para a área de transferência.
+
 ### Verificar se há actualizações para os extras instalados
 
 Isto permitirá actualizar os extras que são mais recentes, em https://www.nvda.es do que os que temos no nosso computador.

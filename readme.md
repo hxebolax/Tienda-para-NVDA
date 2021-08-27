@@ -23,7 +23,6 @@ En el campo de la ficha en el caso que el complemento tenga más de una rama de 
 
 El botón llamado "Descargar complemento", nos desplegara un menú con las distintas ramas de desarrollo del complemento, tendremos que elegir una para descargar. En caso de que solo tenga una solo se nos dará esa opción.
 
-
 En esta pantalla tenemos las siguientes teclas rápidas para movernos por la interface:
 
 * Alt+B: Ir al cuadro de búsqueda.
@@ -74,7 +73,6 @@ En el submenú Copiar al portapapeles tenemos las siguientes opciones:
 * Copiar enlace a la página web del complemento: Si elegimos esta opción se copiara la URL de la página oficial del complemento al portapapeles.
 
 * Copiar enlace de descarga del complemento: Bien esto es un submenú que contendrá dentro las ramas de desarrollo del complemento. Cuando elijamos alguna si tiene más de una nos copiara al portapapeles la URL para poder descargar el complemento.
-
 
 ### Busca actualizaciones de los complementos instalados
 

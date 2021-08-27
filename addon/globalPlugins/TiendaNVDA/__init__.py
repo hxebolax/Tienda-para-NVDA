@@ -27,7 +27,6 @@ from gui.settingsDialogs import NVDASettingsDialog, SettingsPanel
 from gui import guiHelper, nvdaControls
 import wx
 import wx.adv
-import webbrowser
 from threading import Thread
 import urllib.request
 import socket
@@ -342,7 +341,6 @@ class tiendaApp(wx.Dialog):
 		self.Panel.SetSizer(szMain)
 
 		self.onLisbox(None)
-#		self.onFocus()
 
 		self.CenterOnScreen()
 
@@ -578,7 +576,7 @@ _("""Se copio la URL de descarga al portapapeles""")
 			pass
 
 		elif botonID == 202:
-			webbrowser.open_new(datos['url'])
+			wx.LaunchDefaultBrowser(datos['url'])
 		elif botonID == 203:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
@@ -995,7 +993,7 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 								_("Información"), wx.ICON_INFORMATION)
 							self.nombreFile = ""
 							ajustes.IS_Download = False
-							webbrowser.open_new(self.url)
+							wx.LaunchDefaultBrowser(self.url)
 							return
 		if self.nombreFile == "downloads":
 			winsound.PlaySound(None, winsound.SND_PURGE)
@@ -1006,7 +1004,7 @@ Se abrirá con su navegador predefinido en la pagina de descarga del complemento
 			gui.messageBox(msg,
 				_("Información"), wx.ICON_INFORMATION)
 			ajustes.IS_Download = False
-			webbrowser.open_new(datos['links'][self.id]['link'])
+			wx.LaunchDefaultBrowser(datos['links'][self.id]['link'])
 			return
 		else:
 			caracteres = '\/:*?"<>| '
@@ -1029,7 +1027,7 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 							_("Información"), wx.ICON_INFORMATION)
 						self.nombreFile = ""
 						ajustes.IS_Download = False
-						webbrowser.open_new(self.url)
+						wx.LaunchDefaultBrowser(self.url)
 						return
 
 		winsound.PlaySound(None, winsound.SND_PURGE)
