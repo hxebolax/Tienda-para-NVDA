@@ -20,8 +20,9 @@ from gui import addonGui # update
 from addonHandler import addonVersionCheck # update
 import globalVars
 import ui
-from scriptHandler import script
+import config
 import core
+from scriptHandler import script
 from logHandler import log
 from gui.settingsDialogs import NVDASettingsDialog, SettingsPanel
 from gui import guiHelper, nvdaControls
@@ -33,12 +34,14 @@ import socket
 import time
 import winsound
 import shutil
+import os
+import sys
+from . import ajustes
+from . import basedatos
 
 # For translation
 addonHandler.initTranslation()
 
-from . import ajustes
-from . import basedatos
 inicio = None
 chkUpdate = None
 
@@ -91,18 +94,11 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 			message=msg, parent=None, flags=wx.ICON_INFORMATION)
 		notify.Show(timeout=10)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6230355bfcf23e66b498524e612cc09919429598
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 		if globalVars.appArgs.secure: return
-<<<<<<< HEAD
 
-=======
->>>>>>> 6230355bfcf23e66b498524e612cc09919429598
 		global inicio
 		try:
 			ajustes.setup()
@@ -115,6 +111,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			if ajustes.tempChk == False:
 				chkUpdate.stop()
+
 			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
 			self.menu = wx.Menu()
@@ -145,11 +142,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= _("Tienda para NVDA.ES"))
 	def script_menu1(self, event):
 		if inicio == True:
-			if ajustes.IS_WinON == False:
-				self._MainWindows = HiloComplemento(1)
-				self._MainWindows.start()
+			if ajustes.reiniciarTrue == False:
+				if ajustes.IS_WinON == False:
+					self._MainWindows = HiloComplemento(1)
+					self._MainWindows.start()
+				else:
+					ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
 			else:
-				ui.message(_("Ya hay una instancia de la Tienda NVDA abierta."))
+				ui.message(_("Necesita reiniciar NVDA para aplicar las actualizaciones."))
 		else:
 			msg = \
 _("""El complemento fallo al iniciar NVDA.
@@ -245,6 +245,15 @@ class TiendaPanel(SettingsPanel):
 			for i in range(0, len(self.listaGuarda)):
 				ajustes.listaAddonsSave[self.listaGuarda[i][0]][1] = self.listaGuarda[i][1]
 		basedatos.libreriaLocal().fileJsonAddon(1, basedatos.libreriaLocal().ordenaLista(ajustes.listaAddonsSave))
+
+	def onPanelActivated(self):
+		self.originalProfileName = config.conf.profiles[-1].name
+		config.conf.profiles[-1].name = None
+		self.Show()
+
+	def onPanelDeactivated(self):
+		config.conf.profiles[-1].name = self.originalProfileName
+		self.Hide()
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
@@ -346,6 +355,7 @@ class tiendaApp(wx.Dialog):
 		self.Panel.SetSizer(szMain)
 
 		self.onLisbox(None)
+#		self.onFocus()
 
 		self.CenterOnScreen()
 
@@ -780,8 +790,7 @@ class DescargaDialogo(wx.Dialog):
 		self.file = file
 		self.seconds = seconds
 
-		panel = wx.Panel(self)
-		self.Panel = panel
+		self.Panel = wx.Panel(self)
 
 		self.progressBar=wx.Gauge(self.Panel, wx.ID_ANY, range=100, style = wx.GA_HORIZONTAL)
 		self.textorefresco = wx.TextCtrl(self.Panel, wx.ID_ANY, style =wx.TE_MULTILINE|wx.TE_READONLY)
@@ -870,8 +879,7 @@ class ActualizacionDialogo(wx.Dialog):
 		self.listaSeleccion = listaSeleccion
 		self.seconds = seconds
 
-		panel = wx.Panel(self)
-		self.Panel = panel
+		self.Panel = wx.Panel(self)
 
 		self.ProgressDescarga=wx.Gauge(self.Panel, wx.ID_ANY, range=100, style = wx.GA_HORIZONTAL)
 		self.ProgressActualizacion=wx.Gauge(self.Panel, wx.ID_ANY, range=len(listaSeleccion), style = wx.GA_HORIZONTAL)
@@ -967,6 +975,7 @@ class HiloGuardarArchivo(Thread):
 
 		self.daemon = True
 		self.start()
+
 	def run(self):
 		nombre = self.frame.listboxComplementos.GetString(self.frame.listboxComplementos.GetSelection())
 		indice = self.frame.datos.indiceSummary(nombre)
@@ -1012,6 +1021,21 @@ Se abrirá con su navegador predefinido en la pagina de descarga del complemento
 			wx.LaunchDefaultBrowser(datos['links'][self.id]['link'])
 			return
 		else:
+			if self.nombreFile == None:
+				winsound.PlaySound(None, winsound.SND_PURGE)
+				msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][self.id]['channel'])
+				gui.messageBox(msg,
+					_("Información"), wx.ICON_INFORMATION)
+				self.nombreFile = ""
+				ajustes.IS_Download = False
+				wx.LaunchDefaultBrowser(self.url)
+				return
+
 			caracteres = '\/:*?"<>| '
 			if any(c in caracteres for c in self.nombreFile):
 				try:
