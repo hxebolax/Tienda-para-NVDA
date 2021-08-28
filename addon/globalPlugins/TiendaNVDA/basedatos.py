@@ -9,6 +9,7 @@ import json
 import urllib.request
 import os
 from threading import Timer
+from .packaging import version
 from . import ajustes
 
 def obtenFile(url):
@@ -72,10 +73,11 @@ class NVDAStoreClient(object):
 		return False
 
 	def chkVersion(self, verServidor, verLocal):
-		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
-			return False
-		else:
-			return True
+#		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
+#			return False
+#		else:
+#			return True
+		return version.parse(verServidor) > version.parse(verLocal)
 
 	def isAddonTested(self, version, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
 		"""True if this add-on is tested for the given API version.
