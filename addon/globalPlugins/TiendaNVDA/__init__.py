@@ -237,10 +237,6 @@ class TiendaPanel(SettingsPanel):
 			ajustes.contadorRepeticionSn = 0
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			chkUpdate.start()
-		else:
-			chkUpdate.stop()
-			ajustes.contadorRepeticion = 0
-			ajustes.contadorRepeticionSn = 0
 
 		if len(self.listaGuarda) == 0:
 			pass
@@ -1237,7 +1233,11 @@ class HiloActualizacion(Thread):
 				fichero = self.generaFichero()
 				socket.setdefaulttimeout(self.tiempo)
 				req = urllib.request.Request(list(self.nombreUrl.values())[i], headers={'User-Agent': 'Mozilla/5.0'})
-				obj = urllib.request.urlopen(req).geturl()
+				try:
+					obj = urllib.request.urlopen(req).geturl()
+				except:
+					req = urllib.request.Request(list(self.nombreUrl.values())[i], headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+					obj = urllib.request.urlopen(req).geturl()
 				urllib.request.urlretrieve(obj, fichero, reporthook=self.__call__)
 				wx.CallAfter(self.frame.onActualizacion, i+1)
 				bundle = addonHandler.AddonBundle(fichero)
