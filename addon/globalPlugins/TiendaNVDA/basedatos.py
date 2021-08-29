@@ -73,11 +73,13 @@ class NVDAStoreClient(object):
 		return False
 
 	def chkVersion(self, verServidor, verLocal):
-#		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
-#			return False
-#		else:
-#			return True
 		return version.parse(verServidor) > version.parse(verLocal)
+
+	def chkVersionAlt(self, verServidor, verLocal):
+		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
+			return False
+		else:
+			return True
 
 	def isAddonTested(self, version, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
 		"""True if this add-on is tested for the given API version.
@@ -102,6 +104,13 @@ class NVDAStoreClient(object):
 										lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
 										lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
 										lstVerLocal.append(z.manifest["version"])
+									else:
+										if self.chkVersionAlt(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
+											lstActualizar.append("{}".format(z.manifest["summary"]))
+											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
+											lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
+											lstVerLocal.append(z.manifest["version"])
+
 		if len(lstActualizar) == 0:
 			return False, False, False
 		else:

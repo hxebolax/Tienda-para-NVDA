@@ -108,9 +108,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			inicio = False
 		if inicio:
 			global chkUpdate
-			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
-			if ajustes.tempChk == False:
-				chkUpdate.stop()
+			if ajustes.tempChk == True:
+				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 
 			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
@@ -217,6 +216,7 @@ class TiendaPanel(SettingsPanel):
 
 		self.installChk.Value =ajustes.tempInstall
 
+		self.listaOriginal = basedatos.libreriaLocal().fileJsonAddon(2)
 		self.listaGuarda = []
 
 	def onSave(self):
@@ -232,6 +232,9 @@ class TiendaPanel(SettingsPanel):
 		ajustes.tempInstall = self.installChk.Value
 
 		if ajustes.tempChk == True:
+			chkUpdate.stop()
+			ajustes.contadorRepeticion = 0
+			ajustes.contadorRepeticionSn = 0
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			chkUpdate.start()
 		else:
@@ -254,6 +257,15 @@ class TiendaPanel(SettingsPanel):
 	def onPanelDeactivated(self):
 		config.conf.profiles[-1].name = self.originalProfileName
 		self.Hide()
+
+#	def postSave(self):
+#		a = [x[1] for x in self.listaOriginal]
+#		b = [x[1] for x in ajustes.listaAddonsSave]
+#		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
+#		if len(c) == 0:
+#			print("No hay modificaciones")
+#		else:
+#			print(c)
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
@@ -595,12 +607,16 @@ _("""Se copio la URL de descarga al portapapeles""")
 		elif botonID == 203:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
+			else:
+				ajustes.IS_TEMPORAL = True
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
 		else:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
+			else:
+				ajustes.IS_TEMPORAL = True
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
@@ -629,6 +645,7 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 			except:
 				ajustes.IS_Download = False
 				ajustes.IS_WinON = False
+				ajustes.IS_TEMPORAL = False
 				pass
 			dlg.Destroy()
 		else:
@@ -638,6 +655,7 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 			except:
 				ajustes.IS_Download = False
 				ajustes.IS_WinON = False
+				ajustes.IS_TEMPORAL = False
 				pass
 			dlg.Destroy()
 
@@ -649,12 +667,15 @@ _("""Ya tiene un proceso de descarga activo, espere a que termine.""")
 		except:
 			ajustes.IS_Download = False
 			ajustes.IS_WinON = False
+			ajustes.IS_TEMPORAL = False
 			pass
 
 	def onkeyVentanaDialogo(self, event):
 		if event.GetKeyCode() == 27: # Pulsamos ESC y cerramos la ventana
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
+			else:
+				ajustes.IS_TEMPORAL = True
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
@@ -672,6 +693,8 @@ class BuscarActualizacionesDialogo(wx.Dialog):
 		global chkUpdate
 		if ajustes.tempChk == True:
 			chkUpdate.stop()
+			ajustes.contadorRepeticion = 0
+			ajustes.contadorRepeticionSn = 0
 
 		ajustes.IS_WinON = True
 
@@ -1007,6 +1030,9 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 								_("Información"), wx.ICON_INFORMATION)
 							self.nombreFile = ""
 							ajustes.IS_Download = False
+							if ajustes.IS_TEMPORAL == True:
+								ajustes.IS_WinON = False
+								ajustes.IS_TEMPORAL = False
 							wx.LaunchDefaultBrowser(self.url)
 							return
 		if self.nombreFile == "downloads":
@@ -1018,6 +1044,9 @@ Se abrirá con su navegador predefinido en la pagina de descarga del complemento
 			gui.messageBox(msg,
 				_("Información"), wx.ICON_INFORMATION)
 			ajustes.IS_Download = False
+			if ajustes.IS_TEMPORAL == True:
+				ajustes.IS_WinON = False
+				ajustes.IS_TEMPORAL = False
 			wx.LaunchDefaultBrowser(datos['links'][self.id]['link'])
 			return
 		else:
@@ -1033,6 +1062,9 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 					_("Información"), wx.ICON_INFORMATION)
 				self.nombreFile = ""
 				ajustes.IS_Download = False
+				if ajustes.IS_TEMPORAL == True:
+					ajustes.IS_WinON = False
+					ajustes.IS_TEMPORAL = False
 				wx.LaunchDefaultBrowser(self.url)
 				return
 
@@ -1056,6 +1088,9 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 							_("Información"), wx.ICON_INFORMATION)
 						self.nombreFile = ""
 						ajustes.IS_Download = False
+						if ajustes.IS_TEMPORAL == True:
+							ajustes.IS_WinON = False
+							ajustes.IS_TEMPORAL = False
 						wx.LaunchDefaultBrowser(self.url)
 						return
 
@@ -1255,8 +1290,10 @@ NVDA necesita reiniciarse para aplicar las instalaciones.
 class HiloComplemento(Thread):
 	def __init__(self, opcion):
 		super(HiloComplemento, self).__init__()
-		self.daemon = True
+
 		self.opcion = opcion
+		self.daemon = True
+
 	def run(self):
 		def tiendaAppDialogo(data):
 			self._MainWindows = tiendaApp(gui.mainFrame, data)

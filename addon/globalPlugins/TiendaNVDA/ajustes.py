@@ -63,6 +63,7 @@ def setup():
 titulo = _("Tienda NVDA.ES")
 IS_WinON = False
 IS_Download = False
+IS_TEMPORAL =False
 reiniciarTrue = False
 focoActual = "listboxComplementos"
 indiceFiltro = 1
