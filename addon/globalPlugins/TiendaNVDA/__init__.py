@@ -304,10 +304,11 @@ class TiendaPanel(SettingsPanel):
 class tiendaApp(wx.Dialog):
 	def __init__(self, parent, dataServidor):
 
-		WIDTH = 1600
-		HEIGHT = 800
+		WIDTH = 800
+		HEIGHT = 600
+		estiloVentana = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER|wx.MAXIMIZE_BOX
 
-		super(tiendaApp,self).__init__(parent, -1, title=ajustes.titulo, size = (WIDTH, HEIGHT))
+		super(tiendaApp,self).__init__(parent, -1, title=ajustes.titulo, size = (WIDTH, HEIGHT), style = estiloVentana)
 
 		ajustes.IS_WinON = True
 		self.datos = dataServidor
