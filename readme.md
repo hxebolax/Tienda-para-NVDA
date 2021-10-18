@@ -1,170 +1,388 @@
-# Manual de Tienda para NVDA.ES
-## Modo de uso
+# Manual de zUtilidades
 
-El complemento viene sin atajos asignados y podemos otorgarle dos que son:
+* Autor: Héctor J. Benítez Corredera
+* Compatibilidad con NVDA: de 2019.3 a 2021.1
+* [Descarga del complemento:](https://nvda.es/files/get.php?file=zUtilidades)
+* [Proyecto en GitHub:](https://github.com/hxebolax/zUtilidades-para-NVDA)
 
-* Muestra la ventana con todos los complementos y su información: Se nos mostrara una ventana con todos los complementos que hay en https:www.nvda.es
+---
 
-* Busca actualizaciones de los complementos instalados: Analizará los complementos que tenemos y de los que encuentre actualización nos ofrecerá la posibilidad de actualizarlos de manera automática.
+Índice<a id="Índice"></a>
+-------------
+- [Introducción](#mark0)
+- [Modulo Lanzador de aplicaciones](#mark1)
+- [Pantalla principal](#mark2)
+- [Lista de categorías](#mark3)
+- [Lista de aplicaciones](#mark4)
+- [Menú Añadir acción](#mark5)
+- [Editar acción](#mark6)
+- [Borrar acción](#mark7)
+- [Botón Menú](#mark8)
+- [Teclas rápidas](#mark9)
+- [Observaciones del autor](#mark10)
+- [Modulo Notas rápidas](#mark11)
+- [Agregar una nota rápida desde cualquier lugar](#mark12)
+- [Menús Virtuales para el Lanzador de aplicaciones y para Notas rápidas](#mark13)
+- [Traductores y colaboradores](#mark14)
+- [Registro de cambios](#mark15)
+- [Versión 0.2.3](#mark0.2.3)
+- [Versión 0.2.2](#mark0.2.2)
+- [Versión 0.2.1](#mark0.2.1)
+- [Versión 0.2](#mark0.2)
+- [Versión 0.1.6](#mark0.1.6)
+- [Versión 0.1.5](#mark0.1.5)
+- [Versión 0.1](#mark0.1)
 
-Podemos asignar un gesto de entrada para estas dos opciones yendo al menú de NVDA / Preferencias / Gestos de entrada y buscar Tienda para NVDA.ES.
+---
 
-### Muestra la ventana con todos los complementos y su información
+# Introducción<a id="mark0"></a>
 
-En esta pantalla tendremos todos los complementos junto a una ficha y la posibilidad de ir a su repositorio y descargar.
+zUtilidades pretende ser un conjunto de pequeñas aplicaciones para NVDA.
 
-Si recorremos la ventana tendremos una lista con todos los complementos, un cuadro de solo lectura con la ficha del complemento que tengamos seleccionado, un botón llamado "Descargar complemento", un botón llamado "Visitar página WEB" para ir a la pagina del complemento y un botón llamado "Salir".
+Se intentara agregar aplicaciones que puedan ser de interés para que podamos consultarlas rápidamente y que a su vez sean de fácil manejo y claras en su interface.
 
-Además, tendremos un cuadro de búsqueda en el cual podremos poner lo que deseemos buscar y si pulsamos Intro se mostrara los resultados en la lista.
+zUtilidades tendrá un menú en Herramientas de NVDA, en ese menú se irán agregando los distintos módulos.
 
-Bien para volver a tener toda la lista de complementos solo tendremos que volver al campo de búsqueda y borrar su contenido y pulsar Intro con el campo vacío.
+Cada modulo viene para poder agregarle una tecla rápida yendo al menú de NVDA / Preferencias / Gestos de entrada y una vez dentro buscar la categoría zUtilidades.
 
-En el campo de la ficha en el caso que el complemento tenga más de una rama de desarrollo también se nos mostrara la información.
+Por defecto los módulos vendrán sin ninguna tecla asignada.
 
-El botón llamado "Descargar complemento", nos desplegara un menú con las distintas ramas de desarrollo del complemento, tendremos que elegir una para descargar. En caso de que solo tenga una solo se nos dará esa opción.
+Por lo tanto podremos lanzar los módulos o bien hiendo al menú de Herramientas / zUtilidades o asignando una combinación de teclas para cada módulo.
 
-En esta pantalla tenemos las siguientes teclas rápidas para movernos por la interface:
+Actualmente esta formado por los siguientes módulos:
 
-* Alt+B: Ir al cuadro de búsqueda.
-* Alt+L: Ir a la lista de complementos.
-* Alt+I: Ir al campo de la ficha para ver la información del complemento seleccionado.
-* Alt+D: Ejecutar el botón "Descargar complemento".
-* Alt+P: Ir a la página del complemento.
-* Alt+S, Escape, Alt+F4: Cerrar la ventana.
+* Lanzador de aplicaciones.
+* Notas rápidas.
 
-#### Menú contextual en la lista de complementos
+# Modulo Lanzador de aplicaciones<a id="mark1"></a>
 
-En la lista de complementos podemos desplegar un menú contextual ya sea con la tecla Aplicaciones de nuestro teclado o bien Shift + F10 para aquellos teclados que no dispongan de la tecla Aplicaciones.
+Este módulo nos permitirá de manera rápida y desde cualquier parte de nuestro ordenador lanzar una aplicación ya sea portable o bien que se encuentre instalada.
 
-Dicho menú consta de dos submenús:
+## Pantalla principal<a id="mark2"></a>
 
-Filtros y Copiar al portapapeles.
+La pantalla principal consta de una lista de categorías, una lista de aplicaciones y un botón Menú.
 
-En el submenú "Filtros" tenemos las siguientes opciones:
+Si tabulamos iremos recorriendo las distintas áreas.
 
-* Mostrar todos los complementos: Esta opción es la predefinida siempre que el complemento se ejecute por primera vez.
+### Lista de categorías<a id="mark3"></a>
 
-Dicha opción nos mostrara todos los complementos que hay en la base de datos.
+En este área podremos añadir, editar o borrar una categoría pudiendo ordenar a nuestro gusto y en categorías nuestras aplicaciones.
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+Podemos acceder a las opciones Añadir, Editar o Borrar de dos maneras.
 
-* Mostrar los complementos con compatibilidad de API 2021: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
+Estando en el área Categorías pulsando la tecla Aplicaciones o en su defecto si no tuviésemos dicha tecla Shift+F10, se nos desplegara un menú donde podremos elegir una de las 3 opciones.
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+Los diálogos tanto de añadir como de editar son muy sencillos teniendo un único campo de texto donde poner el nombre de la nueva categoría o editar la categoría que elijamos, dos botones Aceptar y Cancelar.
 
-Advertir que en esta lista se omitirán aquellos complementos que los autores en su manifiesto han ignorado la buena praxis y han puesto compatibilidad con APIS que todavía no han llegado.
+Si elegimos borrar tenemos que tener en cuenta que lo que contenga esa categoría se borrara por completo sin poder rehacer la acción, por lo tanto cuidado que podremos perder las aplicaciones que tengamos metidas en la base de datos y tendremos que volver a introducir todas las aplicaciones o comandos o accesos que tuviese esa categoría.
 
-* Mostrar los complementos ordenados por autor: Esta opción nos mostrara la lista de complementos pero se ordenara por nombre de autor.
+Podemos también acceder a dichas opciones o bien tabulando hasta el botón Menú o con la combinación de tecla Alt+M. Si lo hacemos se nos desplegara un menú con un submenú llamado Categorías donde podremos elegir una de las 3 opciones anteriores.
 
-* Mostrar por descargas de mayor a menor: Esta opción nos mostrara todos los complementos pero será ordenada por el número de descargas que tenga el complemento.
+Comentar que Editar y Borrar siempre será sobre la categoría que tenga el foco, dando los correspondientes mensajes en caso de que no tengamos categorías.
 
-Estas opciones se ejecutan individualmente no siendo acumulable su resultado.
+También podremos con las combinaciones de teclas Alt + Flecha arriba y Flecha abajo mover la categoría para poder ordenarlas.
 
-Cada opción cuando la elijamos cambiara el titulo de la ventana para informarnos que filtro esta activo.
+### Lista de aplicaciones<a id="mark4"></a>
 
-Las opciones se mantienen para las siguientes veces que se active la tienda hasta que NVDA sea reiniciado. Una vez reiniciado el complemento vuelve a su valor predefinido y la lista cargada por primera vez será "Mostrar todos los complementos"
+En este área es donde se pondrán las aplicaciones correspondientes a la categoría que tengamos elegida.
 
-Salvo la opción "Mostrar todos los complementos", el resto de opciones solo se filtra por la primera rama de desarrollo. Si un complemento tiene más de una rama no se tendrán en cuenta salvo la rama principal para filtrar los resultados en cada opción.
+Tenemos 3 opciones que son Añadir acción, Editar acción o Borrar acción.
 
-En el submenú "Copiar al portapapeles" tenemos las siguientes opciones:
+Podemos obtener estas opciones como en la lista de categorías ya sea con la tecla Aplicaciones o en su caso Shift+F10 o dirigirse al botón Menú (Alt+M) y buscar el submenú Aplicaciones.
 
-* Copiar información: Si elegimos esta opción se copiara la ficha entera del complemento que tengamos elegido al portapapeles.
+En esta lista de aplicaciones podremos lanzar la aplicación que tenga el foco pulsando la tecla espaciadora.
 
-* Copiar enlace a la página web del complemento: Si elegimos esta opción se copiara la URL de la página oficial del complemento al portapapeles.
+También podremos con las combinaciones de teclas Alt + Flecha arriba y Flecha abajo mover la entrada para poder ordenarlas.
 
-* Copiar enlace de descarga del complemento: Bien esto es un submenú que contendrá dentro las ramas de desarrollo del complemento. Cuando elijamos alguna si tiene más de una nos copiara al portapapeles la URL para poder descargar el complemento.
+En este área podremos rápidamente navegar por las distintas entradas pulsando la primera letra de esa manera podremos encontrar rápidamente la aplicación que deseamos ejecutar si tenemos muchas en la base de datos.
 
-### Busca actualizaciones de los complementos instalados
+#### Menú Añadir acción<a id="mark5"></a>
 
-Nos dejara actualizar aquellos complementos que en https://www.nvda.es sean más nuevos que los que tenemos en nuestro equipo.
+En este menú podremos elegir entre las siguientes opciones:
 
-En esta pantalla podremos seleccionar en caso de que hubiese actualizaciones aquellos complementos que deseemos actualizar.
+* Añadir aplicación:
 
-Tendremos que marcar con la barra espaciadora el complemento deseado y darle al botón "Actualizar".
+Si añadimos una aplicación hay dos campos que son obligatorios y es el nombre de la aplicación y el directorio donde se encuentre nuestra aplicación.
 
-En esta pantalla se nos mostrara la actualización correspondiente si la hay a la rama que tengamos elegida yendo al menú de NVDA / Preferencias / Opciones / Tienda NVDA.ES y allí podremos elegir si hay más de una rama de desarrollo la que deseemos (explicado bien en el siguiente apartado)
+Actualmente el complemento soporta aplicaciones con las extensiones exe, bat y com.
 
-En esta pantalla tenemos las siguientes teclas:
+Una vez rellenados los campos obligatorios podremos elegir si la aplicación requiere de parámetros adicionales o si la aplicación la deseamos ejecutar en modo administrador.
 
-* Alt+S: Seleccionara todos los complementos de la lista para instalar todas las actualizaciones de nuestros complementos que tengamos instalados en nuestra computadora.
-* Alt+D: Nos deseleccionara de la lista todas las actualizaciones de todos los complementos si habían sido marcados previamente.
-* Alt+A: Empezara la actualización de aquellos complementos que tengamos seleccionados en la lista.
-* Alt+C, Alt+F4 o Escape: Cerrara la ventana.
+Si deseamos ejecutar una aplicación en modo administrador se nos pedirá el permiso correspondiente cuando lancemos la aplicación. 
 
-### Panel de opciones
+* Añadir comando CMD
 
-Podremos configurar algunos aspectos del complemento "TiendaNVDA" yendo al menú de NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
+En este dialogo podremos agregar comandos de consola.
 
-* Activar o desactivar la comprobación de actualizaciones.
+Los campos nombre para identificar el comando y el campo comandos son obligatorios.
 
-Si activamos esta casilla de verificación se activará un cuadro combinado en el cual podremos elegir cuanto tiempo transcurrirá entre una comprobación y otra.
+Bien varias apreciaciones, aparte de lanzar comandos cmd si dominamos Windows PowerShell si ponemos en la línea de comandos PowerShell y seguido de lo que queremos ejecutaremos también comandos PowerShell.
 
-Decir que la casilla de verificación "Activar o desactivar la comprobación de actualizaciones" viene desactivado por defecto.
+Igualmente si son comandos CMD añado que podemos ejecutar varias líneas las cuales tienen que ir separadas por el símbolo (et) que se consigue haciéndolo con Shift+6, esto con un teclado QWERTY español. Si se usa un teclado QWERTY inglés, esto se hará con Shift+7.
 
-El comportamiento de esta opción es simple, buscara en el servidor si existen actualizaciones en el rango de tiempo dado y nos notificara con una notificación de sistema diciendo cuantas actualizaciones hay y que abramos la correspondiente opción en el complemento Tienda NVDA para actualizar.
+Pongo un ejemplo de la línea de comandos para reiniciar el explorador de Windows, comprobareis que uso el símbolo (et) para separar una línea de comandos por otra.
 
-Decir que si esta opción se activa buscara 10 veces el rango del tiempo dado y luego se desactivara. Esto es para no saturar las llamadas al servidor.
+`taskkill /f /im explorer.exe & start explorer`
 
-Por lo tanto, si tenemos 15 minutos asignados y no encuentra actualizaciones a las 2h 30 min dejara de buscar actualizaciones.
+También en este dialogo podemos poner una pausa para que no se cierre la consola y a si poder ver los resultados.
 
-En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo dado y luego se desactivara, cada vez nos avisara de que se encontraron actualizaciones hasta que actualicemos.
+También podemos ejecutar como administrador.
 
-* Ordenar por orden alfabético los complementos de la tienda y las búsquedas.
+* Añadir accesos a carpetas
 
-Si marcamos esta casilla de verificación, cuando abramos la tienda se nos mostrara los complementos por orden alfabético. También si buscamos algún complemento los resultados de las búsquedas se mostrarán en orden alfabético.
+En este dialogo tendremos que elegir un nombre para identificar el acceso a la carpeta y elegir una carpeta.
 
-* Instalar complementos después de descargar.
+Esto nos permitirá abrir rápidamente carpetas de nuestro sistema desde cualquier parte.
 
-Si marcamos esta casilla de verificación, cuando se termine de descargar un complemento nos pedirá desde el asistente de instalación de complementos de NVDA que si queremos instalar.
+* Añadir ejecutar accesos directos de Windows
 
-* Complementos instalados que hay en el servidor.
+En este dialogo podremos elegir un acceso directo para lanzarlo. También podremos elegir si lo queremos lanzar como administrador.
 
-Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.
+Los campos para identificar el nombre del acceso directo y la ruta son obligatorios.
 
-Solo se mostrarán aquellos que además tengan compatibilidad con la Api actual de NVDA.
+* Añadir aplicación instalada
 
-En esta lista podremos elegir que rama de actualización queremos para el complemento. Si pulsamos barra espaciadora encima de un complemento se nos desplegara todas las ramas de desarrollo para ese complemento. Podremos elegir la que deseemos con Intro y se nos quedara guardada la selección en la lista.
+En este dialogo se obtendrán todas las aplicaciones instaladas en nuestro ordenador ya sea por el usuario o aplicaciones que ya vienen con Windows.
 
-ADVERTENCIA: Los cambios en la lista solo se guardarán si damos al botón aceptar o Aplicar del dialogo de opciones.
+También en esta pantalla podremos elegir las aplicaciones instaladas desde la tienda de Windows.
 
-Esta lista se actualiza cada vez que reiniciemos NVDA añadiendo si hay nuevos complementos o eliminando aquellos que ya no estén.
+Advertencia esto no es válido para Windows 7.
 
-Por lo tanto, si eliminamos un complemento y luego lo volvemos a instalar tendremos que volver a seleccionar la rama que deseamos de nuevo.
+Bien una vez añadida una aplicación desde este dialogo comentar que no puede ser editado, teniendo que borrar la entrada si queremos añadirlo de nuevo.
 
-Esta lista tanto la primera vez que se genere como cada vez que se agregue un complemento siempre pondrá por defecto la primera rama de desarrollo que hay en el servidor.
+La opción administrador en este dialogo no funcionara para todas las aplicaciones. Funcionando solo para aquellas que permita elevar privilegios de administrador.
 
-## Observaciones
+Avisar también que en este dialogo en el cuadro combinado también saldrán aquellos accesos instalados por las aplicaciones, podremos elegirlos pero puede que alguno no permita abrirse dando error.
 
-Cuando compruebe si hay actualizaciones ahora tiene dos protecciones:
+Comentar también que hay que tener cuidado por que en este listado saldrán aplicaciones que pueden ser para administrar o aplicaciones de gestión que si no sabemos para que son es mejor no tocarlas.
 
-1º Comprobara si hay complementos que van a ser desinstalados.
+#### Editar acción<a id="mark6"></a>
 
-Si es así esos complementos se excluyen, aunque haya actualizaciones.
+El dialogo de Editar es exactamente el mismo que Añadir acción pero nos permitirá modificar la entrada que elijamos.
 
-2º Se validará que el complemento que hay en el servidor cumple con los requisitos de API del NVDA que tenemos instalado.
+Nos permitirá modificar todos los elementos menos los añadidos por la opción Añadir aplicación instalada, los diálogos serán los mismos que en las opciones para añadir.
 
-Si esto no se cumple, el complemento no podrá ser instalado, aunque la versión del servidor sea más nueva y el servidor nos ofrezca ese complemento.
+#### Borrar acción<a id="mark7"></a>
 
-A la hora de instalar se han incluido también varias protecciones:
+Si borramos una entrada tenemos que tener en cuenta que la acción no será reversible.
 
-1º Ahora nos avisará si algún complemento no a podido ser actualizado y nos dará su nombre.
+### Botón Menú<a id="mark8"></a>
 
-2º En este paso también se comprobará si el complemento para instalar tiene la versión mínima para ser usado en el NVDA que tengamos instalado.
+Este botón será accesible desde cualquier parte de la interface pulsando la combinación Alt+M.
 
-3º El complemento "TiendaNVDA" no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
+En este menú encontraremos cuatro submenús que son Categorías, Acciones, Hacer o restaurar copias de seguridad y Opciones, en este menú también encontramos la opción Salir.
 
-4º Si tenemos activada la opción llamada "Busca actualizaciones de los complementos instalados" cada vez que busque y detecte que no hemos reiniciado NVDA se nos notificara con una notificación de sistema.
+Bien Categorías y Acciones ya lo explique por lo que explicare el submenú Hacer y restaurar copias de seguridad y Opciones.
 
-5º Igualmente, si intentamos activar la opción llamada “Busca actualizaciones de los complementos instalados" y no hemos reiniciado NVDA el lector nos verbalizara el mensaje que tenemos que reiniciar el NVDA para aplicar las actualizaciones.
+Bien si elegimos Hacer una copia de seguridad se abrirá una ventana de guardar de Windows donde tendremos que elegir donde guardar nuestra copia de seguridad de la base de datos.
 
-6º En el peor de los casos si las librerías no dejan cargar porque no tengamos internet, se nos mostrara mensajes de información en el registro de NVDA y además si intentamos acceder a la tienda se nos avisara con un mensaje hablado.
+Bien el nombre del archivo es algo así por defecto:
 
-Se mejoro la función que busca actualizaciones, ahora es mucho más fiable y además añade a su vez las protecciones mencionadas con anterioridad.
+`Backup-03052021230645.zut-zl`
 
-Se hicieron muchas mejoras internas para hacerlo más robusto.
+Bien la extensión se pone por defecto y el nombre corresponde al modulo y contiene la fecha en que fue creado, decir que podemos poner el nombre que deseemos.
 
-Este complemento esta en fase de prueba por lo que le pedimos que entienda que puede haber errores.
+Una vez guardado podemos restaurarlo en caso que nuestra base de datos se corrompa o simplemente que la borremos por error o queramos volver a una versión que tengamos guardada.
 
-Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la mayor brevedad.
+Pues elegimos Restaurar copias de seguridad y se nos abrirá una ventana clásica de Windows para abrir archivos.
 
-¡Disfruta de la Tienda para NVDA.ES!
+Tenemos que elegir la copia que guardamos que tendrá la extensión *.zut-zl ojo no cambiar la extensión porque si no encontrara el archivo.
+
+Una vez elegido se restaurara la copia de seguridad y cuando pulsamos en Aceptar  se cerrara el complemento y la próxima vez que lo abramos ya se tendrá nuestra copia restaurada.
+
+Comentar que los archivos *.zut-zl son realmente archivos comprimidos pero cuidado con modificarlos por que si son modificados no coincidirá la firma y no dejara restaurarlos.
+
+Con esto quiero decir que dichos archivos traen una firma que si no coincide a la hora de restaurar dará fallo y cada firma es diferente para cada archivo.
+
+En el submenú de Opciones ahora solo está la opción Volver a valores por defecto el lanzador de aplicaciones.
+
+Si elegimos esta opción se borrara toda la base de datos dejando el complemento como si fuese recién instalado.
+
+## Teclas rápidas<a id="mark9"></a>
+
+En las dos áreas tanto en la de Categorías como en la de Aplicaciones, podremos ordenar las entradas con:
+
+* Alt + Flecha arriba o Flecha abajo
+
+Cuando una categoría o aplicación llegue al principio o final se nos anunciara con un sonido distintivo para saber que no podemos ni subir ni bajar más.
+
+* Alt + C: Nos llevara rápidamente al área de categorías.
+
+* Alt + L: Nos llevara rápidamente a la lista de aplicaciones.
+
+* Alt + M: Nos abrirá el menú.
+
+* Tecla aplicaciones o Shift + F10: En las áreas de categoría y aplicaciones nos desplegara el menú contextual con opciones.
+
+* Espacio: En el área de lista de aplicaciones ejecutara la aplicación que tenga el foco.
+
+* Escape: Cierra todos los diálogos que la aplicación puede abrir incluso la pantalla principal del Lanzador de aplicaciones, dejándonos el foco desde donde fue llamado.
+
+## Observaciones del autor<a id="mark10"></a>
+
+Comentar varias cosas, la primera que el Lanzador de aplicaciones se cerrara cuando ejecutemos una aplicación, teniendo que llamarlo de nuevo cuando deseemos ejecutar otra.
+
+E implementado también una función que guardara la posición de la categoría y de la aplicación ultima visitada por lo tanto cuando abramos el Lanzador de aplicaciones siempre quedarán elegidas tanto la ultima categoría como la ultima aplicación de dicha categoría.
+
+También se implemento el guardado de foco, por lo que cuando llamemos el Lanzador de aplicaciones siempre nos dejara en la ultima posición donde estuvo el foco antes de cerrar.
+
+Por poner un ejemplo si el foco esta en el botón Menú y cerramos el Lanzador de aplicaciones, la próxima vez que lo abramos el foco se encontrara en el botón Menú.
+
+Estas características solo son validas durante la sesión de NVDA, esto quiere decir que si reiniciamos NVDA empezaremos con el foco en el área de categorías.
+
+Este complemento esta echo para usarse con Windows 10, por lo que si está usando versiones anteriores y tiene algún problema coméntelo pero seguramente no podre hacer nada ya que algunas características solo se encuentran en Windows 10.
+
+# Modulo Notas rápidas<a id="mark11"></a>
+
+Este módulo nos servirá para tener a mano pequeñas notas las cuales podremos consultar, editar, borrar.
+
+Este modulo tiene el mismo manejo que el Lanzador de aplicaciones pero varia en algunas teclas explicadas a continuación.
+
+No voy a volver a explicar el menú con el cual podremos hacer copias de seguridad, restaurarlas, volver a valores por defecto el complemento, manejar categorías y notas.
+
+Tampoco voy a volver a explicar el recorrido de la interface principal ya que es exactamente lo mismo.
+
+Podremos añadir una nota rápida y en el dialogo que se abre podremos poner el titulo de la nota y si tabulamos el contenido.
+
+El dialogo de editar nota es exactamente lo mismo, poner un titulo o modificar el que ya esta y poder editar la nota.
+
+Este modulo se diferencia con el de lanzador de aplicaciones en que usa algunas nuevas combinaciones de teclas.
+
+* F1: Cuando estemos encima de una nota si presionamos F1 nos leerá el contenido de la nota.
+* F2: Nos copiara la nota enfocada al portapapeles para que podamos copiarla en cualquier sitio siempre y cuando la aplicación que admita escritura tiene que estar enfocada, si no pues no pasara nada.
+* F3: Esta combinación nos cerrara la ventana de notas rápidas y pegara el contenido de la nota que tuviésemos enfocado en el foco, es decir pega la nota en la aplicación que tenga abierta siempre que permita pegar texto dicha aplicación, por ejemplo, el Bloc de notas, el campo de un correo, en Word, etc.
+
+Esto significa que si llamamos al modulo  Notas rápidas desde el Bloc de notas o un asunto de un email cuando presionemos esta combinación el texto se pegara donde teníamos el foco.
+
+Por ejemplo si lanzamos el modulo Notas rápidas desde el escritorio y pulsamos F3 encima de una nota no pasara nada, si abrimos el Bloc de notas y pulsamos F3 pegara el contenido de la nota en el Bloc de notas.
+
+Cuidado si estamos en el escritorio o algún sitio donde no se pueda pegar directamente no hará nada.
+
+También sigue funcionando tanto en el área de categorías como en el área de lista de notas el poder ordenar dichas áreas con Alt+Flechas arriba y abajo para mover lo que tengamos seleccionado.
+
+Si pulsamos espacio se abrirá una ventana donde podremos solo visualizar nuestra nota.
+
+Decir que este modulo viene sin tecla rápida definida, por lo que tendremos que agregársela en Gestos de entrada.
+
+Se agrego en el menú Opciones un dialogo de Opciones.
+
+Actualmente solo tiene una opción que es la siguiente:
+
+* Capturar el título de la ventana en las notas rápidas (desde cualquier parte)
+
+Si marcamos esta opción cuando pulsemos ya sea en  Añadir una nueva nota rápida o en Agregar nota rápida del texto seleccionado el título de la nota se rellenara con el título de la ventana que en ese momento este enfocada.
+
+# Agregar una nota rápida desde cualquier lugar<a id="mark12"></a>
+
+También el modulo de Notas rápidas tiene una característica para agregar notas rápidas desde cualquier sitio sin necesidad de abrir el complemento para añadir.
+
+En el diálogo Gestos de Entrada ahora podremos configurar una nueva combinación de teclas que encontrareis en:
+
+NVDA / Preferencias / Gestos de entrada / zUtilidades / Con una pulsación agrega una nota rápida del texto seleccionado, con doble pulsación agrega una nueva nota rápida
+
+Cuando tengamos ya una combinación asignada solo tendremos que seleccionar un texto en cualquier parte y pulsar la combinación de teclas.
+
+Se abrirá una ventana en la cual lo primero que tendremos que elegir es en que categoría queremos guardar nuestra nota, solo nos aparecerán las categorías que tengamos añadidas.
+
+Si tabulamos caeremos en el campo para poner el titulo de la nota y si volvemos a tabular tendremos el texto que habíamos seleccionado.
+
+Si pulsamos en Aceptar se guardara y ya tendremos nuestra nota en nuestra categoría que hallamos elegido.
+
+Si pulsamos dicha combinación dos veces se abrirá la misma pantalla pero para añadir una nota desde cero. Tendremos que seleccionar en que categoría guardar la nota, el titulo de la nota y también el contenido de la nota.
+
+# Menús Virtuales para el Lanzador de aplicaciones y para Notas rápidas<a id="mark13"></a>
+
+Bien estos menús vienen a potenciar a zUtilidades haciendo que ahora sea mucho más productivo y más rápido.
+
+Bien los gestos que tengamos asignados al lanzador de aplicaciones y a notas rápidas ahora tienen una doble pulsación.
+
+Si pulsamos una sola vez dicha combinación nos saldrá la interface gráfica, si pulsamos dos veces nos saldrá el menú virtual.
+
+Bien en dicho menú nos podremos mover con flechas derecha y izquierda entre categorías y con flechas arriba y abajo entre ítems de dicha categoría si los hay.
+
+Bien existen algunas diferencias entre el menú del lanzador de aplicaciones y el de notas rápidas.
+
+En el menú virtual de lanzador de aplicaciones con las flechas nos movemos y con intro ejecutamos el item que tengamos seleccionado haciendo la acción que corresponda.
+
+Si es un comando cmd pues lo ejecutara, si es un acceso rápido lo mismo y así como si fuese la interface grafica.
+
+Bien con Escape saldremos del menú si no queremos hacer nada.
+
+También nos podemos mover por las categorías pulsando las teclas de inicio del nombre salvo la ñ que no la admite este menú todas las demás nos llevara rápidamente a la categoría.
+
+Bien también si dicha letra no tiene una categoría nos dará el mensaje de ayuda al igual que si pulsamos cualquier otra tecla que sea diferente a las mencionadas.
+
+Decir que mientras el menú este activo todas las demás combinaciones de teclas de NVDA no funcionarán hasta que no salgamos del menú.
+
+En el menú de Notas rápidas la tecla espaciadora no vale para nada y si tiene diferencias con el del lanzador de aplicaciones.
+
+Cuando estemos encima de un item si pulsamos F1 nos verbalizará el contenido de la nota, con F2 nos copiara la nota al portapapeles y con F3 nos pegara el contenido de la nota donde tengamos el foco.
+
+Igualmente lo dicho mientras el menú este activo tiene prioridad hasta que pulsemos la tecla Escape para abandonar el menú restaurando la funcionalidad normal del teclado.
+
+## Traductores y colaboradores:<a id="mark14"></a>
+
+* Francés: Rémy Ruiz
+* Portugués: Ângelo Miguel Abrantes
+* Italiano: Alessio Lenzi
+* Javi Domínguez: Mil gracias por enseñarme a programar el menú. Mejor dicho por explicarlo para tontos como yo.
+
+# Registro de cambios.<a id="mark15"></a>
+## Versión 0.2.3.<a id="mark0.2.3"></a>
+
+Se agrego la posibilidad de capturar el título de las ventanas en Añadir una nueva nota rápida o en Agregar nota rápida del texto seleccionado.
+
+Esta opción puede ser activada en el menú del modulo Notas rápidas en el apartado opciones / Opciones.
+
+Si la casilla se marca a partir de ese momento se capturara el título de las ventanas desde donde fue invocado ya sea las opciones Añadir una nueva nota rápida o Agregar nota rápida del texto seleccionado.
+
+## Versión 0.2.2.<a id="mark0.2.2"></a>
+
+* Agregada la posibilidad de mover entre categorías tanto ítems del lanzador de aplicaciones como de notas.
+* Agregada doble pulsación para la tecla Agregar nota rápida del texto seleccionado. Ahora con doble pulsación nos dejara crear una nueva nota rápida desde cero.
+* Actualizada documentación en Francés.
+* Agregado idioma Italiano.
+
+## Versión 0.2.1.<a id="mark0.2.1"></a>
+
+* Solucionado problema con el portapapeles vacío al querer pegar un texto.
+
+## Versión 0.2.<a id="mark0.2"></a>
+
+* Se corrigieron muchos errores internos.
+* Se estabilizo el modulo Lanzador de aplicaciones.
+* Se agrego un nuevo módulo de Notas rápidas.
+* Se agregaron menús virtuales para los dos módulos.
+
+## Versión 0.1.6.<a id="mark0.1.6"></a>
+
+* Agregado idioma Francés y  Portugués (Portugal / Brasil).
+
+## Versión 0.1.5.<a id="mark0.1.5"></a>
+
+* Restructurados los menús.
+
+Agregado la posibilidad de añadir:
+
+* Añadir comando CMD
+
+* Añadir accesos a carpetas
+
+* Añadir ejecutar accesos directos de Windows
+
+* Añadir aplicación instalada
+
+* Se agrego en el botón Menú la posibilidad en Opciones Volver a valores por defecto el lanzador de aplicaciones
+
+* Se corrigieron distintos errores con la base de datos.
+
+* Se corrigieron errores internos.
+
+* Se preparo el complemento para ser traducido.
+
+## Versión 0.1.<a id="mark0.1"></a>
+
+* Agregado modulo Lanzador de aplicaciones
+
+* Versión inicial.
+

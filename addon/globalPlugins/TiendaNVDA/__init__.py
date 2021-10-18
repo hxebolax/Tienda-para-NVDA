@@ -99,18 +99,26 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(GlobalPlugin, self).__init__()
 		if globalVars.appArgs.secure: return
 
+		core.postNvdaStartup.register(self.tareasDeRed)
+
+	def tareasDeRed(self):
 		global inicio
 		try:
 			ajustes.setup()
 			inicio = True
 		except Exception as e:
 			log.info(_("No se pudieron cargar las librerías necesarias para la Tienda"))
+			msg = \
+_("""Error producido en las librerías::
+
+{}""").format(e)
+			log.info(msg)
+
 			inicio = False
 		if inicio:
 			global chkUpdate
 			if ajustes.tempChk == True:
 				chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
-
 			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
 			self.menu = wx.Menu()
@@ -122,6 +130,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.tiendaActualizaciones = self.menu.Append(wx.ID_ANY, _("Buscar actualizaciones de complementos"))
 			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
 			# Translators: Nombre del menú Tienda de complementos
+
 			self.tiendaMenu = tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
 		else:
 			log.info(_("Inicio del complemento cancelado."))
@@ -133,6 +142,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			if inicio == True:
 				chkUpdate.stop()
 				NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
+				core.postNvdaStartup.unregister(self.tareasDeRed)
 			if not self._MainWindows:
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):
@@ -232,9 +242,12 @@ class TiendaPanel(SettingsPanel):
 		ajustes.tempInstall = self.installChk.Value
 
 		if ajustes.tempChk == True:
-			chkUpdate.stop()
-			ajustes.contadorRepeticion = 0
-			ajustes.contadorRepeticionSn = 0
+			try:
+				chkUpdate.stop()
+				ajustes.contadorRepeticion = 0
+				ajustes.contadorRepeticionSn = 0
+			except:
+				pass
 			chkUpdate = basedatos.RepeatTimer(ajustes.tiempoDict.get(ajustes.tempTimer), function_ChkUpdate)
 			chkUpdate.start()
 
@@ -254,14 +267,14 @@ class TiendaPanel(SettingsPanel):
 		config.conf.profiles[-1].name = self.originalProfileName
 		self.Hide()
 
-#	def postSave(self):
-#		a = [x[1] for x in self.listaOriginal]
-#		b = [x[1] for x in ajustes.listaAddonsSave]
-#		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
-#		if len(c) == 0:
-#			print("No hay modificaciones")
-#		else:
-#			print(c)
+	def postSave(self):
+		a = [x[1] for x in self.listaOriginal]
+		b = [x[1] for x in ajustes.listaAddonsSave]
+		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
+		if len(c) == 0:
+			print("No hay modificaciones")
+		else:
+			print(c)
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
@@ -573,13 +586,25 @@ _("""Se copio la URL de descarga al portapapeles""")
 			notify.Show(timeout=10)
 
 	def onLisbox(self, event):
+		try:
+			tecla = event.GetKeyCode()
+		except:
+			tecla = None
 		if self.listboxComplementos.GetSelection() == -1:
 			pass
 		else:
 			if self.listboxComplementos.GetString(self.listboxComplementos.GetSelection()) == _("No se encontraron resultados"):
 				self.txtResultado.Clear()
 			else:
-				self.onFicha()
+				if tecla == wx.WXK_F1:
+					msg = \
+_("""Se encuentra en el complemento {} de {}""").format(self.listboxComplementos.GetSelection()+1, self.listboxComplementos.GetCount())
+					ui.message(msg)
+				else:
+					if tecla == wx.WXK_F2:
+						ui.message(self.txtResultado.GetValue())
+					else:
+						self.onFicha()
 
 	def onBoton(self, event):
 		obj = event.GetEventObject()
