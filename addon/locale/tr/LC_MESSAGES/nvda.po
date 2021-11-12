@@ -1,0 +1,471 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nvda.es Eklenti Mağazası\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-20 18:52+0300\n"
+"PO-Revision-Date: 2021-10-26 13:42+0300\n"
+"Last-Translator: Umut KORKMAZ <umutkork@gmail.com>\n"
+"Language-Team: Umut KORKMAZ <umutkork@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Turkish\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\ITU\\AppData\\Roaming\\nvda\\addons\\TiendaNVDA\\globalPlugins\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/ajustes.py:63
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:125
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:183
+msgid "Tienda NVDA.ES"
+msgstr "NVDA.ES Eklenti Mağazası"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/ajustes.py:76
+msgid "15 minutos"
+msgstr "15 dakika"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/ajustes.py:76
+msgid "30 minutos"
+msgstr "30 dakika"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/ajustes.py:76
+msgid "45 minutos"
+msgstr "45 dakika"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/ajustes.py:76
+msgid "1 hora"
+msgstr "1 saat"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:65
+msgid ""
+"Se encontró una actualización. \n"
+"\n"
+"Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
+msgstr ""
+"Bir güncelleme bulundu. \n"
+"\n"
+"NVDA.ES Eklenti Mağazasından Güncellemeleri Kontrol Et'i çalıştır."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:69
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:79
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:92
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:564
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:627
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1026
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1041
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1058
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1084
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1317
+msgid "Información"
+msgstr "Bilgi"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:75
+msgid ""
+"Se encontraron  {} actualizaciones. \n"
+"\n"
+"Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
+msgstr ""
+"{} Güncelleme bulundu. \n"
+"\n"
+"NVDA.ES Eklenti Mağazasından Güncellemeleri Kontrol Et'i çalıştır."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:90
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:151
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:171
+msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
+msgstr "Güncellemelerin aktif olabilmesi için NVDA'yı yeniden başlatmanız gerekiyor."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:107
+msgid "No se pudieron cargar las librerías necesarias para la Tienda"
+msgstr "Eklenti Mağazası için gerekli kitaplıklar yüklenemedi"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:119
+msgid "Listado de complementos"
+msgstr "Eklenti listesi"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:122
+msgid "Buscar actualizaciones de complementos"
+msgstr "güncellemeleri kontrol et"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:127
+msgid "Inicio del complemento cancelado."
+msgstr "Eklenti başlatma iptal edildi."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:141
+msgid "Muestra la ventana con todos los complementos y su información"
+msgstr "Tüm eklentileri ve bilgilerini içeren pencereyi görüntüler"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:141
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:161
+msgid "Tienda para NVDA.ES"
+msgstr "NVDA.ES Eklenti Mağazası"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:149
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:169
+msgid "Ya hay una instancia de la Tienda NVDA abierta."
+msgstr "NVDA.ES Eklenti Mağazasının bir penceresi zaten açık."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:154
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:174
+msgid ""
+"El complemento fallo al iniciar NVDA.\n"
+"\n"
+"Una de las causas es que NVDA arrancara antes de tener conexión a internet.\n"
+"\n"
+"Reinicie NVDA para intentar solucionar el problema."
+msgstr ""
+"NVDA Eklentiyi başlatamadı.\n"
+"\n"
+"Internet bağlantınızda bir sorun olabilir.\n"
+"\n"
+"Bağlantınızı denetledikten sonra NVDA'yı yeniden başlatabilirsiniz."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:161
+msgid "Busca actualizaciones de los complementos instalados"
+msgstr "Yüklü eklentiler için güncellemeleri kontrol edin"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:188
+msgid "Activar o desactivar la comprobación de actualizaciones"
+msgstr "Güncellemeleri denetlemeyi etkinleştir."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:191
+msgid "Seleccione un tiempo para comprobar si hay actualizaciones"
+msgstr "Güncellemeleri denetlemek için bir zaman seç"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:193
+msgid "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
+msgstr "Mağaza eklentilerini ve Arama sonuçlarını Alfabetik olarak listele"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:195
+msgid "Instalar complementos después de descargar"
+msgstr "İndirdikten sonra eklentileri yükle"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:199
+msgid "Complementos instalados que hay en el servidor:"
+msgstr "Sunucuda bulunan yüklü eklentiler:"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:281
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:450
+msgid "Canal {}"
+msgstr "Kanal {}"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:319
+msgid "&Buscar:"
+msgstr "&Ara:"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:324
+msgid "&Lista complementos:"
+msgstr "Eklenti &listesi:"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:330
+msgid "&Información:"
+msgstr "B&ilgi:"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:334
+msgid "&Descargar complemento"
+msgstr "Eklentiyi İn&dir"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:335
+msgid "Visitar &página WEB"
+msgstr "&WEB sayfasını ziyaret et"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:336
+msgid "&Salir"
+msgstr "&Çık"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:375
+msgid ""
+"Autor: {}\n"
+"Nombre del complemento: {}\n"
+"Nombre interno: {}\n"
+"Descripción: {}\n"
+"Desarrollo: {}\n"
+msgstr ""
+"Yazar: {}\n"
+"Eklenti adı: {}\n"
+"Dahili İsim: {}\n"
+"Açıklama: {}\n"
+"Geliştirme: {}\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:384
+msgid "Con soporte"
+msgstr "destek ile"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:384
+msgid "Sin soporte"
+msgstr "desteklenmiyor"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:390
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Testeado hasta versión de NVDA: {}\n"
+"Total descargas: {}\n"
+msgstr ""
+"Kanal: {}\n"
+"Sürüm: {}\n"
+"Minimum NVDA Sürümü: {}\n"
+"Son Test edilen NVDA Sürümü: {}\n"
+"Toplam indirme: {}\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:433
+msgid "Mostrar todos los complementos"
+msgstr "Tüm eklentileri göster"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:435
+msgid "Mostrar los complementos con compatibilidad de API 2021"
+msgstr "API 2021 destekli eklentileri göster"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:437
+msgid "Mostrar los complementos ordenados por autor"
+msgstr "Yazara göre sıralanmış eklentileri göster"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:439
+msgid "Mostrar por descargas de mayor a menor"
+msgstr "En yüksekten en düşüğe indirme sayısına göre göster"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:441
+msgid "&Filtros"
+msgstr "&Filtre"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:444
+msgid "Copiar información"
+msgstr "Bilgileri kopyala"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:446
+msgid "Copiar enlace a la página web del complemento"
+msgstr "Eklentinin Web sayfası adresini kopyala"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:452
+msgid "Copiar enlace de descarga del complemento"
+msgstr "Eklenti indirme bağlantısını kopyala"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:453
+msgid "&Copiar al portapapeles"
+msgstr "&Panoya kopyala"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:481
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:579
+msgid "No se encontraron resultados"
+msgstr "Sonuç bulunamadı"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:506
+msgid " - Todos los complementos"
+msgstr " - Tüm eklentiler"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:514
+msgid " - Complementos compatibles con API 2021"
+msgstr " - API 2021 Uyumlu Eklentiler"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:523
+msgid " - Complementos por autor"
+msgstr " - Yazara Göre Eklentiler"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:530
+msgid " - Complementos por descarga de mayor a menor"
+msgstr " - En yüksekten en düşüğe indirme sayısına göre göster"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:546
+msgid "Se copio la información del complemento al portapapeles"
+msgstr "Eklenti bilgileri panoya kopyalandı"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:550
+msgid "Se copio la URL de la página oficial del complemento al portapapeles"
+msgstr "Eklenti resmi sayfasının URL'si panoya kopyalandı"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:554
+msgid "Se copio la URL de descarga al portapapeles"
+msgstr "Panoya kopyalanan URL'yi indir"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:570
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:766
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1327
+msgid "Error"
+msgstr "Hata"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:572
+msgid "No se pudo llevar a cabo la copia al portapapeles"
+msgstr "Panoya kopyalanamadı"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:594
+msgid "Versión {}"
+msgstr "Sürüm {}"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:625
+msgid "Ya tiene un proceso de descarga activo, espere a que termine."
+msgstr "Zaten etkin bir indirme işleminiz var, tamamlanmasını bekleyin."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:633
+#, python-format
+msgid "Descargando %s..."
+msgstr "%s indiriliyor..."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:687
+msgid "Tienda NVDA.ES - Actualizaciones disponibles"
+msgstr "NVDA.ES Eklenti Mağazası - Bulunan  güncellemeler"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:710
+msgid "&Seleccionar todo"
+msgstr "Tümünü &Seç"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:711
+msgid "&Deseleccionar todo"
+msgstr "Tüm seçimleri kaldı&r"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:712
+msgid "&Actualizar"
+msgstr "&Güncelle"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:713
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:822
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:912
+msgid "&Cerrar"
+msgstr "&Kapat"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:765
+msgid "Tiene que seleccionar una actualización para poder continuar."
+msgstr "Devam edebilmek için en az bir eklenti seçmelisiniz."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:818
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:908
+msgid "&Aceptar"
+msgstr "Ka&bul et"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:890
+msgid "Actualizando complementos"
+msgstr "Eklentiler Güncelleniyor"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1020
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1052
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1078
+msgid ""
+"No se pudo obtener el nombre del archivo a descargar.\n"
+"\n"
+"{} del canal {}\n"
+"\n"
+"Se va a proceder a descargar con su navegador predefinido."
+msgstr ""
+"İndirilecek dosyanın adı alınamadı.\n"
+"\n"
+"{} kanalını {}\n"
+"\n"
+"Varsayılantarayıcınızla indirmeye devam edecektir."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1037
+msgid ""
+"Este complemento necesita ser descargado desde su página web.\n"
+"\n"
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
+msgstr ""
+"Bu eklentinin kendi web sitesinden indirilmesi gerekiyor.\n"
+"\n"
+"Eklenti indirme sayfası varsayılan tarayıcınızla açılacak."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1094
+msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
+msgstr "NVDA Eklentisi (*.nvda-addon)|*.nvda-addon"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1095
+msgid "Guardar en..."
+msgstr "Kaydet..."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1141
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1145
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1223
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1227
+msgid "Espere por favor...\n"
+msgstr "Lütfen bekleyin...\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1141
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1145
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1223
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1227
+#, python-format
+msgid "Descargando: %s"
+msgstr "İndiriliyor: %s"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1156
+msgid "La descarga se completó.\n"
+msgstr "İndirme tamamlandı.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1156
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1158
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1284
+msgid "Ya puede cerrar esta ventana."
+msgstr "Artık bu pencereyi kapatabilirsiniz."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1158
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1284
+msgid "Algo salió mal.\n"
+msgstr "Sorun var.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1158
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1284
+msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
+msgstr "Lütfen internet bağlantınız olup olmadığını kontrol edin ve tekrar deneyin.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1262
+msgid "La actualización se completó.\n"
+msgstr "Güncelleme tamamlandı.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1262
+msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
+msgstr "Güncellemelerin aktif olabilmesi için NVDA'yı yeniden başlatmanız gerekiyor.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1262
+msgid "¿Desea reiniciar NVDA ahora?"
+msgstr "NVDA'yı şimdi yeniden başlatmak istiyor musunuz?"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1265
+msgid "No se pudo instalar el complemento.\n"
+msgstr "Eklenti yüklenemedi.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1265
+msgid "Fallo de compatibilidad.\n"
+msgstr "Uyumluluk hatası.\n"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1265
+msgid "Busque una actualización compatible."
+msgstr "Uyumlu bir güncelleme arayın."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1271
+msgid ""
+"Se completo la instalación correctamente.\n"
+"\n"
+"Pero hay complementos que no se pudieron instalar.\n"
+"\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
+"\n"
+"{}\n"
+"\n"
+"NVDA necesita reiniciarse para aplicar las instalaciones.\n"
+"¿Desea reiniciar NVDA ahora?"
+msgstr ""
+"Kurulum başarıyla tamamlandı.\n"
+"\n"
+"Ancak yüklenemeyen eklentiler var.\n"
+"\n"
+"Aşağıdaki eklentiler uyumsuz, uyumlu bir sürüm arayın:\n"
+"\n"
+"{}\n"
+"\n"
+"Kurulumların aktif olması için NVDA'nın yeniden başlatılması gerekiyor.\n"
+"NVDA'yı şimdi yeniden başlatmak istiyor musunuz?"
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1316
+msgid "No hay actualizaciones."
+msgstr "Güncelleme yok."
+
+#: C:\Users\ITU\AppData\Roaming\nvda\addons\TiendaNVDA\globalPlugins/TiendaNVDA/__init__.py:1323
+msgid ""
+"No se pudo tener acceso al servidor de complementos.\n"
+"\n"
+"Inténtelo en unos minutos."
+msgstr ""
+"Eklenti sunucusuna erişilemedi.\n"
+"\n"
+"Lütfen birkaç dakika sonra tekrar deneyin."
+

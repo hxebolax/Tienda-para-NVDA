@@ -10,6 +10,7 @@
 # Idioma Ruso: comunidad rusa NVDA.RU
 # Idioma y documentación francés: Rémy Ruiz
 # Idioma ucraniano: Volodymyr Pyrih
+# Idioma y documentación Turco: umut korkmaz
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler
@@ -36,6 +37,7 @@ import winsound
 import shutil
 import os
 import sys
+import traceback
 from . import ajustes
 from . import basedatos
 
@@ -113,6 +115,8 @@ _("""Error producido en las librerías::
 
 {}""").format(e)
 			log.info(msg)
+			exc, type, trace = sys.exc_info()
+			traceback.print_exception(exc, type, trace)
 
 			inicio = False
 		if inicio:
@@ -272,9 +276,11 @@ class TiendaPanel(SettingsPanel):
 		b = [x[1] for x in ajustes.listaAddonsSave]
 		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
 		if len(c) == 0:
-			print("No hay modificaciones")
+			pass
+#			print("No hay modificaciones")
 		else:
-			print(c)
+			pass
+#			print(c)
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
