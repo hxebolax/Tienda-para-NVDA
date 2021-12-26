@@ -99,6 +99,7 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
+
 		if globalVars.appArgs.secure: return
 
 		core.postNvdaStartup.register(self.tareasDeRed)
@@ -271,15 +272,15 @@ class TiendaPanel(SettingsPanel):
 		config.conf.profiles[-1].name = self.originalProfileName
 		self.Hide()
 
-	def postSave(self):
-		a = [x[1] for x in self.listaOriginal]
-		b = [x[1] for x in ajustes.listaAddonsSave]
-		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
-		if len(c) == 0:
-			pass
+#	def postSave(self):
+#		a = [x[1] for x in self.listaOriginal]
+#		b = [x[1] for x in ajustes.listaAddonsSave]
+#		c = [list(i) for i in [(i, a[i], b[i]) for i in range(len(a)) if a[i] != b[i]]]
+#		if len(c) == 0:
+#			pass
 #			print("No hay modificaciones")
-		else:
-			pass
+#		else:
+#			pass
 #			print(c)
 
 	def onAutoChk(self, event):
@@ -451,12 +452,14 @@ Total descargas: {}\n""").format(
 		self.menuFiltro = wx.Menu()
 		item1 = self.menuFiltro.Append(1, _("Mostrar todos los complementos"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item1)
-		item2 = self.menuFiltro.Append(2, _("Mostrar los complementos con compatibilidad de API 2021"))
+		item2 = self.menuFiltro.Append(2, _("Mostrar los complementos con compatibilidad de API 2022"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item2)
-		item3 = self.menuFiltro.Append(3, _("Mostrar los complementos ordenados por autor"))
+		item3 = self.menuFiltro.Append(3, _("Mostrar los complementos con compatibilidad de API 2021"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item3)
-		item4 = self.menuFiltro.Append(4, _("Mostrar por descargas de mayor a menor"))
+		item4 = self.menuFiltro.Append(4, _("Mostrar los complementos ordenados por autor"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item4)
+		item5 = self.menuFiltro.Append(5, _("Mostrar por descargas de mayor a menor"))
+		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item5)
 		self.menu.AppendSubMenu(self.menuFiltro, _("&Filtros"))
 
 		self.menuPortapapeles = wx.Menu()
@@ -530,6 +533,16 @@ Total descargas: {}\n""").format(
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 		if indice == 2:
+			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2022"))
+			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2022"]
+			for x in range(0, len(dataserver)):
+					self.temporal.append(dataserver[x]['summary'])
+			if ajustes.tempOrden == False:
+				self.listboxComplementos.Append(self.temporal)
+			else:
+				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+
+		if indice == 3:
 			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2021"))
 			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2021"]
 			for x in range(0, len(dataserver)):
@@ -538,14 +551,14 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.Append(self.temporal)
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
-		if indice == 3:
+		if indice == 4:
 			self.SetTitle(ajustes.titulo + _(" - Complementos por autor"))
 			dataserver = sorted(self.datos.dataServidor, key=lambda k: k.get('author', 0), reverse=False)
 
 			for x in range(0, len(dataserver)):
 					self.temporal.append(dataserver[x]['summary'])
 			self.listboxComplementos.Append(self.temporal)
-		if indice == 4:
+		if indice == 5:
 			self.SetTitle(ajustes.titulo + _(" - Complementos por descarga de mayor a menor"))
 			dataserver = sorted(self.datos.dataServidor, key=lambda k: k['links'][0].get('downloads', 0), reverse=True)
 			for x in range(0, len(dataserver)):
@@ -1349,11 +1362,13 @@ class HiloComplemento(Thread):
 					ajustes.IS_WinON = False
 				else:
 					wx.CallAfter(ActualizacionDialogo, nombreUrl, verInstalada, verInstalar)
-		except:
+		except Exception as e:
 			msg = \
 _("""No se pudo tener acceso al servidor de complementos.
 
 Inténtelo en unos minutos.""")
 			gui.messageBox(msg,
 				_("Error"), wx.ICON_ERROR)
+			exc, type, trace = sys.exc_info()
+			traceback.print_exception(exc, type, trace)
 

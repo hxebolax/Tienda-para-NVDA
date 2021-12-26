@@ -48,6 +48,8 @@ Dicha opción nos mostrara todos los complementos que hay en la base de datos.
 
 Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
 
+* Mostrar los complementos con compatibilidad de API 2022: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
+
 * Mostrar los complementos con compatibilidad de API 2021: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
 
 Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.

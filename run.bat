@@ -2,4 +2,4 @@
 @echo off
 scons --clean
 scons
-TiendaNVDA-0.6.1.nvda-addon
+TiendaNVDA-0.6.2.nvda-addon
