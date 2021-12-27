@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-12-27 18:06+0400\n"
-"PO-Revision-Date: 2021-12-27 18:53+0400\n"
+"PO-Revision-Date: 2021-12-27 21:06+0400\n"
 "Last-Translator: Dragan Ratkovich\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -11,7 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
-
 
 #: __init__.py:67
 msgid ""
@@ -132,7 +131,7 @@ msgstr "Channel {}"
 
 #: __init__.py:339
 msgid "&Buscar:"
-msgstr "@Browse:"
+msgstr "&Search"
 
 #: __init__.py:344
 msgid "&Lista complementos:"
@@ -144,7 +143,7 @@ msgstr "@Information:"
 
 #: __init__.py:354
 msgid "&Descargar complemento"
-msgstr "@Download add-on"
+msgstr "&Download add-on"
 
 #: __init__.py:355
 msgid "Visitar &página WEB"
@@ -164,9 +163,9 @@ msgid ""
 msgstr ""
 "Author: {}\n"
 "Add-on name: {}\n"
-"Internal name: {}\n"
+"Summary: {}\n"
 "Description: {}\n"
-"Developing: {}\n"
+"Development: {}\n"
 
 #: __init__.py:404
 msgid "Con soporte"
