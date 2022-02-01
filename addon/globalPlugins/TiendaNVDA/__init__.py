@@ -98,11 +98,17 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
+		if globalVars.appArgs.secure or config.isAppX: return
+
 		super(GlobalPlugin, self).__init__()
 
-		if globalVars.appArgs.secure: return
+		if hasattr(globalVars, "tienda"):
+			self.postStartupHandler()
+		core.postNvdaStartup.register(self.postStartupHandler)
+		globalVars.tienda = None
 
-		core.postNvdaStartup.register(self.tareasDeRed)
+	def postStartupHandler(self):
+		hilo = Thread(target=self.tareasDeRed, daemon = True).start()
 
 	def tareasDeRed(self):
 		global inicio
@@ -147,7 +153,7 @@ _("""Error producido en las librerías::
 			if inicio == True:
 				chkUpdate.stop()
 				NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
-				core.postNvdaStartup.unregister(self.tareasDeRed)
+				core.postNvdaStartup.unregister(self.postStartupHandler)
 			if not self._MainWindows:
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):

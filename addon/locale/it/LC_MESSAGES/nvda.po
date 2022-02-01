@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Tienda NVDA\n"
 "POT-Creation-Date: 2021-12-27 18:06+0400\n"
-"PO-Revision-Date: 2021-12-27 21:06+0400\n"
-"Last-Translator: Dragan Ratkovich\n"
-"Language-Team: \n"
-"Language: en\n"
+"PO-Revision-Date: 2022-02-01 10:29+0100\n"
+"Last-Translator: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
+"Language-Team: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: __init__.py:67
 msgid ""
@@ -18,15 +18,15 @@ msgid ""
 "\n"
 "Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
 msgstr ""
-"Update detected. \n"
+"Individuato un aggiornamento. \n"
 "\n"
-"Run check for add-on updates from NVDA store"
+"Esegui il controllo aggiornamenti dei componenti aggiuntivi dal menu"
 
-#: __init__.py:71 __init__.py:81 __init__.py:94 __init__.py:596 __init__.py:671
-#: __init__.py:1070 __init__.py:1085 __init__.py:1102 __init__.py:1128
-#: __init__.py:1361
+#: __init__.py:71 __init__.py:81 __init__.py:94 __init__.py:596
+#: __init__.py:671 __init__.py:1070 __init__.py:1085 __init__.py:1102
+#: __init__.py:1128 __init__.py:1361
 msgid "Información"
-msgstr "Information"
+msgstr "Informazione"
 
 #: __init__.py:77
 msgid ""
@@ -34,17 +34,18 @@ msgid ""
 "\n"
 "Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
 msgstr ""
-"{} Updates found. \n"
+"{} aggiornamenti trovati. \n"
 "\n"
-"Run check for add-on updates from NVDA store"
+"Esegui il controllo aggiornamenti dei componenti aggiuntivi dal menu"
 
 #: __init__.py:92 __init__.py:166 __init__.py:186
 msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
-msgstr "You need to restart NVDA to apply the updates."
+msgstr "È necessario riavviare NVDA per applicare gli aggiornamenti."
 
 #: __init__.py:113
 msgid "No se pudieron cargar las librerías necesarias para la Tienda"
-msgstr "Failed to load libraries required for the store"
+msgstr ""
+"Impossibile caricare le librerie richieste per far funzionare questo addon"
 
 #: __init__.py:115
 msgid ""
@@ -52,38 +53,40 @@ msgid ""
 "\n"
 "{}"
 msgstr ""
-"An error occurred in the libraries::\n"
+"Si è verificato un errore nelle librerie::\n"
 "\n"
 "{}"
 
 #: __init__.py:132
 msgid "Listado de complementos"
-msgstr "List of add-ons"
+msgstr "Elenco degli addon"
 
 #: __init__.py:135
 msgid "Buscar actualizaciones de complementos"
-msgstr "Check for add-on updates"
+msgstr "Controlla aggiornamenti dei componenti aggiuntivi"
 
 #. TRANSLATORS: title for the Update Channel settings category
 #: __init__.py:139 __init__.py:198 ajustes.py:63
 msgid "Tienda NVDA.ES"
-msgstr "NVDA.ES Store"
+msgstr "La bottega degli addon da NVDA.ES"
 
 #: __init__.py:141
 msgid "Inicio del complemento cancelado."
-msgstr "Add-on launch canceled."
+msgstr "Esecuzione del componente aggiuntivo annullata."
 
 #: __init__.py:156
 msgid "Muestra la ventana con todos los complementos y su información"
-msgstr "Displays a window with all add-ons and their information"
+msgstr ""
+"Visualizza una finestra con tutti i componenti aggiuntivi e le relative "
+"informazioni"
 
 #: __init__.py:156 __init__.py:176
 msgid "Tienda para NVDA.ES"
-msgstr "Store for NVDA.ES"
+msgstr "La bottega dei componenti aggiuntivi del sito NVDA.ES"
 
 #: __init__.py:164 __init__.py:184
 msgid "Ya hay una instancia de la Tienda NVDA abierta."
-msgstr "An instance of the NVDA Store is already open."
+msgstr "Esiste già una copia della bottega in esecuzione"
 
 #: __init__.py:169 __init__.py:189
 msgid ""
@@ -93,53 +96,54 @@ msgid ""
 "\n"
 "Reinicie NVDA para intentar solucionar el problema."
 msgstr ""
-"Add-on failed to start NVDA.\n"
+"Il componente aggiuntivo non è riuscito ad avviare NVDA.\n"
 "\n"
-"One of the causes is that NVDA started before having an internet "
-"connection.\n"
+"Una delle cause possibili è che NVDA è stato avviato prima di connettersi a "
+"Internet.\n"
 "\n"
-"Restart NVDA to try to fix the problem."
+"Riavvia NVDA per provare a risolvere il problema."
 
 #: __init__.py:176
 msgid "Busca actualizaciones de los complementos instalados"
-msgstr "Check for updates to installed add-ons"
+msgstr "Verifica la disponibilità di aggiornamenti dei tuoi addon installati"
 
 #: __init__.py:203
 msgid "Activar o desactivar la comprobación de actualizaciones"
-msgstr "Enable or disable checking for updates"
+msgstr "Abilita il controllo degli aggiornamenti"
 
 #: __init__.py:206
 msgid "Seleccione un tiempo para comprobar si hay actualizaciones"
-msgstr "Select a time to check for updates"
+msgstr "Seleziona un orario per controllare gli aggiornamenti"
 
 #: __init__.py:208
 msgid ""
 "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
-msgstr "Alphabetize store add-ons and searches"
+msgstr ""
+"Ordina alfabeticamente i componenti aggiuntivi e le ricerche della bottega"
 
 #: __init__.py:210
 msgid "Instalar complementos después de descargar"
-msgstr "Install add-ons after download"
+msgstr "Installa i componenti aggiuntivi dopo il download"
 
 #: __init__.py:214
 msgid "Complementos instalados que hay en el servidor:"
-msgstr "Installed add-ons that are on the server:"
+msgstr "Componenti aggiuntivi installati che si trovano sul server:"
 
 #: __init__.py:301 __init__.py:472
 msgid "Canal {}"
-msgstr "Channel {}"
+msgstr "Canale {}"
 
 #: __init__.py:339
 msgid "&Buscar:"
-msgstr "&Search"
+msgstr "&Cerca"
 
 #: __init__.py:344
 msgid "&Lista complementos:"
-msgstr "@List of add-ons:"
+msgstr "E#lenco dei componenti aggiuntivi:"
 
 #: __init__.py:350
 msgid "&Información:"
-msgstr "@Information:"
+msgstr "&Informazioni:"
 
 #: __init__.py:354
 msgid "&Descargar complemento"
@@ -147,11 +151,11 @@ msgstr "&Download add-on"
 
 #: __init__.py:355
 msgid "Visitar &página WEB"
-msgstr "Visit &Website"
+msgstr "Visita sito &web"
 
 #: __init__.py:356
 msgid "&Salir"
-msgstr "&Close"
+msgstr "&Cchiudi"
 
 #: __init__.py:395
 msgid ""
@@ -161,19 +165,19 @@ msgid ""
 "Descripción: {}\n"
 "Desarrollo: {}\n"
 msgstr ""
-"Author: {}\n"
-"Add-on name: {}\n"
-"Summary: {}\n"
-"Description: {}\n"
-"Development: {}\n"
+"Autore: {}\n"
+"Nome Add-on: {}\n"
+"Sommario: {}\n"
+"Descrizione: {}\n"
+"Sviluppo: {}\n"
 
 #: __init__.py:404
 msgid "Con soporte"
-msgstr "Supported"
+msgstr "Supportato"
 
 #: __init__.py:404
 msgid "Sin soporte"
-msgstr "Unsupported"
+msgstr "Non supportato"
 
 #: __init__.py:410
 msgid ""
@@ -183,136 +187,139 @@ msgid ""
 "Testeado hasta versión de NVDA: {}\n"
 "Total descargas: {}\n"
 msgstr ""
-"Channel: {}\n"
-"Version: {}\n"
-"Minimum NVDA version: {}\n"
-"Last tested NVDA version: {}\n"
-"Total downloads: {}\n"
+"Canale: {}\n"
+"Versione: {}\n"
+"Versione minima supportata di NVDA: {}\n"
+"Ultima versione testata di NVDA: {}\n"
+"Totale download: {}\n"
 
 #: __init__.py:453
 msgid "Mostrar todos los complementos"
-msgstr "Show all add-ons"
+msgstr "Mostra tutti gli addon"
 
 #: __init__.py:455
 msgid "Mostrar los complementos con compatibilidad de API 2022"
-msgstr "Show add-ons with API 2022 support"
+msgstr "Mostra i componenti aggiuntivi con supporto di API 2022"
 
 #: __init__.py:457
 msgid "Mostrar los complementos con compatibilidad de API 2021"
-msgstr "Show add-ons with API 2021 support"
+msgstr "Mostra i componenti aggiuntivi con supporto di API 2021"
 
 #: __init__.py:459
 msgid "Mostrar los complementos ordenados por autor"
-msgstr "Show add-ons sorted by author"
+msgstr "Mostra i componenti aggiuntivi ordinati per autore"
 
 #: __init__.py:461
 msgid "Mostrar por descargas de mayor a menor"
-msgstr "Show by downloads from highest to lowest"
+msgstr "Mostra per numero di download dal più alto al più basso"
 
 #: __init__.py:463
 msgid "&Filtros"
-msgstr "&Filters"
+msgstr "&Filtri"
 
 #: __init__.py:466
 msgid "Copiar información"
-msgstr "Copy information"
+msgstr "Copia le informazioni"
 
 #: __init__.py:468
 msgid "Copiar enlace a la página web del complemento"
-msgstr "Copy link to add-on website"
+msgstr "Copia il link del sito Web del componente aggiuntivo"
 
 #: __init__.py:474
 msgid "Copiar enlace de descarga del complemento"
-msgstr "Copy add-on download link"
+msgstr "Copia link download del componente aggiuntivo"
 
 #: __init__.py:475
 msgid "&Copiar al portapapeles"
-msgstr "Co&py to clipboard"
+msgstr "Co&pia negli appunti"
 
 #: __init__.py:503 __init__.py:615
 msgid "No se encontraron resultados"
-msgstr "No results found"
+msgstr "nessun risultato trovato"
 
 #: __init__.py:528
 msgid " - Todos los complementos"
-msgstr " - All add-ons"
+msgstr " - Tutti gli addon"
 
 #: __init__.py:536
 msgid " - Complementos compatibles con API 2022"
-msgstr " - API 2022 compatible add-ons"
+msgstr " - Componenti aggiuntivi compatibili con API 2022"
 
 #: __init__.py:546
 msgid " - Complementos compatibles con API 2021"
-msgstr " - API 2021 compatible add-ons"
+msgstr " - Componenti aggiuntivi compatibili con API 2021"
 
 #: __init__.py:555
 msgid " - Complementos por autor"
-msgstr " - Add-ons by Author"
+msgstr "- Componenti aggiuntivi per autore"
 
 #: __init__.py:562
 msgid " - Complementos por descarga de mayor a menor"
-msgstr " - Add-ons by download from highest to lowest"
+msgstr " - Componenti aggiuntivi scaricabili dal più alto al più basso"
 
 #: __init__.py:578
 msgid "Se copio la información del complemento al portapapeles"
-msgstr "Add-on information was copied to clipboard"
+msgstr ""
+"Le informazioni sul componente aggiuntivo sono state copiate negli appunti"
 
 #: __init__.py:582
 msgid "Se copio la URL de la página oficial del complemento al portapapeles"
-msgstr "The URL of the add-on official page was copied to the clipboard"
+msgstr ""
+"L'indirizzo della pagina ufficiale del componente aggiuntivo è stato copiato "
+"negli appunti"
 
 #: __init__.py:586
 msgid "Se copio la URL de descarga al portapapeles"
-msgstr "Download URL copied to clipboard"
+msgstr "Indirizzo di download copiato negli appunti"
 
 #: __init__.py:602 __init__.py:810 __init__.py:1371
 msgid "Error"
-msgstr "Error"
+msgstr "Errore"
 
 #: __init__.py:604
 msgid "No se pudo llevar a cabo la copia al portapapeles"
-msgstr "Copy to clipboard could not be performed"
+msgstr "Impossibile eseguire la copia negli appunti"
 
 #: __init__.py:620
 msgid "Se encuentra en el complemento {} de {}"
-msgstr "It is found in the add-on {} from {}"
+msgstr "Trovato nel componente aggiuntivo {} da {}"
 
 #: __init__.py:638
 msgid "Versión {}"
-msgstr "Version {}"
+msgstr "Versione {}"
 
 #: __init__.py:669
 msgid "Ya tiene un proceso de descarga activo, espere a que termine."
-msgstr "You already have an active download process, wait for it to finish."
+msgstr "Hai già un processo di download attivo, attendi che finisca."
 
 #: __init__.py:677
 #, python-format
 msgid "Descargando %s..."
-msgstr "Downloading %s..."
+msgstr "In Download %s..."
 
 #: __init__.py:731
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
-msgstr "NVDA.ES Store - Updates Available"
+msgstr "Bottega NVDA.ES - Aggiornamenti disponibili"
 
 #: __init__.py:754
 msgid "&Seleccionar todo"
-msgstr "&Select all"
+msgstr "&Seleziona tutto"
 
 #: __init__.py:755
 msgid "&Deseleccionar todo"
-msgstr "&Deselect all"
+msgstr "&Deseleziona tutto"
 
 #: __init__.py:756
 msgid "&Actualizar"
-msgstr "&Update"
+msgstr "&Aggiorna"
 
 #: __init__.py:757 __init__.py:866 __init__.py:956
 msgid "&Cerrar"
-msgstr "Cance&l"
+msgstr "Annu&lla"
 
 #: __init__.py:809
 msgid "Tiene que seleccionar una actualización para poder continuar."
-msgstr "You have to select an update in order to continue."
+msgstr "Devi selezionare un aggiornamento per continuare."
 
 #: __init__.py:862 __init__.py:952
 msgid "&Aceptar"
@@ -320,7 +327,7 @@ msgstr "&OK"
 
 #: __init__.py:934
 msgid "Actualizando complementos"
-msgstr "Updating add-ons"
+msgstr "Aggiornamento componenti aggiuntivi"
 
 #: __init__.py:1064 __init__.py:1096 __init__.py:1122
 msgid ""
@@ -330,11 +337,11 @@ msgid ""
 "\n"
 "Se va a proceder a descargar con su navegador predefinido."
 msgstr ""
-"Could not get the name of the file to download.\n"
+"Impossibile ottenere il nome del file da scaricare.\n"
 "\n"
-"{} Of the channel {}\n"
+"{} del canale {}\n"
 "\n"
-"It will proceed to download with your predefined browser."
+"Si procederà al download con il browser predefinito."
 
 #: __init__.py:1081
 msgid ""
@@ -343,9 +350,10 @@ msgid ""
 "Se abrirá con su navegador predefinido en la pagina de descarga del "
 "complemento."
 msgstr ""
-"This add-on needs to be downloaded from its website.\n"
+"Questo componente aggiuntivo deve essere scaricato dal proprio sito Web.\n"
 "\n"
-"It will open with your predefined browser on the download page of the add-on."
+"Verrà aperto il tuo browser predefinito nella pagina di download del "
+"componente aggiuntivo."
 
 #: __init__.py:1138
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
@@ -353,56 +361,56 @@ msgstr "NVDA add-on (*.nvda-addon)|*.nvda-addon"
 
 #: __init__.py:1139
 msgid "Guardar en..."
-msgstr "Save..."
+msgstr "Salva..."
 
 #: __init__.py:1185 __init__.py:1189 __init__.py:1267 __init__.py:1271
 msgid "Espere por favor...\n"
-msgstr "Please wait...\n"
+msgstr "Si prega di attendere...\n"
 
 #: __init__.py:1185 __init__.py:1189 __init__.py:1267 __init__.py:1271
 #, python-format
 msgid "Descargando: %s"
-msgstr "Downloading: %s"
+msgstr "Download in corso: %s"
 
 #: __init__.py:1200
 msgid "La descarga se completó.\n"
-msgstr "The download is complete.\n"
+msgstr "Download completato.\n"
 
 #: __init__.py:1200 __init__.py:1202 __init__.py:1328
 msgid "Ya puede cerrar esta ventana."
-msgstr "You can now close this window."
+msgstr "Ora puoi chiudere questa finestra."
 
 #: __init__.py:1202 __init__.py:1328
 msgid "Algo salió mal.\n"
-msgstr "Something went wrong.\n"
+msgstr "Qualcosa è andato storto.\n"
 
 #: __init__.py:1202 __init__.py:1328
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
-msgstr "Check that you have an internet connection and try again.\n"
+msgstr "Verifica di disporre di una connessione Internet e riprova.\n"
 
 #: __init__.py:1306
 msgid "La actualización se completó.\n"
-msgstr "The update is complete.\n"
+msgstr "L'aggiornamento è completo.\n"
 
 #: __init__.py:1306
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
-msgstr "NVDA needs to restart to apply updates.\n"
+msgstr "NVDA necessita di un riavvio per applicare gli aggiornamenti.\n"
 
 #: __init__.py:1306
 msgid "¿Desea reiniciar NVDA ahora?"
-msgstr "Do you want to restart NVDA now?"
+msgstr "Vuoi riavviare NVDA ora?"
 
 #: __init__.py:1309
 msgid "No se pudo instalar el complemento.\n"
-msgstr "Add-on could not be installed.\n"
+msgstr "Impossibile installare il componente aggiuntivo.\n"
 
 #: __init__.py:1309
 msgid "Fallo de compatibilidad.\n"
-msgstr "Compatibility failure.\n"
+msgstr "Errore di compatibilità.\n"
 
 #: __init__.py:1309
 msgid "Busque una actualización compatible."
-msgstr "Look for a compatible update."
+msgstr "Cerca un aggiornamento compatibile."
 
 #: __init__.py:1315
 msgid ""
@@ -418,12 +426,13 @@ msgid ""
 "NVDA necesita reiniciarse para aplicar las instalaciones.\n"
 "¿Desea reiniciar NVDA ahora?"
 msgstr ""
-"Installation completed successfully.\n"
+"Installazione completata con successo.\n"
 "\n"
-"But there are add-ons that could not be installed.\n"
+"Tuttavia vi sono componenti aggiuntivi che non è stato possibile "
+"installare.\n"
 "\n"
-"The following plugins are incompatible, please look for a compatible "
-"version:\n"
+"I seguenti addon non sono compatibili, si prega di cercarne una versione "
+"compatibile:\n"
 "\n"
 "{}\n"
 "\n"
@@ -432,7 +441,7 @@ msgstr ""
 
 #: __init__.py:1360
 msgid "No hay actualizaciones."
-msgstr "There are no updates."
+msgstr "Non vi sono aggiornamenti."
 
 #: __init__.py:1367
 msgid ""
@@ -440,22 +449,22 @@ msgid ""
 "\n"
 "Inténtelo en unos minutos."
 msgstr ""
-"Add-on server could not be accessed.\n"
+"Impossibile accedere al server degli addon..\n"
 "\n"
-"Please try it in a few minutes."
+"Si prega di riprovare tra qualche minuto."
 
 #: ajustes.py:76
 msgid "15 minutos"
-msgstr "15 minutes"
+msgstr "15 minuti"
 
 #: ajustes.py:76
 msgid "30 minutos"
-msgstr "30 minutes"
+msgstr "30 minuti"
 
 #: ajustes.py:76
 msgid "45 minutos"
-msgstr "45 minutes"
+msgstr "45 minuti"
 
 #: ajustes.py:76
 msgid "1 hora"
-msgstr "1 hour"
+msgstr "1 ora"

@@ -231,6 +231,7 @@ class RepeatTimer(object):
 		self.args       = args
 		self.kwargs     = kwargs
 		self.is_running = False
+
 		self.daemon = True
 		self.start()
 
