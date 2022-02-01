@@ -11,6 +11,8 @@
 # Idioma y documentación francés: Rémy Ruiz
 # Idioma ucraniano: Volodymyr Pyrih
 # Idioma y documentación Turco: umut korkmaz
+# Idioma Italiano: Simone Dal Maso
+# Idioma Árabe: Wafiq Taher
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler

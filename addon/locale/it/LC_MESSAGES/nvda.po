@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tienda NVDA\n"
-"POT-Creation-Date: 2021-12-27 18:06+0400\n"
-"PO-Revision-Date: 2022-02-01 10:29+0100\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2022-02-01 11:28+0100\n"
+"PO-Revision-Date: 2022-02-01 11:53+0100\n"
 "Last-Translator: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
 "Language-Team: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
 "Language: it\n"
@@ -10,9 +11,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 3.0\n"
 
-#: __init__.py:67
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on
+#. to be shown on installation and add-on information found in Add-ons Manager.
+#: buildVars.py:23 addon\globalPlugins\TiendaNVDA\__init__.py:162
+#: addon\globalPlugins\TiendaNVDA\__init__.py:182
+msgid "Tienda para NVDA.ES"
+msgstr "La bottega dei componenti aggiuntivi del sito NVDA.ES"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:26
+msgid "Tienda de complementos no oficial de https://www.nvda.es"
+msgstr "Negozio aggiuntivo non ufficiale https://www.nvda.es"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:67
 msgid ""
 "Se encontró una actualización. \n"
 "\n"
@@ -22,13 +37,21 @@ msgstr ""
 "\n"
 "Esegui il controllo aggiornamenti dei componenti aggiuntivi dal menu"
 
-#: __init__.py:71 __init__.py:81 __init__.py:94 __init__.py:596
-#: __init__.py:671 __init__.py:1070 __init__.py:1085 __init__.py:1102
-#: __init__.py:1128 __init__.py:1361
+#. Translators: Title of the notification
+#: addon\globalPlugins\TiendaNVDA\__init__.py:71
+#: addon\globalPlugins\TiendaNVDA\__init__.py:81
+#: addon\globalPlugins\TiendaNVDA\__init__.py:94
+#: addon\globalPlugins\TiendaNVDA\__init__.py:602
+#: addon\globalPlugins\TiendaNVDA\__init__.py:677
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1076
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1091
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1108
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1134
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1367
 msgid "Información"
 msgstr "Informazione"
 
-#: __init__.py:77
+#: addon\globalPlugins\TiendaNVDA\__init__.py:77
 msgid ""
 "Se encontraron  {} actualizaciones. \n"
 "\n"
@@ -38,16 +61,18 @@ msgstr ""
 "\n"
 "Esegui il controllo aggiornamenti dei componenti aggiuntivi dal menu"
 
-#: __init__.py:92 __init__.py:166 __init__.py:186
+#: addon\globalPlugins\TiendaNVDA\__init__.py:92
+#: addon\globalPlugins\TiendaNVDA\__init__.py:172
+#: addon\globalPlugins\TiendaNVDA\__init__.py:192
 msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
 msgstr "È necessario riavviare NVDA per applicare gli aggiornamenti."
 
-#: __init__.py:113
+#: addon\globalPlugins\TiendaNVDA\__init__.py:119
 msgid "No se pudieron cargar las librerías necesarias para la Tienda"
 msgstr ""
 "Impossibile caricare le librerie richieste per far funzionare questo addon"
 
-#: __init__.py:115
+#: addon\globalPlugins\TiendaNVDA\__init__.py:121
 msgid ""
 "Error producido en las librerías::\n"
 "\n"
@@ -57,38 +82,41 @@ msgstr ""
 "\n"
 "{}"
 
-#: __init__.py:132
+#. Translators: Nombre del submenú para tienda de complementos
+#: addon\globalPlugins\TiendaNVDA\__init__.py:138
 msgid "Listado de complementos"
 msgstr "Elenco degli addon"
 
-#: __init__.py:135
+#. Translators: Nombre del submenú para buscar actualizaciones
+#: addon\globalPlugins\TiendaNVDA\__init__.py:141
 msgid "Buscar actualizaciones de complementos"
 msgstr "Controlla aggiornamenti dei componenti aggiuntivi"
 
+#. Translators: Nombre del menú Tienda de complementos
 #. TRANSLATORS: title for the Update Channel settings category
-#: __init__.py:139 __init__.py:198 ajustes.py:63
+#: addon\globalPlugins\TiendaNVDA\__init__.py:145
+#: addon\globalPlugins\TiendaNVDA\__init__.py:204
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:63
 msgid "Tienda NVDA.ES"
 msgstr "La bottega degli addon da NVDA.ES"
 
-#: __init__.py:141
+#: addon\globalPlugins\TiendaNVDA\__init__.py:147
 msgid "Inicio del complemento cancelado."
 msgstr "Esecuzione del componente aggiuntivo annullata."
 
-#: __init__.py:156
+#: addon\globalPlugins\TiendaNVDA\__init__.py:162
 msgid "Muestra la ventana con todos los complementos y su información"
 msgstr ""
 "Visualizza una finestra con tutti i componenti aggiuntivi e le relative "
 "informazioni"
 
-#: __init__.py:156 __init__.py:176
-msgid "Tienda para NVDA.ES"
-msgstr "La bottega dei componenti aggiuntivi del sito NVDA.ES"
-
-#: __init__.py:164 __init__.py:184
+#: addon\globalPlugins\TiendaNVDA\__init__.py:170
+#: addon\globalPlugins\TiendaNVDA\__init__.py:190
 msgid "Ya hay una instancia de la Tienda NVDA abierta."
 msgstr "Esiste già una copia della bottega in esecuzione"
 
-#: __init__.py:169 __init__.py:189
+#: addon\globalPlugins\TiendaNVDA\__init__.py:175
+#: addon\globalPlugins\TiendaNVDA\__init__.py:195
 msgid ""
 "El complemento fallo al iniciar NVDA.\n"
 "\n"
@@ -103,61 +131,62 @@ msgstr ""
 "\n"
 "Riavvia NVDA per provare a risolvere il problema."
 
-#: __init__.py:176
+#: addon\globalPlugins\TiendaNVDA\__init__.py:182
 msgid "Busca actualizaciones de los complementos instalados"
 msgstr "Verifica la disponibilità di aggiornamenti dei tuoi addon installati"
 
-#: __init__.py:203
+#: addon\globalPlugins\TiendaNVDA\__init__.py:209
 msgid "Activar o desactivar la comprobación de actualizaciones"
 msgstr "Abilita il controllo degli aggiornamenti"
 
-#: __init__.py:206
+#: addon\globalPlugins\TiendaNVDA\__init__.py:212
 msgid "Seleccione un tiempo para comprobar si hay actualizaciones"
 msgstr "Seleziona un orario per controllare gli aggiornamenti"
 
-#: __init__.py:208
+#: addon\globalPlugins\TiendaNVDA\__init__.py:214
 msgid ""
 "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
 msgstr ""
 "Ordina alfabeticamente i componenti aggiuntivi e le ricerche della bottega"
 
-#: __init__.py:210
+#: addon\globalPlugins\TiendaNVDA\__init__.py:216
 msgid "Instalar complementos después de descargar"
 msgstr "Installa i componenti aggiuntivi dopo il download"
 
-#: __init__.py:214
+#: addon\globalPlugins\TiendaNVDA\__init__.py:220
 msgid "Complementos instalados que hay en el servidor:"
 msgstr "Componenti aggiuntivi installati che si trovano sul server:"
 
-#: __init__.py:301 __init__.py:472
+#: addon\globalPlugins\TiendaNVDA\__init__.py:307
+#: addon\globalPlugins\TiendaNVDA\__init__.py:478
 msgid "Canal {}"
 msgstr "Canale {}"
 
-#: __init__.py:339
+#: addon\globalPlugins\TiendaNVDA\__init__.py:345
 msgid "&Buscar:"
 msgstr "&Cerca"
 
-#: __init__.py:344
+#: addon\globalPlugins\TiendaNVDA\__init__.py:350
 msgid "&Lista complementos:"
 msgstr "E#lenco dei componenti aggiuntivi:"
 
-#: __init__.py:350
+#: addon\globalPlugins\TiendaNVDA\__init__.py:356
 msgid "&Información:"
 msgstr "&Informazioni:"
 
-#: __init__.py:354
+#: addon\globalPlugins\TiendaNVDA\__init__.py:360
 msgid "&Descargar complemento"
 msgstr "&Download add-on"
 
-#: __init__.py:355
+#: addon\globalPlugins\TiendaNVDA\__init__.py:361
 msgid "Visitar &página WEB"
 msgstr "Visita sito &web"
 
-#: __init__.py:356
+#: addon\globalPlugins\TiendaNVDA\__init__.py:362
 msgid "&Salir"
 msgstr "&Cchiudi"
 
-#: __init__.py:395
+#: addon\globalPlugins\TiendaNVDA\__init__.py:401
 msgid ""
 "Autor: {}\n"
 "Nombre del complemento: {}\n"
@@ -171,15 +200,15 @@ msgstr ""
 "Descrizione: {}\n"
 "Sviluppo: {}\n"
 
-#: __init__.py:404
+#: addon\globalPlugins\TiendaNVDA\__init__.py:410
 msgid "Con soporte"
 msgstr "Supportato"
 
-#: __init__.py:404
+#: addon\globalPlugins\TiendaNVDA\__init__.py:410
 msgid "Sin soporte"
 msgstr "Non supportato"
 
-#: __init__.py:410
+#: addon\globalPlugins\TiendaNVDA\__init__.py:416
 msgid ""
 "Canal: {}\n"
 "Versión: {}\n"
@@ -193,143 +222,153 @@ msgstr ""
 "Ultima versione testata di NVDA: {}\n"
 "Totale download: {}\n"
 
-#: __init__.py:453
+#: addon\globalPlugins\TiendaNVDA\__init__.py:459
 msgid "Mostrar todos los complementos"
 msgstr "Mostra tutti gli addon"
 
-#: __init__.py:455
+#: addon\globalPlugins\TiendaNVDA\__init__.py:461
 msgid "Mostrar los complementos con compatibilidad de API 2022"
 msgstr "Mostra i componenti aggiuntivi con supporto di API 2022"
 
-#: __init__.py:457
+#: addon\globalPlugins\TiendaNVDA\__init__.py:463
 msgid "Mostrar los complementos con compatibilidad de API 2021"
 msgstr "Mostra i componenti aggiuntivi con supporto di API 2021"
 
-#: __init__.py:459
+#: addon\globalPlugins\TiendaNVDA\__init__.py:465
 msgid "Mostrar los complementos ordenados por autor"
 msgstr "Mostra i componenti aggiuntivi ordinati per autore"
 
-#: __init__.py:461
+#: addon\globalPlugins\TiendaNVDA\__init__.py:467
 msgid "Mostrar por descargas de mayor a menor"
 msgstr "Mostra per numero di download dal più alto al più basso"
 
-#: __init__.py:463
+#: addon\globalPlugins\TiendaNVDA\__init__.py:469
 msgid "&Filtros"
 msgstr "&Filtri"
 
-#: __init__.py:466
+#: addon\globalPlugins\TiendaNVDA\__init__.py:472
 msgid "Copiar información"
 msgstr "Copia le informazioni"
 
-#: __init__.py:468
+#: addon\globalPlugins\TiendaNVDA\__init__.py:474
 msgid "Copiar enlace a la página web del complemento"
 msgstr "Copia il link del sito Web del componente aggiuntivo"
 
-#: __init__.py:474
+#: addon\globalPlugins\TiendaNVDA\__init__.py:480
 msgid "Copiar enlace de descarga del complemento"
 msgstr "Copia link download del componente aggiuntivo"
 
-#: __init__.py:475
+#: addon\globalPlugins\TiendaNVDA\__init__.py:481
 msgid "&Copiar al portapapeles"
 msgstr "Co&pia negli appunti"
 
-#: __init__.py:503 __init__.py:615
+#: addon\globalPlugins\TiendaNVDA\__init__.py:509
+#: addon\globalPlugins\TiendaNVDA\__init__.py:621
 msgid "No se encontraron resultados"
 msgstr "nessun risultato trovato"
 
-#: __init__.py:528
+#: addon\globalPlugins\TiendaNVDA\__init__.py:534
 msgid " - Todos los complementos"
 msgstr " - Tutti gli addon"
 
-#: __init__.py:536
+#: addon\globalPlugins\TiendaNVDA\__init__.py:542
 msgid " - Complementos compatibles con API 2022"
 msgstr " - Componenti aggiuntivi compatibili con API 2022"
 
-#: __init__.py:546
+#: addon\globalPlugins\TiendaNVDA\__init__.py:552
 msgid " - Complementos compatibles con API 2021"
 msgstr " - Componenti aggiuntivi compatibili con API 2021"
 
-#: __init__.py:555
+#: addon\globalPlugins\TiendaNVDA\__init__.py:561
 msgid " - Complementos por autor"
 msgstr "- Componenti aggiuntivi per autore"
 
-#: __init__.py:562
+#: addon\globalPlugins\TiendaNVDA\__init__.py:568
 msgid " - Complementos por descarga de mayor a menor"
 msgstr " - Componenti aggiuntivi scaricabili dal più alto al più basso"
 
-#: __init__.py:578
+#: addon\globalPlugins\TiendaNVDA\__init__.py:584
 msgid "Se copio la información del complemento al portapapeles"
 msgstr ""
 "Le informazioni sul componente aggiuntivo sono state copiate negli appunti"
 
-#: __init__.py:582
+#: addon\globalPlugins\TiendaNVDA\__init__.py:588
 msgid "Se copio la URL de la página oficial del complemento al portapapeles"
 msgstr ""
 "L'indirizzo della pagina ufficiale del componente aggiuntivo è stato copiato "
 "negli appunti"
 
-#: __init__.py:586
+#: addon\globalPlugins\TiendaNVDA\__init__.py:592
 msgid "Se copio la URL de descarga al portapapeles"
 msgstr "Indirizzo di download copiato negli appunti"
 
-#: __init__.py:602 __init__.py:810 __init__.py:1371
+#. Translators: Title of the notification
+#: addon\globalPlugins\TiendaNVDA\__init__.py:608
+#: addon\globalPlugins\TiendaNVDA\__init__.py:816
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1377
 msgid "Error"
 msgstr "Errore"
 
-#: __init__.py:604
+#. Translators: Notification message
+#: addon\globalPlugins\TiendaNVDA\__init__.py:610
 msgid "No se pudo llevar a cabo la copia al portapapeles"
 msgstr "Impossibile eseguire la copia negli appunti"
 
-#: __init__.py:620
+#: addon\globalPlugins\TiendaNVDA\__init__.py:626
 msgid "Se encuentra en el complemento {} de {}"
 msgstr "Trovato nel componente aggiuntivo {} da {}"
 
-#: __init__.py:638
+#: addon\globalPlugins\TiendaNVDA\__init__.py:644
 msgid "Versión {}"
 msgstr "Versione {}"
 
-#: __init__.py:669
+#: addon\globalPlugins\TiendaNVDA\__init__.py:675
 msgid "Ya tiene un proceso de descarga activo, espere a que termine."
 msgstr "Hai già un processo di download attivo, attendi che finisca."
 
-#: __init__.py:677
+#: addon\globalPlugins\TiendaNVDA\__init__.py:683
 #, python-format
 msgid "Descargando %s..."
 msgstr "In Download %s..."
 
-#: __init__.py:731
+#: addon\globalPlugins\TiendaNVDA\__init__.py:737
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
 msgstr "Bottega NVDA.ES - Aggiornamenti disponibili"
 
-#: __init__.py:754
+#: addon\globalPlugins\TiendaNVDA\__init__.py:760
 msgid "&Seleccionar todo"
 msgstr "&Seleziona tutto"
 
-#: __init__.py:755
+#: addon\globalPlugins\TiendaNVDA\__init__.py:761
 msgid "&Deseleccionar todo"
 msgstr "&Deseleziona tutto"
 
-#: __init__.py:756
+#: addon\globalPlugins\TiendaNVDA\__init__.py:762
 msgid "&Actualizar"
 msgstr "&Aggiorna"
 
-#: __init__.py:757 __init__.py:866 __init__.py:956
+#: addon\globalPlugins\TiendaNVDA\__init__.py:763
+#: addon\globalPlugins\TiendaNVDA\__init__.py:872
+#: addon\globalPlugins\TiendaNVDA\__init__.py:962
 msgid "&Cerrar"
 msgstr "Annu&lla"
 
-#: __init__.py:809
+#: addon\globalPlugins\TiendaNVDA\__init__.py:815
 msgid "Tiene que seleccionar una actualización para poder continuar."
 msgstr "Devi selezionare un aggiornamento per continuare."
 
-#: __init__.py:862 __init__.py:952
+#: addon\globalPlugins\TiendaNVDA\__init__.py:868
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
 msgid "&Aceptar"
 msgstr "&OK"
 
-#: __init__.py:934
+#: addon\globalPlugins\TiendaNVDA\__init__.py:940
 msgid "Actualizando complementos"
 msgstr "Aggiornamento componenti aggiuntivi"
 
-#: __init__.py:1064 __init__.py:1096 __init__.py:1122
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1070
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1102
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1128
 msgid ""
 "No se pudo obtener el nombre del archivo a descargar.\n"
 "\n"
@@ -343,7 +382,7 @@ msgstr ""
 "\n"
 "Si procederà al download con il browser predefinito."
 
-#: __init__.py:1081
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1087
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
@@ -355,64 +394,75 @@ msgstr ""
 "Verrà aperto il tuo browser predefinito nella pagina di download del "
 "componente aggiuntivo."
 
-#: __init__.py:1138
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1144
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
 msgstr "NVDA add-on (*.nvda-addon)|*.nvda-addon"
 
-#: __init__.py:1139
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1145
 msgid "Guardar en..."
 msgstr "Salva..."
 
-#: __init__.py:1185 __init__.py:1189 __init__.py:1267 __init__.py:1271
+#. Si la descarga es solo el tamaño
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1191
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1195
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1273
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1277
 msgid "Espere por favor...\n"
 msgstr "Si prega di attendere...\n"
 
-#: __init__.py:1185 __init__.py:1189 __init__.py:1267 __init__.py:1271
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1191
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1195
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1273
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1277
 #, python-format
 msgid "Descargando: %s"
 msgstr "Download in corso: %s"
 
-#: __init__.py:1200
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1206
 msgid "La descarga se completó.\n"
 msgstr "Download completato.\n"
 
-#: __init__.py:1200 __init__.py:1202 __init__.py:1328
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1206
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1208
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1334
 msgid "Ya puede cerrar esta ventana."
 msgstr "Ora puoi chiudere questa finestra."
 
-#: __init__.py:1202 __init__.py:1328
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1208
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1334
 msgid "Algo salió mal.\n"
 msgstr "Qualcosa è andato storto.\n"
 
-#: __init__.py:1202 __init__.py:1328
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1208
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1334
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr "Verifica di disporre di una connessione Internet e riprova.\n"
 
-#: __init__.py:1306
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1312
 msgid "La actualización se completó.\n"
 msgstr "L'aggiornamento è completo.\n"
 
-#: __init__.py:1306
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1312
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
 msgstr "NVDA necessita di un riavvio per applicare gli aggiornamenti.\n"
 
-#: __init__.py:1306
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1312
 msgid "¿Desea reiniciar NVDA ahora?"
 msgstr "Vuoi riavviare NVDA ora?"
 
-#: __init__.py:1309
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1315
 msgid "No se pudo instalar el complemento.\n"
 msgstr "Impossibile installare il componente aggiuntivo.\n"
 
-#: __init__.py:1309
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1315
 msgid "Fallo de compatibilidad.\n"
 msgstr "Errore di compatibilità.\n"
 
-#: __init__.py:1309
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1315
 msgid "Busque una actualización compatible."
 msgstr "Cerca un aggiornamento compatibile."
 
-#: __init__.py:1315
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1321
 msgid ""
 "Se completo la instalación correctamente.\n"
 "\n"
@@ -439,11 +489,11 @@ msgstr ""
 "NVDA requires a restart to apply the installations.\n"
 "¿Do you want to restart NVDA now?"
 
-#: __init__.py:1360
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1366
 msgid "No hay actualizaciones."
 msgstr "Non vi sono aggiornamenti."
 
-#: __init__.py:1367
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1373
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -453,18 +503,19 @@ msgstr ""
 "\n"
 "Si prega di riprovare tra qualche minuto."
 
-#: ajustes.py:76
+#. Lista tiempo chk notificaciones
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:76
 msgid "15 minutos"
 msgstr "15 minuti"
 
-#: ajustes.py:76
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:76
 msgid "30 minutos"
 msgstr "30 minuti"
 
-#: ajustes.py:76
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:76
 msgid "45 minutos"
 msgstr "45 minuti"
 
-#: ajustes.py:76
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:76
 msgid "1 hora"
 msgstr "1 ora"
