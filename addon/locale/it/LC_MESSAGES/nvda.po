@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Tienda NVDA\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2022-02-01 11:28+0100\n"
-"PO-Revision-Date: 2022-02-01 11:53+0100\n"
+"PO-Revision-Date: 2022-02-04 08:30+0100\n"
 "Last-Translator: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
 "Language-Team: Simone Dal Maso <simone.dalmaso@gmail.com>\n"
 "Language: it\n"
@@ -168,7 +168,7 @@ msgstr "&Cerca"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:350
 msgid "&Lista complementos:"
-msgstr "E#lenco dei componenti aggiuntivi:"
+msgstr "E&lenco dei componenti aggiuntivi:"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:356
 msgid "&Información:"
