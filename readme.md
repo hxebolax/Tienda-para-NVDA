@@ -170,3 +170,25 @@ Este complemento esta en fase de prueba por lo que le pedimos que entienda que p
 Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la mayor brevedad.
 
 ¡Disfruta de la Tienda para NVDA.ES!
+# Registro de cambios.
+## Versión 0.7.
+
+* Solucionado problema con los filtros.
+
+En ocasiones no dejaba regresar del filtro por descargas al filtro todos los complementos.
+
+* Añadidos nuevos tiempos para buscar actualizaciones.
+
+Se añadió 12 horas, 1 día y 1 semana.
+
+Estos tiempos irán bien para ordenadores que se reinicien muy poco.
+
+* Añadida la posibilidad de no buscar actualizaciones para un complemento.
+
+Esta opción podremos usarla de la siguiente manera, en opciones de la tienda en la lista que nos da con los Complementos instalados que hay en el servidor podremos ponernos encima del complemento que deseemos que no se busquen actualizaciones y dar espacio.
+
+En el menú desplegable ahora aparte de poder elegir el canal que deseamos tener de actualizaciones podremos elegir Descartar actualizaciones.
+
+Cuando lo seleccionemos y demos a aceptar los complementos que tengan el valor de Descartar actualizaciones no buscaran actualizaciones en el servidor.
+
+Para revertir este aspecto tendremos que volver a la misma lista y dar espacio y elegir el canal de actualización que deseamos.

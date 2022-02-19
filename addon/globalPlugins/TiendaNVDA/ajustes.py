@@ -16,7 +16,7 @@ addonHandler.initTranslation()
 def initConfiguration():
 	confspec = {
 		"autoChk": "boolean(default=False)",
-		"timerChk": "integer(default=1, min=0, max=3)",
+		"timerChk": "integer(default=1, min=0, max=6)",
 		"ordenChk": "boolean(default=False)",
 		"installChk": "boolean(default=False)",
 	}
@@ -66,14 +66,14 @@ IS_Download = False
 IS_TEMPORAL =False
 reiniciarTrue = False
 focoActual = "listboxComplementos"
-indiceFiltro = 1
+indiceFiltro = 6
 ID_TRUE = wx.NewIdRef() # para botón aceptar
 ID_FALSE = wx.NewIdRef() # para botón cancelar
 contadorRepeticion = 0
 contadorRepeticionSn = 0
 
 # Lista tiempo chk notificaciones
-tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora")]
+tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora"), _("12 horas"), _("1 día"), _("1 semana")]
 
 ### Diccionario para el foco.
 id_widgets = {
@@ -93,4 +93,7 @@ tiempoDict = {
 	1:1800,
 	2:2700,
 	3:3600,
+	4:43200,
+	5:86400,
+	6:604800,
 }

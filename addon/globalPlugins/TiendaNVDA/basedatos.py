@@ -95,21 +95,24 @@ class NVDAStoreClient(object):
 		for i in ajustes.listaAddonsSave:
 			for x in range(0, len(self.dataServidor)):
 				if self.dataServidor[x]['name'].lower() == i[0].lower():
-					for z in self.dataLocal:
-						if i[0].lower() == z.manifest["name"].lower():
-							if not z.isPendingRemove:
-								if self.isAddonTested(self.dataServidor[x]['links'][i[1]]['lasttested']):
-									if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
-										lstActualizar.append("{}".format(z.manifest["summary"]))
-										lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
-										lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
-										lstVerLocal.append(z.manifest["version"])
-									else:
-										if self.chkVersionAlt(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
+					if i[1] == 9:
+						pass
+					else:
+						for z in self.dataLocal:
+							if i[0].lower() == z.manifest["name"].lower():
+								if not z.isPendingRemove:
+									if self.isAddonTested(self.dataServidor[x]['links'][i[1]]['lasttested']):
+										if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
 											lstActualizar.append("{}".format(z.manifest["summary"]))
 											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
 											lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
 											lstVerLocal.append(z.manifest["version"])
+										else:
+											if self.chkVersionAlt(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
+												lstActualizar.append("{}".format(z.manifest["summary"]))
+												lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
+												lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
+												lstVerLocal.append(z.manifest["version"])
 
 		if len(lstActualizar) == 0:
 			return False, False, False

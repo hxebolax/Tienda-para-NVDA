@@ -223,7 +223,10 @@ class TiendaPanel(SettingsPanel):
 		for i in ajustes.listaAddonsSave:
 			for x in range(0, len(self.datosServidor)):
 				if self.datosServidor[x]['name'].lower() == i[0].lower():
-					self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+					if i[1] == 9:
+						self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+					else:
+						self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
 		self.listbox.SetSelection(0)
 		self.listbox.Bind(wx.EVT_KEY_UP, self.onListBox)
 
@@ -308,6 +311,8 @@ class TiendaPanel(SettingsPanel):
 			for i in range(len(datos['links'])):
 				item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
 				self.Bind(wx.EVT_MENU, self.onSelect, item)
+			item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
+			self.Bind(wx.EVT_MENU, self.onSelect, item)
 
 			position = self.listbox.GetPosition()
 			self.PopupMenu(self.menuDescarga,position)
@@ -318,8 +323,12 @@ class TiendaPanel(SettingsPanel):
 		nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
 		indice = self.datos.indiceName(nombreLocal)
 		datos = self.datosServidor[indice]
-		nombreCanal = datos['links'][canalID]['channel']
-		nombreCompuesto = nombre[0] + " -- " + nombreCanal
+		if canalID == 9:
+			nombreCanal = _("Descartar actualizaciones")
+			nombreCompuesto = nombre[0] + " -- " + nombreCanal
+		else:
+			nombreCanal = datos['links'][canalID]['channel']
+			nombreCompuesto = nombre[0] + " -- " + nombreCanal
 		pos = self.listbox.GetSelection()
 		self.listbox.Delete(pos)
 		self.listbox.Insert(nombreCompuesto, pos)
@@ -458,23 +467,23 @@ Total descargas: {}\n""").format(
 		self.menu = wx.Menu()
 
 		self.menuFiltro = wx.Menu()
-		item1 = self.menuFiltro.Append(1, _("Mostrar todos los complementos"))
+		item1 = self.menuFiltro.Append(6, _("Mostrar todos los complementos"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item1)
-		item2 = self.menuFiltro.Append(2, _("Mostrar los complementos con compatibilidad de API 2022"))
+		item2 = self.menuFiltro.Append(7, _("Mostrar los complementos con compatibilidad de API 2022"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item2)
-		item3 = self.menuFiltro.Append(3, _("Mostrar los complementos con compatibilidad de API 2021"))
+		item3 = self.menuFiltro.Append(8, _("Mostrar los complementos con compatibilidad de API 2021"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item3)
-		item4 = self.menuFiltro.Append(4, _("Mostrar los complementos ordenados por autor"))
+		item4 = self.menuFiltro.Append(9, _("Mostrar los complementos ordenados por autor"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item4)
-		item5 = self.menuFiltro.Append(5, _("Mostrar por descargas de mayor a menor"))
+		item5 = self.menuFiltro.Append(10, _("Mostrar por descargas de mayor a menor"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item5)
 		self.menu.AppendSubMenu(self.menuFiltro, _("&Filtros"))
 
 		self.menuPortapapeles = wx.Menu()
-		item5 = self.menuPortapapeles.Append(11, _("Copiar información"))
-		self.Bind(wx.EVT_MENU, self.onPortapapeles, item5)
-		item6 = self.menuPortapapeles.Append(12, _("Copiar enlace a la página web del complemento"))
+		item6 = self.menuPortapapeles.Append(11, _("Copiar información"))
 		self.Bind(wx.EVT_MENU, self.onPortapapeles, item6)
+		item7 = self.menuPortapapeles.Append(12, _("Copiar enlace a la página web del complemento"))
+		self.Bind(wx.EVT_MENU, self.onPortapapeles, item7)
 		self.menuPortapapelesDescarga = wx.Menu()
 		for i in range(len(datos['links'])):
 			itemx = self.menuPortapapelesDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
@@ -489,12 +498,17 @@ Total descargas: {}\n""").format(
 	def onBusqueda(self, event):
 		if self.textoBusqueda.GetValue() == "":
 			self.listboxComplementos.Clear()
-			if self.indiceFiltro == 1:
+			if self.indiceFiltro == 6:
 				if ajustes.tempOrden == False:
 					self.listboxComplementos.Append(self.temporal)
 				else:
 					self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
-			elif self.indiceFiltro == 2:
+			elif self.indiceFiltro == 7:
+				if ajustes.tempOrden == False:
+					self.listboxComplementos.Append(self.temporal)
+				else:
+					self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
+			elif self.indiceFiltro == 8:
 				if ajustes.tempOrden == False:
 					self.listboxComplementos.Append(self.temporal)
 				else:
@@ -512,7 +526,7 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.SetSelection(0)
 				self.listboxComplementos.SetFocus()
 			else:
-				if self.indiceFiltro == 0:
+				if self.indiceFiltro == 6 or self.indiceFiltro == 7 or self.indiceFiltro == 8:
 					if ajustes.tempOrden == False:
 						self.listboxComplementos.Append(filtro)
 					else:
@@ -532,7 +546,7 @@ Total descargas: {}\n""").format(
 		del self.temporal[:]
 		self.listboxComplementos.Clear()
 		self.textoBusqueda.Clear()
-		if indice == 1:
+		if self.indiceFiltro == 6:
 			self.SetTitle(ajustes.titulo + _(" - Todos los complementos"))
 			for x in range(0, len(self.datos.dataServidor)):
 				self.temporal.append(self.datos.dataServidor[x]['summary'])
@@ -540,7 +554,7 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.Append(self.temporal)
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
-		if indice == 2:
+		if self.indiceFiltro == 7:
 			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2022"))
 			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2022"]
 			for x in range(0, len(dataserver)):
@@ -550,7 +564,7 @@ Total descargas: {}\n""").format(
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 
-		if indice == 3:
+		if self.indiceFiltro == 8:
 			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2021"))
 			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2021"]
 			for x in range(0, len(dataserver)):
@@ -559,18 +573,18 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.Append(self.temporal)
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
-		if indice == 4:
+		if self.indiceFiltro == 9:
 			self.SetTitle(ajustes.titulo + _(" - Complementos por autor"))
 			dataserver = sorted(self.datos.dataServidor, key=lambda k: k.get('author', 0), reverse=False)
 
 			for x in range(0, len(dataserver)):
-					self.temporal.append(dataserver[x]['summary'])
+				self.temporal.append(dataserver[x]['summary'])
 			self.listboxComplementos.Append(self.temporal)
-		if indice == 5:
+		if self.indiceFiltro == 10:
 			self.SetTitle(ajustes.titulo + _(" - Complementos por descarga de mayor a menor"))
 			dataserver = sorted(self.datos.dataServidor, key=lambda k: k['links'][0].get('downloads', 0), reverse=True)
 			for x in range(0, len(dataserver)):
-					self.temporal.append(dataserver[x]['summary'])
+				self.temporal.append(dataserver[x]['summary'])
 			self.listboxComplementos.Append(self.temporal)
 
 		self.listboxComplementos.SetSelection(0)
@@ -581,7 +595,9 @@ Total descargas: {}\n""").format(
 		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
-		if event.GetId() == 11:
+		if event.GetId() == 6 or event.GetId() == 7 or event.GetId() == 8 or event.GetId() == 9 or event.GetId() == 10:
+			self.onCargaFiltro(event.GetId())
+		elif event.GetId() == 11:
 			msg = \
 _("""Se copio la información del complemento al portapapeles""")
 			self.onCopiaPortapapeles(msg, self.txtResultado.GetValue())
