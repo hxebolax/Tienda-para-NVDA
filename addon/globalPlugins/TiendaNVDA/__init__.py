@@ -13,6 +13,7 @@
 # Idioma y documentación Turco: umut korkmaz
 # Idioma Italiano: Simone Dal Maso
 # Idioma Árabe: Wafiq Taher
+# Idioma Alemán: Bernd Dorer
 #
 # import the necessary modules (NVDA)
 import globalPluginHandler
@@ -29,6 +30,7 @@ from scriptHandler import script
 from logHandler import log
 from gui.settingsDialogs import NVDASettingsDialog, SettingsPanel
 from gui import guiHelper, nvdaControls
+from tones import beep
 import wx
 import wx.adv
 from threading import Thread
@@ -40,6 +42,11 @@ import shutil
 import os
 import sys
 import traceback
+dirAddonPath=os.path.dirname(__file__)
+sys.path.append(dirAddonPath)
+import traductor
+del sys.path[-1]
+
 from . import ajustes
 from . import basedatos
 
@@ -100,9 +107,9 @@ Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES""").format(l
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
-		if globalVars.appArgs.secure or config.isAppX: return
-
 		super(GlobalPlugin, self).__init__()
+
+		if globalVars.appArgs.secure or config.isAppX: raise RuntimeError(_("Tienda NVDA.ES no se puede usar en escritorios seguros"))
 
 		if hasattr(globalVars, "tienda"):
 			self.postStartupHandler()
@@ -135,7 +142,7 @@ _("""Error producido en las librerías::
 			NVDASettingsDialog.categoryClasses.append(TiendaPanel)
 
 			self.menu = wx.Menu()
-			tools_menu = gui.mainFrame.sysTrayIcon.toolsMenu
+			self.tools_menu = gui.mainFrame.sysTrayIcon.toolsMenu
 			# Translators: Nombre del submenú para tienda de complementos
 			self.tiendaComplementos = self.menu.Append(wx.ID_ANY, _("Listado de complementos"))
 			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu1, self.tiendaComplementos)
@@ -144,7 +151,7 @@ _("""Error producido en las librerías::
 			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
 			# Translators: Nombre del menú Tienda de complementos
 
-			self.tiendaMenu = tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
+			self.tiendaMenu = self.tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
 		else:
 			log.info(_("Inicio del complemento cancelado."))
 			return
@@ -152,7 +159,12 @@ _("""Error producido en las librerías::
 	def terminate(self):
 		global chkUpdate
 		try:
-			if inicio == True:
+			self.tools_menu .Remove(self.tiendaMenu)
+		except Exception:
+			pass
+
+		try:
+			if inicio:
 				chkUpdate.stop()
 				NVDASettingsDialog.categoryClasses.remove(TiendaPanel)
 				core.postNvdaStartup.unregister(self.postStartupHandler)
@@ -163,7 +175,7 @@ _("""Error producido en las librerías::
 
 	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= _("Tienda para NVDA.ES"))
 	def script_menu1(self, event):
-		if inicio == True:
+		if inicio:
 			if ajustes.reiniciarTrue == False:
 				if ajustes.IS_WinON == False:
 					self._MainWindows = HiloComplemento(1)
@@ -183,7 +195,7 @@ Reinicie NVDA para intentar solucionar el problema.""")
 
 	@script(gesture=None, description= _("Busca actualizaciones de los complementos instalados"), category= _("Tienda para NVDA.ES"))
 	def script_menu2(self, event):
-		if inicio == True:
+		if inicio:
 			if ajustes.reiniciarTrue == False:
 				if ajustes.IS_WinON == False:
 					self._MainWindows = HiloComplemento(2)
@@ -213,6 +225,11 @@ class TiendaPanel(SettingsPanel):
 
 		self.choiceTimer = helper.addLabeledControl(_("Seleccione un tiempo para comprobar si hay actualizaciones"), wx.Choice, choices=ajustes.tiempoChk)
 
+		self.autoLang = helper.addItem(wx.CheckBox(self, label=_("Activar o desactivar el traductor para las descripciones de los complementos")))
+		self.autoLang.Bind(wx.EVT_CHECKBOX,self.onAutoLang)
+
+		self.choiceLang = helper.addLabeledControl(_("Seleccione un idioma para traducir las descripciones de los complementos"), wx.Choice, choices=ajustes.langLST)
+
 		self.ordenChk = helper.addItem(wx.CheckBox(self, label=_("Ordenar por orden alfabético los complementos de la tienda y las búsquedas")))
 
 		self.installChk = helper.addItem(wx.CheckBox(self, label=_("Instalar complementos después de descargar")))
@@ -231,12 +248,20 @@ class TiendaPanel(SettingsPanel):
 		self.listbox.Bind(wx.EVT_KEY_UP, self.onListBox)
 
 		self.autoChk.Value = ajustes.tempChk
-		if self.autoChk.Value == True:
+		if self.autoChk.Value:
 			self.choiceTimer.Enable()
 		else:
 			self.choiceTimer.Disable()
 
 		self.choiceTimer.Selection = ajustes.tempTimer
+
+		self.autoLang.Value = ajustes.tempTrans
+		if self.autoLang.Value:
+			self.choiceLang.Enable()
+		else:
+			self.choiceLang.Disable()
+
+		self.choiceLang.Selection = ajustes.tempLang
 
 		self.ordenChk.Value =ajustes.tempOrden
 
@@ -249,15 +274,19 @@ class TiendaPanel(SettingsPanel):
 		global chkUpdate
 		ajustes.setConfig("autoChk", self.autoChk.Value)
 		ajustes.setConfig("timerChk", self.choiceTimer.Selection)
+		ajustes.setConfig("autoLang", self.autoLang.Value)
+		ajustes.setConfig("langTrans", self.choiceLang.Selection)
 		ajustes.setConfig("ordenChk", self.ordenChk.Value)
 		ajustes.setConfig("installChk", self.installChk.Value)
 
 		ajustes.tempChk = self.autoChk.Value
 		ajustes. tempTimer= self.choiceTimer.Selection
+		ajustes.tempTrans = self.autoLang.Value
+		ajustes. tempLang= self.choiceLang.Selection
 		ajustes.tempOrden = self.ordenChk.Value
 		ajustes.tempInstall = self.installChk.Value
 
-		if ajustes.tempChk == True:
+		if ajustes.tempChk:
 			try:
 				chkUpdate.stop()
 				ajustes.contadorRepeticion = 0
@@ -296,10 +325,17 @@ class TiendaPanel(SettingsPanel):
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
-		if chk.GetValue() == True:
+		if chk.GetValue():
 			self.choiceTimer.Enable()
 		else:
 			self.choiceTimer.Disable()
+
+	def onAutoLang(self, event):
+		chk = event.GetEventObject()
+		if chk.GetValue():
+			self.choiceLang.Enable()
+		else:
+			self.choiceLang.Disable()
 
 	def onListBox(self, event):
 		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
@@ -367,6 +403,7 @@ class tiendaApp(wx.Dialog):
 		labelResultado = wx.StaticText(self.Panel, wx.ID_ANY, _("&Información:"))
 		self.txtResultado = wx.TextCtrl(self.Panel, 4, style =wx.TE_MULTILINE|wx.TE_READONLY|wx.LB_NO_SB)
 		self.txtResultado.Bind(wx.EVT_CONTEXT_MENU, self.skip)
+		self.txtResultado.Bind(wx.EVT_KEY_UP, self.ontxtResultado)
 
 		self.descargarBTN = wx.Button(self.Panel, 201, _("&Descargar complemento"))
 		self.paginaWebBTN = wx.Button(self.Panel, 202, _("Visitar &página WEB"))
@@ -438,6 +475,51 @@ Total descargas: {}\n""").format(
 			self.txtResultado.AppendText(fichaEnlaces)
 		self.txtResultado.SetInsertionPoint(0)
 
+	def onFichaTrans(self):
+		beep(400,150)
+		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
+		indice = self.datos.indiceSummary(nombre)
+		datos = self.datos.dataServidor[indice]
+		if ajustes.tempTrans:
+			try:
+				traducir = traductor.translate(datos['description'], ajustes.langDict.get(ajustes.tempLang))
+			except:
+				ui.message(_("No se pudo traducir la descripción"))
+				traducir =datos['description']
+		else:
+			traducir =datos['description']
+
+		ficha = \
+_("""Autor: {}
+Nombre del complemento: {}
+Nombre interno: {}
+Descripción: {}
+Desarrollo: {}\n""").format(
+	datos['author'],
+	datos['summary'],
+	datos['name'],
+	traducir,
+	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte"),
+	)
+		self.txtResultado.SetValue(ficha)
+
+		for i in range(len(datos['links'])):
+			fichaEnlaces = \
+_("""Canal: {}
+Versión: {}
+Mínimo NVDA: {}
+Testeado hasta versión de NVDA: {}
+Total descargas: {}\n""").format(
+	datos['links'][i]['channel'],
+	datos['links'][i]['version'],
+	datos['links'][i]['minimum'],
+	datos['links'][i]['lasttested'],
+	datos['links'][i]['downloads'],
+	)
+			self.txtResultado.AppendText(fichaEnlaces)
+		self.txtResultado.SetInsertionPoint(0)
+		beep(100,150)
+
 	def onFocus(self):
 		self.Bind(wx.EVT_ACTIVATE, self.onSetFocus)
 		self.textoBusqueda.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
@@ -461,6 +543,7 @@ Total descargas: {}\n""").format(
 		return
 
 	def menuListBox(self, event):
+
 		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
@@ -647,7 +730,25 @@ _("""Se encuentra en el complemento {} de {}""").format(self.listboxComplementos
 					if tecla == wx.WXK_F2:
 						ui.message(self.txtResultado.GetValue())
 					else:
-						self.onFicha()
+						if tecla == wx.WXK_F3:
+							msg = \
+_("""No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.
+
+Active dicha opción y elija un idioma para poder usar esta característica.""")
+							self.onFichaTrans() if ajustes.tempTrans else ui.message(msg)
+						else:
+							self.onFicha()
+
+	def ontxtResultado(self, event):
+		tecla = event.GetKeyCode()
+		if tecla == wx.WXK_F3:
+			msg = \
+_("""No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.
+
+Active dicha opción y elija un idioma para poder usar esta característica.""")
+			self.onFichaTrans() if ajustes.tempTrans else ui.message(msg)
+		else:
+			event.Skip()
 
 	def onBoton(self, event):
 		obj = event.GetEventObject()

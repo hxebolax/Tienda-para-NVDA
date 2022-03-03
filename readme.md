@@ -171,6 +171,24 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.7.1.
+
+* Agregada opción para poder traducir las descripciones de los complementos.
+
+Ahora pulsando F3 desde la lista de complementos o desde la ficha de un complemento se traducirá la descripción al idioma que tengamos configurado en opciones.
+
+Esta nueva característica viene desactivada por defecto, para activarla tendremos que ir a las opciones de la Tienda y activar la opción Activar o desactivar el traductor para las descripciones de los complementos.
+
+A continuación tabulamos y elegimos el idioma que deseamos que se traduzcan las descripciones.
+
+Cuando pulsemos F3 sonara un sonido de inicio y otro de fin para anunciar que se terminó de traducir. Estos sonidos son diferentes entre sí.
+
+Cuando cambiemos de complemento la traducción se pierde por lo que si deseamos de nuevo ver la traducción de la descripción tendremos que volver a pulsar F3.
+
+Esta opción requiere de internet para ser usada.
+
+* Solucionado un problema al recargar los complementos.
+
 ## Versión 0.7.
 
 * Solucionado problema con los filtros.

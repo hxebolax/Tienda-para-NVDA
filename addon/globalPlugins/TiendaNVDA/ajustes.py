@@ -19,6 +19,8 @@ def initConfiguration():
 		"timerChk": "integer(default=1, min=0, max=6)",
 		"ordenChk": "boolean(default=False)",
 		"installChk": "boolean(default=False)",
+		"autoLang": "boolean(default=False)",
+		"langTrans": "integer(default=5, min=0, max=11)",
 	}
 	config.conf.spec['TiendaES'] = confspec
 
@@ -36,15 +38,19 @@ tempChk = None
 tempTimer = None
 tempOrden = None
 tempInstall = None
+tempTrans = None
+tempLang = None
 dirDatos = None
 listaAddonsSave = None
 listaAddonsInstalados = None
 
 def setup():
-	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer
+	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer, tempTrans, tempLang
 	initConfiguration()
 	tempChk = getConfig("autoChk")
 	tempTimer = getConfig("timerChk")
+	tempTrans = getConfig("autoLang")
+	tempLang = getConfig("langTrans")
 	tempOrden = getConfig("ordenChk")
 	tempInstall = getConfig("installChk")
 	dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
@@ -74,7 +80,23 @@ contadorRepeticionSn = 0
 
 # Lista tiempo chk notificaciones
 tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora"), _("12 horas"), _("1 día"), _("1 semana")]
-
+# Lista con idiomas para las traducciones
+langLST = [_("Alemán"), _("Árabe"), _("Croata"), _("Español"), _("Francés"), _("Inglés"), _("Italiano"), _("Polaco"), _("Portugués"), _("Ruso"), _("Turco"), _("Ucraniano")]
+# Diccionario con las abreviaturas de idioma
+langDict = {
+	0:"de",
+	1:"ar",
+	2:"hr",
+	3:"es",
+	4:"fr",
+	5:"en",
+	6:"it",
+	7:"pl",
+	8:"pt",
+	9:"ru",
+	10:"tr",
+	11:"uk",
+}
 ### Diccionario para el foco.
 id_widgets = {
 # WidGets generales
