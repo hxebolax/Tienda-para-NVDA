@@ -109,8 +109,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 
-		if globalVars.appArgs.secure or config.isAppX: raise RuntimeError(_("Tienda NVDA.ES no se puede usar en escritorios seguros"))
-
 		if hasattr(globalVars, "tienda"):
 			self.postStartupHandler()
 		core.postNvdaStartup.register(self.postStartupHandler)
@@ -172,6 +170,7 @@ _("""Error producido en las librerías::
 				self._MainWindows.Destroy()
 		except (AttributeError, RuntimeError):
 			pass
+		super().terminate()
 
 	@script(gesture=None, description= _("Muestra la ventana con todos los complementos y su información"), category= _("Tienda para NVDA.ES"))
 	def script_menu1(self, event):
@@ -212,6 +211,9 @@ Una de las causas es que NVDA arrancara antes de tener conexión a internet.
 
 Reinicie NVDA para intentar solucionar el problema.""")
 			ui.message(msg)
+
+if globalVars.appArgs.secure:
+	GlobalPlugin = globalPluginHandler.GlobalPlugin # noqa: F811 
 
 class TiendaPanel(SettingsPanel):
 	#TRANSLATORS: title for the Update Channel settings category
