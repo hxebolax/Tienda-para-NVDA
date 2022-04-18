@@ -161,3 +161,44 @@ Bu eklenti test aşamasında olduğundan hatalar olabileceğini anlamanızı ric
 Bunları bildirmek ve mümkün olan en kısa sürede çözebilmek için iletişime geçtiğiniz için teşekkür ederiz.  
 
 NVDA.ES eklenti Mağazasının Keyfini Çıkarın!
+
+# Sürüm Geçmişi:
+## Sürüm 0.7.1.:
+
+* Eklenti açıklamalarını çevirebilmek için seçenek eklendi.
+
+Şimdi, eklentiler listesinden veya bir eklentinin bilgi alanından F3'e basmak, açıklamayı seçeneklerde yapılandırdığımız dile çevirecektir.  
+
+Bu yeni özellik varsayılan olarak devre dışıdır, etkinleştirmek için NVDA>Tercihler>Ayarlar içerisinden NVDA.ES eklenti mağazası başlığına giderek Eklenti açıklamaları için çeviri seçeneğini etkinleştir onay kutusunu işaretlememiz gerekecek.  
+
+Daha sonra bir defa tab tuşuna basarak istediğimiz Dili seçim kutusundan seçebiliriz.  
+
+F3'e bastığımızda, çevirinin bittiğini bildirmek için bir başlangıç ​​ve bir bitiş sesi duyulacaktır. Bu sesler birbirinden farklıdır.  
+
+Eklentiyi değiştirdiğimizde çeviri kayboluyor, bu yüzden açıklamanın çevirisini tekrar görmek istiyorsak tekrar F3'e basmamız gerekecek.  
+
+Bu özellik internet bağlantısı gerektirir.  
+
+* Eklentileri yeniden yüklemeyle ilgili bir sorun düzeltildi.
+
+## Sürüm 0.7:
+
+* Filtrelerle ilgili sorun düzeltildi.
+
+Bazen indirmeler filtresinden tüm eklentiler filtresine dönmenize izin vermiyordu.
+
+* Güncellemeleri kontrol etmek için yeni zamanlar eklendi.
+
+12 saat, 1 gün ve 1 hafta eklendi.  
+
+Bu zamanlar, çok az yeniden başlatılan bilgisayarlar için iyi olacaktır.
+
+* Bir eklenti için güncellemeleri kontrol etmeme özelliği eklendi.
+
+Bu seçeneği şu şekilde kullanabiliriz, sunucuda bulunan yüklü Eklentiler ile bize verdiği listedeki mağaza seçeneklerinde kendimizi istediğimiz eklentinin üstüne koyarak güncellemelerin aranmaması ve yer açılmasını sağlayabiliriz. .  
+
+Şimdi açılır menüde, güncellemeler için sahip olmak istediğimiz kanalı seçebilmenin yanı sıra Güncellemeleri sil'i de seçebiliriz.  
+
+Güncellemeleri sil değeri olan eklentileri seçip kabul ettiğimizde, sunucu üzerinde güncelleme aramayacaklardır.  
+
+Bu yönü tersine çevirmek için aynı listeye geri dönüp boşluk vermemiz ve istediğimiz güncelleme kanalını seçmemiz gerekecek.  

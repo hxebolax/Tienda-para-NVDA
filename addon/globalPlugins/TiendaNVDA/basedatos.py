@@ -12,6 +12,23 @@ from threading import Timer
 from .packaging import version
 from . import ajustes
 
+def generaFichero():
+	return os.path.basename(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data%s.json" % len(os.listdir(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")))))
+
+def estaenlistado(listado, buscar):
+	if not buscar in listado:
+		return False
+	return True
+
+def chkJson(url):
+	try:
+		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
+		p = urllib.request.Request(url, headers=Headers, method="GET")
+		json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
+		return True
+	except:
+		return False
+
 def obtenFile(url):
 	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 	p = urllib.request.urlopen(req).geturl()
@@ -40,7 +57,7 @@ class NVDAStoreClient(object):
 		super(NVDAStoreClient, self).__init__()
 
 		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
-		p = urllib.request.Request('https://nvda.es/files/get.php?addonslist', headers=Headers, method="GET")
+		p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
 		self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
 		self.urlBase = "https://nvda.es/files/get.php?file="
 		self.dataLocal = list(addonHandler.getAvailableAddons())
@@ -120,11 +137,11 @@ class NVDAStoreClient(object):
 			return dict(zip(lstActualizar, lstUrl)), lstVerLocal, lstVerServidor
 
 class libreriaLocal(object):
-	def __init__(self):
-
+	def __init__(self, fileJson="data.json"):
 		super(libreriaLocal, self).__init__()
 
-		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data.json")
+		self.fileJson = fileJson
+		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", self.fileJson)
 		self.local = list(addonHandler.getAvailableAddons())
 
 	def fileJsonAddon(self, opcion, lista=[]):
@@ -193,6 +210,25 @@ Devuelve 2 listas: lista1 borrar, lista2 copiar a lista1."""
 				z = self.GetPos(ajustes.listaAddonsInstalados, p[1][x])
 				ajustes.listaAddonsSave.append(ajustes.listaAddonsInstalados[z])
 		self.fileJsonAddon(1, self.ordenaLista(ajustes.listaAddonsSave))
+
+class ServidoresComplementos(object):
+	def __init__(self):
+		super(ServidoresComplementos, self).__init__()
+
+		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "servers.json")
+
+	def fileJsonAddon(self, opcion, lista=[]):
+		if opcion == 1: # Guardar
+			with open(self.file, "w") as fp:
+				json.dump(lista, fp)
+		elif opcion == 2: # Cargar
+			if os.path.isfile(self.file):
+				with open(self.file, "r") as fp:
+					return json.load(fp)
+			else:
+				lista = [[ajustes.nombreSRV_Fijo, ajustes.urlSVR_Fijo, ajustes.fileFijo]]
+				self.fileJsonAddon(1, lista)
+				return lista
 
 class busquedas(object):
 	def __init__(self):

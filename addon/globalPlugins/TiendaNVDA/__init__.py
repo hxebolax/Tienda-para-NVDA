@@ -157,10 +157,9 @@ _("""Error producido en las librerías::
 	def terminate(self):
 		global chkUpdate
 		try:
-			self.tools_menu .Remove(self.tiendaMenu)
+			self.tools_menu.Remove(self.tiendaMenu)
 		except Exception:
 			pass
-
 		try:
 			if inicio:
 				chkUpdate.stop()
@@ -222,6 +221,13 @@ class TiendaPanel(SettingsPanel):
 	def makeSettings(self, sizer):
 		helper=guiHelper.BoxSizerHelper(self, sizer=sizer)
 
+		self.choiceSRV = helper.addLabeledControl(_("Seleccione un servidor de complementos"), wx.Choice, choices=[ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+		self.choiceSRV.Selection = ajustes.selectSRV
+		self.choiceSRV.Bind(wx.EVT_CHOICE, self.onChoiceSRV)
+
+		self.gestionaBTN = helper.addItem (wx.Button (self, label = _("&Gestionar Servidores de complementos")))
+		self.gestionaBTN.Bind(wx.EVT_BUTTON, self.onGestiona)
+
 		self.autoChk = helper.addItem(wx.CheckBox(self, label=_("Activar o desactivar la comprobación de actualizaciones")))
 		self.autoChk.Bind(wx.EVT_CHECKBOX,self.onAutoChk)
 
@@ -239,14 +245,20 @@ class TiendaPanel(SettingsPanel):
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
 		self.listbox = helper.addLabeledControl(_("Complementos instalados que hay en el servidor:"), wx.ListBox)
-		for i in ajustes.listaAddonsSave:
-			for x in range(0, len(self.datosServidor)):
-				if self.datosServidor[x]['name'].lower() == i[0].lower():
-					if i[1] == 9:
-						self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
-					else:
-						self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
-		self.listbox.SetSelection(0)
+		if len(ajustes.listaAddonsSave) == 0:
+			pass
+		else:
+			for i in ajustes.listaAddonsSave:
+				for x in range(0, len(self.datosServidor)):
+					if self.datosServidor[x]['name'].lower() == i[0].lower():
+						if i[1] == 9:
+							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+						else:
+							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+		if self.listbox.GetSelection() == -1:
+			pass
+		else:
+			self.listbox.SetSelection(0)
 		self.listbox.Bind(wx.EVT_KEY_UP, self.onListBox)
 
 		self.autoChk.Value = ajustes.tempChk
@@ -269,11 +281,14 @@ class TiendaPanel(SettingsPanel):
 
 		self.installChk.Value =ajustes.tempInstall
 
-		self.listaOriginal = basedatos.libreriaLocal().fileJsonAddon(2)
+		self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
 		self.listaGuarda = []
+		self.onChoiceSRV(None)
 
 	def onSave(self):
 		global chkUpdate
+		ajustes.setConfig("urlServidor", ajustes.listaServidores[self.choiceSRV.Selection][1])
+		ajustes.setConfig("selectSRV", self.choiceSRV.Selection)
 		ajustes.setConfig("autoChk", self.autoChk.Value)
 		ajustes.setConfig("timerChk", self.choiceTimer.Selection)
 		ajustes.setConfig("autoLang", self.autoLang.Value)
@@ -303,7 +318,7 @@ class TiendaPanel(SettingsPanel):
 		else:
 			for i in range(0, len(self.listaGuarda)):
 				ajustes.listaAddonsSave[self.listaGuarda[i][0]][1] = self.listaGuarda[i][1]
-		basedatos.libreriaLocal().fileJsonAddon(1, basedatos.libreriaLocal().ordenaLista(ajustes.listaAddonsSave))
+		basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(1, basedatos.libreriaLocal().ordenaLista(ajustes.listaAddonsSave))
 
 	def onPanelActivated(self):
 		self.originalProfileName = config.conf.profiles[-1].name
@@ -325,6 +340,32 @@ class TiendaPanel(SettingsPanel):
 #			pass
 #			print(c)
 
+	def onChoiceSRV(self, event):
+		try:
+			ajustes.urlServidor = ajustes.listaServidores[self.choiceSRV.Selection][1]
+			ajustes.selectSRV = self.choiceSRV.Selection
+		except:
+			ajustes.urlServidor = ajustes.listaServidores[0][1]
+			ajustes.selectSRV = 0
+
+		self.datos = basedatos.NVDAStoreClient()
+		self.datosServidor = self.datos.dataServidor
+		self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+		self.listaGuarda = []
+		ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+		self.listbox.Clear()
+		if len(ajustes.listaAddonsSave) == 0:
+			self.listbox.Append(_("Sin complementos compatibles"))
+		else:
+			for i in ajustes.listaAddonsSave:
+				for x in range(0, len(self.datosServidor)):
+					if self.datosServidor[x]['name'].lower() == i[0].lower():
+						if i[1] == 9:
+							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+						else:
+							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+		self.listbox.SetSelection(0)
+
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
 		if chk.GetValue():
@@ -340,21 +381,24 @@ class TiendaPanel(SettingsPanel):
 			self.choiceLang.Disable()
 
 	def onListBox(self, event):
-		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
-		nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
-		indice = self.datos.indiceName(nombreLocal)
-		datos = self.datosServidor[indice]
-		if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
-			self.menuDescarga = wx.Menu()
-			for i in range(len(datos['links'])):
-				item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
-				self.Bind(wx.EVT_MENU, self.onSelect, item)
-			item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
-			self.Bind(wx.EVT_MENU, self.onSelect, item)
-
-			position = self.listbox.GetPosition()
-			self.PopupMenu(self.menuDescarga,position)
+		if self.listbox.GetString(self.listbox.GetSelection()) == _("Sin complementos compatibles"):
 			pass
+		else:
+			nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
+			nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
+			indice = self.datos.indiceName(nombreLocal)
+			datos = self.datosServidor[indice]
+			if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
+				self.menuDescarga = wx.Menu()
+				for i in range(len(datos['links'])):
+					item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
+					self.Bind(wx.EVT_MENU, self.onSelect, item)
+				item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
+				self.Bind(wx.EVT_MENU, self.onSelect, item)
+
+				position = self.listbox.GetPosition()
+				self.PopupMenu(self.menuDescarga,position)
+				pass
 
 	def modificaListBox(self, canalID):
 		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
@@ -375,6 +419,259 @@ class TiendaPanel(SettingsPanel):
 
 	def onSelect(self, event):
 		self.modificaListBox(event.GetId())
+
+	def onGestiona(self, event):
+		if ajustes.IS_WinON:
+			msg = \
+_("""Ya hay una instancia de la Tienda NVDA abierta.
+
+Para gestionar los servidores es necesario que la Tienda este cerrada.""")
+			ui.message(msg)
+		else:
+			dlg = GestorServidores()
+			res = dlg.ShowModal()
+			if res == 0:
+				dlg.Destroy()
+				self.onChoiceSRV(None)
+				self.choiceSRV.Clear()
+				self.choiceSRV.Append([ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+				self.choiceSRV.SetSelection(ajustes.selectSRV)
+				self.choiceSRV.SetFocus()
+
+class GestorServidores(wx.Dialog):
+	def __init__(self):
+		super(GestorServidores, self).__init__(None, -1, title=_("Gestor de servidores de complementos"))
+
+		self.SetSize((400, 300))
+
+		self.panel_1 = wx.Panel(self, wx.ID_ANY)
+
+		sizer_1 = wx.BoxSizer(wx.VERTICAL)
+
+		label_1 = wx.StaticText(self.panel_1, wx.ID_ANY, _("&Lista de servidores:"))
+		sizer_1.Add(label_1, 0, wx.EXPAND, 0)
+
+		self.list_box_1 = wx.ListBox(self.panel_1, wx.ID_ANY, choices=[ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+		sizer_1.Add(self.list_box_1, 1, wx.EXPAND, 0)
+		self.list_box_1.SetSelection(0)
+
+		sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+		sizer_1.Add(sizer_2, 0, wx.EXPAND, 0)
+
+		self.añadirBTN = wx.Button(self.panel_1, 101, _("&Añadir"))
+		sizer_2.Add(self.añadirBTN, 2, wx.CENTRE, 0)
+
+		self.editarBTN = wx.Button(self.panel_1, 102, _("&Editar"))
+		sizer_2.Add(self.editarBTN, 2, wx.CENTRE, 0)
+
+		self.borrarBTN = wx.Button(self.panel_1, 103, _("&Borrar"))
+		sizer_2.Add(self.borrarBTN, 2, wx.CENTRE, 0)
+
+		sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
+		sizer_1.Add(sizer_3, 0, wx.EXPAND, 0)
+
+		self.cerrarBTN = wx.Button(self.panel_1, 0, _("&Cerrar"))
+		sizer_3.Add(self.cerrarBTN, 2, wx.CENTRE, 0)
+
+		self.panel_1.SetSizer(sizer_1)
+		self.Layout()
+		self.CenterOnScreen()
+
+		self.inicio()
+
+	def inicio(self):
+		self.Bind(wx.EVT_BUTTON,self.onBoton)
+		self.Bind(wx.EVT_BUTTON, self.onCerrar, id=self.cerrarBTN.GetId())
+		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
+		self.Bind(wx.EVT_CLOSE, self.onCerrar)
+
+	def onBoton(self, event):
+		botonID = event.GetEventObject().GetId()
+		if botonID == 101: # Añadir
+			dlg = AñadirEditar(self, 0)
+			res = dlg.ShowModal()
+			if res == 0:
+				num = len(ajustes.listaServidores) + 1
+				ajustes.listaServidores.append([dlg.nombreText.GetValue(), dlg.urlText.GetValue(), "data{}.json".format(num)])
+				basedatos.ServidoresComplementos().fileJsonAddon(1, ajustes.listaServidores)
+				self.list_box_1.Clear()
+				self.list_box_1.Append([ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+				self.list_box_1.SetSelection(len(ajustes.listaServidores) - 1)
+				self.list_box_1.SetFocus()
+			dlg.Destroy()
+		elif botonID == 102: # Editar
+			if self.list_box_1.GetSelection() == 0:
+				ui.message(_("El servidor de la comunidad hispanohablante no puede ser editado."))
+			else:
+				dlg = AñadirEditar(self, 1, ajustes.listaServidores[self.list_box_1.GetSelection()])
+				res = dlg.ShowModal()
+				if res == 0:
+					indice = self.list_box_1.GetSelection()
+					ficheroJson = ajustes.listaServidores[indice][2]
+					del ajustes.listaServidores[indice]
+					ajustes.listaServidores.insert(indice, [dlg.nombreText.GetValue(), dlg.urlText.GetValue(), ficheroJson])
+					basedatos.ServidoresComplementos().fileJsonAddon(1, ajustes.listaServidores)
+					self.list_box_1.Clear()
+					self.list_box_1.Append([ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+					self.list_box_1.SetSelection(len(ajustes.listaServidores) - 1)
+					self.list_box_1.SetFocus()
+				dlg.Destroy()
+		elif botonID == 103: # borrar
+			if self.list_box_1.GetSelection() == 0:
+				ui.message(_("El servidor de la comunidad hispanohablante no puede ser borrado."))
+			else:
+				msg = \
+_("""ADVERTENCIA:
+
+Esta acción no es reversible.
+
+Va a borrar el servidor:
+
+{}
+
+¿Esta seguro que desea continuar?""").format(self.list_box_1.GetString(self.list_box_1.GetSelection()))
+				MsgBox = wx.MessageDialog(None, msg, _("Pregunta"), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+				ret = MsgBox.ShowModal()
+				if ret == wx.ID_YES:
+					MsgBox.Destroy
+					indice = self.list_box_1.GetSelection()
+					ficheroJson = ajustes.listaServidores[indice][2]
+					del ajustes.listaServidores[indice]
+					basedatos.ServidoresComplementos().fileJsonAddon(1, ajustes.listaServidores)
+					try:
+						os.remove(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", ficheroJson))
+					except:
+						pass
+					self.list_box_1.Clear()
+					self.list_box_1.Append([ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))])
+					self.list_box_1.SetSelection(len(ajustes.listaServidores) - 1)
+					self.list_box_1.SetFocus()
+				else:
+					MsgBox.Destroy
+					self.list_box_1.SetFocus()
+
+	def onkeyVentanaDialogo(self, event):
+		if event.GetKeyCode() == 27: # Pulsamos ESC y cerramos la ventana
+			if self.IsModal():
+				self.EndModal(0)
+			else:
+				self.Close()
+		else:
+			event.Skip()
+
+	def onCerrar(self, event):
+		if self.IsModal():
+			self.EndModal(0)
+		else:
+			self.Close()
+
+class AñadirEditar(wx.Dialog):
+	def __init__(self, frame, opcion, datos=[]):
+		super(AñadirEditar, self).__init__(None, -1, title="")
+
+		self.frame = frame
+		self.opcion = opcion
+		self.datos = datos
+		self.SetTitle(_("Añadir servidor")) if self.opcion == 0 else self.SetTitle(_("Editar servidor"))
+
+		self.panel_1 = wx.Panel(self, wx.ID_ANY)
+
+		sizer_1 = wx.BoxSizer(wx.VERTICAL)
+
+		label_1 = wx.StaticText(self.panel_1, wx.ID_ANY, _("&Nombre del servidor:"))
+		sizer_1.Add(label_1, 0, wx.EXPAND, 0)
+
+		self.nombreText = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
+		sizer_1.Add(self.nombreText, 0, wx.EXPAND, 0)
+
+		label_2 = wx.StaticText(self.panel_1, wx.ID_ANY, _("&URL del servidor:"))
+		sizer_1.Add(label_2, 0, wx.EXPAND, 0)
+
+		self.urlText = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
+		sizer_1.Add(self.urlText, 0, wx.EXPAND, 0)
+
+		sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+		sizer_1.Add(sizer_2, 0, wx.EXPAND, 0)
+
+		self.aceptarBTN = wx.Button(self.panel_1, 0, _("&Aceptar"))
+		sizer_2.Add(self.aceptarBTN, 2, wx.CENTER, 0)
+
+		self.cancelarBTN = wx.Button(self.panel_1, 1, _("&Cancelar"))
+		sizer_2.Add(self.cancelarBTN, 2, wx.CENTER, 0)
+
+		self.panel_1.SetSizer(sizer_1)
+
+		self.Layout()
+		self.CenterOnScreen()
+
+		self.inicio()
+
+	def inicio(self):
+		self.nombreText.Bind(wx.EVT_CONTEXT_MENU, self.skip)
+		self.urlText.Bind(wx.EVT_CONTEXT_MENU, self.skip)
+		self.Bind(wx.EVT_BUTTON, self.onAceptar, id=self.aceptarBTN.GetId())
+		self.Bind(wx.EVT_BUTTON, self.onCancelar, id=self.cancelarBTN.GetId())
+		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
+		self.Bind(wx.EVT_CLOSE, self.onCancelar)
+		if self.opcion == 1:
+			self.nombreText.SetValue(self.datos[0])
+			self.urlText.SetValue(self.datos[1])
+
+	def onAceptar(self, event):
+		if self.nombreText.GetValue() == "":
+			msg = \
+_("""El campo de nombre de servidor no puede quedar en blanco.
+
+Introduzca uno para poder continuar.""")
+			ui.message(msg)
+			self.nombreText.SetFocus()
+		else:
+			if self.urlText.GetValue() == "":
+				msg = \
+_("""El campo de URL de servidor no puede quedar en blanco.
+
+Introduzca uno para poder continuar.""")
+				ui.message(msg)
+				self.urlText.SetFocus()
+			else:
+				if basedatos.estaenlistado([ajustes.listaServidores[i][0] for i in range(0, len(ajustes.listaServidores))], self.nombreText.GetValue()):
+					msg = \
+_("""Ya tiene un servidor con el mismo nombre.
+
+Modifique el nombre del servidor para poder continuar.""")
+					ui.message(msg)
+					self.nombreText.SetFocus()
+				else:
+					if basedatos.chkJson(self.urlText.GetValue()) == False:
+						msg = \
+_("""La URL introducida dio error.
+
+Compruebe que es una URL correcta de base de datos de complementos.""")
+						ui.message(msg)
+						self.urlText.SetFocus()
+					else:
+						if self.IsModal():
+							self.EndModal(0)
+						else:
+							self.Close()
+
+	def skip(self, event):
+		return
+
+	def onkeyVentanaDialogo(self, event):
+		if event.GetKeyCode() == 27: # Pulsamos ESC y cerramos la ventana
+			if self.IsModal():
+				self.EndModal(1)
+			else:
+				self.Close()
+		else:
+			event.Skip()
+
+	def onCancelar(self, event):
+		if self.IsModal():
+			self.EndModal(1)
+		else:
+			self.Close()
 
 class tiendaApp(wx.Dialog):
 	def __init__(self, parent, dataServidor):
@@ -409,7 +706,8 @@ class tiendaApp(wx.Dialog):
 
 		self.descargarBTN = wx.Button(self.Panel, 201, _("&Descargar complemento"))
 		self.paginaWebBTN = wx.Button(self.Panel, 202, _("Visitar &página WEB"))
-		self.salirBTN = wx.Button(self.Panel, 203, _("&Salir"))
+		self.cambiarSrvBTN = wx.Button(self.Panel, 203, _("&Cambiar de servidor"))
+		self.salirBTN = wx.Button(self.Panel, 204, _("&Salir"))
 		self.Bind(wx.EVT_BUTTON,self.onBoton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
 		self.Bind(wx.EVT_CLOSE, self.onBoton)
@@ -429,6 +727,7 @@ class tiendaApp(wx.Dialog):
 
 		szBotones.Add(self.descargarBTN, 2, wx.CENTRE)
 		szBotones.Add(self.paginaWebBTN, 2, wx.CENTRE)
+		szBotones.Add(self.cambiarSrvBTN, 2, wx.CENTRE)
 		szBotones.Add(self.salirBTN, 2, wx.CENTRE)
 
 		szComplementos.Add(szBotones, 0, wx.EXPAND)
@@ -529,6 +828,7 @@ Total descargas: {}\n""").format(
 		self.txtResultado.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
 		self.descargarBTN.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
 		self.paginaWebBTN.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
+		self.cambiarSrvBTN.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
 		self.salirBTN.Bind(wx.EVT_SET_FOCUS, self.onSetSelection)
 
 	def onSetFocus(self, event):
@@ -772,6 +1072,14 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 		elif botonID == 202:
 			wx.LaunchDefaultBrowser(datos['url'])
 		elif botonID == 203:
+			self.menu = wx.Menu()
+			for i in range(len(ajustes.listaServidores)):
+				i = self.menu.Append(i, "{}".format(ajustes.listaServidores[i][0]), "", wx.ITEM_CHECK)
+			self.menu.Bind(wx.EVT_MENU_RANGE, self.onCambiarSRV, id=0, id2=len(ajustes.listaServidores)-1)
+			self.menu.Check(ajustes.selectSRV, True)
+			self.cambiarSrvBTN.PopupMenu(self.menu)
+
+		elif botonID == 204:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
 			else:
@@ -787,6 +1095,22 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 			ajustes.focoActual = "listboxComplementos"
 			self.Destroy()
 			gui.mainFrame.postPopup()
+
+	def onCambiarSRV(self, event):
+		ajustes.selectSRV = event.GetId()
+		ajustes.urlServidor = ajustes.listaServidores[ajustes.selectSRV][1]
+		ajustes.setConfig("urlServidor", ajustes.listaServidores[event.GetId()][1])
+		ajustes.setConfig("selectSRV", event.GetId())
+		ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+		if ajustes.IS_Download == False:
+			ajustes.IS_WinON = False
+		else:
+			ajustes.IS_TEMPORAL = True
+			ajustes.focoActual = "listboxComplementos"
+		self.Destroy()
+		gui.mainFrame.postPopup()
+		self._MainWindows = HiloComplemento(1)
+		self._MainWindows.start()
 
 	def onDescarga(self, event):
 		if ajustes.IS_Download == False:

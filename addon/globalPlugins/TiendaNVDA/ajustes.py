@@ -21,6 +21,8 @@ def initConfiguration():
 		"installChk": "boolean(default=False)",
 		"autoLang": "boolean(default=False)",
 		"langTrans": "integer(default=5, min=0, max=11)",
+		"selectSRV": "integer(default=0, min=0)",
+		"urlServidor": "string(default='https://nvda.es/files/get.php?addonslist')",
 	}
 	config.conf.spec['TiendaES'] = confspec
 
@@ -43,9 +45,16 @@ tempLang = None
 dirDatos = None
 listaAddonsSave = None
 listaAddonsInstalados = None
+# Valores para todo lo referido con los servidores
+urlServidor = None
+selectSRV = None
+nombreSRV_Fijo = _("Servidor comunidad hispanohablante")
+urlSVR_Fijo ="https://nvda.es/files/get.php?addonslist" # "https://nvda-addons.org/files/get.php?addonslist"
+fileFijo = "data.json"
+listaServidores = []
 
 def setup():
-	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer, tempTrans, tempLang
+	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer, tempTrans, tempLang, urlServidor, selectSRV, listaServidores
 	initConfiguration()
 	tempChk = getConfig("autoChk")
 	tempTimer = getConfig("timerChk")
@@ -53,6 +62,8 @@ def setup():
 	tempLang = getConfig("langTrans")
 	tempOrden = getConfig("ordenChk")
 	tempInstall = getConfig("installChk")
+	urlServidor = getConfig("urlServidor")
+	selectSRV = getConfig("selectSRV")
 	dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
 	if os.path.exists(dirDatos) == False:
 		os.mkdir(dirDatos)
@@ -62,9 +73,16 @@ def setup():
 				shutil.rmtree(os.path.join(dirDatos, "temp"), ignore_errors=True)
 			except:
 				pass
-	listaAddonsSave = basedatos.libreriaLocal().fileJsonAddon(2)
+	listaServidores = basedatos.ServidoresComplementos().fileJsonAddon(2)
+	try:
+		listaAddonsSave = basedatos.libreriaLocal(listaServidores[selectSRV][2]).fileJsonAddon(2)
+	except:
+		urlServidor = urlSVR_Fijo
+		selectSRV = 0
+		listaAddonsSave = basedatos.libreriaLocal(listaServidores[selectSRV][2]).fileJsonAddon(2)
 	listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
-	basedatos.libreriaLocal().actualizaJson()
+	basedatos.libreriaLocal(listaServidores[selectSRV][2]).actualizaJson()
+
 
 titulo = _("Tienda NVDA.ES")
 IS_WinON = False
@@ -107,7 +125,8 @@ id_widgets = {
 # Botones
 	201:"descargarBTN",
 	202:"paginaWebBTN",
-	203:"salirBTN",
+	203:"cambiarSrvBTN",
+	204:"salirBTN",
 }
 
 tiempoDict = {

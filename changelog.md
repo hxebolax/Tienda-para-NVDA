@@ -1,0 +1,1 @@
+* Agregado gestor de servidores para otros repositorios de complementos

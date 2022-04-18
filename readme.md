@@ -171,6 +171,44 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.
+
+* Añadida la posibilidad de agregar URLs personalizadas de repositorios de complementos.
+
+Esta nueva función vendrá bien para agregar aquellos repositorios que usen el gestor de complementos que usa nvda.es para más información visitar el repositorio de Github:
+
+https://github.com/nvda-es/advancedAddonFiles
+
+Bien quien use dicha aplicación para crear un repositorio ahora podrá agregar su URL a la Tienda.
+
+En las opciones de la Tienda tendremos nada más entrar un cuadro combinado donde podremos elegir el servidor que deseamos por defecto.
+
+La primera vez que iniciemos las opciones solo estará el servidor de la comunidad hispanohablante, decir que este servidor no puede ser modificado ni borrado por lo que siempre estará presente.
+
+Si tabulamos tendremos un botón para gestionar los servidores y si lo pulsamos se abrirá una ventana donde podremos añadir, editar o borrar servidores.
+
+Si pulsamos añadir se abre una ventana donde tendremos que rellenar el nombre que deseamos para el servidor y la url del servidor.
+
+Si editamos se abre una ventana con los datos del servidor que tengamos seleccionado en la lista para poder ser modificados.
+
+Si borramos se nos advertirá con un mensaje que la acción no es reversible por lo que si damos a si se borrara el servidor que tengamos seleccionado.
+
+Una vez agregados servidores y cerrada la ventana de gestión de servidores podremos elegir en el cuadro combinado el que deseemos. Cuando seleccionemos un servidor se actualizará el estado de Complementos instalados que hay en el servidor añadiendo a dicho cuadro solo los complementos que en ese momento el servidor sirva y nosotros tengamos instalados.
+
+Decir que este cuadro es para cada servidor por lo que si en la comunidad hispanohablante tenemos configuraciones personalizadas en nuestros complementos como por ejemplo evitar la actualización de alguno u otro canal de actualización solo será para cuando elijamos dicho servidor.
+
+Las demás opciones de la Tienda son globales.
+
+El servidor que elijamos en las opciones de la tienda será el predefinido cada vez que arranquemos NVDA y la Tienda.
+
+También se agrego en la ventana principal de la Tienda la posibilidad de cambiar rápidamente de servidor sin necesidad de entrar en opciones.
+
+Para ello se agrego el atajo Alt+C el cual desplegará un menú con los servidores que tenemos y estará marcado el que actualmente este definido. Igualmente podemos tabular hasta encontrar en la interface el botón llamado Cambiar de servidor para desplegar dicho menú.
+
+En dicho menú podemos elegir el que deseemos y automáticamente cambiaremos a dicho servidor.
+
+Si cambiamos desde la pantalla principal dicho ajuste no se guardará cuando iniciemos de nuevo NVDA siempre será el servidor predefinido el que tengamos configurado en opciones.
+
 ## Versión 0.7.1.
 
 * Agregada opción para poder traducir las descripciones de los complementos.
