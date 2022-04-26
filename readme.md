@@ -171,13 +171,17 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.1.
+
+* Solucionado problema al conectarse a un servidor sin complementos.
+
 ## Versión 0.8.
 
 * Añadida la posibilidad de agregar URLs personalizadas de repositorios de complementos.
 
 Esta nueva función vendrá bien para agregar aquellos repositorios que usen el gestor de complementos que usa nvda.es para más información visitar el repositorio de Github:
 
-https://github.com/nvda-es/advancedAddonFiles
+[https://github.com/nvda-es/advancedAddonFiles](https://github.com/nvda-es/advancedAddonFiles)
 
 Bien quien use dicha aplicación para crear un repositorio ahora podrá agregar su URL a la Tienda.
 

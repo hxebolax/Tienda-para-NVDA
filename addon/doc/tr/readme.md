@@ -163,6 +163,44 @@ Bunları bildirmek ve mümkün olan en kısa sürede çözebilmek için iletişi
 NVDA.ES eklenti Mağazasının Keyfini Çıkarın!
 
 # Sürüm Geçmişi:
+## Sürüm 0.8:
+
+* Özel eklenti deposu URL'leri ekleme özelliği eklendi.
+
+Bu yeni işlev, nvda.es tarafından kullanılan eklenti yöneticisini kullanan depoları eklemek için kullanışlı olacaktır. Daha fazla bilgi için Github deposunu ziyaret edin:  
+
+https://github.com/nvda-es/advancedAddonFiles  
+
+Söz konusu uygulamayı bir havuz oluşturmak için kim kullanırsa kullansın, artık URL'sini Mağaza'ya ekleyebilecek.  
+
+Mağaza seçeneklerinde, varsayılan olarak istediğimiz sunucuyu seçebileceğimiz bir açılan kutuya girer girmez sahip olacağız.  
+
+Seçenekleri ilk başlattığımızda, bu sunucunun değiştirilemeyeceğini veya silinemeyeceğini söyleyen sadece İspanyol topluluk sunucusu olacak, bu yüzden her zaman mevcut olacak.  
+
+Tab tuşuna basarsak, sunucuları yönetmek için bir düğmemiz olacak. Ona basarsak, sunucuları ekleyebileceğimiz, düzenleyebileceğimiz veya silebileceğimiz bir pencere açılacaktır.  
+
+Ekle'ye basarsak, sunucu için istediğimiz adı ve sunucu url'sini yazmamız gereken bir pencere açılır.  
+
+Düzenleye basarsak, listede seçtiğimiz sunucunun verilerinin değiştirilebilmesi için bir pencere açılır.  
+
+Eğer silersek eylemin geri alınamaz olduğuna dair bir mesaj ile uyarılırız, yani evet'e tıklarsak seçtiğimiz sunucu silinecektir.  
+
+Sunucular eklendikten ve sunucu yönetim penceresi kapatıldıktan sonra açılan kutudan istediğimizi seçebiliriz. Bir sunucu seçtiğimizde, sunucuda kurulu olan Eklentilerin durumu güncellenecek ve bu kutuya sadece sunucunun o anda hizmet verdiği ve bizim kurduğumuz eklentiler eklenecektir.  
+
+Bu kutunun her sunucu için olduğunu söylemek gerekirse, İspanyol toplulukta eklentilerimizde bir veya başka bir güncelleme kanalının güncellenmesini engellemek gibi özel ayarlarımız varsa, bu yalnızca o sunucuyu seçtiğimizde olacaktır.  
+
+Diğer tüm Mağaza seçenekleri geneldir.  
+
+Mağaza seçeneklerinde seçtiğimiz sunucu, NVDA ve Store'u her başlattığımızda varsayılan olacaktır.  
+
+Ana Mağaza penceresinde, ayrıca seçeneklere girmek zorunda kalmadan sunucuları hızlı bir şekilde değiştirebilme butonu eklendi.  
+
+Bunu yapmak için, sahip olduğumuz sunucuları içeren bir menüyü gösterecek ve şu anda tanımlanmış olanın işaretleneceği Alt+Ğ kısayolu eklendi. Aynı şekilde, söz konusu menüyü görüntülemek için arayüzde Sunucuyu değiştir adlı düğmeyi bulana kadar sekme tuşuna basabiliriz..  
+
+Bu menüde istediğimiz sunucuyu seçip otomatik olarak o sunucuya geçeceğiz.  
+
+Ana ekrandan değiştirirsek, NVDA'yı tekrar başlattığımızda bu ayar kaydedilmeyecek, her zaman seçeneklerde yapılandırdığımız varsayılan sunucu olacaktır.  
+
 ## Sürüm 0.7.1.:
 
 * Eklenti açıklamalarını çevirebilmek için seçenek eklendi.

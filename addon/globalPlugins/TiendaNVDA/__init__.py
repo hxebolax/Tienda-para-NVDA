@@ -673,6 +673,73 @@ Compruebe que es una URL correcta de base de datos de complementos.""")
 		else:
 			self.Close()
 
+class SinComplementos(wx.Dialog):
+	def __init__(self, parent):
+
+		WIDTH = 450
+		HEIGHT = 150
+
+		super(SinComplementos,self).__init__(parent, -1, title=_("Servidor sin complementos"), size = (WIDTH, HEIGHT))
+
+		ajustes.IS_WinON = True
+		self.choiceSelection = 0
+		self.resultados = []
+		for i in range(len(ajustes.listaServidores)):
+			self.resultados.append("{}".format(ajustes.listaServidores[i][0]))
+
+		self.Panel = wx.Panel(self)
+		self.choice = wx.Choice(self.Panel, wx.ID_ANY, choices =[_("Seleccione un servidor")] + self.resultados)
+		self.choice.SetSelection(self.choiceSelection)
+		self.choice.Bind(wx.EVT_CHOICE, self.onChoiceApp)
+		#Translators: etiqueta del botón aceptar
+		self.aceptarBTN = wx.Button(self.Panel, wx.ID_ANY, _("&Aceptar"))
+		self.aceptarBTN.Bind(wx.EVT_BUTTON, self.onAceptar)
+		#Translators: etiqueta del botón cancelar
+		self.cerrarBTN = wx.Button(self.Panel, wx.ID_CANCEL, _("&Cerrar"))
+		self.cerrarBTN.Bind(wx.EVT_BUTTON, self.close, id=wx.ID_CANCEL)
+
+		sizerV = wx.BoxSizer(wx.VERTICAL)
+		sizerH = wx.BoxSizer(wx.HORIZONTAL)
+
+		sizerV.Add(self.choice, 0, wx.EXPAND | wx.ALL)
+
+		sizerH.Add(self.aceptarBTN, 2, wx.CENTER)
+		sizerH.Add(self.cerrarBTN, 2, wx.CENTER)
+
+		sizerV.Add(sizerH, 0, wx.CENTER)
+
+		self.Panel.SetSizer(sizerV)
+
+		self.CenterOnScreen()
+
+	def onChoiceApp(self, event):
+		#Translators: título de selección de aplicación
+		if self.choice.GetString(self.choice.GetSelection()) == _("Seleccione un servidor"):
+			self.choiceSelection = 0
+		else:
+			self.choiceSelection = event.GetSelection()
+
+	def onAceptar(self, event):
+		if self.choiceSelection == 0:
+			gui.messageBox(_("Debe seleccionar un servidor para continuar."), _("Información"), wx.ICON_INFORMATION)
+			self.choice.SetFocus()
+		else:
+			ajustes.IS_WinON = False
+			ajustes.selectSRV = self.choiceSelection - 1
+			ajustes.urlServidor = ajustes.listaServidores[ajustes.selectSRV][1]
+			ajustes.setConfig("urlServidor", ajustes.listaServidores[ajustes.selectSRV][1])
+			ajustes.setConfig("selectSRV", ajustes.selectSRV)
+			ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.Destroy()
+			gui.mainFrame.postPopup()
+			self._MainWindows = HiloComplemento(1)
+			self._MainWindows.start()
+
+	def close(self, event):
+		ajustes.IS_WinON = False
+		self.Destroy()
+		gui.mainFrame.postPopup()
+
 class tiendaApp(wx.Dialog):
 	def __init__(self, parent, dataServidor):
 
@@ -685,7 +752,7 @@ class tiendaApp(wx.Dialog):
 		self.datos = dataServidor
 		self.indiceFiltro = ajustes.indiceFiltro
 		self.temporal = []
-
+		print(len(self.datos.dataServidor))
 		self.Panel = wx.Panel(self, 1)
 
 		labelBusqueda = wx.StaticText(self.Panel, wx.ID_ANY, _("&Buscar:"))
@@ -1791,9 +1858,14 @@ class HiloComplemento(Thread):
 
 	def run(self):
 		def tiendaAppDialogo(data):
-			self._MainWindows = tiendaApp(gui.mainFrame, data)
-			gui.mainFrame.prePopup()
-			self._MainWindows.Show()
+			if len(data.dataServidor) == 0:
+				self._MainWindows = SinComplementos(gui.mainFrame)
+				gui.mainFrame.prePopup()
+				self._MainWindows.Show()
+			else:
+				self._MainWindows = tiendaApp(gui.mainFrame, data)
+				gui.mainFrame.prePopup()
+				self._MainWindows.Show()
 
 		def ActualizacionDialogo(nombreUrl, verInstalada, verInstalar):
 			self._MainWindows = BuscarActualizacionesDialogo(gui.mainFrame, nombreUrl, verInstalada, verInstalar)

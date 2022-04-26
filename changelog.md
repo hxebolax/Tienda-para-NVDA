@@ -1,1 +1,1 @@
-* Agregado gestor de servidores para otros repositorios de complementos
+* Solucionado problema al conectarse a un servidor sin complementos.
