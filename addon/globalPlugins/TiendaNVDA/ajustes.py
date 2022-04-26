@@ -80,9 +80,8 @@ def setup():
 		urlServidor = urlSVR_Fijo
 		selectSRV = 0
 		listaAddonsSave = basedatos.libreriaLocal(listaServidores[selectSRV][2]).fileJsonAddon(2)
-	listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
-	basedatos.libreriaLocal(listaServidores[selectSRV][2]).actualizaJson()
-
+		listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
+		basedatos.libreriaLocal(listaServidores[selectSRV][2]).actualizaJson()
 
 titulo = _("Tienda NVDA.ES")
 IS_WinON = False

@@ -3,6 +3,7 @@
 # This file is covered by the GNU General Public License.
 
 import addonHandler
+from logHandler import log
 import globalVars
 import addonAPIVersion
 import traceback
@@ -58,16 +59,15 @@ class NVDAStoreClient(object):
 	def __init__(self):
 		super(NVDAStoreClient, self).__init__()
 
-		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
-		p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
 		try:
+			Headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
+			p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
 			self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
 			self.urlBase = "https://nvda.es/files/get.php?file="
 			self.dataLocal = list(addonHandler.getAvailableAddons())
 		except urllib.error.HTTPError as http_err:
 			self.dataServidor = None
-			exc, type, trace = sys.exc_info()
-			traceback.print_exception(exc, type, trace)
+			log.info(http_err)
 
 	def GetFilenameDownload(self, valor):
 		for x in range(0, len(self.dataServidor)):

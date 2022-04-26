@@ -131,8 +131,8 @@ _("""Error producido en las librerías::
 			log.info(msg)
 			exc, type, trace = sys.exc_info()
 			traceback.print_exception(exc, type, trace)
-
 			inicio = False
+
 		if inicio:
 			global chkUpdate
 			if ajustes.tempChk == True:
@@ -245,16 +245,20 @@ class TiendaPanel(SettingsPanel):
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
 		self.listbox = helper.addLabeledControl(_("Complementos instalados que hay en el servidor:"), wx.ListBox)
-		if len(ajustes.listaAddonsSave) == 0:
+		if self.datosServidor == None:
 			pass
 		else:
-			for i in ajustes.listaAddonsSave:
-				for x in range(0, len(self.datosServidor)):
-					if self.datosServidor[x]['name'].lower() == i[0].lower():
-						if i[1] == 9:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
-						else:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+			if len(ajustes.listaAddonsSave) == 0:
+				pass
+			else:
+				for i in ajustes.listaAddonsSave:
+					for x in range(0, len(self.datosServidor)):
+						if self.datosServidor[x]['name'].lower() == i[0].lower():
+							if i[1] == 9:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+							else:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+
 		if self.listbox.GetSelection() == -1:
 			pass
 		else:
@@ -350,21 +354,26 @@ class TiendaPanel(SettingsPanel):
 
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
-		self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
-		self.listaGuarda = []
-		ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
-		self.listbox.Clear()
-		if len(ajustes.listaAddonsSave) == 0:
-			self.listbox.Append(_("Sin complementos compatibles"))
+		if self.datosServidor == None:
+			self.listbox.Clear()
+			self.listbox.Append(_("No se pudo tener acceso al servidor"))
+			self.listbox.SetSelection(0)
 		else:
-			for i in ajustes.listaAddonsSave:
-				for x in range(0, len(self.datosServidor)):
-					if self.datosServidor[x]['name'].lower() == i[0].lower():
-						if i[1] == 9:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
-						else:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
-		self.listbox.SetSelection(0)
+			self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.listaGuarda = []
+			ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.listbox.Clear()
+			if len(ajustes.listaAddonsSave) == 0:
+				self.listbox.Append(_("Sin complementos compatibles"))
+			else:
+				for i in ajustes.listaAddonsSave:
+					for x in range(0, len(self.datosServidor)):
+						if self.datosServidor[x]['name'].lower() == i[0].lower():
+							if i[1] == 9:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+							else:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+			self.listbox.SetSelection(0)
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
@@ -384,21 +393,24 @@ class TiendaPanel(SettingsPanel):
 		if self.listbox.GetString(self.listbox.GetSelection()) == _("Sin complementos compatibles"):
 			pass
 		else:
-			nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
-			nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
-			indice = self.datos.indiceName(nombreLocal)
-			datos = self.datosServidor[indice]
-			if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
-				self.menuDescarga = wx.Menu()
-				for i in range(len(datos['links'])):
-					item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
-					self.Bind(wx.EVT_MENU, self.onSelect, item)
-				item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
-				self.Bind(wx.EVT_MENU, self.onSelect, item)
-
-				position = self.listbox.GetPosition()
-				self.PopupMenu(self.menuDescarga,position)
+			if self.listbox.GetString(self.listbox.GetSelection()) == _("No se pudo tener acceso al servidor"):
 				pass
+			else:
+				nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
+				nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
+				indice = self.datos.indiceName(nombreLocal)
+				datos = self.datosServidor[indice]
+				if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
+					self.menuDescarga = wx.Menu()
+					for i in range(len(datos['links'])):
+						item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
+						self.Bind(wx.EVT_MENU, self.onSelect, item)
+					item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
+					self.Bind(wx.EVT_MENU, self.onSelect, item)
+
+					position = self.listbox.GetPosition()
+					self.PopupMenu(self.menuDescarga,position)
+					pass
 
 	def modificaListBox(self, canalID):
 		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
@@ -1874,8 +1886,13 @@ class HiloComplemento(Thread):
 
 		try:
 			datos = basedatos.NVDAStoreClient()
-			if datos == None:
-				gui.messageBox(_("Se a producido un error critico al cargar los datos del servidor."), _("Información"), wx.ICON_INFORMATION)
+			if datos.dataServidor == None:
+				msg = \
+_("""No se pudo tener acceso al servidor de complementos.
+
+Inténtelo en unos minutos.""")
+				gui.messageBox(msg,
+					_("Error"), wx.ICON_ERROR)
 			else:
 				if self.opcion == 1:
 					wx.CallAfter(tiendaAppDialogo, datos)
