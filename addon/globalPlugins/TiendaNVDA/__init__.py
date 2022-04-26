@@ -1874,17 +1874,20 @@ class HiloComplemento(Thread):
 
 		try:
 			datos = basedatos.NVDAStoreClient()
-			if self.opcion == 1:
-				wx.CallAfter(tiendaAppDialogo, datos)
-			elif self.opcion == 2:
-				nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
-				if nombreUrl == False:
-					ajustes.IS_WinON = True
-					gui.messageBox(_("No hay actualizaciones."),
-						_("Información"), wx.ICON_INFORMATION)
-					ajustes.IS_WinON = False
-				else:
-					wx.CallAfter(ActualizacionDialogo, nombreUrl, verInstalada, verInstalar)
+			if datos == None:
+				gui.messageBox(_("Se a producido un error critico al cargar los datos del servidor."), _("Información"), wx.ICON_INFORMATION)
+			else:
+				if self.opcion == 1:
+					wx.CallAfter(tiendaAppDialogo, datos)
+				elif self.opcion == 2:
+					nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
+					if nombreUrl == False:
+						ajustes.IS_WinON = True
+						gui.messageBox(_("No hay actualizaciones."),
+							_("Información"), wx.ICON_INFORMATION)
+						ajustes.IS_WinON = False
+					else:
+						wx.CallAfter(ActualizacionDialogo, nombreUrl, verInstalada, verInstalar)
 		except Exception as e:
 			msg = \
 _("""No se pudo tener acceso al servidor de complementos.

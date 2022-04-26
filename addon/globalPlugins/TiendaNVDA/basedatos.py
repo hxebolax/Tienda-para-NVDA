@@ -5,9 +5,11 @@
 import addonHandler
 import globalVars
 import addonAPIVersion
+import traceback
 import json
 import urllib.request
 import os
+import sys
 from threading import Timer
 from .packaging import version
 from . import ajustes
@@ -58,9 +60,14 @@ class NVDAStoreClient(object):
 
 		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
 		p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
-		self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
-		self.urlBase = "https://nvda.es/files/get.php?file="
-		self.dataLocal = list(addonHandler.getAvailableAddons())
+		try:
+			self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
+			self.urlBase = "https://nvda.es/files/get.php?file="
+			self.dataLocal = list(addonHandler.getAvailableAddons())
+		except urllib.error.HTTPError as http_err:
+			self.dataServidor = None
+			exc, type, trace = sys.exc_info()
+			traceback.print_exception(exc, type, trace)
 
 	def GetFilenameDownload(self, valor):
 		for x in range(0, len(self.dataServidor)):
