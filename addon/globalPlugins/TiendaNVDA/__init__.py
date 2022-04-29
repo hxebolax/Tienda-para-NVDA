@@ -764,7 +764,7 @@ class tiendaApp(wx.Dialog):
 		self.datos = dataServidor
 		self.indiceFiltro = ajustes.indiceFiltro
 		self.temporal = []
-		print(len(self.datos.dataServidor))
+
 		self.Panel = wx.Panel(self, 1)
 
 		labelBusqueda = wx.StaticText(self.Panel, wx.ID_ANY, _("&Buscar:"))
@@ -1664,6 +1664,24 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 						wx.LaunchDefaultBrowser(self.url)
 						return
 
+		if self.nombreFile == None:
+			winsound.PlaySound(None, winsound.SND_PURGE)
+			msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][self.id]['channel'])
+			gui.messageBox(msg,
+				_("Información"), wx.ICON_INFORMATION)
+			self.nombreFile = ""
+			ajustes.IS_Download = False
+			if ajustes.IS_TEMPORAL == True:
+				ajustes.IS_WinON = False
+				ajustes.IS_TEMPORAL = False
+			wx.LaunchDefaultBrowser(self.url)
+			return
+
 		winsound.PlaySound(None, winsound.SND_PURGE)
 		wildcard = _("Complemento de NVDA (*.nvda-addon)|*.nvda-addon")
 		dlg = wx.FileDialog(None, message=_("Guardar en..."), defaultDir=os.environ['SYSTEMDRIVE'], defaultFile=self.nombreFile, wildcard=wildcard, style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
@@ -1884,15 +1902,28 @@ class HiloComplemento(Thread):
 			gui.mainFrame.prePopup()
 			self._MainWindows.Show()
 
+		def OtroServidor():
+			self._MainWindows = SinComplementos(gui.mainFrame)
+			gui.mainFrame.prePopup()
+			self._MainWindows.Show()
+
 		try:
 			datos = basedatos.NVDAStoreClient()
 			if datos.dataServidor == None:
 				msg = \
 _("""No se pudo tener acceso al servidor de complementos.
 
-Inténtelo en unos minutos.""")
-				gui.messageBox(msg,
-					_("Error"), wx.ICON_ERROR)
+Inténtelo en unos minutos.
+
+¿Desea no obstante intentar cambiar de servidor?""")
+				MsgBox = wx.MessageDialog(None, msg, _("Pregunta"), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+				ret = MsgBox.ShowModal()
+				if ret == wx.ID_YES:
+					MsgBox.Destroy
+					wx.CallAfter(OtroServidor)
+
+				else:
+					MsgBox.Destroy
 			else:
 				if self.opcion == 1:
 					wx.CallAfter(tiendaAppDialogo, datos)

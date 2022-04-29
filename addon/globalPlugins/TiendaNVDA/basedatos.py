@@ -63,9 +63,10 @@ class NVDAStoreClient(object):
 			Headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
 			p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
 			self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
-			self.urlBase = "https://nvda.es/files/get.php?file="
+			temp = ajustes.urlServidor.split("?")
+			self.urlBase = temp[0] + "?file="
 			self.dataLocal = list(addonHandler.getAvailableAddons())
-		except urllib.error.HTTPError as http_err:
+		except (urllib.error.HTTPError, urllib.error.URLError) as http_err:
 			self.dataServidor = None
 			log.info(http_err)
 
