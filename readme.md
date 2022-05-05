@@ -175,6 +175,10 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 * Solucionado problema al conectarse a un servidor sin complementos.
 
+* Solucionado las descargas desde nuevos servidores
+
+* Solucionado la conexión a servidores Onion tanto públicos como privados a través de Proxy
+
 ## Versión 0.8.
 
 * Añadida la posibilidad de agregar URLs personalizadas de repositorios de complementos.
