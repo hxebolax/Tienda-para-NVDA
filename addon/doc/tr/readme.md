@@ -163,6 +163,12 @@ Bunları bildirmek ve mümkün olan en kısa sürede çözebilmek için iletişi
 NVDA.ES eklenti Mağazasının Keyfini Çıkarın!
 
 # Sürüm Geçmişi:
+## Sürüm 0.8.1.
+
+* Eklentileri olmayan bir sunucuya bağlanma sorunu düzeltildi.
+* Yeni sunuculardan sabit indirmeler
+* Proxy aracılığıyla genel ve özel Onion sunucularına bağlantı çözüldü
+
 ## Sürüm 0.8:
 
 * Özel eklenti deposu URL'leri ekleme özelliği eklendi.

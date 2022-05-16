@@ -171,6 +171,22 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.2.
+
+* Actualizado idioma y documentación en Ucraniano.
+
+* Solucionado problema con compatibilidad de complementos.
+
+Ahora debería solo ofrecer actualizaciones que además sean compatible con nuestra API de NVDA.
+
+Aunque la versión del complemento en el servidor sea mayor que la que tenemos instalada si la compatibilidad de API no es correcta no se nos ofrecerá dicha actualización.
+
+* Solucionado la actualización de la lista de complementos instalados que hay en el servidor.
+
+Ahora ya guarda bien la lista cuando instalamos un complemento y comprueba correctamente si esta en el servidor.
+
+En la ultima versión no guardaba los nuevos complementos instalados.
+
 ## Versión 0.8.1.
 
 * Solucionado problema al conectarse a un servidor sin complementos.

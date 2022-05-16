@@ -8,12 +8,45 @@ import globalVars
 import addonAPIVersion
 import traceback
 import json
+import re
 import urllib.request
 import os
 import sys
 from threading import Timer
 from .packaging import version
 from . import ajustes
+
+ADDON_API_VERSION_REGEX = re.compile(r"^(0|\d{4})\.(\d)(?:\.(\d))?$")
+
+def getAPIVersionTupleFromString(version):
+	"""Converts a string containing an NVDA version to a tuple of the form (versionYear, versionMajor, versionMinor)"""
+	match = ADDON_API_VERSION_REGEX.match(version)
+	if not match:
+		raise ValueError(version)
+	return tuple(int(i) if i is not None else 0 for i in match.groups())
+
+def hasAddonGotRequiredSupport(addonMin, currentAPIVersion=addonAPIVersion.CURRENT):
+	"""True if NVDA provides the add-on with an API version high enough to meet the add-on's minimum requirements
+	"""
+	return addonMin <= currentAPIVersion
+
+def isAddonTested(addonMax, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
+	"""True if this add-on is tested for the given API version.
+	By default, the current version of NVDA is evaluated.
+	"""
+	return addonMax >= backwardsCompatToVersion
+
+def isAddonCompatible(
+		addonMin,
+		addonMax,
+		currentAPIVersion=addonAPIVersion.CURRENT,
+		backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO
+):
+	"""Tests if the addon is compatible.
+	The compatibility is defined by having the required features in NVDA, and by having been tested / built against
+	an API version that is still supported by this version of NVDA.
+	"""
+	return hasAddonGotRequiredSupport(addonMin, currentAPIVersion) and isAddonTested(addonMax, backwardsCompatToVersion)
 
 def generaFichero():
 	return os.path.basename(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data%s.json" % len(os.listdir(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")))))
@@ -106,12 +139,6 @@ class NVDAStoreClient(object):
 		else:
 			return True
 
-	def isAddonTested(self, version, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
-		"""True if this add-on is tested for the given API version.
-		By default, the current version of NVDA is evaluated.
-		"""
-		return tuple(map(int, version.split('.'))) >= backwardsCompatToVersion
-
 	def chkActualizaS(self):
 		lstActualizar = []
 		lstUrl = []
@@ -126,7 +153,7 @@ class NVDAStoreClient(object):
 						for z in self.dataLocal:
 							if i[0].lower() == z.manifest["name"].lower():
 								if not z.isPendingRemove:
-									if self.isAddonTested(self.dataServidor[x]['links'][i[1]]['lasttested']):
+									if isAddonCompatible(getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['minimum']), getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['lasttested'])):
 										if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
 											lstActualizar.append("{}".format(z.manifest["summary"]))
 											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
