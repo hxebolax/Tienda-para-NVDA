@@ -171,6 +171,42 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.3.
+
+* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0)
+
+* Agregado botón Buscar y botón Acciones.
+
+Ahora en la pantalla principal de la Tienda tendremos dos nuevos botones.
+
+- Buscar que hará lo mismo que si diésemos intro en el campo de búsqueda pero que se agrega para personas que usen la voz, pantallas táctiles y otros problemas de movilidad.
+
+Dicho botón tiene el atajo Alt+U:
+
+- También se agrego el botón Acción el cual nos mostrara el menú contextual del complemento que tengamos seleccionado en la lista de complementos.
+
+Desde dicho menú podremos acceder a los filtros o copiado al portapapeles.
+
+Se agrego por los mismos motivos que el botón Buscar.
+
+Dicho botón tiene el atajo Alt+A.
+
+* Agregada la posibilidad de ver la documentación de complementos instalados
+
+En la pantalla principal de la Tienda en la lista de complementos si pulsamos tecla Aplicaciones, Shift+F10 o el botón Acción Alt+A y el complemento que esta en el foco lo tenemos instalado en el menú que se ofrece nos saldrá una nueva opción.
+
+Dicha opción es Ver documentación del complemento instalado, si pulsamos hay nos abrirá nuestro navegador con la documentación del complemento.
+
+Decir que si la documentación esta en nuestro idioma se abrirá en nuestro idioma de lo contrario se abrirá en el idioma definido por el complemento.
+
+Igualmente hay complementos que no traen documentación en este caso no se mostrara dicha opción ni en aquellos que no tengamos instalados.
+
+* Agregada posibilidad de lanzar la documentación del complemento fácilmente.
+
+Ahora desde el menú de NVDA Herramientas / Tienda NVDA.ES tendremos una nueva opción que es Documentación del complemento.
+
+Si le damos se abrirá en nuestro navegador predeterminado la documentación de la Tienda en nuestro idioma si esta o en defecto la documentación en Español.
+
 ## Versión 0.8.2.
 
 * Actualizado idioma y documentación en Ucraniano.

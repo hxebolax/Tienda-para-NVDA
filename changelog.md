@@ -1,5 +1,1 @@
-* Actualizado idioma y documentación en Ucraniano.
-
-* Solucionado problema con compatibilidad de complementos.
-
-* Solucionado la actualización de la lista de complementos instalados que hay en el servidor.
+* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0)

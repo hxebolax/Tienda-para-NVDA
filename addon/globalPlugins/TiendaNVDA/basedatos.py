@@ -186,7 +186,18 @@ class libreriaLocal(object):
 		elif opcion == 2: # Cargar
 			if os.path.isfile(self.file):
 				with open(self.file, "r") as fp:
-					return json.load(fp)
+					try:
+						data = json.load(fp)
+						return data
+					except json.decoder.JSONDecodeError:
+						self.servidor = NVDAStoreClient().dataServidor
+						lista = []
+						for i in self.local:
+							for x in range(0, len(self.servidor)):
+								if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+									lista.append([i.manifest['name'], 0])
+						self.fileJsonAddon(1, lista)
+						return lista
 			else:
 				self.servidor = NVDAStoreClient().dataServidor
 				lista = []

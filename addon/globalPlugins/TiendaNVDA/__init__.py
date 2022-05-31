@@ -46,7 +46,6 @@ dirAddonPath=os.path.dirname(__file__)
 sys.path.append(dirAddonPath)
 import traductor
 del sys.path[-1]
-
 from . import ajustes
 from . import basedatos
 
@@ -147,8 +146,10 @@ _("""Error producido en las librerías::
 			# Translators: Nombre del submenú para buscar actualizaciones
 			self.tiendaActualizaciones = self.menu.Append(wx.ID_ANY, _("Buscar actualizaciones de complementos"))
 			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
+			# Translators: Nombre del submenú para mostrar el manual
+			self.tiendaDocumentacion = self.menu.Append(wx.ID_ANY, _("Documentación del complemento"))
+			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu3, self.tiendaDocumentacion)
 			# Translators: Nombre del menú Tienda de complementos
-
 			self.tiendaMenu = self.tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
 		else:
 			log.info(_("Inicio del complemento cancelado."))
@@ -210,6 +211,9 @@ Una de las causas es que NVDA arrancara antes de tener conexión a internet.
 
 Reinicie NVDA para intentar solucionar el problema.""")
 			ui.message(msg)
+
+	def script_menu3(self, event):
+		wx.LaunchDefaultBrowser(addonHandler.Addon(os.path.join(os.path.dirname(__file__), "..", "..")).getDocFilePath())
 
 if globalVars.appArgs.secure:
 	GlobalPlugin = globalPluginHandler.GlobalPlugin # noqa: F811 
@@ -764,6 +768,7 @@ class tiendaApp(wx.Dialog):
 		self.datos = dataServidor
 		self.indiceFiltro = ajustes.indiceFiltro
 		self.temporal = []
+		self.dirDoc = None
 
 		self.Panel = wx.Panel(self, 1)
 
@@ -772,21 +777,25 @@ class tiendaApp(wx.Dialog):
 		self.textoBusqueda.Bind(wx.EVT_TEXT_ENTER, self.onBusqueda)
 		self.textoBusqueda.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 
+		self.buscarBTN = wx.Button(self.Panel, 201, _("B&uscar"))
+
 		labelComplementos = wx.StaticText(self.Panel, wx.ID_ANY, _("&Lista complementos:"))
 		self.listboxComplementos = wx.ListBox(self.Panel, 3, style = wx.LB_NO_SB)
 		wx.CallAfter(self.onCargaFiltro, self.indiceFiltro)
 		self.listboxComplementos.Bind(wx.EVT_KEY_UP, self.onLisbox)
 		self.listboxComplementos.Bind(wx.EVT_CONTEXT_MENU, self.menuListBox)
 
+		self.accionBTN = wx.Button(self.Panel, 202, _("&Acción"))
+
 		labelResultado = wx.StaticText(self.Panel, wx.ID_ANY, _("&Información:"))
 		self.txtResultado = wx.TextCtrl(self.Panel, 4, style =wx.TE_MULTILINE|wx.TE_READONLY|wx.LB_NO_SB)
 		self.txtResultado.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 		self.txtResultado.Bind(wx.EVT_KEY_UP, self.ontxtResultado)
 
-		self.descargarBTN = wx.Button(self.Panel, 201, _("&Descargar complemento"))
-		self.paginaWebBTN = wx.Button(self.Panel, 202, _("Visitar &página WEB"))
-		self.cambiarSrvBTN = wx.Button(self.Panel, 203, _("&Cambiar de servidor"))
-		self.salirBTN = wx.Button(self.Panel, 204, _("&Salir"))
+		self.descargarBTN = wx.Button(self.Panel, 203, _("&Descargar complemento"))
+		self.paginaWebBTN = wx.Button(self.Panel, 204, _("Visitar &página WEB"))
+		self.cambiarSrvBTN = wx.Button(self.Panel, 205, _("&Cambiar de servidor"))
+		self.salirBTN = wx.Button(self.Panel, 206, _("&Salir"))
 		self.Bind(wx.EVT_BUTTON,self.onBoton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
 		self.Bind(wx.EVT_CLOSE, self.onBoton)
@@ -798,8 +807,10 @@ class tiendaApp(wx.Dialog):
 
 		szComplementos.Add(labelBusqueda, 0)
 		szComplementos.Add(self.textoBusqueda, 0, wx.EXPAND)
+		szComplementos.Add(self.buscarBTN, 0, wx.EXPAND)
 		szComplementos.Add(labelComplementos, 0)
 		szComplementos.Add(self.listboxComplementos, 1, wx.EXPAND)
+		szComplementos.Add(self.accionBTN, 0, wx.EXPAND)
 
 		szResultados.Add(labelResultado, 0)
 		szResultados.Add(self.txtResultado, 1, wx.EXPAND)
@@ -955,6 +966,13 @@ Total descargas: {}\n""").format(
 		self.menuPortapapeles.AppendSubMenu(self.menuPortapapelesDescarga, _("Copiar enlace de descarga del complemento"))
 		self.menu.AppendSubMenu(self.menuPortapapeles, _("&Copiar al portapapeles"))
 
+		for i in self.datos.dataLocal:
+			if datos['name'].lower() == i.name.lower():
+				self.dirDoc = addonHandler.Addon(i.path).getDocFilePath()
+				if self.dirDoc:
+					itemDoc = self.menu.Append(1, _("Ver documentación del complemento instalado"))
+					self.Bind(wx.EVT_MENU, self.onDocumentacion, itemDoc)
+
 		position = self.listboxComplementos.GetPosition()
 		self.PopupMenu(self.menu,position)
 #		pass
@@ -1092,6 +1110,9 @@ _("""Se copio la URL de descarga al portapapeles""")
 				message=_("No se pudo llevar a cabo la copia al portapapeles"), parent=None, flags=wx.ICON_ERROR)
 			notify.Show(timeout=10)
 
+	def onDocumentacion(self, event):
+		wx.LaunchDefaultBrowser('file://' + self.dirDoc, flags=0)
+
 	def onLisbox(self, event):
 		try:
 			tecla = event.GetKeyCode()
@@ -1138,6 +1159,10 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
 		if botonID == 201:
+			self.onBusqueda(None)
+		elif botonID == 202:
+			self.menuListBox(None)
+		elif botonID == 203:
 			self.menuDescarga = wx.Menu()
 
 			for i in range(len(datos['links'])):
@@ -1148,9 +1173,9 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 			self.PopupMenu(self.menuDescarga,position)
 			pass
 
-		elif botonID == 202:
+		elif botonID == 204:
 			wx.LaunchDefaultBrowser(datos['url'])
-		elif botonID == 203:
+		elif botonID == 205:
 			self.menu = wx.Menu()
 			for i in range(len(ajustes.listaServidores)):
 				i = self.menu.Append(i, "{}".format(ajustes.listaServidores[i][0]), "", wx.ITEM_CHECK)
@@ -1158,7 +1183,7 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 			self.menu.Check(ajustes.selectSRV, True)
 			self.cambiarSrvBTN.PopupMenu(self.menu)
 
-		elif botonID == 204:
+		elif botonID == 206:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
 			else:
