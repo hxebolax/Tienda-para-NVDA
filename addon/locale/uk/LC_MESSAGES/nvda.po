@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TiendaNVDA\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2022-05-14 19:51+0300\n"
-"PO-Revision-Date: 2022-05-15 11:08+0300\n"
+"POT-Creation-Date: 2022-06-14 10:50+0300\n"
+"PO-Revision-Date: 2022-06-14 11:12+0300\n"
 "Last-Translator: Volodymyr Pyrih <vp88.mobile@gmail.com>\n"
 "Language-Team: Volodymyr Pyrih\n"
 "Language: uk_UA\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ../../../globalPlugins/TiendaNVDA\n"
 "X-Poedit-SearchPath-0: __init__.py\n"
 "X-Poedit-SearchPath-1: ajustes.py\n"
 "X-Poedit-SearchPath-2: basedatos.py\n"
 
-#: __init__.py:76
+#: __init__.py:75
 msgid ""
 "Se encontró una actualización. \n"
 "\n"
@@ -33,13 +33,13 @@ msgstr ""
 "\n"
 "Запустіть перевірку оновлень додатків у меню магазину Tienda NVDA.ES"
 
-#: __init__.py:80 __init__.py:90 __init__.py:103 __init__.py:736
-#: __init__.py:1084 __init__.py:1201 __init__.py:1600 __init__.py:1615
-#: __init__.py:1632 __init__.py:1658 __init__.py:1676 __init__.py:1935
+#: __init__.py:79 __init__.py:89 __init__.py:102 __init__.py:740
+#: __init__.py:1102 __init__.py:1226 __init__.py:1625 __init__.py:1640
+#: __init__.py:1657 __init__.py:1683 __init__.py:1701 __init__.py:1960
 msgid "Información"
 msgstr "Інформація"
 
-#: __init__.py:86
+#: __init__.py:85
 msgid ""
 "Se encontraron  {} actualizaciones. \n"
 "\n"
@@ -49,15 +49,15 @@ msgstr ""
 "\n"
 "Запустіть перевірку оновлень з меню магазину додатків для NVDA"
 
-#: __init__.py:101 __init__.py:184 __init__.py:204
+#: __init__.py:100 __init__.py:185 __init__.py:205
 msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
 msgstr "Для застосування оновлень ви повинні перезапустити NVDA."
 
-#: __init__.py:126
+#: __init__.py:125
 msgid "No se pudieron cargar las librerías necesarias para la Tienda"
 msgstr "Не вдалося завантажити модулі, необхідні для роботи магазину"
 
-#: __init__.py:128
+#: __init__.py:127
 msgid ""
 "Error producido en las librerías::\n"
 "\n"
@@ -67,36 +67,40 @@ msgstr ""
 "\n"
 "{}"
 
-#: __init__.py:145
+#: __init__.py:144
 msgid "Listado de complementos"
 msgstr "Список додатків"
 
-#: __init__.py:148
+#: __init__.py:147
 msgid "Buscar actualizaciones de complementos"
 msgstr "Перевірка оновлень для додатків"
 
+#: __init__.py:150
+msgid "Documentación del complemento"
+msgstr "Документація додатка"
+
 #. TRANSLATORS: title for the Update Channel settings category
-#: __init__.py:152 __init__.py:219 ajustes.py:86
+#: __init__.py:153 __init__.py:223 ajustes.py:88
 msgid "Tienda NVDA.ES"
 msgstr "Магазин NVDA.es"
 
-#: __init__.py:154
+#: __init__.py:155
 msgid "Inicio del complemento cancelado."
 msgstr "Запуск додатка перервано."
 
-#: __init__.py:174
+#: __init__.py:175
 msgid "Muestra la ventana con todos los complementos y su información"
 msgstr "Показує вікно з усіма додатками та інформацією про них"
 
-#: __init__.py:174 __init__.py:194
+#: __init__.py:175 __init__.py:195
 msgid "Tienda para NVDA.ES"
 msgstr "Магазин додатків NVDA.ES"
 
-#: __init__.py:182 __init__.py:202
+#: __init__.py:183 __init__.py:203
 msgid "Ya hay una instancia de la Tienda NVDA abierta."
 msgstr "Одну копію магазину додатків для NVDA вже відкрито."
 
-#: __init__.py:187 __init__.py:207
+#: __init__.py:188 __init__.py:208
 msgid ""
 "El complemento fallo al iniciar NVDA.\n"
 "\n"
@@ -111,66 +115,66 @@ msgstr ""
 "\n"
 "Перезапустіть NVDA, щоб спробувати виправити проблему."
 
-#: __init__.py:194
+#: __init__.py:195
 msgid "Busca actualizaciones de los complementos instalados"
 msgstr "Перевірити оновлення встановлених додатків"
 
-#: __init__.py:224
+#: __init__.py:228
 msgid "Seleccione un servidor de complementos"
 msgstr "Виберіть сервер додатків"
 
-#: __init__.py:228
+#: __init__.py:232
 msgid "&Gestionar Servidores de complementos"
 msgstr "&Керування серверами додатків"
 
-#: __init__.py:231
+#: __init__.py:235
 msgid "Activar o desactivar la comprobación de actualizaciones"
 msgstr "Увімкнути чи вимкнути перевірку оновлень"
 
-#: __init__.py:234
+#: __init__.py:238
 msgid "Seleccione un tiempo para comprobar si hay actualizaciones"
 msgstr "Оберіть інтервал перевірки оновлень"
 
-#: __init__.py:236
+#: __init__.py:240
 msgid ""
 "Activar o desactivar el traductor para las descripciones de los complementos"
 msgstr "Увімкнути або вимкнути перекладач для опису додатків"
 
-#: __init__.py:239
+#: __init__.py:243
 msgid ""
 "Seleccione un idioma para traducir las descripciones de los complementos"
 msgstr "Виберіть мову для перекладу описів"
 
-#: __init__.py:241
+#: __init__.py:245
 msgid ""
 "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
 msgstr "Сортування додатків за абеткою"
 
-#: __init__.py:243
+#: __init__.py:247
 msgid "Instalar complementos después de descargar"
 msgstr "Встановлення додатка після завантаження"
 
-#: __init__.py:247
+#: __init__.py:251
 msgid "Complementos instalados que hay en el servidor:"
 msgstr "Встановлені додатки на сервері:"
 
-#: __init__.py:258 __init__.py:373 __init__.py:408 __init__.py:421
+#: __init__.py:262 __init__.py:377 __init__.py:412 __init__.py:425
 msgid "Descartar actualizaciones"
 msgstr "Відхилити оновлення"
 
-#: __init__.py:359 __init__.py:396
+#: __init__.py:363 __init__.py:400
 msgid "No se pudo tener acceso al servidor"
 msgstr "Не вдалося отримати доступ до сервера"
 
-#: __init__.py:367 __init__.py:393
+#: __init__.py:371 __init__.py:397
 msgid "Sin complementos compatibles"
 msgstr "Відсутні сумісні додатки"
 
-#: __init__.py:406 __init__.py:953
+#: __init__.py:410 __init__.py:964
 msgid "Canal {}"
 msgstr "Канал {}"
 
-#: __init__.py:438
+#: __init__.py:442
 msgid ""
 "Ya hay una instancia de la Tienda NVDA abierta.\n"
 "\n"
@@ -180,40 +184,40 @@ msgstr ""
 "\n"
 "Для керування серверами його необхідно закрити."
 
-#: __init__.py:455
+#: __init__.py:459
 msgid "Gestor de servidores de complementos"
 msgstr "Керування серверами додатків"
 
-#: __init__.py:463
+#: __init__.py:467
 msgid "&Lista de servidores:"
 msgstr "&Список серверів:"
 
-#: __init__.py:473
+#: __init__.py:477
 msgid "&Añadir"
 msgstr "&Додати"
 
-#: __init__.py:476
+#: __init__.py:480
 msgid "&Editar"
 msgstr "&Редагувати"
 
-#: __init__.py:479
+#: __init__.py:483
 msgid "&Borrar"
 msgstr "&Видалити"
 
-#: __init__.py:485 __init__.py:710 __init__.py:1287 __init__.py:1396
-#: __init__.py:1486
+#: __init__.py:489 __init__.py:714 __init__.py:1312 __init__.py:1421
+#: __init__.py:1511
 msgid "&Cerrar"
 msgstr "&Закрити"
 
-#: __init__.py:516
+#: __init__.py:520
 msgid "El servidor de la comunidad hispanohablante no puede ser editado."
 msgstr "Сервер іспаномовної спільноти неможливо редагувати."
 
-#: __init__.py:533
+#: __init__.py:537
 msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
 msgstr "Сервер іспаномовної спільноти видалити неможливо."
 
-#: __init__.py:536
+#: __init__.py:540
 msgid ""
 "ADVERTENCIA:\n"
 "\n"
@@ -235,35 +239,35 @@ msgstr ""
 "\n"
 "Ви впевнені, що бажаєте продовжити?"
 
-#: __init__.py:545 __init__.py:1919
+#: __init__.py:549 __init__.py:1944
 msgid "Pregunta"
 msgstr "Попередження"
 
-#: __init__.py:587
+#: __init__.py:591
 msgid "Añadir servidor"
 msgstr "Додати сервер"
 
-#: __init__.py:587
+#: __init__.py:591
 msgid "Editar servidor"
 msgstr "Редагувати сервер"
 
-#: __init__.py:593
+#: __init__.py:597
 msgid "&Nombre del servidor:"
 msgstr "&Ім’я сервера:"
 
-#: __init__.py:599
+#: __init__.py:603
 msgid "&URL del servidor:"
 msgstr "&Адреса сервера:"
 
-#: __init__.py:608 __init__.py:707 __init__.py:1392 __init__.py:1482
+#: __init__.py:612 __init__.py:711 __init__.py:1417 __init__.py:1507
 msgid "&Aceptar"
 msgstr "&Гаразд"
 
-#: __init__.py:611
+#: __init__.py:615
 msgid "&Cancelar"
 msgstr "&Скасувати"
 
-#: __init__.py:635
+#: __init__.py:639
 msgid ""
 "El campo de nombre de servidor no puede quedar en blanco.\n"
 "\n"
@@ -273,7 +277,7 @@ msgstr ""
 "\n"
 "Введіть щонайменше один символ для продовження."
 
-#: __init__.py:643
+#: __init__.py:647
 msgid ""
 "El campo de URL de servidor no puede quedar en blanco.\n"
 "\n"
@@ -283,7 +287,7 @@ msgstr ""
 "\n"
 "Введіть щонайменше один символ для продовження."
 
-#: __init__.py:651
+#: __init__.py:655
 msgid ""
 "Ya tiene un servidor con el mismo nombre.\n"
 "\n"
@@ -293,7 +297,7 @@ msgstr ""
 "\n"
 "Для продовження змініть ім’я сервера."
 
-#: __init__.py:659
+#: __init__.py:663
 msgid ""
 "La URL introducida dio error.\n"
 "\n"
@@ -303,47 +307,55 @@ msgstr ""
 "\n"
 "Переконайтеся, що це правильна адреса бази додатків."
 
-#: __init__.py:694
+#: __init__.py:698
 msgid "Servidor sin complementos"
 msgstr "Сервер без додатків"
 
-#: __init__.py:703 __init__.py:729
+#: __init__.py:707 __init__.py:733
 msgid "Seleccione un servidor"
 msgstr "Виберіть сервер"
 
-#: __init__.py:736
+#: __init__.py:740
 msgid "Debe seleccionar un servidor para continuar."
 msgstr "Для продовження необхідно вибрати сервер."
 
-#: __init__.py:770
+#: __init__.py:775
 msgid "&Buscar:"
 msgstr "&Пошук:"
 
-#: __init__.py:775
+#: __init__.py:780
+msgid "B&uscar"
+msgstr "П&ошук"
+
+#: __init__.py:782
 msgid "&Lista complementos:"
 msgstr "&Список додатків:"
 
-#: __init__.py:781
+#: __init__.py:788
+msgid "&Acción"
+msgstr "&Дії"
+
+#: __init__.py:790
 msgid "&Información:"
 msgstr "&Інформація:"
 
-#: __init__.py:786
+#: __init__.py:795
 msgid "&Descargar complemento"
 msgstr "&Завантажити додаток"
 
-#: __init__.py:787
+#: __init__.py:796
 msgid "Visitar &página WEB"
 msgstr "Відвідати &веб-сайт"
 
-#: __init__.py:788
+#: __init__.py:797
 msgid "&Cambiar de servidor"
 msgstr "&Змінити сервер"
 
-#: __init__.py:789
+#: __init__.py:798
 msgid "&Salir"
 msgstr "&Вийти"
 
-#: __init__.py:829 __init__.py:873
+#: __init__.py:840 __init__.py:884
 msgid ""
 "Autor: {}\n"
 "Nombre del complemento: {}\n"
@@ -357,15 +369,15 @@ msgstr ""
 "Опис: {}\n"
 "Розробка: {}\n"
 
-#: __init__.py:838 __init__.py:882
+#: __init__.py:849 __init__.py:893
 msgid "Con soporte"
 msgstr "З підтримкою"
 
-#: __init__.py:838 __init__.py:882
+#: __init__.py:849 __init__.py:893
 msgid "Sin soporte"
 msgstr "Без підтримки"
 
-#: __init__.py:844 __init__.py:888
+#: __init__.py:855 __init__.py:899
 msgid ""
 "Canal: {}\n"
 "Versión: {}\n"
@@ -379,99 +391,103 @@ msgstr ""
 "Востаннє протестовано на версії  NVDA: {}\n"
 "Кількість завантажень: {}\n"
 
-#: __init__.py:867
+#: __init__.py:878
 msgid "No se pudo traducir la descripción"
 msgstr "Неможливо перекласти опис"
 
-#: __init__.py:934
+#: __init__.py:945
 msgid "Mostrar todos los complementos"
 msgstr "Показати всі додатки"
 
-#: __init__.py:936
+#: __init__.py:947
 msgid "Mostrar los complementos con compatibilidad de API 2022"
 msgstr "Показати додатки з підтримкою API 2022"
 
-#: __init__.py:938
+#: __init__.py:949
 msgid "Mostrar los complementos con compatibilidad de API 2021"
 msgstr "Показати додатки з підтримкою API 2021"
 
-#: __init__.py:940
+#: __init__.py:951
 msgid "Mostrar los complementos ordenados por autor"
 msgstr "Показати додатки, відсортовані за автором"
 
-#: __init__.py:942
+#: __init__.py:953
 msgid "Mostrar por descargas de mayor a menor"
 msgstr "Показати за кількістю завантажень від найвищої до найнижчої"
 
-#: __init__.py:944
+#: __init__.py:955
 msgid "&Filtros"
 msgstr "&Фільтри"
 
-#: __init__.py:947
+#: __init__.py:958
 msgid "Copiar información"
 msgstr "Копіювати інформацію"
 
-#: __init__.py:949
+#: __init__.py:960
 msgid "Copiar enlace a la página web del complemento"
 msgstr "Копіювати посилання на сайт додатка"
 
-#: __init__.py:955
+#: __init__.py:966
 msgid "Copiar enlace de descarga del complemento"
 msgstr "Копіювати посилання на завантаження додатка"
 
-#: __init__.py:956
+#: __init__.py:967
 msgid "&Copiar al portapapeles"
 msgstr "&Копіювати в буфер обміну"
 
-#: __init__.py:989 __init__.py:1103
+#: __init__.py:973
+msgid "Ver documentación del complemento instalado"
+msgstr "Переглянути документацію встановленого додатка"
+
+#: __init__.py:1007 __init__.py:1124
 msgid "No se encontraron resultados"
 msgstr "Результатів не знайдено"
 
-#: __init__.py:1014
+#: __init__.py:1032
 msgid " - Todos los complementos"
 msgstr " - Усі додатки"
 
-#: __init__.py:1022
+#: __init__.py:1040
 msgid " - Complementos compatibles con API 2022"
 msgstr " - Додатки, сумісні з API 2022"
 
-#: __init__.py:1032
+#: __init__.py:1050
 msgid " - Complementos compatibles con API 2021"
 msgstr " - Додатки, сумісні з API 2021"
 
-#: __init__.py:1041
+#: __init__.py:1059
 msgid " - Complementos por autor"
 msgstr " - Додатки автора"
 
-#: __init__.py:1048
+#: __init__.py:1066
 msgid " - Complementos por descarga de mayor a menor"
 msgstr " - Додатки за кількістю завантажень від найвищої до найнижчої"
 
-#: __init__.py:1066
+#: __init__.py:1084
 msgid "Se copio la información del complemento al portapapeles"
 msgstr "Інформацію про додаток скопійовано в буфер обміну"
 
-#: __init__.py:1070
+#: __init__.py:1088
 msgid "Se copio la URL de la página oficial del complemento al portapapeles"
 msgstr "Посилання на офіційну сторінку додатка скопійовано в буфер обміну"
 
-#: __init__.py:1074
+#: __init__.py:1092
 msgid "Se copio la URL de descarga al portapapeles"
 msgstr "Посилання на завантаження додатка скопійовано в буфер обміну"
 
-#: __init__.py:1090 __init__.py:1340 __init__.py:1945
+#: __init__.py:1108 __init__.py:1365 __init__.py:1970
 msgid "Error"
 msgstr "Помилка"
 
-#: __init__.py:1092
+#: __init__.py:1110
 msgid "No se pudo llevar a cabo la copia al portapapeles"
 msgstr "Не вдалося виконати копіювання в буфер обміну"
 
-#: __init__.py:1108
+#: __init__.py:1129
 msgid "Se encuentra en el complemento {} de {}"
 msgstr "Знаходиться в {} додатка {}"
 
-#: __init__.py:1116 __init__.py:1127
+#: __init__.py:1137 __init__.py:1148
 msgid ""
 "No tiene activada la opción traducir la descripción de complementos en "
 "opciones de la tienda.\n"
@@ -483,46 +499,46 @@ msgstr ""
 "\n"
 "Увімкніть цей параметр і оберіть мову, щоб могти використовувати цю функцію."
 
-#: __init__.py:1144
+#: __init__.py:1169
 msgid "Versión {}"
 msgstr "Версія {}"
 
-#: __init__.py:1199
+#: __init__.py:1224
 msgid "Ya tiene un proceso de descarga activo, espere a que termine."
 msgstr ""
 "У вас вже запущено процес завантаження додатків, будь ласка, дочекайтеся "
 "його завершення."
 
-#: __init__.py:1207
+#: __init__.py:1232
 #, python-format
 msgid "Descargando %s..."
 msgstr "Завантаження %s..."
 
-#: __init__.py:1261
+#: __init__.py:1286
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
 msgstr "Магазин NVDA.ES — доступні оновлення"
 
-#: __init__.py:1284
+#: __init__.py:1309
 msgid "&Seleccionar todo"
 msgstr "&Вибрати всі"
 
-#: __init__.py:1285
+#: __init__.py:1310
 msgid "&Deseleccionar todo"
 msgstr "&Скасувати вибір усіх"
 
-#: __init__.py:1286
+#: __init__.py:1311
 msgid "&Actualizar"
 msgstr "&Оновити"
 
-#: __init__.py:1339
+#: __init__.py:1364
 msgid "Tiene que seleccionar una actualización para poder continuar."
 msgstr "Щоб продовжити, ви повинні вибрати оновлення."
 
-#: __init__.py:1464
+#: __init__.py:1489
 msgid "Actualizando complementos"
 msgstr "Оновлення додатків"
 
-#: __init__.py:1594 __init__.py:1626 __init__.py:1652 __init__.py:1670
+#: __init__.py:1619 __init__.py:1651 __init__.py:1677 __init__.py:1695
 msgid ""
 "No se pudo obtener el nombre del archivo a descargar.\n"
 "\n"
@@ -536,7 +552,7 @@ msgstr ""
 "\n"
 "Для продовження завантаження буде відкрито ваш браузер."
 
-#: __init__.py:1611
+#: __init__.py:1636
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
@@ -547,65 +563,65 @@ msgstr ""
 "\n"
 "Сторінку додатка буде відкрито у вашому браузері."
 
-#: __init__.py:1686
+#: __init__.py:1711
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
 msgstr "Файли додатків для NVDA (*.nvda-addon)|*.nvda-addon"
 
-#: __init__.py:1687
+#: __init__.py:1712
 msgid "Guardar en..."
 msgstr "Зберегти як..."
 
-#: __init__.py:1733 __init__.py:1737 __init__.py:1815 __init__.py:1819
+#: __init__.py:1758 __init__.py:1762 __init__.py:1840 __init__.py:1844
 msgid "Espere por favor...\n"
 msgstr "Зачекайте, будь ласка...\n"
 
-#: __init__.py:1733 __init__.py:1737 __init__.py:1815 __init__.py:1819
+#: __init__.py:1758 __init__.py:1762 __init__.py:1840 __init__.py:1844
 #, python-format
 msgid "Descargando: %s"
 msgstr "Завантаження: %s"
 
-#: __init__.py:1748
+#: __init__.py:1773
 msgid "La descarga se completó.\n"
 msgstr "Завантаження завершено.\n"
 
-#: __init__.py:1748 __init__.py:1750 __init__.py:1876
+#: __init__.py:1773 __init__.py:1775 __init__.py:1901
 msgid "Ya puede cerrar esta ventana."
 msgstr "Тепер ви можете закрити це вікно."
 
-#: __init__.py:1750 __init__.py:1876
+#: __init__.py:1775 __init__.py:1901
 msgid "Algo salió mal.\n"
 msgstr "Виникла помилка.\n"
 
-#: __init__.py:1750 __init__.py:1876
+#: __init__.py:1775 __init__.py:1901
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr ""
 "Будь ласка, перевірте ваше з’єднання з інтернетом і повторіть спробу.\n"
 
-#: __init__.py:1854
+#: __init__.py:1879
 msgid "La actualización se completó.\n"
 msgstr "Оновлення завершено.\n"
 
-#: __init__.py:1854
+#: __init__.py:1879
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
 msgstr "Щоб оновлення були застосовані, необхідно перезапустити NVDA.\n"
 
-#: __init__.py:1854
+#: __init__.py:1879
 msgid "¿Desea reiniciar NVDA ahora?"
 msgstr "Бажаєте перезавантажити NVDA зараз?"
 
-#: __init__.py:1857
+#: __init__.py:1882
 msgid "No se pudo instalar el complemento.\n"
 msgstr "Не вдалося встановити додаток.\n"
 
-#: __init__.py:1857
+#: __init__.py:1882
 msgid "Fallo de compatibilidad.\n"
 msgstr "Порушення сумісності.\n"
 
-#: __init__.py:1857
+#: __init__.py:1882
 msgid "Busque una actualización compatible."
 msgstr "Пошук сумісного додатка."
 
-#: __init__.py:1863
+#: __init__.py:1888
 msgid ""
 "Se completo la instalación correctamente.\n"
 "\n"
@@ -630,7 +646,7 @@ msgstr ""
 "Для застосування змін необхідно перезапустити NVDA.\n"
 "Хочете перезапустити NVDA зараз?"
 
-#: __init__.py:1914
+#: __init__.py:1939
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -644,11 +660,11 @@ msgstr ""
 "\n"
 "Ббажаєте змінити сервер?"
 
-#: __init__.py:1934
+#: __init__.py:1959
 msgid "No hay actualizaciones."
 msgstr "Немає доступних оновлень."
 
-#: __init__.py:1941
+#: __init__.py:1966
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -662,79 +678,79 @@ msgstr ""
 msgid "Servidor comunidad hispanohablante"
 msgstr "Сервер іспаномовної спільноти"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "15 minutos"
 msgstr "15 хвилин"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "30 minutos"
 msgstr "30 хвилин"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "45 minutos"
 msgstr "45 хвилин"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "1 hora"
 msgstr "1 година"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "12 horas"
 msgstr "12 годин"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "1 día"
 msgstr "1 день"
 
-#: ajustes.py:99
+#: ajustes.py:101
 msgid "1 semana"
 msgstr "1 тиждень"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Alemán"
 msgstr "Німецька"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Árabe"
 msgstr "Арабська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Croata"
 msgstr "Хорватська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Español"
 msgstr "Іспанська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Francés"
 msgstr "Французька"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Inglés"
 msgstr "Англійська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Italiano"
 msgstr "Італійська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Polaco"
 msgstr "Польська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Portugués"
 msgstr "Португальська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Ruso"
 msgstr "Російська"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Turco"
 msgstr "Турецька"
 
-#: ajustes.py:101
+#: ajustes.py:103
 msgid "Ucraniano"
 msgstr "Українська"
 
