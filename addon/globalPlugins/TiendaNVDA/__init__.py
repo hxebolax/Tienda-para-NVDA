@@ -820,7 +820,7 @@ class tiendaApp(wx.Dialog):
 		szBotones.Add(self.cambiarSrvBTN, 2, wx.CENTRE)
 		szBotones.Add(self.salirBTN, 2, wx.CENTRE)
 
-		szComplementos.Add(szBotones, 0, wx.EXPAND)
+		szResultados.Add(szBotones, 0, wx.EXPAND)
 
 		szMain.Add(szComplementos, 0, wx.EXPAND)
 		szMain.Add(szResultados, 1, wx.EXPAND)
@@ -935,7 +935,6 @@ Total descargas: {}\n""").format(
 		return
 
 	def menuListBox(self, event):
-
 		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
@@ -970,7 +969,7 @@ Total descargas: {}\n""").format(
 			if datos['name'].lower() == i.name.lower():
 				self.dirDoc = addonHandler.Addon(i.path).getDocFilePath()
 				if self.dirDoc:
-					itemDoc = self.menu.Append(1, _("Ver documentación del complemento instalado"))
+					itemDoc = self.menu.Append(20, _("Ver documentación del complemento instalado"))
 					self.Bind(wx.EVT_MENU, self.onDocumentacion, itemDoc)
 
 		position = self.listboxComplementos.GetPosition()

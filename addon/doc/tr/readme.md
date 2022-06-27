@@ -26,6 +26,8 @@ Dosya alanında, tamamlayıcının birden fazla geliştirme dalı olması durumu
 Bu ekranda, arayüzde gezinmek için aşağıdaki kısayol tuşlarına sahibiz:  
 
 * Alt + A: Arama kutusuna git.  
+* ALT+R: Ara butonuna git.
+* ALT+E: Eylemler butonuna git.
 * Alt + L: Eklenti listesine git.  
 * Alt + i: Seçili eklentinin bilgilerini görmek için salt okunur bilgi alanına git.  
 * Alt + D: "Eklentiyi İndir" düğmesine git.  
@@ -36,9 +38,9 @@ Bu ekranda, arayüzde gezinmek için aşağıdaki kısayol tuşlarına sahibiz:
 
 Eklentiler listesinde, klavyemizdeki Uygulama tuşuyla veya Uygulama tuşu olmayan klavyeler için Shift + F10 ile bir bağlam menüsü görüntüleyebiliriz.  
 
-Bu menü iki alt menüden oluşur:  
+Bu menü üç alt menüden oluşur:  
 
-Filtreler ve Panoya Kopyala.  
+Filtreler, Panoya Kopyala ve Yüklü eklenti .  belgelerini görüntüle.  
 
 "Filtre" alt menüsünde aşağıdaki seçeneklere sahibiz:  
 
@@ -71,6 +73,8 @@ Seçenekler, NVDA yeniden başlatılana kadar mağazanın bir sonraki etkinleşt
 * Eklenti web sitesi bağlantısını kopyala: Bu seçeneği seçersek, eklenti resmi sayfasının URL'si panoya kopyalanacaktır.  
 * Eklenti indirme bağlantısını kopyala: Peki bu, eklenti geliştirme dallarını içerecek bir alt menüdür. Birini seçtiğimizde, birden fazla varsa, eklentiyi indirmek için URL'yi panoya kopyalayacaktır.  
 
+* Yüklü eklenti belgelerini görüntüle: Bu seçenek, listede seçtiğimiz eklenti bilgisayarımıza kuruluysa ve bir belge içeriyorsa görünür. Tıkladığımızda, kendi dilimizde bir içerik bulunuyorsa, o dille açılır. Aksi taktirde, eklentinin varsayılan dilinde açılır  
+
 ### Yüklü eklentilerde güncelleme olup olmadığını kontrol edin  
 
 https://www.nvda.es adresinde ekibimizde bulunanlardan daha yeni olan eklentileri güncellememize izin verecek.  
@@ -92,6 +96,14 @@ Bu pencerede aşağıdaki tuşlara sahibiz:
 
 NVDA / Tercihler / Ayarlar menüsüne gidip NVDA.ES Eklenti Mağazası kategorisini bularak, özelliklerini yapılandırabiliriz.  
 
+* Bir Eklenti sunucusu seçin:  
+
+Bu seçim kutusunda, eklentiye tanımlanmış sunuculardan dilediğimizi seçebiliyoruz. Varsayılan olarak İspanyol topluluk sunucusu bulunuyor.  
+
+* Eklenti sunucularını yönet:  
+
+Eklenmiş sunucuları düzenleme, adlarını değiştirme ve silme işlemlerini yapabileceğimiz içeriği açan bir buton.  
+
 * Güncellemeleri denetlemeyi etkinleştir.  
 
 Bu onay kutusunu etkinleştirirsek, bir kontrol ile diğeri arasında ne kadar zaman geçeceğini seçebileceğimiz bir birleşik giriş kutusu etkinleştirilecektir.  
@@ -101,6 +113,25 @@ Bu onay kutusunu etkinleştirirsek, bir kontrol ile diğeri arasında ne kadar z
 Bu seçeneğin davranışı basittir, belirtilen zaman aralığında sunucuyu tarayarak güncelleme olup olmadığını denetler. Güncelleme vrs bir sistem bildirimi ile bizi bilgilendirir ve güncellemeleri ekrana getirir.  
 
 Güncellemeler olması durumunda, verilen zaman aralığının 5 katı daha arayacak ve ardından devre dışı bırakacak, her seferinde biz güncelleme yapana kadar güncellemelerin bulunduğunu bize bildirecektir.  
+
+* Eklenti açıklamaları için çeviri seçeneğini etkinleştir:  
+
+Bu seçeneğin onay kutusunu işaretli hale getirirsek, hemen ardından bir seçim kutusu gelir ve desteklenen dillerden dilediğimizi seçmemizi sağlar.  
+
+Lütfen eklenti bilgilerinin çevrileceği bir dil seçin başlıklı bu seçim kutusunda aşağıda listelenen diller destekleniyor:
+
+    Almanca,  
+    Arapça,  
+    Hırvatça,  
+    İspanyolca,  
+    Fransızca,  
+    İngilizce,  
+    İtalyanca,  
+    Lehçe,  
+    Portekizce,  
+    Rusça,  
+    Türkçe,  
+    Ukraynaca.  
 
 * Mağaza eklentilerini ve arama sonuçlarını alfabetik olarak listele.  
 
@@ -163,6 +194,56 @@ Bunları bildirmek ve mümkün olan en kısa sürede çözebilmek için iletişi
 NVDA.ES eklenti Mağazasının Keyfini Çıkarın!
 
 # Sürüm Geçmişi:
+## Sürüm 0.8.3:
+
+* Mağaza yükleme sorunu düzeltildi Değer bekleniyor: 1. satır sütun 1 (karakter 0).
+* Ara ve Eylemler düğmesi eklendi.
+
+Şimdi Mağazanın ana ekranında iki yeni düğmemiz olacak.  
+
+- Arama alanına girmekle aynı işleve sahip olan "Ara" butonu. Hareket zorluğu çeken kullanıcılar, Sesli sistemler ve dokunmatik ekran kullanıcıları için eklendi.  
+
+Bu düğme, Alt+R kısayoluna sahiptir.  
+
+- Eklentiler listesinden seçtiğimiz eklentinin içerik menüsünü bize gösterecek olan Eylemler düğmesi de eklendi.  
+
+Bu menüden filtrelere erişebilir veya panoya kopyalama işlevlerini elde ederiz.  
+
+Ara düğmesiyle aynı nedenlerle eklendi.  
+
+Bu düğme Alt+E kısayoluna sahiptir.  
+
+* Yüklü eklentilerin belgelerini görüntüleme yeteneği eklendi.  
+
+Eklenti mağazası ana penceresinde, eklenti listesinde herhangi bir eklenti seçtiğimizde, eğer bilgisayarımızda kuruluysa, içerik menüsünü açtığımızda veya Eylemler butonuna bastığımızda bizi yeni bir seçenek karşılar.  
+
+Bu seçenek, Yüklü eklenti belgelerini görüntüle öğesidir. Tıkladığımızda eklenti belgesi tarayıcımız ile açılacaktır.  
+
+Eğer mevcut ise, belge kendi dilimizde açılır. Aksi taktirde eklenti tarafından tanımlanmış dilde açılacaktır.  
+
+Bilgisayarımızda yüklü olmayan veya yüklü olduğu halde yardım belgesi bulunmayan bir eklenti seçildiğinde bu seçenek görüntülenmeyecektir.  
+
+* Eklenti belgelerini kolayca başlatma olanağı eklendi.  
+
+Artık, NVDA menüsü>Araçlar>NVDA.es eklenti mağazası alt menüsünde "Eklenti belgeleri" adlı bir seçenek bulunur.  
+
+Bu seçenek onaylandığında NVDA.es eklentisinin yardım dosyası kendi dilimizde açılacaktır.  
+
+## Sürüm 0.8.2.
+
+* Ukraynaca güncellenmiş dil ve belgeler.
+* Eklenti uyumluluğu ile ilgili sorun düzeltildi.
+
+Artık yalnızca NVDA API'miz ile de uyumlu olan güncellemeler sunmalıdır.
+
+Eklentinin sunucudaki sürümü yüklediğimizden daha büyük olsa bile, API uyumluluğu doğru değilse söz konusu güncelleme bize sunulmayacaktır.
+
+* Sunucuda kurulu eklentilerin listesinin güncellenmesi düzeltildi.
+
+Artık bir eklenti kurduğumuzda listeyi doğru bir şekilde kaydediyor ve sunucuda olup olmadığını doğru bir şekilde kontrol ediyor.
+
+En son sürümde, yeni yüklenen eklentileri kaydetmedi.
+
 ## Sürüm 0.8.1.
 
 * Eklentileri olmayan bir sunucuya bağlanma sorunu düzeltildi.

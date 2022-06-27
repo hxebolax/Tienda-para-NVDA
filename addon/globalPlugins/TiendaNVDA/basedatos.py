@@ -165,6 +165,14 @@ class NVDAStoreClient(object):
 												lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
 												lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
 												lstVerLocal.append(z.manifest["version"])
+											else:
+												if len(self.dataServidor[x]['links'][i[1]]['version'].replace(".", "")) >= 8:
+													if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'].replace(".", ""), z.manifest["version"].replace(".", "")):
+														lstActualizar.append("{}".format(z.manifest["summary"]))
+														lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
+														lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
+														lstVerLocal.append(z.manifest["version"])
+
 
 		if len(lstActualizar) == 0:
 			return False, False, False

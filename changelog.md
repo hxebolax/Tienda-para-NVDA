@@ -1,1 +1,3 @@
-* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0)
+* Solucionado problema con versiones tipo fecha
+* Actualizados idiomas turco y inglés automático
+* Sizers actualizados para su correcta visualización

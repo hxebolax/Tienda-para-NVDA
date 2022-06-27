@@ -171,9 +171,17 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.4.
+
+* Solucionado problema con versiones tipo fecha
+
+* Actualizados idiomas turco y inglés automático
+
+* Sizers actualizados para su correcta visualización
+
 ## Versión 0.8.3.
 
-* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0)
+* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0).
 
 * Agregado botón Buscar y botón Acciones.
 
