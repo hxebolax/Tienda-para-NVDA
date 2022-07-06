@@ -46,7 +46,6 @@ dirAddonPath=os.path.dirname(__file__)
 sys.path.append(dirAddonPath)
 import traductor
 del sys.path[-1]
-
 from . import ajustes
 from . import basedatos
 
@@ -131,8 +130,8 @@ _("""Error producido en las librerías::
 			log.info(msg)
 			exc, type, trace = sys.exc_info()
 			traceback.print_exception(exc, type, trace)
-
 			inicio = False
+
 		if inicio:
 			global chkUpdate
 			if ajustes.tempChk == True:
@@ -147,8 +146,10 @@ _("""Error producido en las librerías::
 			# Translators: Nombre del submenú para buscar actualizaciones
 			self.tiendaActualizaciones = self.menu.Append(wx.ID_ANY, _("Buscar actualizaciones de complementos"))
 			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu2, self.tiendaActualizaciones)
+			# Translators: Nombre del submenú para mostrar el manual
+			self.tiendaDocumentacion = self.menu.Append(wx.ID_ANY, _("Documentación del complemento"))
+			gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.script_menu3, self.tiendaDocumentacion)
 			# Translators: Nombre del menú Tienda de complementos
-
 			self.tiendaMenu = self.tools_menu.AppendSubMenu(self.menu, _("Tienda NVDA.ES"))
 		else:
 			log.info(_("Inicio del complemento cancelado."))
@@ -211,6 +212,9 @@ Una de las causas es que NVDA arrancara antes de tener conexión a internet.
 Reinicie NVDA para intentar solucionar el problema.""")
 			ui.message(msg)
 
+	def script_menu3(self, event):
+		wx.LaunchDefaultBrowser(addonHandler.Addon(os.path.join(os.path.dirname(__file__), "..", "..")).getDocFilePath())
+
 if globalVars.appArgs.secure:
 	GlobalPlugin = globalPluginHandler.GlobalPlugin # noqa: F811 
 
@@ -245,16 +249,20 @@ class TiendaPanel(SettingsPanel):
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
 		self.listbox = helper.addLabeledControl(_("Complementos instalados que hay en el servidor:"), wx.ListBox)
-		if len(ajustes.listaAddonsSave) == 0:
+		if self.datosServidor == None:
 			pass
 		else:
-			for i in ajustes.listaAddonsSave:
-				for x in range(0, len(self.datosServidor)):
-					if self.datosServidor[x]['name'].lower() == i[0].lower():
-						if i[1] == 9:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
-						else:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+			if len(ajustes.listaAddonsSave) == 0:
+				pass
+			else:
+				for i in ajustes.listaAddonsSave:
+					for x in range(0, len(self.datosServidor)):
+						if self.datosServidor[x]['name'].lower() == i[0].lower():
+							if i[1] == 9:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+							else:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+
 		if self.listbox.GetSelection() == -1:
 			pass
 		else:
@@ -350,21 +358,26 @@ class TiendaPanel(SettingsPanel):
 
 		self.datos = basedatos.NVDAStoreClient()
 		self.datosServidor = self.datos.dataServidor
-		self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
-		self.listaGuarda = []
-		ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
-		self.listbox.Clear()
-		if len(ajustes.listaAddonsSave) == 0:
-			self.listbox.Append(_("Sin complementos compatibles"))
+		if self.datosServidor == None:
+			self.listbox.Clear()
+			self.listbox.Append(_("No se pudo tener acceso al servidor"))
+			self.listbox.SetSelection(0)
 		else:
-			for i in ajustes.listaAddonsSave:
-				for x in range(0, len(self.datosServidor)):
-					if self.datosServidor[x]['name'].lower() == i[0].lower():
-						if i[1] == 9:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
-						else:
-							self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
-		self.listbox.SetSelection(0)
+			self.listaOriginal = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.listaGuarda = []
+			ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.listbox.Clear()
+			if len(ajustes.listaAddonsSave) == 0:
+				self.listbox.Append(_("Sin complementos compatibles"))
+			else:
+				for i in ajustes.listaAddonsSave:
+					for x in range(0, len(self.datosServidor)):
+						if self.datosServidor[x]['name'].lower() == i[0].lower():
+							if i[1] == 9:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], _("Descartar actualizaciones")))
+							else:
+								self.listbox.Append("{} -- {}".format(self.datosServidor[x]['summary'], self.datosServidor[x]['links'][i[1]]['channel']))
+			self.listbox.SetSelection(0)
 
 	def onAutoChk(self, event):
 		chk = event.GetEventObject()
@@ -384,21 +397,24 @@ class TiendaPanel(SettingsPanel):
 		if self.listbox.GetString(self.listbox.GetSelection()) == _("Sin complementos compatibles"):
 			pass
 		else:
-			nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
-			nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
-			indice = self.datos.indiceName(nombreLocal)
-			datos = self.datosServidor[indice]
-			if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
-				self.menuDescarga = wx.Menu()
-				for i in range(len(datos['links'])):
-					item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
-					self.Bind(wx.EVT_MENU, self.onSelect, item)
-				item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
-				self.Bind(wx.EVT_MENU, self.onSelect, item)
-
-				position = self.listbox.GetPosition()
-				self.PopupMenu(self.menuDescarga,position)
+			if self.listbox.GetString(self.listbox.GetSelection()) == _("No se pudo tener acceso al servidor"):
 				pass
+			else:
+				nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
+				nombreLocal = ajustes.listaAddonsSave[self.listbox.GetSelection()][0]
+				indice = self.datos.indiceName(nombreLocal)
+				datos = self.datosServidor[indice]
+				if event.GetKeyCode() == 32: # Pulsamos intro para seleccionar. 32 es espacio.
+					self.menuDescarga = wx.Menu()
+					for i in range(len(datos['links'])):
+						item = self.menuDescarga.Append(i, _("Canal {}").format(datos['links'][i]['channel']))
+						self.Bind(wx.EVT_MENU, self.onSelect, item)
+					item = self.menuDescarga.Append(9, _("Descartar actualizaciones"))
+					self.Bind(wx.EVT_MENU, self.onSelect, item)
+
+					position = self.listbox.GetPosition()
+					self.PopupMenu(self.menuDescarga,position)
+					pass
 
 	def modificaListBox(self, canalID):
 		nombre = self.listbox.GetString(self.listbox.GetSelection()).split(" -- ")
@@ -673,6 +689,73 @@ Compruebe que es una URL correcta de base de datos de complementos.""")
 		else:
 			self.Close()
 
+class SinComplementos(wx.Dialog):
+	def __init__(self, parent):
+
+		WIDTH = 450
+		HEIGHT = 150
+
+		super(SinComplementos,self).__init__(parent, -1, title=_("Servidor sin complementos"), size = (WIDTH, HEIGHT))
+
+		ajustes.IS_WinON = True
+		self.choiceSelection = 0
+		self.resultados = []
+		for i in range(len(ajustes.listaServidores)):
+			self.resultados.append("{}".format(ajustes.listaServidores[i][0]))
+
+		self.Panel = wx.Panel(self)
+		self.choice = wx.Choice(self.Panel, wx.ID_ANY, choices =[_("Seleccione un servidor")] + self.resultados)
+		self.choice.SetSelection(self.choiceSelection)
+		self.choice.Bind(wx.EVT_CHOICE, self.onChoiceApp)
+		#Translators: etiqueta del botón aceptar
+		self.aceptarBTN = wx.Button(self.Panel, wx.ID_ANY, _("&Aceptar"))
+		self.aceptarBTN.Bind(wx.EVT_BUTTON, self.onAceptar)
+		#Translators: etiqueta del botón cancelar
+		self.cerrarBTN = wx.Button(self.Panel, wx.ID_CANCEL, _("&Cerrar"))
+		self.cerrarBTN.Bind(wx.EVT_BUTTON, self.close, id=wx.ID_CANCEL)
+
+		sizerV = wx.BoxSizer(wx.VERTICAL)
+		sizerH = wx.BoxSizer(wx.HORIZONTAL)
+
+		sizerV.Add(self.choice, 0, wx.EXPAND | wx.ALL)
+
+		sizerH.Add(self.aceptarBTN, 2, wx.CENTER)
+		sizerH.Add(self.cerrarBTN, 2, wx.CENTER)
+
+		sizerV.Add(sizerH, 0, wx.CENTER)
+
+		self.Panel.SetSizer(sizerV)
+
+		self.CenterOnScreen()
+
+	def onChoiceApp(self, event):
+		#Translators: título de selección de aplicación
+		if self.choice.GetString(self.choice.GetSelection()) == _("Seleccione un servidor"):
+			self.choiceSelection = 0
+		else:
+			self.choiceSelection = event.GetSelection()
+
+	def onAceptar(self, event):
+		if self.choiceSelection == 0:
+			gui.messageBox(_("Debe seleccionar un servidor para continuar."), _("Información"), wx.ICON_INFORMATION)
+			self.choice.SetFocus()
+		else:
+			ajustes.IS_WinON = False
+			ajustes.selectSRV = self.choiceSelection - 1
+			ajustes.urlServidor = ajustes.listaServidores[ajustes.selectSRV][1]
+			ajustes.setConfig("urlServidor", ajustes.listaServidores[ajustes.selectSRV][1])
+			ajustes.setConfig("selectSRV", ajustes.selectSRV)
+			ajustes.listaAddonsSave = basedatos.libreriaLocal(ajustes.listaServidores[ajustes.selectSRV][2]).fileJsonAddon(2)
+			self.Destroy()
+			gui.mainFrame.postPopup()
+			self._MainWindows = HiloComplemento(1)
+			self._MainWindows.start()
+
+	def close(self, event):
+		ajustes.IS_WinON = False
+		self.Destroy()
+		gui.mainFrame.postPopup()
+
 class tiendaApp(wx.Dialog):
 	def __init__(self, parent, dataServidor):
 
@@ -685,6 +768,7 @@ class tiendaApp(wx.Dialog):
 		self.datos = dataServidor
 		self.indiceFiltro = ajustes.indiceFiltro
 		self.temporal = []
+		self.dirDoc = None
 
 		self.Panel = wx.Panel(self, 1)
 
@@ -693,21 +777,25 @@ class tiendaApp(wx.Dialog):
 		self.textoBusqueda.Bind(wx.EVT_TEXT_ENTER, self.onBusqueda)
 		self.textoBusqueda.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 
+		self.buscarBTN = wx.Button(self.Panel, 201, _("B&uscar"))
+
 		labelComplementos = wx.StaticText(self.Panel, wx.ID_ANY, _("&Lista complementos:"))
 		self.listboxComplementos = wx.ListBox(self.Panel, 3, style = wx.LB_NO_SB)
 		wx.CallAfter(self.onCargaFiltro, self.indiceFiltro)
 		self.listboxComplementos.Bind(wx.EVT_KEY_UP, self.onLisbox)
 		self.listboxComplementos.Bind(wx.EVT_CONTEXT_MENU, self.menuListBox)
 
+		self.accionBTN = wx.Button(self.Panel, 202, _("&Acción"))
+
 		labelResultado = wx.StaticText(self.Panel, wx.ID_ANY, _("&Información:"))
 		self.txtResultado = wx.TextCtrl(self.Panel, 4, style =wx.TE_MULTILINE|wx.TE_READONLY|wx.LB_NO_SB)
 		self.txtResultado.Bind(wx.EVT_CONTEXT_MENU, self.skip)
 		self.txtResultado.Bind(wx.EVT_KEY_UP, self.ontxtResultado)
 
-		self.descargarBTN = wx.Button(self.Panel, 201, _("&Descargar complemento"))
-		self.paginaWebBTN = wx.Button(self.Panel, 202, _("Visitar &página WEB"))
-		self.cambiarSrvBTN = wx.Button(self.Panel, 203, _("&Cambiar de servidor"))
-		self.salirBTN = wx.Button(self.Panel, 204, _("&Salir"))
+		self.descargarBTN = wx.Button(self.Panel, 203, _("&Descargar complemento"))
+		self.paginaWebBTN = wx.Button(self.Panel, 204, _("Visitar &página WEB"))
+		self.cambiarSrvBTN = wx.Button(self.Panel, 205, _("&Cambiar de servidor"))
+		self.salirBTN = wx.Button(self.Panel, 206, _("&Salir"))
 		self.Bind(wx.EVT_BUTTON,self.onBoton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onkeyVentanaDialogo)
 		self.Bind(wx.EVT_CLOSE, self.onBoton)
@@ -719,8 +807,10 @@ class tiendaApp(wx.Dialog):
 
 		szComplementos.Add(labelBusqueda, 0)
 		szComplementos.Add(self.textoBusqueda, 0, wx.EXPAND)
+		szComplementos.Add(self.buscarBTN, 0, wx.EXPAND)
 		szComplementos.Add(labelComplementos, 0)
 		szComplementos.Add(self.listboxComplementos, 1, wx.EXPAND)
+		szComplementos.Add(self.accionBTN, 0, wx.EXPAND)
 
 		szResultados.Add(labelResultado, 0)
 		szResultados.Add(self.txtResultado, 1, wx.EXPAND)
@@ -730,7 +820,7 @@ class tiendaApp(wx.Dialog):
 		szBotones.Add(self.cambiarSrvBTN, 2, wx.CENTRE)
 		szBotones.Add(self.salirBTN, 2, wx.CENTRE)
 
-		szComplementos.Add(szBotones, 0, wx.EXPAND)
+		szResultados.Add(szBotones, 0, wx.EXPAND)
 
 		szMain.Add(szComplementos, 0, wx.EXPAND)
 		szMain.Add(szResultados, 1, wx.EXPAND)
@@ -845,7 +935,6 @@ Total descargas: {}\n""").format(
 		return
 
 	def menuListBox(self, event):
-
 		nombre = self.listboxComplementos.GetString(self.listboxComplementos.GetSelection())
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
@@ -875,6 +964,13 @@ Total descargas: {}\n""").format(
 			self.Bind(wx.EVT_MENU, self.onPortapapeles, itemx)
 		self.menuPortapapeles.AppendSubMenu(self.menuPortapapelesDescarga, _("Copiar enlace de descarga del complemento"))
 		self.menu.AppendSubMenu(self.menuPortapapeles, _("&Copiar al portapapeles"))
+
+		for i in self.datos.dataLocal:
+			if datos['name'].lower() == i.name.lower():
+				self.dirDoc = addonHandler.Addon(i.path).getDocFilePath()
+				if self.dirDoc:
+					itemDoc = self.menu.Append(20, _("Ver documentación del complemento instalado"))
+					self.Bind(wx.EVT_MENU, self.onDocumentacion, itemDoc)
 
 		position = self.listboxComplementos.GetPosition()
 		self.PopupMenu(self.menu,position)
@@ -1013,6 +1109,9 @@ _("""Se copio la URL de descarga al portapapeles""")
 				message=_("No se pudo llevar a cabo la copia al portapapeles"), parent=None, flags=wx.ICON_ERROR)
 			notify.Show(timeout=10)
 
+	def onDocumentacion(self, event):
+		wx.LaunchDefaultBrowser('file://' + self.dirDoc, flags=0)
+
 	def onLisbox(self, event):
 		try:
 			tecla = event.GetKeyCode()
@@ -1059,6 +1158,10 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 		indice = self.datos.indiceSummary(nombre)
 		datos = self.datos.dataServidor[indice]
 		if botonID == 201:
+			self.onBusqueda(None)
+		elif botonID == 202:
+			self.menuListBox(None)
+		elif botonID == 203:
 			self.menuDescarga = wx.Menu()
 
 			for i in range(len(datos['links'])):
@@ -1069,9 +1172,9 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 			self.PopupMenu(self.menuDescarga,position)
 			pass
 
-		elif botonID == 202:
+		elif botonID == 204:
 			wx.LaunchDefaultBrowser(datos['url'])
-		elif botonID == 203:
+		elif botonID == 205:
 			self.menu = wx.Menu()
 			for i in range(len(ajustes.listaServidores)):
 				i = self.menu.Append(i, "{}".format(ajustes.listaServidores[i][0]), "", wx.ITEM_CHECK)
@@ -1079,7 +1182,7 @@ Active dicha opción y elija un idioma para poder usar esta característica.""")
 			self.menu.Check(ajustes.selectSRV, True)
 			self.cambiarSrvBTN.PopupMenu(self.menu)
 
-		elif botonID == 204:
+		elif botonID == 206:
 			if ajustes.IS_Download == False:
 				ajustes.IS_WinON = False
 			else:
@@ -1585,6 +1688,24 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 						wx.LaunchDefaultBrowser(self.url)
 						return
 
+		if self.nombreFile == None:
+			winsound.PlaySound(None, winsound.SND_PURGE)
+			msg = \
+_("""No se pudo obtener el nombre del archivo a descargar.
+
+{} del canal {}
+
+Se va a proceder a descargar con su navegador predefinido.""").format(nombre, datos['links'][self.id]['channel'])
+			gui.messageBox(msg,
+				_("Información"), wx.ICON_INFORMATION)
+			self.nombreFile = ""
+			ajustes.IS_Download = False
+			if ajustes.IS_TEMPORAL == True:
+				ajustes.IS_WinON = False
+				ajustes.IS_TEMPORAL = False
+			wx.LaunchDefaultBrowser(self.url)
+			return
+
 		winsound.PlaySound(None, winsound.SND_PURGE)
 		wildcard = _("Complemento de NVDA (*.nvda-addon)|*.nvda-addon")
 		dlg = wx.FileDialog(None, message=_("Guardar en..."), defaultDir=os.environ['SYSTEMDRIVE'], defaultFile=self.nombreFile, wildcard=wildcard, style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
@@ -1791,28 +1912,54 @@ class HiloComplemento(Thread):
 
 	def run(self):
 		def tiendaAppDialogo(data):
-			self._MainWindows = tiendaApp(gui.mainFrame, data)
-			gui.mainFrame.prePopup()
-			self._MainWindows.Show()
+			if len(data.dataServidor) == 0:
+				self._MainWindows = SinComplementos(gui.mainFrame)
+				gui.mainFrame.prePopup()
+				self._MainWindows.Show()
+			else:
+				self._MainWindows = tiendaApp(gui.mainFrame, data)
+				gui.mainFrame.prePopup()
+				self._MainWindows.Show()
 
 		def ActualizacionDialogo(nombreUrl, verInstalada, verInstalar):
 			self._MainWindows = BuscarActualizacionesDialogo(gui.mainFrame, nombreUrl, verInstalada, verInstalar)
 			gui.mainFrame.prePopup()
 			self._MainWindows.Show()
 
+		def OtroServidor():
+			self._MainWindows = SinComplementos(gui.mainFrame)
+			gui.mainFrame.prePopup()
+			self._MainWindows.Show()
+
 		try:
 			datos = basedatos.NVDAStoreClient()
-			if self.opcion == 1:
-				wx.CallAfter(tiendaAppDialogo, datos)
-			elif self.opcion == 2:
-				nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
-				if nombreUrl == False:
-					ajustes.IS_WinON = True
-					gui.messageBox(_("No hay actualizaciones."),
-						_("Información"), wx.ICON_INFORMATION)
-					ajustes.IS_WinON = False
+			if datos.dataServidor == None:
+				msg = \
+_("""No se pudo tener acceso al servidor de complementos.
+
+Inténtelo en unos minutos.
+
+¿Desea no obstante intentar cambiar de servidor?""")
+				MsgBox = wx.MessageDialog(None, msg, _("Pregunta"), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+				ret = MsgBox.ShowModal()
+				if ret == wx.ID_YES:
+					MsgBox.Destroy
+					wx.CallAfter(OtroServidor)
+
 				else:
-					wx.CallAfter(ActualizacionDialogo, nombreUrl, verInstalada, verInstalar)
+					MsgBox.Destroy
+			else:
+				if self.opcion == 1:
+					wx.CallAfter(tiendaAppDialogo, datos)
+				elif self.opcion == 2:
+					nombreUrl, verInstalada, verInstalar = datos.chkActualizaS()
+					if nombreUrl == False:
+						ajustes.IS_WinON = True
+						gui.messageBox(_("No hay actualizaciones."),
+							_("Información"), wx.ICON_INFORMATION)
+						ajustes.IS_WinON = False
+					else:
+						wx.CallAfter(ActualizacionDialogo, nombreUrl, verInstalada, verInstalar)
 		except Exception as e:
 			msg = \
 _("""No se pudo tener acceso al servidor de complementos.

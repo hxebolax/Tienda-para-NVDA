@@ -3,14 +3,50 @@
 # This file is covered by the GNU General Public License.
 
 import addonHandler
+from logHandler import log
 import globalVars
 import addonAPIVersion
+import traceback
 import json
+import re
 import urllib.request
 import os
+import sys
 from threading import Timer
 from .packaging import version
 from . import ajustes
+
+ADDON_API_VERSION_REGEX = re.compile(r"^(0|\d{4})\.(\d)(?:\.(\d))?$")
+
+def getAPIVersionTupleFromString(version):
+	"""Converts a string containing an NVDA version to a tuple of the form (versionYear, versionMajor, versionMinor)"""
+	match = ADDON_API_VERSION_REGEX.match(version)
+	if not match:
+		raise ValueError(version)
+	return tuple(int(i) if i is not None else 0 for i in match.groups())
+
+def hasAddonGotRequiredSupport(addonMin, currentAPIVersion=addonAPIVersion.CURRENT):
+	"""True if NVDA provides the add-on with an API version high enough to meet the add-on's minimum requirements
+	"""
+	return addonMin <= currentAPIVersion
+
+def isAddonTested(addonMax, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
+	"""True if this add-on is tested for the given API version.
+	By default, the current version of NVDA is evaluated.
+	"""
+	return addonMax >= backwardsCompatToVersion
+
+def isAddonCompatible(
+		addonMin,
+		addonMax,
+		currentAPIVersion=addonAPIVersion.CURRENT,
+		backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO
+):
+	"""Tests if the addon is compatible.
+	The compatibility is defined by having the required features in NVDA, and by having been tested / built against
+	an API version that is still supported by this version of NVDA.
+	"""
+	return hasAddonGotRequiredSupport(addonMin, currentAPIVersion) and isAddonTested(addonMax, backwardsCompatToVersion)
 
 def generaFichero():
 	return os.path.basename(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data%s.json" % len(os.listdir(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")))))
@@ -56,11 +92,16 @@ class NVDAStoreClient(object):
 	def __init__(self):
 		super(NVDAStoreClient, self).__init__()
 
-		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
-		p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
-		self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
-		self.urlBase = "https://nvda.es/files/get.php?file="
-		self.dataLocal = list(addonHandler.getAvailableAddons())
+		try:
+			Headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
+			p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
+			self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
+			temp = ajustes.urlServidor.split("?")
+			self.urlBase = temp[0] + "?file="
+			self.dataLocal = list(addonHandler.getAvailableAddons())
+		except (urllib.error.HTTPError, urllib.error.URLError) as http_err:
+			self.dataServidor = None
+			log.info(http_err)
 
 	def GetFilenameDownload(self, valor):
 		for x in range(0, len(self.dataServidor)):
@@ -98,12 +139,6 @@ class NVDAStoreClient(object):
 		else:
 			return True
 
-	def isAddonTested(self, version, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
-		"""True if this add-on is tested for the given API version.
-		By default, the current version of NVDA is evaluated.
-		"""
-		return tuple(map(int, version.split('.'))) >= backwardsCompatToVersion
-
 	def chkActualizaS(self):
 		lstActualizar = []
 		lstUrl = []
@@ -118,7 +153,7 @@ class NVDAStoreClient(object):
 						for z in self.dataLocal:
 							if i[0].lower() == z.manifest["name"].lower():
 								if not z.isPendingRemove:
-									if self.isAddonTested(self.dataServidor[x]['links'][i[1]]['lasttested']):
+									if isAddonCompatible(getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['minimum']), getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['lasttested'])):
 										if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
 											lstActualizar.append("{}".format(z.manifest["summary"]))
 											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
@@ -130,6 +165,14 @@ class NVDAStoreClient(object):
 												lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
 												lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
 												lstVerLocal.append(z.manifest["version"])
+											else:
+												if len(self.dataServidor[x]['links'][i[1]]['version'].replace(".", "")) >= 8:
+													if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'].replace(".", ""), z.manifest["version"].replace(".", "")):
+														lstActualizar.append("{}".format(z.manifest["summary"]))
+														lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
+														lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
+														lstVerLocal.append(z.manifest["version"])
+
 
 		if len(lstActualizar) == 0:
 			return False, False, False
@@ -151,7 +194,18 @@ class libreriaLocal(object):
 		elif opcion == 2: # Cargar
 			if os.path.isfile(self.file):
 				with open(self.file, "r") as fp:
-					return json.load(fp)
+					try:
+						data = json.load(fp)
+						return data
+					except json.decoder.JSONDecodeError:
+						self.servidor = NVDAStoreClient().dataServidor
+						lista = []
+						for i in self.local:
+							for x in range(0, len(self.servidor)):
+								if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+									lista.append([i.manifest['name'], 0])
+						self.fileJsonAddon(1, lista)
+						return lista
 			else:
 				self.servidor = NVDAStoreClient().dataServidor
 				lista = []

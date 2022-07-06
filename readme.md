@@ -171,13 +171,81 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.4.
+
+* Solucionado problema con versiones tipo fecha
+
+* Actualizados idiomas turco y inglés automático
+
+* Sizers actualizados para su correcta visualización
+
+## Versión 0.8.3.
+
+* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0).
+
+* Agregado botón Buscar y botón Acciones.
+
+Ahora en la pantalla principal de la Tienda tendremos dos nuevos botones.
+
+- Buscar que hará lo mismo que si diésemos intro en el campo de búsqueda pero que se agrega para personas que usen la voz, pantallas táctiles y otros problemas de movilidad.
+
+Dicho botón tiene el atajo Alt+U:
+
+- También se agrego el botón Acción el cual nos mostrara el menú contextual del complemento que tengamos seleccionado en la lista de complementos.
+
+Desde dicho menú podremos acceder a los filtros o copiado al portapapeles.
+
+Se agrego por los mismos motivos que el botón Buscar.
+
+Dicho botón tiene el atajo Alt+A.
+
+* Agregada la posibilidad de ver la documentación de complementos instalados
+
+En la pantalla principal de la Tienda en la lista de complementos si pulsamos tecla Aplicaciones, Shift+F10 o el botón Acción Alt+A y el complemento que esta en el foco lo tenemos instalado en el menú que se ofrece nos saldrá una nueva opción.
+
+Dicha opción es Ver documentación del complemento instalado, si pulsamos hay nos abrirá nuestro navegador con la documentación del complemento.
+
+Decir que si la documentación esta en nuestro idioma se abrirá en nuestro idioma de lo contrario se abrirá en el idioma definido por el complemento.
+
+Igualmente hay complementos que no traen documentación en este caso no se mostrara dicha opción ni en aquellos que no tengamos instalados.
+
+* Agregada posibilidad de lanzar la documentación del complemento fácilmente.
+
+Ahora desde el menú de NVDA Herramientas / Tienda NVDA.ES tendremos una nueva opción que es Documentación del complemento.
+
+Si le damos se abrirá en nuestro navegador predeterminado la documentación de la Tienda en nuestro idioma si esta o en defecto la documentación en Español.
+
+## Versión 0.8.2.
+
+* Actualizado idioma y documentación en Ucraniano.
+
+* Solucionado problema con compatibilidad de complementos.
+
+Ahora debería solo ofrecer actualizaciones que además sean compatible con nuestra API de NVDA.
+
+Aunque la versión del complemento en el servidor sea mayor que la que tenemos instalada si la compatibilidad de API no es correcta no se nos ofrecerá dicha actualización.
+
+* Solucionado la actualización de la lista de complementos instalados que hay en el servidor.
+
+Ahora ya guarda bien la lista cuando instalamos un complemento y comprueba correctamente si esta en el servidor.
+
+En la ultima versión no guardaba los nuevos complementos instalados.
+
+## Versión 0.8.1.
+
+* Solucionado problema al conectarse a un servidor sin complementos.
+
+* Solucionado las descargas desde nuevos servidores
+
+* Solucionado la conexión a servidores Onion tanto públicos como privados a través de Proxy
+
 ## Versión 0.8.
 
 * Añadida la posibilidad de agregar URLs personalizadas de repositorios de complementos.
 
 Esta nueva función vendrá bien para agregar aquellos repositorios que usen el gestor de complementos que usa nvda.es para más información visitar el repositorio de Github:
 
-https://github.com/nvda-es/advancedAddonFiles
+[https://github.com/nvda-es/advancedAddonFiles](https://github.com/nvda-es/advancedAddonFiles)
 
 Bien quien use dicha aplicación para crear un repositorio ahora podrá agregar su URL a la Tienda.
 
