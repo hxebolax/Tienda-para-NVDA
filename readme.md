@@ -171,6 +171,14 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.8.5
+
+* Solución de errores con la mala praxis de los desarrolladores que no siguen los estándares de los manifiestos.
+
+Ejemplo:
+
+minimumNVDAVersion = None (MUY MAL) no cuesta nada un simple 2019.3.0 son simplemente 8 caracteres puñetas.
+
 ## Versión 0.8.4.
 
 * Solucionado problema con versiones tipo fecha

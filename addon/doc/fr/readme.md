@@ -171,6 +171,14 @@ Nous vous remercions de bien vouloir nous contacter pour signaler ce désagréme
 
 Profitez de la Boutique pour NVDA.ES !
 # Journal des changements.
+## Version 0.8.4.
+
+* Résolu le problème avec les versions type date
+
+* Mises à jour des langues turc et anglais automatique
+
+* Sizers mis à jour pour une visualisation correcte
+
 ## Version 0.8.3.
 
 * Résolu le problème lors du chargement de la boutique Expecting value: line 1 column 1 (char 0)

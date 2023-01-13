@@ -1,3 +1,1 @@
-* Solucionado problema con versiones tipo fecha
-* Actualizados idiomas turco y inglés automático
-* Sizers actualizados para su correcta visualización
+* Solución de errores con la mala praxis de los desarrolladores que no siguen los estándares de los manifiestos.

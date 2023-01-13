@@ -153,7 +153,8 @@ class NVDAStoreClient(object):
 						for z in self.dataLocal:
 							if i[0].lower() == z.manifest["name"].lower():
 								if not z.isPendingRemove:
-									if isAddonCompatible(getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['minimum']), getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['lasttested'])):
+									verMinima = "2019.3.0" if self.dataServidor[x]['links'][i[1]]['minimum'] == "None" else self.dataServidor[x]['links'][i[1]]['minimum']
+									if isAddonCompatible(getAPIVersionTupleFromString(verMinima), getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['lasttested'])):
 										if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
 											lstActualizar.append("{}".format(z.manifest["summary"]))
 											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
