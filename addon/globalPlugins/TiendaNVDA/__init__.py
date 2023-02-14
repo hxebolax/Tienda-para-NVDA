@@ -943,9 +943,9 @@ Total descargas: {}\n""").format(
 		self.menuFiltro = wx.Menu()
 		item1 = self.menuFiltro.Append(6, _("Mostrar todos los complementos"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item1)
-		item2 = self.menuFiltro.Append(7, _("Mostrar los complementos con compatibilidad de API 2022"))
+		item2 = self.menuFiltro.Append(7, _("Mostrar los complementos con compatibilidad de API 2023"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item2)
-		item3 = self.menuFiltro.Append(8, _("Mostrar los complementos con compatibilidad de API 2021"))
+		item3 = self.menuFiltro.Append(8, _("Mostrar los complementos con compatibilidad de API 2022"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item3)
 		item4 = self.menuFiltro.Append(9, _("Mostrar los complementos ordenados por autor"))
 		self.Bind(wx.EVT_MENU, self.onCargaFiltro, item4)
@@ -1036,8 +1036,8 @@ Total descargas: {}\n""").format(
 			else:
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 		if self.indiceFiltro == 7:
-			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2022"))
-			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2022"]
+			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2023"))
+			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2023"]
 			for x in range(0, len(dataserver)):
 					self.temporal.append(dataserver[x]['summary'])
 			if ajustes.tempOrden == False:
@@ -1046,8 +1046,8 @@ Total descargas: {}\n""").format(
 				self.listboxComplementos.Append(sorted(self.temporal, key=str.lower))
 
 		if self.indiceFiltro == 8:
-			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2021"))
-			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2021"]
+			self.SetTitle(ajustes.titulo + _(" - Complementos compatibles con API 2022"))
+			dataserver = [x for x in self.datos.dataServidor if x['links'][0]['lasttested'].split('.')[0] == "2022"]
 			for x in range(0, len(dataserver)):
 					self.temporal.append(dataserver[x]['summary'])
 			if ajustes.tempOrden == False:
@@ -1763,15 +1763,16 @@ class HiloDescarga(Thread):
 	def run(self):
 		try:
 			socket.setdefaulttimeout(self.tiempo) # Dara error si pasan 30 seg sin internet
+			headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.774.68 Safari/537.36 Edg/89.0.774.68'}
 			try:
-				req = urllib.request.Request(self.url, headers={'User-Agent': 'Mozilla/5.0'})
+				req = urllib.request.Request(self.url, headers=headers)
 				obj = urllib.request.urlopen(req).geturl()
 				urllib.request.urlretrieve(obj, self.ruta, reporthook=self.__call__)
 			except:
 				urllib.request.urlretrieve(self.url, self.ruta, reporthook=self.__call__)
 			wx.CallAfter(self.frame.done, _("La descarga se completó.\n") + _("Ya puede cerrar esta ventana."))
-		except:
-			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
+		except Exception as e:
+			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Error:\n\n{}\n").format(e) + _("Ya puede cerrar esta ventana."))
 			try:
 				os.remove(self.ruta)
 			except:

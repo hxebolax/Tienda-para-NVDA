@@ -171,6 +171,10 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.9
+
+* Compatibilidad API 2023
+
 ## Versión 0.8.5
 
 * Solución de errores con la mala praxis de los desarrolladores que no siguen los estándares de los manifiestos.
