@@ -1436,7 +1436,7 @@ class DescargaDialogo(wx.Dialog):
 
 		self.Panel.SetSizer(sizer)
 
-		HiloDescarga(self, self.url, self.file, self.seconds)
+		self.download_thread = Thread(target=self.descargaActualizaciones, daemon = True).start()
 
 		self.textorefresco.SetFocus()
 
@@ -1445,6 +1445,69 @@ class DescargaDialogo(wx.Dialog):
 
 	def onNull(self, event):
 		pass
+
+	def humanbytes(self, B): # Convierte bytes
+		B = float(B)
+		KB = float(1024)
+		MB = float(KB ** 2) # 1,048,576
+		GB = float(KB ** 3) # 1,073,741,824
+		TB = float(KB ** 4) # 1,099,511,627,776
+
+		if B < KB:
+			return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
+		elif KB <= B < MB:
+			return '{0:.2f} KB'.format(B/KB)
+		elif MB <= B < GB:
+			return '{0:.2f} MB'.format(B/MB)
+		elif GB <= B < TB:
+			return '{0:.2f} GB'.format(B/GB)
+		elif TB <= B:
+			return '{0:.2f} TB'.format(B/TB)
+
+	def descargaActualizaciones(self):
+		try:
+			socket.setdefaulttimeout(self.seconds) # Dara error si pasan 30 seg sin internet
+
+			req = urllib.request.Request(self.url, headers={'User-Agent': 'Mozilla/5.0'})
+			try:
+				obj = urllib.request.urlopen(req)
+			except:
+				req = urllib.request.Request(self.url, headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+				obj = urllib.request.urlopen(req)
+
+			total_size = int(obj.headers.get('Content-Length'))
+			if total_size >= 10000000:
+				wx.CallAfter(self.TextoRefresco, _("Espere por favor...\n") + _("Descargando Un complemento grande..."))
+				descargado = 0
+				with urllib.request.urlopen(req) as obj, open(self.file, 'wb') as f:
+					buffer = obj.read(8192)
+					while buffer:
+						f.write(buffer)
+						descargado += len(buffer)
+						progress = (descargado / total_size) * 100
+						wx.CallAfter(self.next, int(progress))
+						buffer = obj.read(8192)
+					obj.close()
+			else:
+				descargado = 0
+				with open(self.file, 'wb') as f:
+					buffer = obj.read(8192)
+					while buffer:
+						f.write(buffer)
+						descargado += len(buffer)
+						progress = (descargado / total_size) * 100
+						wx.CallAfter(self.next, int(progress))
+						wx.CallAfter(self.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(descargado))
+						buffer = obj.read(8192)
+					obj.close()
+
+			wx.CallAfter(self.done, _("La descarga se completó.\n") + _("Ya puede cerrar esta ventana."))
+		except Exception as e:
+			wx.CallAfter(self.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Error:\n\n{}\n").format(e) + _("Ya puede cerrar esta ventana."))
+			try:
+				os.remove(self.file)
+			except:
+				pass
 
 	def next(self, event):
 		self.progressBar.SetValue(event)
@@ -1495,6 +1558,7 @@ class ActualizacionDialogo(wx.Dialog):
 		self.nombreUrl = nombreUrl
 		self.listaSeleccion = listaSeleccion
 		self.seconds = seconds
+		self.directorio = os.path.join(ajustes.dirDatos, "temp")
 
 		self.Panel = wx.Panel(self)
 
@@ -1527,8 +1591,7 @@ class ActualizacionDialogo(wx.Dialog):
 
 		self.Panel.SetSizer(sizer)
 
-		HiloActualizacion(self, self.nombreUrl, self.listaSeleccion, self.seconds)
-
+		self.download_thread = Thread(target=self.descargaActualizaciones, daemon = True).start()
 		self.textorefresco.SetFocus()
 
 	def skip(self, event):
@@ -1536,6 +1599,117 @@ class ActualizacionDialogo(wx.Dialog):
 
 	def onNull(self, event):
 		pass
+
+	def generaFichero(self):
+		if os.path.exists(self.directorio) == False:
+			os.mkdir(self.directorio)
+		nuevoIndex = len(os.listdir(self.directorio))
+		return os.path.join(self.directorio, "temp%s.nvda-addon" % nuevoIndex)
+
+	def humanbytes(self, B): # Convierte bytes
+		B = float(B)
+		KB = float(1024)
+		MB = float(KB ** 2) # 1,048,576
+		GB = float(KB ** 3) # 1,073,741,824
+		TB = float(KB ** 4) # 1,099,511,627,776
+
+		if B < KB:
+			return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
+		elif KB <= B < MB:
+			return '{0:.2f} KB'.format(B/KB)
+		elif MB <= B < GB:
+			return '{0:.2f} MB'.format(B/MB)
+		elif GB <= B < TB:
+			return '{0:.2f} GB'.format(B/GB)
+		elif TB <= B:
+			return '{0:.2f} TB'.format(B/TB)
+
+	def descargaActualizaciones(self):
+		lstError = []
+		try:
+			for i in self.listaSeleccion:
+				fichero = self.generaFichero()
+				socket.setdefaulttimeout(self.seconds)
+				req = urllib.request.Request(list(self.nombreUrl.values())[i], headers={'User-Agent': 'Mozilla/5.0'})
+				try:
+					obj = urllib.request.urlopen(req)
+				except:
+					req = urllib.request.Request(list(self.nombreUrl.values())[i], headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+					obj = urllib.request.urlopen(req)
+
+				total_size = int(obj.headers.get('Content-Length'))
+				if total_size >= 10000000:
+					wx.CallAfter(self.TextoRefresco, _("Espere por favor...\n") + _("Descargando Un complemento grande..."))
+					descargado = 0
+					with urllib.request.urlopen(req) as obj, open(fichero, 'wb') as f:
+						buffer = obj.read(8192)
+						while buffer:
+							f.write(buffer)
+							descargado += len(buffer)
+							progress = (descargado / total_size) * 100
+							wx.CallAfter(self.onDescarga, int(progress))
+							buffer = obj.read(8192)
+						obj.close()
+				else:
+					descargado = 0
+					with open(fichero, 'wb') as f:
+						buffer = obj.read(8192)
+						while buffer:
+							f.write(buffer)
+							descargado += len(buffer)
+							progress = (descargado / total_size) * 100
+							wx.CallAfter(self.onDescarga, int(progress))
+							wx.CallAfter(self.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(descargado))
+							buffer = obj.read(8192)
+						obj.close()
+
+				wx.CallAfter(self.onActualizacion, i+1)
+				bundle = addonHandler.AddonBundle(fichero)
+				if not addonVersionCheck.hasAddonGotRequiredSupport(bundle):
+					pass #Podemos crear un control de errores aquí para complementos que no se pueden instalar por incompatibilidad y luego dar un mensaje
+				else:
+					if addonHandler.addonVersionCheck.isAddonTested(bundle):
+						bundleName = bundle.manifest['name']
+						isDisabled = False
+						for addon in addonHandler.getAvailableAddons():
+							if bundleName == addon.manifest['name']:
+								if addon.isDisabled:
+									isDisabled = True
+								if not addon.isPendingRemove:
+									addon.requestRemove()
+								break
+						addonHandler.installAddonBundle(bundle)
+					else:
+						lstError.append(bundle.manifest['summary'])
+			if len(lstError) == 0:
+				ajustes.reiniciarTrue = True
+				wx.CallAfter(self.done, _("La actualización se completó.\n") + _("NVDA necesita reiniciarse para aplicar las actualizaciones.\n") + _("¿Desea reiniciar NVDA ahora?"))
+			else:
+				if len(lstError) == len(self.listaSeleccion):
+					wx.CallAfter(self.error, _("No se pudo instalar el complemento.\n") + _("Fallo de compatibilidad.\n") + _("Busque una actualización compatible."))
+				else:
+					temp = []
+					for i in lstError:
+						temp.append(i)
+					msg = \
+_("""Se completo la instalación correctamente.
+
+Pero hay complementos que no se pudieron instalar.
+
+Los siguientes complementos son incompatibles, busque una versión compatible:
+
+{}
+
+NVDA necesita reiniciarse para aplicar las instalaciones.
+¿Desea reiniciar NVDA ahora?""").format("\n".join(str(x) for x in temp))
+					ajustes.reiniciarTrue = True
+					wx.CallAfter(self.done, msg)
+		except Exception as e:
+			wx.CallAfter(self.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
+		try:
+			shutil.rmtree(self.directorio, ignore_errors=True)
+		except:
+			pass
 
 	def onDescarga(self, event):
 		self.ProgressDescarga.SetValue(event)
@@ -1718,66 +1892,6 @@ Se va a proceder a descargar con su navegador predefinido.""").format(nombre, da
 			dlg.Destroy()
 			wx.CallAfter(self.frame.FalseDescarga)
 
-class HiloDescarga(Thread):
-	def __init__(self, frame, url, ruta, tiempo):
-		super(HiloDescarga, self).__init__()
-
-		self.frame = frame
-		self.url = url
-		self.ruta = ruta
-		self.tiempo = tiempo
-
-		self.daemon = True
-		self.start()
-
-	def humanbytes(self, B): # Convierte bytes
-		B = float(B)
-		KB = float(1024)
-		MB = float(KB ** 2) # 1,048,576
-		GB = float(KB ** 3) # 1,073,741,824
-		TB = float(KB ** 4) # 1,099,511,627,776
-
-		if B < KB:
-			return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
-		elif KB <= B < MB:
-			return '{0:.2f} KB'.format(B/KB)
-		elif MB <= B < GB:
-			return '{0:.2f} MB'.format(B/MB)
-		elif GB <= B < TB:
-			return '{0:.2f} GB'.format(B/GB)
-		elif TB <= B:
-			return '{0:.2f} TB'.format(B/TB)
-
-	def __call__(self, block_num, block_size, total_size):
-		readsofar = block_num * block_size
-		if total_size > 0:
-			percent = readsofar * 1e2 / total_size
-			wx.CallAfter(self.frame.next, percent)
-			time.sleep(1 / 995)
-			wx.CallAfter(self.frame.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(readsofar))
-			if readsofar >= total_size: # Si queremos hacer algo cuando la descarga termina.
-				pass
-		else: # Si la descarga es solo el tamaño
-			wx.CallAfter(self.frame.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(readsofar))
-
-	def run(self):
-		try:
-			socket.setdefaulttimeout(self.tiempo) # Dara error si pasan 30 seg sin internet
-			headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.774.68 Safari/537.36 Edg/89.0.774.68'}
-			try:
-				req = urllib.request.Request(self.url, headers=headers)
-				obj = urllib.request.urlopen(req).geturl()
-				urllib.request.urlretrieve(obj, self.ruta, reporthook=self.__call__)
-			except:
-				urllib.request.urlretrieve(self.url, self.ruta, reporthook=self.__call__)
-			wx.CallAfter(self.frame.done, _("La descarga se completó.\n") + _("Ya puede cerrar esta ventana."))
-		except Exception as e:
-			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Error:\n\n{}\n").format(e) + _("Ya puede cerrar esta ventana."))
-			try:
-				os.remove(self.ruta)
-			except:
-				pass
-
 class HiloLanzaActualizacion(Thread):
 	def __init__(self, nombreUrl, listaSeleccion):
 		super(HiloLanzaActualizacion, self).__init__()
@@ -1792,117 +1906,6 @@ class HiloLanzaActualizacion(Thread):
 			self._MainWindows.Show()
 
 		wx.CallAfter(LanzaDialogo, self.nombreUrl, self.listaSeleccion)
-
-class HiloActualizacion(Thread):
-	def __init__(self, frame, nombreUrl, listaSeleccion, tiempo):
-		super(HiloActualizacion, self).__init__()
-
-		self.frame = frame
-		self.nombreUrl = nombreUrl
-		self.listaSeleccion = listaSeleccion
-		self.tiempo = tiempo
-
-		self.directorio = os.path.join(ajustes.dirDatos, "temp")
-
-		self.daemon = True
-		self.start()
-
-	def generaFichero(self):
-		if os.path.exists(self.directorio) == False:
-			os.mkdir(self.directorio)
-		nuevoIndex = len(os.listdir(self.directorio))
-		return os.path.join(self.directorio, "temp%s.nvda-addon" % nuevoIndex)
-
-	def humanbytes(self, B): # Convierte bytes
-		B = float(B)
-		KB = float(1024)
-		MB = float(KB ** 2) # 1,048,576
-		GB = float(KB ** 3) # 1,073,741,824
-		TB = float(KB ** 4) # 1,099,511,627,776
-
-		if B < KB:
-			return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
-		elif KB <= B < MB:
-			return '{0:.2f} KB'.format(B/KB)
-		elif MB <= B < GB:
-			return '{0:.2f} MB'.format(B/MB)
-		elif GB <= B < TB:
-			return '{0:.2f} GB'.format(B/GB)
-		elif TB <= B:
-			return '{0:.2f} TB'.format(B/TB)
-
-	def __call__(self, block_num, block_size, total_size):
-		readsofar = block_num * block_size
-		if total_size > 0:
-			percent = readsofar * 1e2 / total_size
-			wx.CallAfter(self.frame.onDescarga, percent)
-			time.sleep(1 / 995)
-			wx.CallAfter(self.frame.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(readsofar))
-			if readsofar >= total_size: # Si queremos hacer algo cuando la descarga termina.
-				pass
-		else: # Si la descarga es solo el tamaño
-			wx.CallAfter(self.frame.TextoRefresco, _("Espere por favor...\n") + _("Descargando: %s") % self.humanbytes(readsofar))
-
-	def run(self):
-		lstError = []
-		try:
-			for i in self.listaSeleccion:
-				fichero = self.generaFichero()
-				socket.setdefaulttimeout(self.tiempo)
-				req = urllib.request.Request(list(self.nombreUrl.values())[i], headers={'User-Agent': 'Mozilla/5.0'})
-				try:
-					obj = urllib.request.urlopen(req).geturl()
-				except:
-					req = urllib.request.Request(list(self.nombreUrl.values())[i], headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
-					obj = urllib.request.urlopen(req).geturl()
-				urllib.request.urlretrieve(obj, fichero, reporthook=self.__call__)
-				wx.CallAfter(self.frame.onActualizacion, i+1)
-				bundle = addonHandler.AddonBundle(fichero)
-				if not addonVersionCheck.hasAddonGotRequiredSupport(bundle):
-					pass #Podemos crear un control de errores aquí para complementos que no se pueden instalar por incompatibilidad y luego dar un mensaje
-				else:
-					if addonHandler.addonVersionCheck.isAddonTested(bundle):
-						bundleName = bundle.manifest['name']
-						isDisabled = False
-						for addon in addonHandler.getAvailableAddons():
-							if bundleName == addon.manifest['name']:
-								if addon.isDisabled:
-									isDisabled = True
-								if not addon.isPendingRemove:
-									addon.requestRemove()
-								break
-						addonHandler.installAddonBundle(bundle)
-					else:
-						lstError.append(bundle.manifest['summary'])
-			if len(lstError) == 0:
-				ajustes.reiniciarTrue = True
-				wx.CallAfter(self.frame.done, _("La actualización se completó.\n") + _("NVDA necesita reiniciarse para aplicar las actualizaciones.\n") + _("¿Desea reiniciar NVDA ahora?"))
-			else:
-				if len(lstError) == len(self.listaSeleccion):
-					wx.CallAfter(self.frame.error, _("No se pudo instalar el complemento.\n") + _("Fallo de compatibilidad.\n") + _("Busque una actualización compatible."))
-				else:
-					temp = []
-					for i in lstError:
-						temp.append(i)
-					msg = \
-_("""Se completo la instalación correctamente.
-
-Pero hay complementos que no se pudieron instalar.
-
-Los siguientes complementos son incompatibles, busque una versión compatible:
-
-{}
-
-NVDA necesita reiniciarse para aplicar las instalaciones.
-¿Desea reiniciar NVDA ahora?""").format("\n".join(str(x) for x in temp))
-					ajustes.reiniciarTrue = True
-					wx.CallAfter(self.frame.done, msg)
-		except Exception as e:
-			wx.CallAfter(self.frame.error, _("Algo salió mal.\n") + _("Compruebe que tiene conexión a internet y vuelva a intentarlo.\n") + _("Ya puede cerrar esta ventana."))
-		try:
-			shutil.rmtree(self.directorio, ignore_errors=True)
-		except:
-			pass
 
 class HiloComplemento(Thread):
 	def __init__(self, opcion):

@@ -1,1 +1,1 @@
-* Compatibilidad API 2023
+* Solucionado problemas con complementos grandes.

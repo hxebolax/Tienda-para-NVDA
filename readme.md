@@ -171,6 +171,20 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.9.1
+
+* Solucionado problemas con complementos grandes.
+
+En esta versión se implementa una nueva manera de descargar y guardar los archivos de complementos.
+
+Ahora en complementos mayores de 20 MB no dará el tamaño que lleva descargado y nos dará un mensaje de complemento grande.
+
+Podremos seguir el porcentaje de lo que llevamos descargado del complemento grande gracias a la barra de progreso.
+
+Esto ahora ya debería solucionar los problemas que algunos les ocasionaba el actualizar o descargar complementos grandes dándoles error y bloqueando o reiniciando NVDA.
+
+Esto se aplica a las descargas individuales que hagamos de complementos como a las actualizaciones que encuentre el complemento y su posterior descarga.
+
 ## Versión 0.9
 
 * Compatibilidad API 2023
