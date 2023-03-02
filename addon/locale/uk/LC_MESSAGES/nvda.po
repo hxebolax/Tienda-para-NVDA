@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TiendaNVDA\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2023-02-14 10:53+0200\n"
-"PO-Revision-Date: 2023-02-14 10:56+0200\n"
+"POT-Creation-Date: 2023-03-02 12:56+0200\n"
+"PO-Revision-Date: 2023-03-02 12:58+0200\n"
 "Last-Translator: Volodymyr Pyrih <vp88.mobile@gmail.com>\n"
 "Language-Team: Volodymyr Pyrih\n"
 "Language: uk_UA\n"
@@ -55,12 +55,12 @@ msgstr ""
 #: addon\globalPlugins\TiendaNVDA\__init__.py:740
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1101
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1225
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1624
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1639
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1656
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1682
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1700
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1960
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1798
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1813
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1830
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1856
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1874
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1963
 msgid "Información"
 msgstr "Інформація"
 
@@ -246,7 +246,7 @@ msgstr "&Видалити"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:714
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1311
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1420
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1510
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1574
 msgid "&Cerrar"
 msgstr "&Закрити"
 
@@ -281,7 +281,7 @@ msgstr ""
 "Ви впевнені, що бажаєте продовжити?"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:549
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1944
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1947
 msgid "Pregunta"
 msgstr "Попередження"
 
@@ -305,7 +305,7 @@ msgstr "&Адреса сервера:"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:612
 #: addon\globalPlugins\TiendaNVDA\__init__.py:711
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1416
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1570
 msgid "&Aceptar"
 msgstr "&Гаразд"
 
@@ -531,7 +531,7 @@ msgstr "Посилання на завантаження додатка скоп
 #. Translators: Title of the notification
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1107
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1364
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1970
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1973
 msgid "Error"
 msgstr "Помилка"
 
@@ -592,84 +592,46 @@ msgstr "&Оновити"
 msgid "Tiene que seleccionar una actualización para poder continuar."
 msgstr "Щоб продовжити, ви повинні вибрати оновлення."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1488
-msgid "Actualizando complementos"
-msgstr "Оновлення додатків"
-
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1618
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1650
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1676
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1694
-msgid ""
-"No se pudo obtener el nombre del archivo a descargar.\n"
-"\n"
-"{} del canal {}\n"
-"\n"
-"Se va a proceder a descargar con su navegador predefinido."
-msgstr ""
-"Не вдалося отримати ім’я файлу для завантаження.\n"
-"\n"
-"{} канал {}\n"
-"\n"
-"Для продовження завантаження буде відкрито ваш браузер."
-
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1635
-msgid ""
-"Este complemento necesita ser descargado desde su página web.\n"
-"\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
-msgstr ""
-"Цей додаток потрібно завантажувати з його веб-сторінки.\n"
-"\n"
-"Сторінку додатка буде відкрито у вашому браузері."
-
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1710
-msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
-msgstr "Файли додатків для NVDA (*.nvda-addon)|*.nvda-addon"
-
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1711
-msgid "Guardar en..."
-msgstr "Зберегти як..."
-
-#. Si la descarga es solo el tamaño
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1757
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1761
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1840
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1844
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1480
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1500
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1642
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1662
 msgid "Espere por favor...\n"
 msgstr "Зачекайте, будь ласка...\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1757
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1761
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1840
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1844
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1480
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1642
+msgid "Descargando Un complemento grande..."
+msgstr "Завантажується великий додаток..."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1500
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1662
 #, python-format
 msgid "Descargando: %s"
 msgstr "Завантаження: %s"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1773
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1504
 msgid "La descarga se completó.\n"
 msgstr "Завантаження завершено.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1773
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1775
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1901
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1504
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
 msgid "Ya puede cerrar esta ventana."
 msgstr "Тепер ви можете закрити це вікно."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1775
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1901
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
 msgid "Algo salió mal.\n"
 msgstr "Виникла помилка.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1775
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1901
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr ""
 "Будь ласка, перевірте ваше з’єднання з інтернетом і повторіть спробу.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1775
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
 msgid ""
 "Error:\n"
 "\n"
@@ -679,31 +641,35 @@ msgstr ""
 "\n"
 "{}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1879
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1551
+msgid "Actualizando complementos"
+msgstr "Оновлення додатків"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
 msgid "La actualización se completó.\n"
 msgstr "Оновлення завершено.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1879
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
 msgstr "Щоб оновлення були застосовані, необхідно перезапустити NVDA.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1879
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
 msgid "¿Desea reiniciar NVDA ahora?"
 msgstr "Бажаєте перезавантажити NVDA зараз?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1882
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
 msgid "No se pudo instalar el complemento.\n"
 msgstr "Не вдалося встановити додаток.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1882
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
 msgid "Fallo de compatibilidad.\n"
 msgstr "Порушення сумісності.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1882
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
 msgid "Busque una actualización compatible."
 msgstr "Пошук сумісного додатка."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1888
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1695
 msgid ""
 "Se completo la instalación correctamente.\n"
 "\n"
@@ -728,7 +694,43 @@ msgstr ""
 "Для застосування змін необхідно перезапустити NVDA.\n"
 "Хочете перезапустити NVDA зараз?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1939
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1792
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1824
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1850
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1868
+msgid ""
+"No se pudo obtener el nombre del archivo a descargar.\n"
+"\n"
+"{} del canal {}\n"
+"\n"
+"Se va a proceder a descargar con su navegador predefinido."
+msgstr ""
+"Не вдалося отримати ім’я файлу для завантаження.\n"
+"\n"
+"{} канал {}\n"
+"\n"
+"Для продовження завантаження буде відкрито ваш браузер."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1809
+msgid ""
+"Este complemento necesita ser descargado desde su página web.\n"
+"\n"
+"Se abrirá con su navegador predefinido en la pagina de descarga del "
+"complemento."
+msgstr ""
+"Цей додаток потрібно завантажувати з його веб-сторінки.\n"
+"\n"
+"Сторінку додатка буде відкрито у вашому браузері."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1884
+msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
+msgstr "Файли додатків для NVDA (*.nvda-addon)|*.nvda-addon"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1885
+msgid "Guardar en..."
+msgstr "Зберегти як..."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1942
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -742,11 +744,11 @@ msgstr ""
 "\n"
 "Ббажаєте змінити сервер?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1959
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1962
 msgid "No hay actualizaciones."
 msgstr "Немає доступних оновлень."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1966
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1969
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
