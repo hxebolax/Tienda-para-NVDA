@@ -1,1 +1,1 @@
-* Solucionado problemas con complementos grandes.
+* Actualizado idioma italiano y agregado ucraniano
