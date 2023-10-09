@@ -841,12 +841,14 @@ _("""Autor: {}
 Nombre del complemento: {}
 Nombre interno: {}
 Descripción: {}
+Página web: {}
 Desarrollo: {}\n""").format(
 	datos['author'],
 	datos['summary'],
 	datos['name'],
 	datos['description'],
-	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte"),
+	datos['url'],
+	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte")
 	)
 		self.txtResultado.SetValue(ficha)
 
@@ -856,11 +858,15 @@ _("""Canal: {}
 Versión: {}
 Mínimo NVDA: {}
 Testeado hasta versión de NVDA: {}
+Clave interna en la tienda: {}
+Enlace de descarga: {}
 Total descargas: {}\n""").format(
 	datos['links'][i]['channel'],
 	datos['links'][i]['version'],
 	datos['links'][i]['minimum'],
 	datos['links'][i]['lasttested'],
+	datos['links'][i]['file'],
+	datos['links'][i]['link'],
 	datos['links'][i]['downloads'],
 	)
 			self.txtResultado.AppendText(fichaEnlaces)
@@ -885,12 +891,14 @@ _("""Autor: {}
 Nombre del complemento: {}
 Nombre interno: {}
 Descripción: {}
+Página web: {}
 Desarrollo: {}\n""").format(
 	datos['author'],
 	datos['summary'],
 	datos['name'],
 	traducir,
-	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte"),
+	datos['url'],
+	_("Con soporte") if datos['legacy'] == 0 else _("Sin soporte")
 	)
 		self.txtResultado.SetValue(ficha)
 
@@ -900,11 +908,15 @@ _("""Canal: {}
 Versión: {}
 Mínimo NVDA: {}
 Testeado hasta versión de NVDA: {}
+Clave interna en la tienda: {}
+Enlace de descarga: {}
 Total descargas: {}\n""").format(
 	datos['links'][i]['channel'],
 	datos['links'][i]['version'],
 	datos['links'][i]['minimum'],
 	datos['links'][i]['lasttested'],
+	datos['links'][i]['file'],
+	datos['links'][i]['link'],
 	datos['links'][i]['downloads'],
 	)
 			self.txtResultado.AppendText(fichaEnlaces)
