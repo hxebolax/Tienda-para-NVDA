@@ -1691,6 +1691,12 @@ class ActualizacionDialogo(wx.Dialog):
 									addon.requestRemove()
 								break
 						addonHandler.installAddonBundle(bundle)
+						# Comprobamos si hay json de la tienda oficial y lo borramos.
+						if os.path.exists(os.path.join(globalVars.appArgs.configPath, "addons", "{}.json".format(bundleName))):
+							try:
+								os.remove(os.path.join(globalVars.appArgs.configPath, "addons", "{}.json".format(bundleName)))
+							except:
+								pass
 					else:
 						lstError.append(bundle.manifest['summary'])
 			if len(lstError) == 0:
