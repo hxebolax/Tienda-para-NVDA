@@ -194,6 +194,38 @@ Bunları bildirmek ve mümkün olan en kısa sürede çözebilmek için iletişi
 NVDA.ES eklenti Mağazasının Keyfini Çıkarın!
 
 # Sürüm Geçmişi:
+## Sürüm 0.9.1:
+
+* Büyük eklentilerle ilgili sorunlar düzeltildi.
+
+Bu sürümde, eklenti dosyalarını indirmenin ve kaydetmenin yeni bir yolu uygulanmaktadır.  
+
+Artık 20 MB'tan büyük eklentilerde indirildiği boyutu göstermeyecek ve bize büyük bir eklenti mesajı verecek.  
+
+Büyük eklentide indirme yüzdesini ilerleme çubuğu sayesinde takip edebileceğiz.  
+
+Bu, bazılarının büyük eklentileri güncellerken, indirirken hata vererek, NVDA'yı çökerterek ve yeniden başlatırken yaşadığı sorunları çözecektir.  
+
+Bu, eklentilerden yaptığımız bireysel indirmelerin yanı sıra eklentinin bulduğu güncellemeler ve sonraki indirmeleri için geçerlidir.  
+
+## Sürüm 0.9:
+
+* API 2023 Uyumluluğu.
+
+## Sürüm 0.8.5:
+
+* Manifest standartlarını takip etmeyen geliştirici yanlış uygulamalarıyla ilgili hatalar düzeltildi.
+
+Örnek:  
+
+minimumNVDAVersion = Yok (ÇOK KÖTÜ) hiçbir maliyeti yoktur, basit bir 2019.3.0 sadece 8 karakterdir.
+
+## Sürüm 0.8.4.
+
+* Tarih türü sürümleriyle ilgili sorun düzeltildi
+* Güncellenmiş otomatik İngilizce ve Türkçe dilleri
+* Doğru görüntüleme için boyutlandırıcılar güncellendi
+
 ## Sürüm 0.8.3:
 
 * Mağaza yükleme sorunu düzeltildi Değer bekleniyor: 1. satır sütun 1 (karakter 0).

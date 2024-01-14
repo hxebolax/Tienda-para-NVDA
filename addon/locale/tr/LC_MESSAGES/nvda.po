@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvda.es Eklenti Mağazası\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2023-02-27 13:11+0100\n"
-"PO-Revision-Date: 2023-03-01 20:23+0300\n"
+"POT-Creation-Date: 2024-01-14 10:56+0100\n"
+"PO-Revision-Date: 2024-01-14 10:58+0100\n"
 "Last-Translator: Umut KORKMAZ <umutkork@gmail.com>\n"
 "Language-Team: Umut KORKMAZ <umutkork@gmail.com>\n"
 "Language: tr_TR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../globalPlugins\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
 
@@ -47,14 +47,14 @@ msgstr ""
 #: addon\globalPlugins\TiendaNVDA\__init__.py:89
 #: addon\globalPlugins\TiendaNVDA\__init__.py:102
 #: addon\globalPlugins\TiendaNVDA\__init__.py:740
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1101
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1225
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1798
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1813
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1830
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1856
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1113
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1237
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1816
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1831
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1848
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1874
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1963
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1892
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1981
 msgid "Información"
 msgstr "Bilgi"
 
@@ -201,7 +201,7 @@ msgid "Sin complementos compatibles"
 msgstr "Desteklenen eklenti yok"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:410
-#: addon\globalPlugins\TiendaNVDA\__init__.py:963
+#: addon\globalPlugins\TiendaNVDA\__init__.py:975
 msgid "Canal {}"
 msgstr "Kanal {}"
 
@@ -238,9 +238,9 @@ msgstr "&Sil"
 #. Translators: etiqueta del botón cancelar
 #: addon\globalPlugins\TiendaNVDA\__init__.py:489
 #: addon\globalPlugins\TiendaNVDA\__init__.py:714
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1311
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1420
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1574
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1323
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1432
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1586
 msgid "&Cerrar"
 msgstr "&Kapat"
 
@@ -275,7 +275,7 @@ msgstr ""
 "Devam etmek istediğinizden emin misiniz?"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:549
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1947
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1965
 msgid "Pregunta"
 msgstr "Soru"
 
@@ -298,8 +298,8 @@ msgstr "Sunucu &URL'si:"
 #. Translators: etiqueta del botón aceptar
 #: addon\globalPlugins\TiendaNVDA\__init__.py:612
 #: addon\globalPlugins\TiendaNVDA\__init__.py:711
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1416
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1570
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1428
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1582
 msgid "&Aceptar"
 msgstr "Ka&bul et"
 
@@ -398,148 +398,154 @@ msgid "&Salir"
 msgstr "&Çık"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:840
-#: addon\globalPlugins\TiendaNVDA\__init__.py:884
+#: addon\globalPlugins\TiendaNVDA\__init__.py:890
 msgid ""
 "Autor: {}\n"
 "Nombre del complemento: {}\n"
 "Nombre interno: {}\n"
 "Descripción: {}\n"
+"Página web: {}\n"
 "Desarrollo: {}\n"
 msgstr ""
 "Yazar: {}\n"
 "Eklenti adı: {}\n"
 "Dahili İsim: {}\n"
 "Açıklama: {}\n"
-"geliştirme: {}\n"
+"Web Sayfası: {}\n"
+"Geliştirme: {}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:849
-#: addon\globalPlugins\TiendaNVDA\__init__.py:893
+#: addon\globalPlugins\TiendaNVDA\__init__.py:851
+#: addon\globalPlugins\TiendaNVDA\__init__.py:901
 msgid "Con soporte"
 msgstr "Destek ile"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:849
-#: addon\globalPlugins\TiendaNVDA\__init__.py:893
+#: addon\globalPlugins\TiendaNVDA\__init__.py:851
+#: addon\globalPlugins\TiendaNVDA\__init__.py:901
 msgid "Sin soporte"
 msgstr "Desteklenmiyor"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:855
-#: addon\globalPlugins\TiendaNVDA\__init__.py:899
+#: addon\globalPlugins\TiendaNVDA\__init__.py:857
+#: addon\globalPlugins\TiendaNVDA\__init__.py:907
 msgid ""
 "Canal: {}\n"
 "Versión: {}\n"
 "Mínimo NVDA: {}\n"
 "Testeado hasta versión de NVDA: {}\n"
+"Clave interna en la tienda: {}\n"
+"Enlace de descarga: {}\n"
 "Total descargas: {}\n"
 msgstr ""
 "Kanal: {}\n"
 "Sürüm: {}\n"
 "Minimum NVDA Sürümü: {}\n"
 "Son Test edilen NVDA Sürümü: {}\n"
+"Mağazadaki dahili anahtar: {}\n"
+"İndirme bağlantısı: {}\n"
 "Toplam indirme: {}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:878
+#: addon\globalPlugins\TiendaNVDA\__init__.py:884
 msgid "No se pudo traducir la descripción"
 msgstr "Açıklama çevrilemedi"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:944
+#: addon\globalPlugins\TiendaNVDA\__init__.py:956
 msgid "Mostrar todos los complementos"
 msgstr "Tüm eklentileri göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:946
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
 msgid "Mostrar los complementos con compatibilidad de API 2023"
 msgstr "API 2023 destekli eklentileri göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:948
+#: addon\globalPlugins\TiendaNVDA\__init__.py:960
 msgid "Mostrar los complementos con compatibilidad de API 2022"
 msgstr "API 2022 destekli eklentileri göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:950
+#: addon\globalPlugins\TiendaNVDA\__init__.py:962
 msgid "Mostrar los complementos ordenados por autor"
 msgstr "Yazara göre sıralanmış eklentileri göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:952
+#: addon\globalPlugins\TiendaNVDA\__init__.py:964
 msgid "Mostrar por descargas de mayor a menor"
 msgstr "En yüksekten en düşüğe indirme sayısına göre göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:954
+#: addon\globalPlugins\TiendaNVDA\__init__.py:966
 msgid "&Filtros"
 msgstr "&Filtre"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:957
+#: addon\globalPlugins\TiendaNVDA\__init__.py:969
 msgid "Copiar información"
 msgstr "Bilgileri kopyala"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:959
+#: addon\globalPlugins\TiendaNVDA\__init__.py:971
 msgid "Copiar enlace a la página web del complemento"
 msgstr "Eklentinin Web sayfası adresini kopyala"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:965
+#: addon\globalPlugins\TiendaNVDA\__init__.py:977
 msgid "Copiar enlace de descarga del complemento"
 msgstr "Eklenti indirme bağlantısını kopyala"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:966
+#: addon\globalPlugins\TiendaNVDA\__init__.py:978
 msgid "&Copiar al portapapeles"
 msgstr "&Panoya kopyala"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:972
+#: addon\globalPlugins\TiendaNVDA\__init__.py:984
 msgid "Ver documentación del complemento instalado"
 msgstr "Yüklü eklenti belgelerini görüntüle"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1006
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1123
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1018
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1135
 msgid "No se encontraron resultados"
 msgstr "Sonuç bulunamadı"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1031
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1043
 msgid " - Todos los complementos"
 msgstr " - Tüm eklentiler"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1039
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
 msgid " - Complementos compatibles con API 2023"
 msgstr " - API 2023 Uyumlu Eklentiler"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1049
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1061
 msgid " - Complementos compatibles con API 2022"
-msgstr " - API 2022 ile uyumlu eklentiler"
+msgstr " - API 2022 Uyumlu Eklentiler"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1058
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1070
 msgid " - Complementos por autor"
 msgstr " - Yazara Göre Eklentiler"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1065
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1077
 msgid " - Complementos por descarga de mayor a menor"
 msgstr " - En yüksekten en düşüğe indirme sayısına göre göster"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1083
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1095
 msgid "Se copio la información del complemento al portapapeles"
 msgstr "Eklenti bilgileri panoya kopyalandı"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1087
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1099
 msgid "Se copio la URL de la página oficial del complemento al portapapeles"
 msgstr "Eklenti resmi sayfasının URL'si panoya kopyalandı"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1091
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1103
 msgid "Se copio la URL de descarga al portapapeles"
 msgstr "Panoya kopyalanan URL'yi indir"
 
 #. Translators: Title of the notification
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1107
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1364
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1973
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1119
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1376
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1991
 msgid "Error"
 msgstr "Hata"
 
 #. Translators: Notification message
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1109
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1121
 msgid "No se pudo llevar a cabo la copia al portapapeles"
 msgstr "Panoya kopyalanamadı"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1128
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1140
 msgid "Se encuentra en el complemento {} de {}"
-msgstr "{} ifadesinin {} tamamlayıcısında bulunur"
+msgstr "{} ögeli listenin {} sırasında bulunur"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1136
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1147
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1148
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1159
 msgid ""
 "No tiene activada la opción traducir la descripción de complementos en "
 "opciones de la tienda.\n"
@@ -550,80 +556,79 @@ msgstr ""
 "\n"
 "Lütfen çeviri seçeneğini etkinleştirin ve bir dil belirleyin."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1168
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1180
 msgid "Versión {}"
 msgstr "Sürüm {}"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1223
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1235
 msgid "Ya tiene un proceso de descarga activo, espere a que termine."
 msgstr "Zaten etkin bir indirme işleminiz var, tamamlanmasını bekleyin."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1231
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1243
 #, python-format
 msgid "Descargando %s..."
 msgstr "%s indiriliyor..."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1285
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1297
 msgid "Tienda NVDA.ES - Actualizaciones disponibles"
 msgstr "NVDA.ES Eklenti Mağazası - Bulunan  güncellemeler"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1308
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1320
 msgid "&Seleccionar todo"
 msgstr "Tümünü &Seç"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1309
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1321
 msgid "&Deseleccionar todo"
 msgstr "Tüm seçimleri kaldı&r"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1310
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1322
 msgid "&Actualizar"
 msgstr "&Güncelle"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1363
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1375
 msgid "Tiene que seleccionar una actualización para poder continuar."
 msgstr "Devam edebilmek için en az bir eklenti seçmelisiniz."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1480
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1500
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1642
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1662
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1492
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1512
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1654
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1674
 msgid "Espere por favor...\n"
 msgstr "Lütfen bekleyin...\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1480
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1642
-#| msgid "&Descargar complemento"
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1492
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1654
 msgid "Descargando Un complemento grande..."
 msgstr "Büyük Bir Eklenti İndiriliyor..."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1500
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1662
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1512
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1674
 #, python-format
 msgid "Descargando: %s"
 msgstr "İndiriliyor: %s"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1504
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1516
 msgid "La descarga se completó.\n"
 msgstr "İndirme tamamlandı.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1504
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1516
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1726
 msgid "Ya puede cerrar esta ventana."
 msgstr "Artık bu pencereyi kapatabilirsiniz."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1726
 msgid "Algo salió mal.\n"
 msgstr "Sorun var.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1708
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1726
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr ""
 "Lütfen internet bağlantınız olup olmadığını kontrol edin ve tekrar deneyin.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1506
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
 msgid ""
 "Error:\n"
 "\n"
@@ -633,36 +638,36 @@ msgstr ""
 "\n"
 "{}\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1551
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1563
 msgid "Actualizando complementos"
 msgstr "Eklentiler Güncelleniyor"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1704
 msgid "La actualización se completó.\n"
 msgstr "Güncelleme tamamlandı.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1704
 msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
 msgstr ""
 "Güncellemelerin kurulabilmesi  için NVDA'yı yeniden başlatmanız gerekir.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1686
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1704
 msgid "¿Desea reiniciar NVDA ahora?"
 msgstr "NVDA'yı şimdi yeniden başlatmak istiyor musunuz?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1707
 msgid "No se pudo instalar el complemento.\n"
 msgstr "Eklenti yüklenemedi.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1707
 msgid "Fallo de compatibilidad.\n"
 msgstr "Uyumluluk hatası.\n"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1689
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1707
 msgid "Busque una actualización compatible."
 msgstr "Uyumlu bir güncelleme arayın."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1695
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1713
 msgid ""
 "Se completo la instalación correctamente.\n"
 "\n"
@@ -687,10 +692,10 @@ msgstr ""
 "Kurulumların aktif olması için NVDA'nın yeniden başlatılması gerekiyor.\n"
 "NVDA'yı şimdi yeniden başlatmak istiyor musunuz?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1792
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1824
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1850
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1810
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1842
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1868
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1886
 msgid ""
 "No se pudo obtener el nombre del archivo a descargar.\n"
 "\n"
@@ -704,7 +709,7 @@ msgstr ""
 "\n"
 "Varsayılantarayıcınızla indirmeye devam edecektir."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1809
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1827
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
@@ -715,15 +720,15 @@ msgstr ""
 "\n"
 "Eklenti indirme sayfası varsayılan tarayıcınızla açılacak."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1884
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1902
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
 msgstr "NVDA Eklentisi (*.nvda-addon)|*.nvda-addon"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1885
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1903
 msgid "Guardar en..."
 msgstr "Kaydet..."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1942
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1960
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
@@ -737,11 +742,11 @@ msgstr ""
 "\n"
 "Sunucuyu değiştirmek ister misiniz?"
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1962
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1980
 msgid "No hay actualizaciones."
 msgstr "Güncelleme mevcut değil."
 
-#: addon\globalPlugins\TiendaNVDA\__init__.py:1969
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1987
 msgid ""
 "No se pudo tener acceso al servidor de complementos.\n"
 "\n"
