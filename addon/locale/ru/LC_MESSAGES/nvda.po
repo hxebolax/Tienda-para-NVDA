@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: TiendaNVDA\n"
@@ -10,23 +11,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../../../globalPlugins\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon\globalPlugins\TiendaNVDA\__init__.py:175
 #: addon\globalPlugins\TiendaNVDA\__init__.py:195
 msgid "Tienda para NVDA.ES"
 msgstr "Магазин NVDA.ES"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Неофициальный магазин дополнений https://www.nvda.es"
@@ -134,8 +136,7 @@ msgid ""
 msgstr ""
 "Подключаемому модулю не удалось запустить NVDA. \n"
 " \n"
-"Одна из причин заключается в том, что NVDA запустилась до подключения к "
-"Интернету. \n"
+"Одна из причин заключается в том, что NVDA запустилась до подключения к Интернету. \n"
 " \n"
 "Перезапустите NVDA, чтобы попытаться решить проблему."
 
@@ -464,7 +465,8 @@ msgstr "Показать дополнения, отсортированные п
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:964
 msgid "Mostrar por descargas de mayor a menor"
-msgstr "Показывать по количеству загрузок от самого высокого до самого низкого"
+msgstr ""
+"Показывать по количеству загрузок от самого высокого до самого низкого"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:966
 msgid "&Filtros"
@@ -546,15 +548,13 @@ msgstr "Находится в {} дополнении {}"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1148
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1159
 msgid ""
-"No tiene activada la opción traducir la descripción de complementos en "
-"opciones de la tienda.\n"
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
 "\n"
 "Active dicha opción y elija un idioma para poder usar esta característica."
 msgstr ""
 "У вас не включена опция перевода описания дополнения в опциях магазина.\n"
 "\n"
-"Включите эту опцию и выберите язык, чтобы иметь возможность использовать эту "
-"функцию."
+"Включите эту опцию и выберите язык, чтобы иметь возможность использовать эту функцию."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1180
 msgid "Versión {}"
@@ -672,8 +672,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -710,12 +709,10 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Это дополнение должно быть загружено с WEB-сайта.\n"
-"Оно откроется с помощью вашего браузера установленного по умолчанию, на "
-"странице загрузки дополнения."
+"Оно откроется с помощью вашего браузера установленного по умолчанию, на странице загрузки дополнения."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1902
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
@@ -834,6 +831,14 @@ msgstr "Турецкий"
 msgid "Ucraniano"
 msgstr "Украинский"
 
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "Показать плагины с поддержкой API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- Плагины, совместимые с API 2024"
+
 #~ msgid ""
 #~ "Autor: {}\n"
 #~ "Nombre del complemento: {}\n"
@@ -841,10 +846,10 @@ msgstr "Украинский"
 #~ "Descripción: {}\n"
 #~ "Desarrollo: {}\n"
 #~ msgstr ""
-#~ "Автор: {} \n"
-#~ "Название дополнения: {} \n"
-#~ "Внутреннее имя: {} \n"
-#~ "Описание: {} \n"
+#~ "Автор: {}\n"
+#~ "Название плагина: {}\n"
+#~ "Внутреннее имя: {}\n"
+#~ "Описание: {}\n"
 #~ "Разработка: {}\n"
 
 #~ msgid ""
@@ -854,17 +859,17 @@ msgstr "Украинский"
 #~ "Testeado hasta versión de NVDA: {}\n"
 #~ "Total descargas: {}\n"
 #~ msgstr ""
-#~ "Канал: {} \n"
-#~ "Версия: {} \n"
-#~ "Минимальная NVDA: {} \n"
-#~ "Протестировано до версии NVDA: {} \n"
+#~ "Канал: {}\n"
+#~ "Версия: {}\n"
+#~ "Минимальный NVDA: {}\n"
+#~ "Протестировано до версии NVDA: {}\n"
 #~ "Всего загрузок: {}\n"
 
 #~ msgid "Mostrar los complementos con compatibilidad de API 2021"
-#~ msgstr "Показать дополнения с поддержкой API 2021"
+#~ msgstr "Показать плагины с поддержкой API 2021"
 
 #~ msgid " - Complementos compatibles con API 2021"
-#~ msgstr " - Дополнения, совместимые с API 2021"
+#~ msgstr "- Плагины, совместимые с API 2021"
 
 #~ msgid "Opciones"
-#~ msgstr "Выбрать"
+#~ msgstr "Параметры"

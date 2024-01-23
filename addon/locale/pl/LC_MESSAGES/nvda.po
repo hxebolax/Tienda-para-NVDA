@@ -15,20 +15,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.0\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
-"|| n%100>14) ? 1 : 2);\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon/globalPlugins/TiendaNVDA/__init__.py:142
 #: addon/globalPlugins/TiendaNVDA/__init__.py:159
 msgid "Tienda para NVDA.ES"
 msgstr "Sklep NVDA.ES"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Nieoficjalny https://www.nvda.es sklep z dodatkami"
@@ -45,8 +46,7 @@ msgid ""
 msgstr ""
 "Znaleziono aktualizację. \n"
 "\n"
-"Uruchom sprawdź aktualizacje, aby sprawdzić aktualizacje  dodatku Sklep NVDA."
-"ES."
+"Uruchom sprawdź aktualizacje, aby sprawdzić aktualizacje  dodatku Sklep NVDA.ES."
 
 #. Translators: Title of the notification
 #: addon/globalPlugins/TiendaNVDA/__init__.py:74
@@ -292,8 +292,7 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Ten dodatek należy pobrać ze jego strony internetowej.\n"
 "\n"
@@ -373,8 +372,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -389,8 +387,7 @@ msgstr ""
 "\n"
 "{}\n"
 "\n"
-"NVDA musi zostać ponownie uruchomiony, aby zastosować zmany po istalacji "
-"dodatków.\n"
+"NVDA musi zostać ponownie uruchomiony, aby zastosować zmany po istalacji dodatków.\n"
 "Czy chcesz teraz ponownie uruchomić NVDA?"
 
 #: addon/globalPlugins/TiendaNVDA/__init__.py:1139
@@ -423,3 +420,442 @@ msgstr "45 min."
 #: addon/globalPlugins/TiendaNVDA/ajustes.py:65
 msgid "1 hora"
 msgstr "1 godz."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:127
+msgid ""
+"Error producido en las librerías::\n"
+"\n"
+"{}"
+msgstr ""
+"Wystąpił błąd w bibliotekach::\n"
+"\n"
+"{}"
+
+#. Translators: Nombre del submenú para mostrar el manual
+#: addon\globalPlugins\TiendaNVDA\__init__.py:150
+msgid "Documentación del complemento"
+msgstr "Dokumentacja wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:228
+msgid "Seleccione un servidor de complementos"
+msgstr "Wybierz serwer wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:232
+msgid "&Gestionar Servidores de complementos"
+msgstr "&Zarządzaj serwerami wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:240
+msgid ""
+"Activar o desactivar el traductor para las descripciones de los complementos"
+msgstr "Włącz lub wyłącz tłumacz opisów wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:243
+msgid ""
+"Seleccione un idioma para traducir las descripciones de los complementos"
+msgstr "Wybierz język, w którym chcesz przetłumaczyć opisy wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:262
+#: addon\globalPlugins\TiendaNVDA\__init__.py:377
+#: addon\globalPlugins\TiendaNVDA\__init__.py:412
+#: addon\globalPlugins\TiendaNVDA\__init__.py:425
+msgid "Descartar actualizaciones"
+msgstr "Odrzuć aktualizacje"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:363
+#: addon\globalPlugins\TiendaNVDA\__init__.py:400
+msgid "No se pudo tener acceso al servidor"
+msgstr "Nie można uzyskać dostępu do serwera"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:371
+#: addon\globalPlugins\TiendaNVDA\__init__.py:397
+msgid "Sin complementos compatibles"
+msgstr "Brak obsługiwanych wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:442
+msgid ""
+"Ya hay una instancia de la Tienda NVDA abierta.\n"
+"\n"
+"Para gestionar los servidores es necesario que la Tienda este cerrada."
+msgstr ""
+"Instancja sklepu NVDA jest już otwarta.\n"
+"\n"
+"Do zarządzania serwerami konieczne jest zamknięcie Sklepu."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:459
+msgid "Gestor de servidores de complementos"
+msgstr "Menedżer serwera wtyczek"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:467
+msgid "&Lista de servidores:"
+msgstr "&Lista serwerów:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:477
+msgid "&Añadir"
+msgstr "&Dodać"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:480
+msgid "&Editar"
+msgstr "&Edytować"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:483
+msgid "&Borrar"
+msgstr "&Usuwać"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:520
+msgid "El servidor de la comunidad hispanohablante no puede ser editado."
+msgstr "Nie można edytować hiszpańskojęzycznego serwera społecznościowego."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:537
+msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
+msgstr "Nie można usunąć serwera społeczności hiszpańskojęzycznej."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:540
+msgid ""
+"ADVERTENCIA:\n"
+"\n"
+"Esta acción no es reversible.\n"
+"\n"
+"Va a borrar el servidor:\n"
+"\n"
+"{}\n"
+"\n"
+"¿Esta seguro que desea continuar?"
+msgstr ""
+"OSTRZEŻENIE:\n"
+"\n"
+"To działanie nie jest odwracalne.\n"
+"\n"
+"Usunie serwer:\n"
+"\n"
+"{}\n"
+"\n"
+"Jesteś pewien, że chcesz kontynuować?"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:549
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1965
+msgid "Pregunta"
+msgstr "Zapytać"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:591
+msgid "Añadir servidor"
+msgstr "Dodaj serwer"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:591
+msgid "Editar servidor"
+msgstr "Edytuj serwer"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:597
+msgid "&Nombre del servidor:"
+msgstr "&Nazwa serwera:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:603
+msgid "&URL del servidor:"
+msgstr "Adres serwera:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:615
+msgid "&Cancelar"
+msgstr "&Anulować"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:639
+msgid ""
+"El campo de nombre de servidor no puede quedar en blanco.\n"
+"\n"
+"Introduzca uno para poder continuar."
+msgstr ""
+"Pole nazwy serwera nie może pozostać puste.\n"
+"\n"
+"Wprowadź jeden, aby kontynuować."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:647
+msgid ""
+"El campo de URL de servidor no puede quedar en blanco.\n"
+"\n"
+"Introduzca uno para poder continuar."
+msgstr ""
+"Pole Adres URL serwera nie może pozostać puste.\n"
+"\n"
+"Wprowadź jeden, aby kontynuować."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:655
+msgid ""
+"Ya tiene un servidor con el mismo nombre.\n"
+"\n"
+"Modifique el nombre del servidor para poder continuar."
+msgstr ""
+"Masz już serwer o tej samej nazwie.\n"
+"\n"
+"Aby kontynuować, zmodyfikuj nazwę serwera."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:663
+msgid ""
+"La URL introducida dio error.\n"
+"\n"
+"Compruebe que es una URL correcta de base de datos de complementos."
+msgstr ""
+"Wprowadzony adres URL spowodował błąd.\n"
+"\n"
+"Sprawdź, czy jest to poprawny adres URL bazy danych wtyczek."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:698
+msgid "Servidor sin complementos"
+msgstr "Serwer bez wtyczek"
+
+#. Translators: título de selección de aplicación
+#: addon\globalPlugins\TiendaNVDA\__init__.py:707
+#: addon\globalPlugins\TiendaNVDA\__init__.py:733
+msgid "Seleccione un servidor"
+msgstr "Wybierz serwer"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:740
+msgid "Debe seleccionar un servidor para continuar."
+msgstr "Aby kontynuować, musisz wybrać serwer."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:780
+msgid "B&uscar"
+msgstr "Szukać"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:788
+msgid "&Acción"
+msgstr "&Działanie"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:797
+msgid "&Cambiar de servidor"
+msgstr "&Zmień serwer"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:840
+#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+msgid ""
+"Autor: {}\n"
+"Nombre del complemento: {}\n"
+"Nombre interno: {}\n"
+"Descripción: {}\n"
+"Página web: {}\n"
+"Desarrollo: {}\n"
+msgstr ""
+"Autor: {}\n"
+"Nazwa wtyczki: {}\n"
+"Nazwa wewnętrzna: {}\n"
+"Opis: {}\n"
+"Strona internetowa: {}\n"
+"Rozwój: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:857
+#: addon\globalPlugins\TiendaNVDA\__init__.py:907
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Testeado hasta versión de NVDA: {}\n"
+"Clave interna en la tienda: {}\n"
+"Enlace de descarga: {}\n"
+"Total descargas: {}\n"
+msgstr ""
+"Kanał: {}\n"
+"Wersja: {}\n"
+"Minimalna NVDA: {}\n"
+"Testowane do wersji NVDA: {}\n"
+"Klucz wewnętrzny w sklepie: {}\n"
+"Link do pobrania: {}\n"
+"Całkowita liczba pobrań: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:884
+msgid "No se pudo traducir la descripción"
+msgstr "Nie udało się przetłumaczyć opisu"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:956
+msgid "Mostrar todos los complementos"
+msgstr "Pokaż wszystkie wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2023"
+msgstr "Pokaż wtyczki z obsługą API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:960
+msgid "Mostrar los complementos con compatibilidad de API 2022"
+msgstr "Pokaż wtyczki z obsługą API 2022"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:962
+msgid "Mostrar los complementos ordenados por autor"
+msgstr "Pokaż wtyczki posortowane według autora"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:964
+msgid "Mostrar por descargas de mayor a menor"
+msgstr "Pokaż według pobrań od najwyższej do najniższej"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:966
+msgid "&Filtros"
+msgstr "&Filtry"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:969
+msgid "Copiar información"
+msgstr "Skopiuj informacje"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:971
+msgid "Copiar enlace a la página web del complemento"
+msgstr "Skopiuj link do strony internetowej wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:977
+msgid "Copiar enlace de descarga del complemento"
+msgstr "Skopiuj link do pobrania wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:978
+msgid "&Copiar al portapapeles"
+msgstr "&Skopiuj do schowka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:984
+msgid "Ver documentación del complemento instalado"
+msgstr "Zobacz dokumentację zainstalowanej wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1043
+msgid " - Todos los complementos"
+msgstr "- Wszystkie wtyczki"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2023"
+msgstr "- Wtyczki kompatybilne z API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1061
+msgid " - Complementos compatibles con API 2022"
+msgstr "- Wtyczki kompatybilne z API 2022"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1070
+msgid " - Complementos por autor"
+msgstr "- Wtyczki według autora"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1077
+msgid " - Complementos por descarga de mayor a menor"
+msgstr "- Dodatki na pobranie od najwyższej do najniższej"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1095
+msgid "Se copio la información del complemento al portapapeles"
+msgstr "Informacje o wtyczce zostały skopiowane do schowka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1099
+msgid "Se copio la URL de la página oficial del complemento al portapapeles"
+msgstr "Adres URL oficjalnej strony wtyczki został skopiowany do schowka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1103
+msgid "Se copio la URL de descarga al portapapeles"
+msgstr "Pobierz adres URL skopiowany do schowka"
+
+#. Translators: Notification message
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1121
+msgid "No se pudo llevar a cabo la copia al portapapeles"
+msgstr "Nie można skopiować do schowka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1140
+msgid "Se encuentra en el complemento {} de {}"
+msgstr "Znaleziono w uzupełnieniu {} z {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1148
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1159
+msgid ""
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
+"\n"
+"Active dicha opción y elija un idioma para poder usar esta característica."
+msgstr ""
+"Nie masz możliwości przetłumaczenia opisu dodatków na aktywowane opcje sklepu.\n"
+"\n"
+"Aktywuj tę opcję i wybierz język, w którym chcesz korzystać z tej funkcji."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1492
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1654
+msgid "Descargando Un complemento grande..."
+msgstr "Pobieranie dużej wtyczki..."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+msgid ""
+"Error:\n"
+"\n"
+"{}\n"
+msgstr ""
+"Błąd:\n"
+"\n"
+"{}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1960
+msgid ""
+"No se pudo tener acceso al servidor de complementos.\n"
+"\n"
+"Inténtelo en unos minutos.\n"
+"\n"
+"¿Desea no obstante intentar cambiar de servidor?"
+msgstr ""
+"Nie można uzyskać dostępu do serwera wtyczek.\n"
+"\n"
+"Wypróbuj za kilka minut.\n"
+"\n"
+"Czy nadal chcesz spróbować zmienić serwery?"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:51
+msgid "Servidor comunidad hispanohablante"
+msgstr "Serwer społecznościowy hiszpańskojęzyczny"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "12 horas"
+msgstr "12 godzin"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "1 día"
+msgstr "1 dzień"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "1 semana"
+msgstr "1 tydzień"
+
+#. Lista con idiomas para las traducciones
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Alemán"
+msgstr "Niemiecki"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Árabe"
+msgstr "Arab"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Croata"
+msgstr "chorwacki"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Español"
+msgstr "hiszpański"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Francés"
+msgstr "Francuski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Inglés"
+msgstr "język angielski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Italiano"
+msgstr "Włoski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Polaco"
+msgstr "Polski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Portugués"
+msgstr "portugalski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Ruso"
+msgstr "Rosyjski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Turco"
+msgstr "turecki"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Ucraniano"
+msgstr "ukraiński"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "Pokaż wtyczki z obsługą API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- Wtyczki kompatybilne z API 2024"

@@ -171,6 +171,20 @@ Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la 
 
 ¡Disfruta de la Tienda para NVDA.ES!
 # Registro de cambios.
+## Versión 0.10
+
+* Modificados los filtros de API para mostrar las ultimas dos versiones de API (2024 y 2023).
+
+* Traducciones de todos los idiomas automáticamente de las cadenas faltantes.
+
+## Versión 0.9.2 y 0.9.3
+
+* Se a dado compatibilidad con NVDA 2024.1.
+
+* Agregados nuevos campos en las fichas de los complementos.
+
+* Se implementa que los complementos instalados desde la tienda.es sean complementos instalados externamente para no entorpecer a la tienda oficial.
+
 ## Versión 0.9.1
 
 * Solucionado problemas con complementos grandes.

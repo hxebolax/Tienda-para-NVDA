@@ -15,21 +15,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Bookmarks: -1,5,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon\globalPlugins\TiendaNVDA\__init__.py:175
 #: addon\globalPlugins\TiendaNVDA\__init__.py:195
 msgid "Tienda para NVDA.ES"
 msgstr "Boutique pour NVDA.ES"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Boutique des extensions non officielles de https://www.nvda.es"
@@ -133,15 +135,13 @@ msgstr "Il existe déjà une instance de l'extension Tienda NVDA ouverte."
 msgid ""
 "El complemento fallo al iniciar NVDA.\n"
 "\n"
-"Una de las causas es que NVDA arrancara antes de tener conexión a "
-"internet.\n"
+"Una de las causas es que NVDA arrancara antes de tener conexión a internet.\n"
 "\n"
 "Reinicie NVDA para intentar solucionar el problema."
 msgstr ""
 "L'extension a échoué lors du démarrage de NVDA.\n"
 "\n"
-"L'une des causes est que NVDA a redémarré avant d'avoir une connexion à "
-"Internet.\n"
+"L'une des causes est que NVDA a redémarré avant d'avoir une connexion à Internet.\n"
 "\n"
 "Redémarrer NVDA pour essayer de résoudre le problème."
 
@@ -353,8 +353,7 @@ msgid ""
 msgstr ""
 "L'URL introduite a donné une erreur.\n"
 "\n"
-"Vérifiez qu'il s'agit d'une URL correcte de la base de données des "
-"extensions."
+"Vérifiez qu'il s'agit d'une URL correcte de la base de données des extensions."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:698
 msgid "Servidor sin complementos"
@@ -551,16 +550,13 @@ msgstr "Vous êtes situé dans l'extension {} de {}"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1137
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1148
 msgid ""
-"No tiene activada la opción traducir la descripción de complementos en "
-"opciones de la tienda.\n"
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
 "\n"
 "Active dicha opción y elija un idioma para poder usar esta característica."
 msgstr ""
-"L'option du traducteur pour les descriptions des extensions n'est pas "
-"activée dans les Paramètres de la Boutique NVDA.ES.\n"
+"L'option du traducteur pour les descriptions des extensions n'est pas activée dans les Paramètres de la Boutique NVDA.ES.\n"
 "\n"
-"Activez cette option et choisissez une langue pour utiliser cette "
-"caractéristique."
+"Activez cette option et choisissez une langue pour utiliser cette caractéristique."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1169
 msgid "Versión {}"
@@ -622,13 +618,11 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Cette extension doit être téléchargée à partir de son site Web.\n"
 "\n"
-"Il s'ouvrira avec votre navigateur par défaut sur la page de téléchargement "
-"de l'extension."
+"Il s'ouvrira avec votre navigateur par défaut sur la page de téléchargement de l'extension."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1711
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
@@ -704,8 +698,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -716,8 +709,7 @@ msgstr ""
 "\n"
 "Mais il y a des extensions qui ne pouvaient pas être installées.\n"
 "\n"
-"Les extensions suivantes sont incompatibles, rechercher une version "
-"compatible:\n"
+"Les extensions suivantes sont incompatibles, rechercher une version compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -834,5 +826,72 @@ msgstr "Turc"
 msgid "Ucraniano"
 msgstr "Ukrainian"
 
+#: addon\globalPlugins\TiendaNVDA\__init__.py:840
+#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+msgid ""
+"Autor: {}\n"
+"Nombre del complemento: {}\n"
+"Nombre interno: {}\n"
+"Descripción: {}\n"
+"Página web: {}\n"
+"Desarrollo: {}\n"
+msgstr ""
+"Auteur: {}\n"
+"Nom du plugin : {}\n"
+"Nom interne: {}\n"
+"Description: {}\n"
+"Page Web: {}\n"
+"Développement: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:857
+#: addon\globalPlugins\TiendaNVDA\__init__.py:907
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Testeado hasta versión de NVDA: {}\n"
+"Clave interna en la tienda: {}\n"
+"Enlace de descarga: {}\n"
+"Total descargas: {}\n"
+msgstr ""
+"Canal: {}\n"
+"Version: {}\n"
+"NVDA minimale : {}\n"
+"Testé jusqu'à la version NVDA : {}\n"
+"Clé interne en magasin : {}\n"
+"Lien de téléchargement: {}\n"
+"Nombre total de téléchargements : {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2023"
+msgstr "Afficher les plugins avec prise en charge de l'API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2023"
+msgstr "- Plugins compatibles API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1492
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1654
+msgid "Descargando Un complemento grande..."
+msgstr "Téléchargement d'un gros plugin..."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+msgid ""
+"Error:\n"
+"\n"
+"{}\n"
+msgstr ""
+"Erreur:\n"
+"\n"
+"{}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "Afficher les plugins avec prise en charge de l'API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- Plugins compatibles API 2024"
+
 #~ msgid "Tienda para NVDA"
-#~ msgstr "Boutique pour NVDA"
+#~ msgstr "Achetez NVDA"

@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Tienda NVDA\n"
@@ -15,14 +16,16 @@ msgstr ""
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon\globalPlugins\TiendaNVDA\__init__.py:175
 #: addon\globalPlugins\TiendaNVDA\__init__.py:195
 msgid "Tienda para NVDA.ES"
 msgstr "La bottega spagnola"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Negozio aggiuntivo non ufficiale https://www.nvda.es"
@@ -133,8 +136,7 @@ msgid ""
 msgstr ""
 "Il componente aggiuntivo non è riuscito ad avviare NVDA.\n"
 "\n"
-"Una delle cause possibili è che NVDA è stato avviato prima di connettersi a "
-"Internet.\n"
+"Una delle cause possibili è che NVDA è stato avviato prima di connettersi a Internet.\n"
 "\n"
 "Riavvia NVDA per provare a risolvere il problema."
 
@@ -163,7 +165,8 @@ msgstr "Seleziona un orario per controllare gli aggiornamenti"
 msgid ""
 "Activar o desactivar el traductor para las descripciones de los complementos"
 msgstr ""
-"Attiva o disattiva il traduttore per le descrizioni dei componenti aggiuntivi"
+"Attiva o disattiva il traduttore per le descrizioni dei componenti "
+"aggiuntivi"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:243
 msgid ""
@@ -247,7 +250,8 @@ msgstr "&Annulla"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:520
 msgid "El servidor de la comunidad hispanohablante no puede ser editado."
-msgstr "Il server della comunità di lingua spagnola non può essere modificato."
+msgstr ""
+"Il server della comunità di lingua spagnola non può essere modificato."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:537
 msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
@@ -525,8 +529,8 @@ msgstr ""
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1099
 msgid "Se copio la URL de la página oficial del complemento al portapapeles"
 msgstr ""
-"L'indirizzo della pagina ufficiale del componente aggiuntivo è stato copiato "
-"negli appunti"
+"L'indirizzo della pagina ufficiale del componente aggiuntivo è stato copiato"
+" negli appunti"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1103
 msgid "Se copio la URL de descarga al portapapeles"
@@ -551,16 +555,13 @@ msgstr "Trovato nel componente aggiuntivo {} da {}"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1148
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1159
 msgid ""
-"No tiene activada la opción traducir la descripción de complementos en "
-"opciones de la tienda.\n"
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
 "\n"
 "Active dicha opción y elija un idioma para poder usar esta característica."
 msgstr ""
-"Non hai l'opzione di traduzione della descrizione dell'addon abilitata nelle "
-"opzioni della bottega.\n"
+"Non hai l'opzione di traduzione della descrizione dell'addon abilitata nelle opzioni della bottega.\n"
 "\n"
-"Attiva questa opzione e scegli una lingua per poter utilizzare questa "
-"funzione."
+"Attiva questa opzione e scegli una lingua per poter utilizzare questa funzione."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1180
 msgid "Versión {}"
@@ -677,8 +678,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -687,11 +687,9 @@ msgid ""
 msgstr ""
 "Installazione completata con successo.\n"
 "\n"
-"Tuttavia vi sono componenti aggiuntivi che non è stato possibile "
-"installare.\n"
+"Tuttavia vi sono componenti aggiuntivi che non è stato possibile installare.\n"
 "\n"
-"I seguenti addon non sono compatibili, si prega di cercarne una versione "
-"compatibile:\n"
+"I seguenti addon non sono compatibili, si prega di cercarne una versione compatibile:\n"
 "\n"
 "{}\n"
 "\n"
@@ -719,13 +717,11 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Questo componente aggiuntivo deve essere scaricato dal proprio sito Web.\n"
 "\n"
-"Verrà aperto il tuo browser predefinito nella pagina di download del "
-"componente aggiuntivo."
+"Verrà aperto il tuo browser predefinito nella pagina di download del componente aggiuntivo."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1902
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
@@ -845,8 +841,16 @@ msgstr "Turco"
 msgid "Ucraniano"
 msgstr "Ucraino"
 
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "Mostra plugin con supporto API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- Plug-in compatibili con API 2024"
+
 #~ msgid "Mostrar los complementos con compatibilidad de API 2021"
-#~ msgstr "Mostra i componenti aggiuntivi con supporto di API 2021"
+#~ msgstr "Mostra plugin con supporto API 2021"
 
 #~ msgid " - Complementos compatibles con API 2021"
-#~ msgstr " - Componenti aggiuntivi compatibili con API 2021"
+#~ msgstr "- Plugin compatibili con API 2021"

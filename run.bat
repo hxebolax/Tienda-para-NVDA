@@ -4,4 +4,4 @@ echo Creando complemento...
 scons --clean
 scons
 scons pot
-TiendaNVDA-0.9.3.nvda-addon
+TiendaNVDA-0.10.nvda-addon

@@ -15,20 +15,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon/globalPlugins/TiendaNVDA/__init__.py:142
 #: addon/globalPlugins/TiendaNVDA/__init__.py:159
 msgid "Tienda para NVDA.ES"
 msgstr "NVDA.ES trgovina"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Neslužbena https://www.nvda.es trgovina za dodatke"
@@ -110,8 +111,7 @@ msgstr "Prozor NVDA spremišta već je otvoren."
 msgid ""
 "El complemento fallo al iniciar NVDA.\n"
 "\n"
-"Una de las causas es que NVDA arrancara antes de tener conexión a "
-"internet.\n"
+"Una de las causas es que NVDA arrancara antes de tener conexión a internet.\n"
 "\n"
 "Reinicie NVDA para intentar solucionar el problema."
 msgstr ""
@@ -292,13 +292,11 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Ovaj dodatak treba preuzeti s njegove web stranice.\n"
 "\n"
-"Otvorit će se s unaprijed definiranim preglednikom na stranici za "
-"preuzimanje dodatka."
+"Otvorit će se s unaprijed definiranim preglednikom na stranici za preuzimanje dodatka."
 
 #: addon/globalPlugins/TiendaNVDA/__init__.py:923
 msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
@@ -374,8 +372,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -423,3 +420,444 @@ msgstr "45 minuta"
 #: addon/globalPlugins/TiendaNVDA/ajustes.py:65
 msgid "1 hora"
 msgstr "1 sat"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:127
+msgid ""
+"Error producido en las librerías::\n"
+"\n"
+"{}"
+msgstr ""
+"Došlo je do pogreške u knjižnicama::\n"
+"\n"
+"{}"
+
+#. Translators: Nombre del submenú para mostrar el manual
+#: addon\globalPlugins\TiendaNVDA\__init__.py:150
+msgid "Documentación del complemento"
+msgstr "Dokumentacija dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:228
+msgid "Seleccione un servidor de complementos"
+msgstr "Odaberite poslužitelj dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:232
+msgid "&Gestionar Servidores de complementos"
+msgstr "&Upravljanje poslužiteljima dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:240
+msgid ""
+"Activar o desactivar el traductor para las descripciones de los complementos"
+msgstr "Uključite ili isključite prevoditelj za opise dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:243
+msgid ""
+"Seleccione un idioma para traducir las descripciones de los complementos"
+msgstr "Odaberite jezik za prijevod opisa dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:262
+#: addon\globalPlugins\TiendaNVDA\__init__.py:377
+#: addon\globalPlugins\TiendaNVDA\__init__.py:412
+#: addon\globalPlugins\TiendaNVDA\__init__.py:425
+msgid "Descartar actualizaciones"
+msgstr "Odbaci ažuriranja"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:363
+#: addon\globalPlugins\TiendaNVDA\__init__.py:400
+msgid "No se pudo tener acceso al servidor"
+msgstr "Nije moguće pristupiti poslužitelju"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:371
+#: addon\globalPlugins\TiendaNVDA\__init__.py:397
+msgid "Sin complementos compatibles"
+msgstr "Nema podržanih dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:442
+msgid ""
+"Ya hay una instancia de la Tienda NVDA abierta.\n"
+"\n"
+"Para gestionar los servidores es necesario que la Tienda este cerrada."
+msgstr ""
+"Instanca NVDA trgovine je već otvorena.\n"
+"\n"
+"Za upravljanje poslužiteljima potrebno je da je Store zatvoren."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:459
+msgid "Gestor de servidores de complementos"
+msgstr "Upravitelj poslužitelja dodataka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:467
+msgid "&Lista de servidores:"
+msgstr "&Popis poslužitelja:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:477
+msgid "&Añadir"
+msgstr "&Dodati"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:480
+msgid "&Editar"
+msgstr "&Uredi"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:483
+msgid "&Borrar"
+msgstr "&Izbrisati"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:520
+msgid "El servidor de la comunidad hispanohablante no puede ser editado."
+msgstr ""
+"Poslužitelj zajednice španjolskog govornog područja ne može se uređivati."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:537
+msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
+msgstr ""
+"Poslužitelj zajednice španjolskog govornog područja ne može se izbrisati."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:540
+msgid ""
+"ADVERTENCIA:\n"
+"\n"
+"Esta acción no es reversible.\n"
+"\n"
+"Va a borrar el servidor:\n"
+"\n"
+"{}\n"
+"\n"
+"¿Esta seguro que desea continuar?"
+msgstr ""
+"UPOZORENJE:\n"
+"\n"
+"Ova se radnja ne može poništiti.\n"
+"\n"
+"Izbrisat će poslužitelj:\n"
+"\n"
+"{}\n"
+"\n"
+"Jeste li sigurni da želite nastaviti?"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:549
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1965
+msgid "Pregunta"
+msgstr "Pitajte"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:591
+msgid "Añadir servidor"
+msgstr "Dodaj poslužitelj"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:591
+msgid "Editar servidor"
+msgstr "Uredi poslužitelj"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:597
+msgid "&Nombre del servidor:"
+msgstr "&Naziv poslužitelja:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:603
+msgid "&URL del servidor:"
+msgstr "URL poslužitelja:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:615
+msgid "&Cancelar"
+msgstr "&Otkazati"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:639
+msgid ""
+"El campo de nombre de servidor no puede quedar en blanco.\n"
+"\n"
+"Introduzca uno para poder continuar."
+msgstr ""
+"Polje naziva poslužitelja ne može ostati prazno.\n"
+"\n"
+"Unesite jedan za nastavak."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:647
+msgid ""
+"El campo de URL de servidor no puede quedar en blanco.\n"
+"\n"
+"Introduzca uno para poder continuar."
+msgstr ""
+"Polje URL poslužitelja ne može ostati prazno.\n"
+"\n"
+"Unesite jedan za nastavak."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:655
+msgid ""
+"Ya tiene un servidor con el mismo nombre.\n"
+"\n"
+"Modifique el nombre del servidor para poder continuar."
+msgstr ""
+"Već imate poslužitelj s istim imenom.\n"
+"\n"
+"Za nastavak promijenite naziv poslužitelja."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:663
+msgid ""
+"La URL introducida dio error.\n"
+"\n"
+"Compruebe que es una URL correcta de base de datos de complementos."
+msgstr ""
+"Uneseni URL dao je pogrešku.\n"
+"\n"
+"Provjerite je li to ispravan URL baze podataka dodataka."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:698
+msgid "Servidor sin complementos"
+msgstr "Poslužitelj bez dodataka"
+
+#. Translators: título de selección de aplicación
+#: addon\globalPlugins\TiendaNVDA\__init__.py:707
+#: addon\globalPlugins\TiendaNVDA\__init__.py:733
+msgid "Seleccione un servidor"
+msgstr "Odaberite poslužitelj"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:740
+msgid "Debe seleccionar un servidor para continuar."
+msgstr "Za nastavak morate odabrati poslužitelj."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:780
+msgid "B&uscar"
+msgstr "Tražiti"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:788
+msgid "&Acción"
+msgstr "&Akcijski"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:797
+msgid "&Cambiar de servidor"
+msgstr "&Promijeni poslužitelj"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:840
+#: addon\globalPlugins\TiendaNVDA\__init__.py:890
+msgid ""
+"Autor: {}\n"
+"Nombre del complemento: {}\n"
+"Nombre interno: {}\n"
+"Descripción: {}\n"
+"Página web: {}\n"
+"Desarrollo: {}\n"
+msgstr ""
+"Autor: {}\n"
+"Naziv dodatka: {}\n"
+"Interno ime: {}\n"
+"Opis: {}\n"
+"Web stranica: {}\n"
+"Razvoj: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:857
+#: addon\globalPlugins\TiendaNVDA\__init__.py:907
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Testeado hasta versión de NVDA: {}\n"
+"Clave interna en la tienda: {}\n"
+"Enlace de descarga: {}\n"
+"Total descargas: {}\n"
+msgstr ""
+"Kanal: {}\n"
+"Verzija: {}\n"
+"Minimalni NVDA: {}\n"
+"Testirano do NVDA verzije: {}\n"
+"Interni ključ u trgovini: {}\n"
+"Poveznica za skidanje: {}\n"
+"Ukupno preuzimanja: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:884
+msgid "No se pudo traducir la descripción"
+msgstr "Opis nije moguće prevesti"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:956
+msgid "Mostrar todos los complementos"
+msgstr "Prikaži sve dodatke"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2023"
+msgstr "Prikaži dodatke s podrškom za API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:960
+msgid "Mostrar los complementos con compatibilidad de API 2022"
+msgstr "Prikaži dodatke s podrškom za API 2022"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:962
+msgid "Mostrar los complementos ordenados por autor"
+msgstr "Prikaži dodatke poredane po autoru"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:964
+msgid "Mostrar por descargas de mayor a menor"
+msgstr "Prikaži prema preuzimanjima od najvećeg prema najmanjem"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:966
+msgid "&Filtros"
+msgstr "&Filtri"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:969
+msgid "Copiar información"
+msgstr "Kopiraj informacije"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:971
+msgid "Copiar enlace a la página web del complemento"
+msgstr "Kopiraj vezu na web stranicu dodatka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:977
+msgid "Copiar enlace de descarga del complemento"
+msgstr "Kopiraj vezu za preuzimanje dodatka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:978
+msgid "&Copiar al portapapeles"
+msgstr "&Kopirati u međuspremnik"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:984
+msgid "Ver documentación del complemento instalado"
+msgstr "Pogledajte dokumentaciju instaliranog dodatka"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1043
+msgid " - Todos los complementos"
+msgstr "- Svi dodaci"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2023"
+msgstr "- API 2023 kompatibilni dodaci"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1061
+msgid " - Complementos compatibles con API 2022"
+msgstr "- API 2022 kompatibilni dodaci"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1070
+msgid " - Complementos por autor"
+msgstr "- Dodaci po autoru"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1077
+msgid " - Complementos por descarga de mayor a menor"
+msgstr "- Dodaci po preuzimanju od najvišeg do najnižeg"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1095
+msgid "Se copio la información del complemento al portapapeles"
+msgstr "Podaci o dodatku kopirani su u međuspremnik"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1099
+msgid "Se copio la URL de la página oficial del complemento al portapapeles"
+msgstr "URL službene stranice dodatka kopiran je u međuspremnik"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1103
+msgid "Se copio la URL de descarga al portapapeles"
+msgstr "URL za preuzimanje kopiran u međuspremnik"
+
+#. Translators: Notification message
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1121
+msgid "No se pudo llevar a cabo la copia al portapapeles"
+msgstr "Nije moguće kopirati u međuspremnik"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1140
+msgid "Se encuentra en el complemento {} de {}"
+msgstr "Pronađeno u komplementu {} od {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1148
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1159
+msgid ""
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
+"\n"
+"Active dicha opción y elija un idioma para poder usar esta característica."
+msgstr ""
+"Nemate aktiviranu opciju prevođenja opisa dodataka u opcije trgovine.\n"
+"\n"
+"Aktivirajte ovu opciju i odaberite jezik za korištenje ove značajke."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1492
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1654
+msgid "Descargando Un complemento grande..."
+msgstr "Preuzimanje velikog dodatka..."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1518
+msgid ""
+"Error:\n"
+"\n"
+"{}\n"
+msgstr ""
+"Pogreška:\n"
+"\n"
+"{}\n"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1960
+msgid ""
+"No se pudo tener acceso al servidor de complementos.\n"
+"\n"
+"Inténtelo en unos minutos.\n"
+"\n"
+"¿Desea no obstante intentar cambiar de servidor?"
+msgstr ""
+"Nije moguće pristupiti poslužitelju dodataka.\n"
+"\n"
+"Probajte za nekoliko minuta.\n"
+"\n"
+"Želite li ipak pokušati promijeniti poslužitelje?"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:51
+msgid "Servidor comunidad hispanohablante"
+msgstr "Poslužitelj zajednice španjolskog govornog područja"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "12 horas"
+msgstr "12 sati"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "1 día"
+msgstr "1 dan"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:101
+msgid "1 semana"
+msgstr "1 Tjedan"
+
+#. Lista con idiomas para las traducciones
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Alemán"
+msgstr "njemački"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Árabe"
+msgstr "arapski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Croata"
+msgstr "Hrvatski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Español"
+msgstr "španjolski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Francés"
+msgstr "francuski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Inglés"
+msgstr "Engleski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Italiano"
+msgstr "talijanski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Polaco"
+msgstr "Polirati"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Portugués"
+msgstr "Portugalski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Ruso"
+msgstr "ruski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Turco"
+msgstr "turski"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:103
+msgid "Ucraniano"
+msgstr "ukrajinski"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "Prikaži dodatke s podrškom za API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- API 2024 kompatibilni dodaci"

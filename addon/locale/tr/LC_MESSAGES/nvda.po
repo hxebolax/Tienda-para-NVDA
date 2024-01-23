@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: nvda.es Eklenti Mağazası\n"
@@ -11,23 +12,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-Basepath: ../../../globalPlugins\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ../../../globalPlugins\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
+#. to be shown on installation and add-on information found in Add-ons
+#. Manager.
 #: buildVars.py:23 addon\globalPlugins\TiendaNVDA\__init__.py:175
 #: addon\globalPlugins\TiendaNVDA\__init__.py:195
 msgid "Tienda para NVDA.ES"
 msgstr "NVDA.ES Eklenti Mağazası"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#. Translators: Long description to be shown for this add-on on add-on
+#. information from add-ons manager
 #: buildVars.py:26
 msgid "Tienda de complementos no oficial de https://www.nvda.es"
 msgstr "Resmi olmayan eklenti mağazası https://www.nvda.es"
@@ -547,8 +550,7 @@ msgstr "{} ögeli listenin {} sırasında bulunur"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1148
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1159
 msgid ""
-"No tiene activada la opción traducir la descripción de complementos en "
-"opciones de la tienda.\n"
+"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
 "\n"
 "Active dicha opción y elija un idioma para poder usar esta característica."
 msgstr ""
@@ -626,7 +628,8 @@ msgstr "Sorun var.\n"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1726
 msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
 msgstr ""
-"Lütfen internet bağlantınız olup olmadığını kontrol edin ve tekrar deneyin.\n"
+"Lütfen internet bağlantınız olup olmadığını kontrol edin ve tekrar "
+"deneyin.\n"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1518
 msgid ""
@@ -673,8 +676,7 @@ msgid ""
 "\n"
 "Pero hay complementos que no se pudieron instalar.\n"
 "\n"
-"Los siguientes complementos son incompatibles, busque una versión "
-"compatible:\n"
+"Los siguientes complementos son incompatibles, busque una versión compatible:\n"
 "\n"
 "{}\n"
 "\n"
@@ -713,8 +715,7 @@ msgstr ""
 msgid ""
 "Este complemento necesita ser descargado desde su página web.\n"
 "\n"
-"Se abrirá con su navegador predefinido en la pagina de descarga del "
-"complemento."
+"Se abrirá con su navegador predefinido en la pagina de descarga del complemento."
 msgstr ""
 "Bu eklentinin kendi web sitesinden indirilmesi gerekiyor.\n"
 "\n"
@@ -838,8 +839,16 @@ msgstr "Türkçe"
 msgid "Ucraniano"
 msgstr "Ukraynaca"
 
+#: addon\globalPlugins\TiendaNVDA\__init__.py:958
+msgid "Mostrar los complementos con compatibilidad de API 2024"
+msgstr "API 2024 desteğine sahip eklentileri göster"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:1051
+msgid " - Complementos compatibles con API 2024"
+msgstr "- API 2024 uyumlu eklentiler"
+
 #~ msgid "Mostrar los complementos con compatibilidad de API 2021"
-#~ msgstr "API 2021 destekli eklentileri göster"
+#~ msgstr "API desteği 2021 ile eklentileri göster"
 
 #~ msgid " - Complementos compatibles con API 2021"
-#~ msgstr " - API 2021 Uyumlu Eklentiler"
+#~ msgstr "- API 2021 Uyumlu Eklentiler"
