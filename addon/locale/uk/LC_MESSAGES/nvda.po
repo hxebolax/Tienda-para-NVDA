@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: TiendaNVDA\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2023-03-02 12:56+0200\n"
-"PO-Revision-Date: 2023-03-02 12:58+0200\n"
+"PO-Revision-Date: 2024-01-25 23:33+0200\n"
 "Last-Translator: Volodymyr Pyrih <vp88.mobile@gmail.com>\n"
 "Language-Team: Volodymyr Pyrih\n"
 "Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 "
+"&& (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: addon/globalPlugins/TiendaNVDA/__init__.py\n"
 "X-Poedit-SearchPath-1: addon/globalPlugins/TiendaNVDA/ajustes.py\n"
@@ -172,13 +173,11 @@ msgid ""
 msgstr "Увімкнути або вимкнути перекладач для опису додатків"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:243
-msgid ""
-"Seleccione un idioma para traducir las descripciones de los complementos"
+msgid "Seleccione un idioma para traducir las descripciones de los complementos"
 msgstr "Виберіть мову для перекладу описів"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:245
-msgid ""
-"Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
+msgid "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
 msgstr "Сортування додатків за абеткою"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:247
@@ -510,7 +509,7 @@ msgstr " - Додатки, сумісні з API 2022"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1058
 msgid " - Complementos por autor"
-msgstr " - Додатки автора"
+msgstr " - Додатки за автором"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1065
 msgid " - Complementos por descarga de mayor a menor"
@@ -547,7 +546,8 @@ msgstr "Знаходиться в {} додатка {}"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1136
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1147
 msgid ""
-"No tiene activada la opción traducir la descripción de complementos en opciones de la tienda.\n"
+"No tiene activada la opción traducir la descripción de complementos en opciones "
+"de la tienda.\n"
 "\n"
 "Active dicha opción y elija un idioma para poder usar esta característica."
 msgstr ""
@@ -562,8 +562,8 @@ msgstr "Версія {}"
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1223
 msgid "Ya tiene un proceso de descarga activo, espere a que termine."
 msgstr ""
-"У вас вже запущено процес завантаження додатків, будь ласка, дочекайтеся "
-"його завершення."
+"У вас вже запущено процес завантаження додатків, будь ласка, дочекайтеся його "
+"завершення."
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1231
 #, python-format
@@ -846,7 +846,7 @@ msgid ""
 "Desarrollo: {}\n"
 msgstr ""
 "Автор: {}\n"
-"Назва плагіна: {}\n"
+"Назва додатка: {}\n"
 "Внутрішнє ім'я: {}\n"
 "Опис: {}\n"
 "Веб-сторінка: {}\n"
@@ -865,19 +865,19 @@ msgid ""
 msgstr ""
 "Канал: {}\n"
 "Версія: {}\n"
-"Мінімальний NVDA: {}\n"
-"Перевірено до версії NVDA: {}\n"
+"Мінімальна версія NVDA: {}\n"
+"Востаннє протестовано на версії NVDA: {}\n"
 "Внутрішній ключ у магазині: {}\n"
 "Посилання для завантаження: {}\n"
 "Усього завантажень: {}\n"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:958
 msgid "Mostrar los complementos con compatibilidad de API 2024"
-msgstr "Показати плагіни з підтримкою API 2024"
+msgstr "Показати додатки з підтримкою API 2024"
 
 #: addon\globalPlugins\TiendaNVDA\__init__.py:1051
 msgid " - Complementos compatibles con API 2024"
-msgstr "— Плагіни, сумісні з API 2024"
+msgstr " - Додатки, сумісні з API 2024"
 
 #~ msgid "Mostrar los complementos con compatibilidad de API 2021"
 #~ msgstr "Показати плагіни з підтримкою API 2021"
