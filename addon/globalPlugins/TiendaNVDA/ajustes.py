@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2021 Héctor J. Benítez Corredera <xebolax@gmail.com>
+# Copyright (C) 2021-2025 Héctor J. Benítez Corredera <xebolax@gmail.com>
 # This file is covered by the GNU General Public License.
+#
+# Módulo de ajustes para TiendaNVDA_Modern
+#
 
 import globalVars
 import addonHandler
@@ -8,10 +11,9 @@ import config
 import wx
 import os
 import shutil
-from . import basedatos
 
-# For translation
 addonHandler.initTranslation()
+
 
 def initConfiguration():
 	confspec = {
@@ -23,19 +25,31 @@ def initConfiguration():
 		"langTrans": "integer(default=5, min=0, max=11)",
 		"selectSRV": "integer(default=0, min=0)",
 		"urlServidor": "string(default='https://nvda.es/files/get.php?addonslist')",
+		"oficialChk": "boolean(default=True)",
+		"allowIncompatibleChk": "boolean(default=False)",
+		"chkOfficialUpdates": "boolean(default=True)",
+		"useTranslationCache": "boolean(default=True)",
+		"listCacheEnabled": "boolean(default=True)",
+		"autoBackupOnExit": "boolean(default=True)",
+		"silentInstall": "boolean(default=False)",
+		"serverCache": "boolean(default=True)",
+		"cacheInterval": "integer(default=3, min=0, max=6)",
 	}
-	config.conf.spec['TiendaES'] = confspec
+	config.conf.spec['TiendaNVDA_Modern'] = confspec
+
 
 def getConfig(key):
-	value = config.conf["TiendaES"][key]
-	return value
+	return config.conf["TiendaNVDA_Modern"][key]
+
 
 def setConfig(key, value):
 	try:
-		config.conf.profiles[0]["TiendaES"][key] = value
+		config.conf.profiles[0]["TiendaNVDA_Modern"][key] = value
 	except:
-		config.conf["TiendaES"][key] = value
+		config.conf["TiendaNVDA_Modern"][key] = value
 
+
+# Variables temporales
 tempChk = None
 tempTimer = None
 tempOrden = None
@@ -45,16 +59,39 @@ tempLang = None
 dirDatos = None
 listaAddonsSave = None
 listaAddonsInstalados = None
-# Valores para todo lo referido con los servidores
+
+# Variables para tienda oficial
+tempOficial = None
+tempAllowIncompatible = None
+tempChkOfficial = None
+
+# Variables de caché y backup
+tempUseTranslationCache = None
+tempListCacheEnabled = None
+tempAutoBackupOnExit = None
+tempSilentInstall = None
+tempServerCache = None
+tempCacheInterval = None
+
+# Valores para servidores
 urlServidor = None
 selectSRV = None
 nombreSRV_Fijo = _("Servidor comunidad hispanohablante")
-urlSVR_Fijo ="https://nvda.es/files/get.php?addonslist" # "https://nvda-addons.org/files/get.php?addonslist"
+urlSVR_Fijo = "https://nvda.es/files/get.php?addonslist"
 fileFijo = "data.json"
 listaServidores = []
 
+
 def setup():
-	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos, tempOrden, tempChk, tempTimer, tempTrans, tempLang, urlServidor, selectSRV, listaServidores
+	global listaAddonsSave, listaAddonsInstalados, tempInstall, dirDatos
+	global tempOrden, tempChk, tempTimer, tempTrans, tempLang
+	global urlServidor, selectSRV, listaServidores
+	global tempOficial, tempAllowIncompatible, tempChkOfficial
+	global tempUseTranslationCache, tempListCacheEnabled, tempAutoBackupOnExit
+	global tempSilentInstall, tempServerCache, tempCacheInterval, IS_TEMPORAL
+
+	from . import basedatos
+
 	initConfiguration()
 	tempChk = getConfig("autoChk")
 	tempTimer = getConfig("timerChk")
@@ -64,15 +101,34 @@ def setup():
 	tempInstall = getConfig("installChk")
 	urlServidor = getConfig("urlServidor")
 	selectSRV = getConfig("selectSRV")
-	dirDatos =os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")
-	if os.path.exists(dirDatos) == False:
+	tempOficial = getConfig("oficialChk")
+	tempAllowIncompatible = getConfig("allowIncompatibleChk")
+	tempChkOfficial = getConfig("chkOfficialUpdates")
+	tempUseTranslationCache = getConfig("useTranslationCache")
+	tempListCacheEnabled = getConfig("listCacheEnabled")
+	tempAutoBackupOnExit = getConfig("autoBackupOnExit")
+	tempSilentInstall = getConfig("silentInstall")
+	tempServerCache = getConfig("serverCache")
+	tempCacheInterval = getConfig("cacheInterval")
+
+	dirDatos = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA_Modern")
+	if not os.path.exists(dirDatos):
 		os.mkdir(dirDatos)
 	else:
-		if os.path.exists(os.path.join(dirDatos, "temp")) == True:
+		for f in os.listdir(dirDatos):
+			if f.endswith(".nvda-addon") and f.startswith("temp_install"):
+				try:
+					os.remove(os.path.join(dirDatos, f))
+				except:
+					pass
+		tempPath = os.path.join(dirDatos, "temp")
+		if os.path.exists(tempPath):
 			try:
-				shutil.rmtree(os.path.join(dirDatos, "temp"), ignore_errors=True)
+				shutil.rmtree(tempPath, ignore_errors=True)
 			except:
 				pass
+
+	IS_TEMPORAL = True
 	listaServidores = basedatos.ServidoresComplementos().fileJsonAddon(2)
 	try:
 		listaAddonsSave = basedatos.libreriaLocal(listaServidores[selectSRV][2]).fileJsonAddon(2)
@@ -84,58 +140,78 @@ def setup():
 		listaAddonsSave = basedatos.libreriaLocal(listaServidores[selectSRV][2]).fileJsonAddon(2)
 		listaAddonsInstalados = basedatos.libreriaLocal().addonsInstalados()
 		basedatos.libreriaLocal(listaServidores[selectSRV][2]).actualizaJson()
+	finally:
+		IS_TEMPORAL = False
 
-titulo = _("Tienda NVDA.ES")
+
+# Título de la aplicación
+titulo = _("Tienda de Complementos NVDA")
+
+# Estados
 IS_WinON = False
 IS_Download = False
-IS_TEMPORAL =False
+IS_TEMPORAL = False
 reiniciarTrue = False
 focoActual = "listboxComplementos"
-indiceFiltro = 6
-ID_TRUE = wx.NewIdRef() # para botón aceptar
-ID_FALSE = wx.NewIdRef() # para botón cancelar
+indiceFiltro = 100
+
+# IDs para botones
+ID_TRUE = wx.NewIdRef()
+ID_FALSE = wx.NewIdRef()
+
+# Contadores
 contadorRepeticion = 0
 contadorRepeticionSn = 0
 
 # Lista tiempo chk notificaciones
-tiempoChk = [_("15 minutos"), _("30 minutos"), _("45 minutos"), _("1 hora"), _("12 horas"), _("1 día"), _("1 semana")]
+tiempoChk = [
+	_("15 minutos"),
+	_("30 minutos"),
+	_("45 minutos"),
+	_("1 hora"),
+	_("12 horas"),
+	_("1 día"),
+	_("1 semana")
+]
+
 # Lista con idiomas para las traducciones
-langLST = [_("Alemán"), _("Árabe"), _("Croata"), _("Español"), _("Francés"), _("Inglés"), _("Italiano"), _("Polaco"), _("Portugués"), _("Ruso"), _("Turco"), _("Ucraniano")]
-# Diccionario con las abreviaturas de idioma
+langLST = [
+	_("Alemán"),
+	_("Árabe"),
+	_("Croata"),
+	_("Español"),
+	_("Francés"),
+	_("Inglés"),
+	_("Italiano"),
+	_("Polaco"),
+	_("Portugués"),
+	_("Ruso"),
+	_("Turco"),
+	_("Ucraniano")
+]
+
 langDict = {
-	0:"de",
-	1:"ar",
-	2:"hr",
-	3:"es",
-	4:"fr",
-	5:"en",
-	6:"it",
-	7:"pl",
-	8:"pt",
-	9:"ru",
-	10:"tr",
-	11:"uk",
+	0: "de", 1: "ar", 2: "hr", 3: "es", 4: "fr", 5: "en",
+	6: "it", 7: "pl", 8: "pt", 9: "ru", 10: "tr", 11: "uk",
 }
-### Diccionario para el foco.
+
 id_widgets = {
-# WidGets generales
-	1:"Panel",
-	2:"textoBusqueda",
-	3:"listboxComplementos",
-	4:"txtResultado",
-# Botones
-	201:"descargarBTN",
-	202:"paginaWebBTN",
-	203:"cambiarSrvBTN",
-	204:"salirBTN",
+	1: "Panel", 2: "textoBusqueda", 3: "listboxComplementos", 4: "txtResultado",
+	201: "descargarBTN", 202: "paginaWebBTN", 203: "cambiarSrvBTN", 204: "salirBTN",
 }
 
 tiempoDict = {
-	0:900,
-	1:1800,
-	2:2700,
-	3:3600,
-	4:43200,
-	5:86400,
-	6:604800,
+	0: 900, 1: 1800, 2: 2700, 3: 3600, 4: 43200, 5: 86400, 6: 604800,
 }
+
+OFFICIAL_CHANNELS = {
+	"all": _("Todos"), "stable": _("Estable"), "beta": _("Beta"),
+	"dev": _("Desarrollo"), "external": _("Externo"),
+}
+
+OFFICIAL_STORE_BASE_URL = "https://addonStore.nvaccess.org"
+OFFICIAL_CACHE_HASH_URL = f"{OFFICIAL_STORE_BASE_URL}/cacheHash.json"
+
+
+def getOfficialStoreURL(channel: str, lang: str, apiVersion: str) -> str:
+	return f"{OFFICIAL_STORE_BASE_URL}/{lang}/{channel}/{apiVersion}.json"

@@ -1,358 +1,542 @@
-# Manual de Tienda para NVDA.ES
-## Modo de uso
+# Tienda de Complementos para NVDA
 
-El complemento viene sin atajos asignados y podemos otorgarle dos que son:
+> **⚠️ Aviso importante para testers de la versión beta:**
+> Si has estado probando el complemento **TiendaNVDA_Modern**, por favor **desinstálalo antes de instalar esta versión**. Aquella versión era una versión de pruebas y beta que no debe coexistir con esta versión final. Para desinstalarlo, ve al menú de NVDA → Herramientas → Tienda de complementos, selecciona "TiendaNVDA_Modern" y elimínalo. Reinicia NVDA y después procede a instalar esta nueva versión.
 
-* Muestra la ventana con todos los complementos y su información: Se nos mostrara una ventana con todos los complementos que hay en https:www.nvda.es
+Tienda Unificada de Complementos para NVDA: integra la **Tienda de la Comunidad Hispanohablante (NVDA.ES)** y la **Tienda Oficial de NV Access** en una única interfaz accesible.
 
-* Busca actualizaciones de los complementos instalados: Analizará los complementos que tenemos y de los que encuentre actualización nos ofrecerá la posibilidad de actualizarlos de manera automática.
+**Autor:** Héctor J. Benítez Corredera  
+**Licencia:** GNU General Public License v2  
+**Versión:** 2026.05.09  
+**Compatibilidad:** NVDA 2025.1 a NVDA 2026.1  
+**Repositorio:** [https://github.com/hxebolax/Tienda-para-NVDA](https://github.com/hxebolax/Tienda-para-NVDA)
 
-Podemos asignar un gesto de entrada para estas dos opciones yendo al menú de NVDA / Preferencias / Gestos de entrada y buscar Tienda para NVDA.ES.
+---
 
-### Muestra la ventana con todos los complementos y su información
+## Índice
 
-En esta pantalla tendremos todos los complementos junto a una ficha y la posibilidad de ir a su repositorio y descargar.
+1. [Introducción](#introduccion)
+2. [Instalación](#instalacion)
+3. [Primeros pasos](#primeros-pasos)
+4. [Las tres tiendas](#las-tres-tiendas)
+5. [La interfaz de la tienda](#la-interfaz-de-la-tienda)
+6. [Indicadores de estado](#indicadores-de-estado)
+7. [Teclas rápidas y funciones especiales](#teclas-rapidas-y-funciones-especiales)
+8. [Menú contextual](#menu-contextual)
+9. [Gestión de complementos instalados](#gestion-de-complementos-instalados)
+10. [Empaquetador de complementos](#empaquetador-de-complementos)
+11. [Buscar actualizaciones](#buscar-actualizaciones)
+12. [Panel de opciones](#panel-de-opciones)
+13. [Sistema de caché](#sistema-de-cache)
+14. [Modo offline](#modo-offline)
+15. [Backup y restauración](#backup-y-restauracion)
+16. [Traducción de descripciones](#traduccion-de-descripciones)
+17. [Servidores personalizados](#servidores-personalizados)
+18. [Observaciones y protecciones](#observaciones-y-protecciones)
+19. [Resumen de teclas rápidas](#resumen-de-teclas-rapidas)
+20. [Registro de cambios](#registro-de-cambios)
 
-Si recorremos la ventana tendremos una lista con todos los complementos, un cuadro de solo lectura con la ficha del complemento que tengamos seleccionado, un botón llamado "Descargar complemento", un botón llamado "Visitar página WEB" para ir a la pagina del complemento y un botón llamado "Salir".
+---
 
-Además, tendremos un cuadro de búsqueda en el cual podremos poner lo que deseemos buscar y si pulsamos Intro se mostrara los resultados en la lista.
+<a name="introduccion"></a>
+## Introducción
 
-Bien para volver a tener toda la lista de complementos solo tendremos que volver al campo de búsqueda y borrar su contenido y pulsar Intro con el campo vacío.
+La **Tienda de Complementos para NVDA** es una evolución completa de la antigua Tienda para NVDA.ES, rediseñada desde cero para ofrecer una experiencia moderna, rápida y unificada.
 
-En el campo de la ficha en el caso que el complemento tenga más de una rama de desarrollo también se nos mostrara la información.
+### ¿Qué hay de nuevo respecto a la versión anterior?
 
-El botón llamado "Descargar complemento", nos desplegara un menú con las distintas ramas de desarrollo del complemento, tendremos que elegir una para descargar. En caso de que solo tenga una solo se nos dará esa opción.
+- **Tienda Unificada:** Navega por los complementos de NVDA.ES y la tienda oficial de NV Access desde una sola ventana.
+- **Indicadores de estado:** Cada complemento muestra su estado en tiempo real: instalado, actualizable, deshabilitado, incompatible, etc.
+- **Gestión local:** Deshabilita, habilita o desinstala complementos sin salir de la tienda.
+- **Sistema de caché multinivel:** Caché de servidores, caché de traducciones y caché de listas para una carga ultrarrápida.
+- **Modo offline:** Navega por la tienda sin conexión a internet usando datos almacenados en caché.
+- **Backup y restauración:** Crea copias de seguridad de tus complementos y restáuralos al cambiar de equipo.
+- **Empaquetador:** Genera archivos `.nvda-addon` desde cualquier complemento instalado.
+- **Instalación silenciosa:** Instala complementos en segundo plano sin diálogos intermedios.
+- **Reinicio inteligente:** La tienda detecta si realmente se instaló algo antes de pedir reiniciar.
+- **Comprobación de dependencias:** Verifica que las dependencias del complemento estén satisfechas antes de instalar.
+- **Traducción con caché:** Traduce descripciones al instante con la tecla F3, y las traducciones se guardan para no repetir la consulta.
+- **Notificaciones mejoradas:** Las notificaciones de actualización ahora indican el origen (NVDA.ES u Oficial) y los nombres de los complementos.
 
-En esta pantalla tenemos las siguientes teclas rápidas para movernos por la interface:
+---
 
-* Alt+B: Ir al cuadro de búsqueda.
-* Alt+L: Ir a la lista de complementos.
-* Alt+I: Ir al campo de la ficha para ver la información del complemento seleccionado.
-* Alt+D: Ejecutar el botón "Descargar complemento".
-* Alt+P: Ir a la página del complemento.
-* Alt+S, Escape, Alt+F4: Cerrar la ventana.
+<a name="instalacion"></a>
+## Instalación
 
-#### Menú contextual en la lista de complementos
+1. Descarga el archivo `.nvda-addon` desde la página de [releases del repositorio](https://github.com/hxebolax/Tienda-para-NVDA/releases).
+2. Abre el archivo descargado o arrástralo sobre la ventana de NVDA.
+3. Acepta la instalación cuando NVDA te lo solicite.
+4. Reinicia NVDA para activar el complemento.
 
-En la lista de complementos podemos desplegar un menú contextual ya sea con la tecla Aplicaciones de nuestro teclado o bien Shift + F10 para aquellos teclados que no dispongan de la tecla Aplicaciones.
+---
 
-Dicho menú consta de dos submenús:
+## Primeros pasos
 
-Filtros y Copiar al portapapeles.
+El complemento viene **sin atajos de teclado asignados**. Puedes asignar atajos personalizados desde:
 
-En el submenú "Filtros" tenemos las siguientes opciones:
+**Menú de NVDA → Preferencias → Gestos de entrada → Tienda de Complementos NVDA**
 
-* Mostrar todos los complementos: Esta opción es la predefinida siempre que el complemento se ejecute por primera vez.
+Aquí encontrarás las siguientes acciones disponibles:
 
-Dicha opción nos mostrara todos los complementos que hay en la base de datos.
+- Mostrar la ventana con todos los complementos de NVDA.ES
+- Buscar actualizaciones de los complementos instalados en NVDA.ES
+- Mostrar la ventana con todos los complementos de la tienda oficial
+- Buscar actualizaciones de los complementos oficiales
+- Mostrar la tienda unificada con todas las fuentes de complementos
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+### Acceso desde el menú
 
-* Mostrar los complementos con compatibilidad de API 2022: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
+También puedes acceder a todas las funciones desde el menú de NVDA:
 
-* Mostrar los complementos con compatibilidad de API 2021: Esta opción nos mostrara solo aquellos complementos que en el manifiesto estén marcados con dicha compatibilidad.
+**Menú NVDA → Herramientas → Tienda de Complementos NVDA**
 
-Igualmente esta opción está supeditada si tenemos marcada la casilla de verificación "Ordenar por orden alfabético los complementos de la tienda y las búsquedas", por lo tanto si dicha casilla de verificación en opciones está marcada la lista se ordenara alfabéticamente al igual que las búsquedas en dicha lista.
+Aquí encontrarás los siguientes submenús:
 
-Advertir que en esta lista se omitirán aquellos complementos que los autores en su manifiesto han ignorado la buena praxis y han puesto compatibilidad con APIS que todavía no han llegado.
+- **Tienda NVDA.ES:** Listado de complementos y búsqueda de actualizaciones de la comunidad hispanohablante.
+- **Tienda Oficial NVDA:** Listado de complementos y búsqueda de actualizaciones de la tienda oficial.
+- **Tienda Unificada (Todas las fuentes):** Muestra todos los complementos de todas las fuentes en una sola lista.
+- **Empaquetador de complementos:** Permite empaquetar complementos instalados como archivos `.nvda-addon`.
+- **Documentación del complemento:** Abre esta documentación en el navegador predeterminado.
 
-* Mostrar los complementos ordenados por autor: Esta opción nos mostrara la lista de complementos pero se ordenara por nombre de autor.
+---
 
-* Mostrar por descargas de mayor a menor: Esta opción nos mostrara todos los complementos pero será ordenada por el número de descargas que tenga el complemento.
+<a name="las-tres-tiendas"></a>
+## Las tres tiendas
 
-Estas opciones se ejecutan individualmente no siendo acumulable su resultado.
+La nueva versión integra tres modos de visualización de complementos:
 
-Cada opción cuando la elijamos cambiara el titulo de la ventana para informarnos que filtro esta activo.
+### Tienda NVDA.ES
 
-Las opciones se mantienen para las siguientes veces que se active la tienda hasta que NVDA sea reiniciado. Una vez reiniciado el complemento vuelve a su valor predefinido y la lista cargada por primera vez será "Mostrar todos los complementos"
+Es la tienda de la comunidad hispanohablante. Obtiene los complementos del servidor de [https://nvda.es](https://nvda.es) y de cualquier servidor personalizado que hayas añadido.
 
-Salvo la opción "Mostrar todos los complementos", el resto de opciones solo se filtra por la primera rama de desarrollo. Si un complemento tiene más de una rama no se tendrán en cuenta salvo la rama principal para filtrar los resultados en cada opción.
+### Tienda Oficial NVDA
 
-En el submenú "Copiar al portapapeles" tenemos las siguientes opciones:
+Accede a la tienda oficial de complementos de NV Access ([https://addons.nvda-project.org](https://addons.nvda-project.org)). Los complementos de esta fuente se obtienen directamente del API de la tienda oficial y se muestran con toda su información de compatibilidad.
 
-* Copiar información: Si elegimos esta opción se copiara la ficha entera del complemento que tengamos elegido al portapapeles.
+### Tienda Unificada
 
-* Copiar enlace a la página web del complemento: Si elegimos esta opción se copiara la URL de la página oficial del complemento al portapapeles.
+Es la vista combinada que muestra **todos los complementos de todas las fuentes** en una sola lista. Los complementos se identifican con las etiquetas `[ES]` (comunidad hispanohablante) y `[OF]` (tienda oficial) para que sepas de dónde proviene cada uno.
 
-* Copiar enlace de descarga del complemento: Bien esto es un submenú que contendrá dentro las ramas de desarrollo del complemento. Cuando elijamos alguna si tiene más de una nos copiara al portapapeles la URL para poder descargar el complemento.
+---
 
-### Busca actualizaciones de los complementos instalados
+<a name="la-interfaz-de-la-tienda"></a>
+## La interfaz de la tienda
 
-Nos dejara actualizar aquellos complementos que en https://www.nvda.es sean más nuevos que los que tenemos en nuestro equipo.
+Al abrir cualquiera de las tiendas se muestra una ventana dividida en dos paneles:
 
-En esta pantalla podremos seleccionar en caso de que hubiese actualizaciones aquellos complementos que deseemos actualizar.
+### Panel izquierdo (zona de trabajo)
 
-Tendremos que marcar con la barra espaciadora el complemento deseado y darle al botón "Actualizar".
+1. **Cuadro de búsqueda:** Al abrir la tienda, el foco se sitúa aquí. Escribe cualquier término y pulsa Enter para filtrar la lista. Para volver a mostrar todos los complementos, borra el campo de búsqueda y pulsa Enter con el campo vacío.
 
-En esta pantalla se nos mostrara la actualización correspondiente si la hay a la rama que tengamos elegida yendo al menú de NVDA / Preferencias / Opciones / Tienda NVDA.ES y allí podremos elegir si hay más de una rama de desarrollo la que deseemos (explicado bien en el siguiente apartado)
+2. **Lista de complementos:** Muestra todos los complementos disponibles con su indicador de estado entre corchetes (ej: `[I]`, `[U]`). Navega con las flechas Arriba/Abajo.
 
-En esta pantalla tenemos las siguientes teclas:
+3. **Botón de acción (Instalar/Actualizar):** Este botón es dinámico; cambia su texto automáticamente según el estado del complemento seleccionado:
+   - Si no tienes el complemento instalado, muestra **"Instalar"**.
+   - Si hay una actualización disponible, muestra **"Actualizar"**.
 
-* Alt+S: Seleccionara todos los complementos de la lista para instalar todas las actualizaciones de nuestros complementos que tengamos instalados en nuestra computadora.
-* Alt+D: Nos deseleccionara de la lista todas las actualizaciones de todos los complementos si habían sido marcados previamente.
-* Alt+A: Empezara la actualización de aquellos complementos que tengamos seleccionados en la lista.
-* Alt+C, Alt+F4 o Escape: Cerrara la ventana.
+### Panel derecho (ficha informativa)
 
-### Panel de opciones
+A medida que te mueves por la lista de complementos, este panel se rellena con la información completa del complemento seleccionado:
 
-Podremos configurar algunos aspectos del complemento "TiendaNVDA" yendo al menú de NVDA / Preferencias / Opciones y buscar la categoría Tienda NVDA.ES.
+- Nombre y resumen
+- Versión disponible en el servidor
+- Versión instalada (si aplica)
+- Autor
+- Descripción completa
+- Compatibilidad con NVDA (versión mínima y última probada)
+- Número de descargas (cuando esté disponible)
+- Estado de instalación
 
-* Activar o desactivar la comprobación de actualizaciones.
+---
 
-Si activamos esta casilla de verificación se activará un cuadro combinado en el cual podremos elegir cuanto tiempo transcurrirá entre una comprobación y otra.
+<a name="indicadores-de-estado"></a>
+## Indicadores de estado
 
-Decir que la casilla de verificación "Activar o desactivar la comprobación de actualizaciones" viene desactivado por defecto.
+Al moverte por la lista de complementos, NVDA anuncia unas letras entre corchetes que indican el estado de cada complemento:
 
-El comportamiento de esta opción es simple, buscara en el servidor si existen actualizaciones en el rango de tiempo dado y nos notificara con una notificación de sistema diciendo cuantas actualizaciones hay y que abramos la correspondiente opción en el complemento Tienda NVDA para actualizar.
+| Indicador | Significado |
+|:----------|:------------|
+| **[I]** | **Instalado:** El complemento está instalado y activo. |
+| **[U]** | **Actualización:** Hay una versión nueva disponible. ¡Actualiza! |
+| **[U-I]** | **Actualización incompatible:** Hay una versión nueva pero no es compatible con tu versión de NVDA. |
+| **[D]** | **Deshabilitado:** El complemento está instalado pero desactivado manualmente. |
+| **[R]** | **Pendiente de eliminar:** Se eliminará al reiniciar NVDA. |
+| **[I-I]** | **Instalado incompatible:** El complemento está instalado pero bloqueado por incompatibilidad con tu versión de NVDA. |
+| **[X]** | **No compatible:** El complemento no es compatible con tu versión de NVDA. |
 
-Decir que si esta opción se activa buscara 10 veces el rango del tiempo dado y luego se desactivara. Esto es para no saturar las llamadas al servidor.
+En la **Tienda Unificada** también se muestra la procedencia:
 
-Por lo tanto, si tenemos 15 minutos asignados y no encuentra actualizaciones a las 2h 30 min dejara de buscar actualizaciones.
+| Etiqueta | Procedencia |
+|:---------|:------------|
+| **[ES]** | Servidores de NVDA.ES (comunidad hispanohablante) |
+| **[OF]** | Tienda oficial de NV Access |
 
-En caso de que si haya actualizaciones buscara 5 veces más el rango de tiempo dado y luego se desactivara, cada vez nos avisara de que se encontraron actualizaciones hasta que actualicemos.
+---
 
-* Ordenar por orden alfabético los complementos de la tienda y las búsquedas.
+<a name="teclas-rapidas-y-funciones-especiales"></a>
+## Teclas rápidas y funciones especiales
 
-Si marcamos esta casilla de verificación, cuando abramos la tienda se nos mostrara los complementos por orden alfabético. También si buscamos algún complemento los resultados de las búsquedas se mostrarán en orden alfabético.
+Estas teclas funcionan cuando el foco está en la lista de complementos:
 
-* Instalar complementos después de descargar.
+### F1 — Posición actual
 
-Si marcamos esta casilla de verificación, cuando se termine de descargar un complemento nos pedirá desde el asistente de instalación de complementos de NVDA que si queremos instalar.
+Pulsa **F1** para que NVDA te diga en qué posición de la lista te encuentras: "Estás en el complemento 15 de 200".
 
-* Complementos instalados que hay en el servidor.
+### Ctrl+F1 — Explicar indicador
 
-Bien en esta lista se nos mostrarán aquellos complementos que tengamos instalados y que a su vez se encuentren en el servidor.
+¿No recuerdas qué significan los corchetes `[I]` o `[U]`? Pulsa **Ctrl+F1** y NVDA te explicará en lenguaje claro el estado del complemento seleccionado.
 
-Solo se mostrarán aquellos que además tengan compatibilidad con la Api actual de NVDA.
+### F2 — Leer ficha completa
 
-En esta lista podremos elegir que rama de actualización queremos para el complemento. Si pulsamos barra espaciadora encima de un complemento se nos desplegara todas las ramas de desarrollo para ese complemento. Podremos elegir la que deseemos con Intro y se nos quedara guardada la selección en la lista.
+Pulsa **F2** para que NVDA lea de un tirón toda la ficha técnica y la descripción del complemento **sin necesidad de tabular al panel derecho**. Funciona en todas las tiendas.
 
-ADVERTENCIA: Los cambios en la lista solo se guardarán si damos al botón aceptar o Aplicar del dialogo de opciones.
+### F3 — Traducir descripción
 
-Esta lista se actualiza cada vez que reiniciemos NVDA añadiendo si hay nuevos complementos o eliminando aquellos que ya no estén.
+¿La descripción está en inglés u otro idioma? Pulsa **F3** y la tienda la traducirá al idioma que tengas configurado (por defecto, español). Se reproducirá un sonido al iniciar y al terminar la traducción.
 
-Por lo tanto, si eliminamos un complemento y luego lo volvemos a instalar tendremos que volver a seleccionar la rama que deseamos de nuevo.
+> **Nota:** Para usar F3, debes activar previamente el traductor en las opciones del complemento. Requiere conexión a internet.
 
-Esta lista tanto la primera vez que se genere como cada vez que se agregue un complemento siempre pondrá por defecto la primera rama de desarrollo que hay en el servidor.
+---
 
-## Observaciones
+<a name="menu-contextual"></a>
+## Menú contextual
 
-Cuando compruebe si hay actualizaciones ahora tiene dos protecciones:
+En la lista de complementos, pulsa la **Tecla Aplicaciones** (o **Shift+F10**) para desplegar el menú contextual con las siguientes opciones:
 
-1º Comprobara si hay complementos que van a ser desinstalados.
+### Filtros
 
-Si es así esos complementos se excluyen, aunque haya actualizaciones.
+- **Mostrar todos los complementos:** Muestra la lista completa (opción predeterminada).
+- **Mostrar complementos por compatibilidad de API:** Filtra solo los complementos compatibles con una versión específica de NVDA.
+- **Mostrar complementos ordenados por autor:** Ordena la lista por nombre de autor.
+- **Mostrar por descargas de mayor a menor:** Ordena por popularidad.
 
-2º Se validará que el complemento que hay en el servidor cumple con los requisitos de API del NVDA que tenemos instalado.
+> **Nota:** Los filtros no son acumulables. Cada filtro se ejecuta individualmente y el título de la ventana cambia para informar del filtro activo. Las opciones de filtro se mantienen mientras NVDA no se reinicie.
 
-Si esto no se cumple, el complemento no podrá ser instalado, aunque la versión del servidor sea más nueva y el servidor nos ofrezca ese complemento.
+### Copiar al portapapeles
 
-A la hora de instalar se han incluido también varias protecciones:
+- **Copiar información:** Copia la ficha completa del complemento seleccionado.
+- **Copiar enlace a la página web:** Copia la URL oficial del complemento.
+- **Copiar enlace de descarga:** Submenú con las ramas de desarrollo disponibles para copiar su URL de descarga directa.
 
-1º Ahora nos avisará si algún complemento no a podido ser actualizado y nos dará su nombre.
+---
 
-2º En este paso también se comprobará si el complemento para instalar tiene la versión mínima para ser usado en el NVDA que tengamos instalado.
+<a name="gestion-de-complementos-instalados"></a>
+## Gestión de complementos instalados
 
-3º El complemento "TiendaNVDA" no permitirá seguir buscando actualizaciones si ya hemos realizado una actualización de un complemento o de varios y no hemos decidido reiniciar NVDA.
+Una de las novedades más potentes: si un complemento ya está instalado, puedes gestionarlo **sin salir de la tienda**.
 
-4º Si tenemos activada la opción llamada "Busca actualizaciones de los complementos instalados" cada vez que busque y detecte que no hemos reiniciado NVDA se nos notificara con una notificación de sistema.
+1. Selecciona un complemento marcado como `[I]`, `[D]` o `[U]` en la lista.
+2. Pulsa la **Tecla Aplicaciones** (o clic derecho).
+3. En el submenú **Gestión instalado** encontrarás:
 
-5º Igualmente, si intentamos activar la opción llamada “Busca actualizaciones de los complementos instalados" y no hemos reiniciado NVDA el lector nos verbalizara el mensaje que tenemos que reiniciar el NVDA para aplicar las actualizaciones.
+- **Deshabilitar / Habilitar:** Activa o desactiva el complemento temporalmente.
+- **Desinstalar:** Marca el complemento para eliminación (se hará efectiva al reiniciar NVDA).
+- **Ver documentación:** Abre la documentación del complemento en el navegador. Si hay documentación en tu idioma, se abrirá en tu idioma; de lo contrario, en el idioma por defecto del complemento.
 
-6º En el peor de los casos si las librerías no dejan cargar porque no tengamos internet, se nos mostrara mensajes de información en el registro de NVDA y además si intentamos acceder a la tienda se nos avisara con un mensaje hablado.
+---
 
-Se mejoro la función que busca actualizaciones, ahora es mucho más fiable y además añade a su vez las protecciones mencionadas con anterioridad.
+<a name="empaquetador-de-complementos"></a>
+## Empaquetador de complementos
 
-Se hicieron muchas mejoras internas para hacerlo más robusto.
+El empaquetador permite generar archivos `.nvda-addon` a partir de complementos que ya tienes instalados. Es ideal para:
 
-Este complemento esta en fase de prueba por lo que le pedimos que entienda que puede haber errores.
+- Compartir un complemento con otra persona sin necesidad de buscarlo en la tienda.
+- Crear copias de seguridad de complementos específicos.
+- Conservar una versión particular de un complemento antes de actualizarlo.
 
-Le agradecemos se ponga en contacto para reportarlos y poder solucionarlos a la mayor brevedad.
+**Para empaquetar un complemento:**
 
-¡Disfruta de la Tienda para NVDA.ES!
-# Registro de cambios.
-## Versión 0.10
+1. Ve a **Menú NVDA → Herramientas → Tienda de Complementos NVDA → Empaquetador de complementos**.
+2. Selecciona el complemento que deseas empaquetar de la lista.
+3. Elige el directorio donde quieres guardar el archivo.
+4. El archivo `.nvda-addon` se generará automáticamente con el formato: `nombre_versión_Gen.nvda-addon`.
 
-* Modificados los filtros de API para mostrar las ultimas dos versiones de API (2024 y 2023).
+---
 
-* Traducciones de todos los idiomas automáticamente de las cadenas faltantes.
+<a name="buscar-actualizaciones"></a>
+## Buscar actualizaciones
 
-## Versión 0.9.2 y 0.9.3
+El complemento ofrece dos formas de buscar actualizaciones:
 
-* Se a dado compatibilidad con NVDA 2024.1.
+### Búsqueda manual
 
-* Agregados nuevos campos en las fichas de los complementos.
+Desde el menú de herramientas, selecciona **Buscar actualizaciones** en cualquiera de las tiendas (NVDA.ES u Oficial). Se mostrará una ventana con los complementos que tienen actualizaciones disponibles.
 
-* Se implementa que los complementos instalados desde la tienda.es sean complementos instalados externamente para no entorpecer a la tienda oficial.
+En esta ventana puedes:
 
-## Versión 0.9.1
+- **Seleccionar complementos individualmente:** Usa la barra espaciadora para marcar/desmarcar.
+- **Alt+S:** Seleccionar todos los complementos para actualizar.
+- **Alt+D:** Deseleccionar todos los complementos.
+- **Alt+A:** Iniciar la actualización de los complementos seleccionados.
+- **Alt+C / Escape / Alt+F4:** Cerrar la ventana.
 
-* Solucionado problemas con complementos grandes.
+### Comprobación automática
 
-En esta versión se implementa una nueva manera de descargar y guardar los archivos de complementos.
+Cuando actives la comprobación automática en las opciones:
 
-Ahora en complementos mayores de 20 MB no dará el tamaño que lleva descargado y nos dará un mensaje de complemento grande.
+- La tienda buscará actualizaciones en segundo plano según el intervalo configurado.
+- Mostrará una notificación del sistema indicando cuántas actualizaciones hay y de qué fuente provienen.
+- La búsqueda se detiene automáticamente después de 10 comprobaciones sin resultados, o 5 comprobaciones después de encontrar actualizaciones, para no saturar el servidor.
 
-Podremos seguir el porcentaje de lo que llevamos descargado del complemento grande gracias a la barra de progreso.
+Las notificaciones ahora son más informativas:
 
-Esto ahora ya debería solucionar los problemas que algunos les ocasionaba el actualizar o descargar complementos grandes dándoles error y bloqueando o reiniciando NVDA.
+```
+Se encontraron 3 actualizaciones.
+- NVDA.ES (2): Complemento A, Complemento B
+- Tienda Oficial (1): Complemento C
 
-Esto se aplica a las descargas individuales que hagamos de complementos como a las actualizaciones que encuentre el complemento y su posterior descarga.
+Ejecute Buscar actualizaciones de complementos.
+```
 
-## Versión 0.9
+---
 
-* Compatibilidad API 2023
+<a name="panel-de-opciones"></a>
+## Panel de opciones
 
-## Versión 0.8.5
+Accede a la configuración del complemento desde:
 
-* Solución de errores con la mala praxis de los desarrolladores que no siguen los estándares de los manifiestos.
+**Menú NVDA → Preferencias → Opciones → Tienda de Complementos NVDA**
 
-Ejemplo:
+### A. Tienda NVDA.ES
 
-minimumNVDAVersion = None (MUY MAL) no cuesta nada un simple 2019.3.0 son simplemente 8 caracteres puñetas.
+- **Seleccione un servidor de complementos:** Elige el servidor predeterminado entre los que tengas configurados.
+- **Gestionar Servidores de complementos:** Abre el gestor donde puedes añadir, editar o eliminar servidores personalizados.
 
-## Versión 0.8.4.
+### B. Tienda Oficial NVDA
 
-* Solucionado problema con versiones tipo fecha
+- **Habilitar tienda oficial de NVDA:** Activa o desactiva la integración con la tienda oficial de NV Access.
+- **Permitir complementos incompatibles de la tienda oficial:** Permite intentar instalar complementos marcados como incompatibles. **Úsalo bajo tu responsabilidad.**
 
-* Actualizados idiomas turco y inglés automático
+### C. Actualizaciones
 
-* Sizers actualizados para su correcta visualización
+- **Activar comprobación automática de actualizaciones:** Activa la búsqueda en segundo plano.
+- **Tiempo para comprobar actualizaciones:** Elige el intervalo entre comprobaciones:
+  - 15 minutos, 30 minutos, 45 minutos, 1 hora, 12 horas, 1 día, 1 semana.
+- **Incluir actualizaciones de la tienda oficial:** Añade las actualizaciones de la tienda oficial a la comprobación automática.
 
-## Versión 0.8.3.
+### D. Traducción
 
-* Solucionado el problema al cargar la tienda Expecting value: line 1 column 1 (char 0).
+- **Activar traductor para descripciones:** Habilita el uso de la tecla F3 para traducir.
+- **Idioma para traducir descripciones:** Elige entre 12 idiomas: Alemán, Árabe, Croata, Español, Francés, Inglés, Italiano, Polaco, Portugués, Ruso, Turco y Ucraniano.
 
-* Agregado botón Buscar y botón Acciones.
+### E. Opciones Generales
 
-Ahora en la pantalla principal de la Tienda tendremos dos nuevos botones.
+- **Ordenar complementos alfabéticamente:** Ordena la lista de la A a la Z.
+- **Instalar complementos después de descargar:** Abre el asistente de instalación automáticamente al terminar la descarga.
+- **Instalar en silencio:** Los complementos se instalan en segundo plano sin diálogos intermedios. Solo pide reiniciar al finalizar.
+- **Habilitar caché de servidores:** Almacena las listas de complementos en disco para una carga más rápida.
+- **Actualizar caché cada...:** Configura el intervalo de renovación de la caché.
+- **Usar caché para traducciones:** Las traducciones hechas con F3 se guardan para no repetir la consulta a Google.
+- **Habilitar modo offline:** Permite navegar por la tienda sin conexión a internet, usando los datos guardados en caché.
 
-- Buscar que hará lo mismo que si diésemos intro en el campo de búsqueda pero que se agrega para personas que usen la voz, pantallas táctiles y otros problemas de movilidad.
+### F. Backup y restauración
 
-Dicho botón tiene el atajo Alt+U:
+- **Crear Backup de complementos:** Genera un archivo JSON con la lista de todos tus complementos instalados.
+- **Restaurar desde Backup:** Carga un archivo de backup y permite reinstalar los complementos listados.
 
-- También se agrego el botón Acción el cual nos mostrara el menú contextual del complemento que tengamos seleccionado en la lista de complementos.
+### G. Complementos instalados que hay en el servidor
 
-Desde dicho menú podremos acceder a los filtros o copiado al portapapeles.
+En la parte inferior de las opciones se muestra una lista de tus complementos que también están en el servidor. Desde aquí puedes:
 
-Se agrego por los mismos motivos que el botón Buscar.
+1. Seleccionar un complemento y pulsar **Barra espaciadora**.
+2. En el menú emergente, elegir el **canal de actualización** (Estable, Beta, Desarrollo, etc.) o **Descartar actualizaciones** para que la tienda deje de avisar sobre ese complemento.
 
-Dicho botón tiene el atajo Alt+A.
+> **Importante:** Los cambios solo se guardan al pulsar Aceptar o Aplicar en el diálogo de opciones.
 
-* Agregada la posibilidad de ver la documentación de complementos instalados
+---
 
-En la pantalla principal de la Tienda en la lista de complementos si pulsamos tecla Aplicaciones, Shift+F10 o el botón Acción Alt+A y el complemento que esta en el foco lo tenemos instalado en el menú que se ofrece nos saldrá una nueva opción.
+<a name="sistema-de-cache"></a>
+## Sistema de caché
 
-Dicha opción es Ver documentación del complemento instalado, si pulsamos hay nos abrirá nuestro navegador con la documentación del complemento.
+La tienda implementa un sistema de caché multinivel para maximizar el rendimiento:
 
-Decir que si la documentación esta en nuestro idioma se abrirá en nuestro idioma de lo contrario se abrirá en el idioma definido por el complemento.
+### Caché de servidores
 
-Igualmente hay complementos que no traen documentación en este caso no se mostrara dicha opción ni en aquellos que no tengamos instalados.
+Almacena las listas de complementos en disco. Cuando abres la tienda, si la caché no ha expirado, se carga directamente desde disco en lugar de hacer una petición al servidor.
 
-* Agregada posibilidad de lanzar la documentación del complemento fácilmente.
+- Se configura desde: **Habilitar caché de servidores** en las opciones.
+- El intervalo de actualización es configurable.
 
-Ahora desde el menú de NVDA Herramientas / Tienda NVDA.ES tendremos una nueva opción que es Documentación del complemento.
+### Caché de traducciones
 
-Si le damos se abrirá en nuestro navegador predeterminado la documentación de la Tienda en nuestro idioma si esta o en defecto la documentación en Español.
+Las traducciones realizadas con F3 se guardan en un archivo JSON persistente. La próxima vez que pidas la misma traducción, se cargará instantáneamente desde la caché.
 
-## Versión 0.8.2.
+- Se configura desde: **Usar caché para traducciones** en las opciones.
 
-* Actualizado idioma y documentación en Ucraniano.
+### Caché en memoria
 
-* Solucionado problema con compatibilidad de complementos.
+Además de la caché en disco, la tienda mantiene una caché en memoria RAM para las consultas más frecuentes, eliminando completamente el acceso a disco durante la sesión.
 
-Ahora debería solo ofrecer actualizaciones que además sean compatible con nuestra API de NVDA.
+---
 
-Aunque la versión del complemento en el servidor sea mayor que la que tenemos instalada si la compatibilidad de API no es correcta no se nos ofrecerá dicha actualización.
+<a name="modo-offline"></a>
+## Modo offline
 
-* Solucionado la actualización de la lista de complementos instalados que hay en el servidor.
+El modo offline permite navegar por la tienda **sin conexión a internet**, utilizando los datos almacenados previamente en la caché.
 
-Ahora ya guarda bien la lista cuando instalamos un complemento y comprueba correctamente si esta en el servidor.
+Para utilizarlo:
 
-En la ultima versión no guardaba los nuevos complementos instalados.
+1. Asegúrate de tener activadas las opciones **Habilitar caché de servidores** y **Habilitar modo offline** en las opciones.
+2. Navega por la tienda al menos una vez con conexión para que se genere la caché.
+3. La próxima vez que abras la tienda sin internet, los datos se cargarán desde la caché.
 
-## Versión 0.8.1.
+> **Nota:** En modo offline no podrás descargar ni instalar complementos, pero sí podrás consultar la información de los complementos que visitaste previamente.
 
-* Solucionado problema al conectarse a un servidor sin complementos.
+---
 
-* Solucionado las descargas desde nuevos servidores
+<a name="backup-y-restauracion"></a>
+## Backup y restauración
 
-* Solucionado la conexión a servidores Onion tanto públicos como privados a través de Proxy
+### Crear backup
 
-## Versión 0.8.
+1. Ve a **Opciones → Tienda de Complementos NVDA → Crear Backup de complementos**.
+2. Elige un nombre y ubicación para el archivo `.json`.
+3. Se generará un archivo con la lista de todos tus complementos instalados, incluyendo nombre, versión y resumen.
 
-* Añadida la posibilidad de agregar URLs personalizadas de repositorios de complementos.
+### Backup automático al salir
 
-Esta nueva función vendrá bien para agregar aquellos repositorios que usen el gestor de complementos que usa nvda.es para más información visitar el repositorio de Github:
+La tienda crea automáticamente un backup al cerrar NVDA (configurable en las opciones).
 
-[https://github.com/nvda-es/advancedAddonFiles](https://github.com/nvda-es/advancedAddonFiles)
+### Restaurar desde backup
 
-Bien quien use dicha aplicación para crear un repositorio ahora podrá agregar su URL a la Tienda.
+1. Ve a **Opciones → Tienda de Complementos NVDA → Restaurar desde Backup**.
+2. Selecciona el archivo `.json` de backup.
+3. La tienda mostrará un asistente que buscará las versiones más recientes de cada complemento en los servidores y te permitirá instalarlos por lotes.
 
-En las opciones de la Tienda tendremos nada más entrar un cuadro combinado donde podremos elegir el servidor que deseamos por defecto.
+> **Ideal para:** Migrar complementos a un nuevo equipo o recuperar tu configuración después de reinstalar NVDA.
 
-La primera vez que iniciemos las opciones solo estará el servidor de la comunidad hispanohablante, decir que este servidor no puede ser modificado ni borrado por lo que siempre estará presente.
+---
 
-Si tabulamos tendremos un botón para gestionar los servidores y si lo pulsamos se abrirá una ventana donde podremos añadir, editar o borrar servidores.
+<a name="traduccion-de-descripciones"></a>
+## Traducción de descripciones
 
-Si pulsamos añadir se abre una ventana donde tendremos que rellenar el nombre que deseamos para el servidor y la url del servidor.
+La tienda incluye un traductor integrado basado en Google Translate:
 
-Si editamos se abre una ventana con los datos del servidor que tengamos seleccionado en la lista para poder ser modificados.
+1. **Activa el traductor** desde las opciones del complemento.
+2. **Selecciona el idioma destino** (Español por defecto).
+3. **Pulsa F3** sobre cualquier complemento en la lista para traducir su descripción.
 
-Si borramos se nos advertirá con un mensaje que la acción no es reversible por lo que si damos a si se borrara el servidor que tengamos seleccionado.
+Características:
 
-Una vez agregados servidores y cerrada la ventana de gestión de servidores podremos elegir en el cuadro combinado el que deseemos. Cuando seleccionemos un servidor se actualizará el estado de Complementos instalados que hay en el servidor añadiendo a dicho cuadro solo los complementos que en ese momento el servidor sirva y nosotros tengamos instalados.
+- Sonido de inicio y fin para indicar que la traducción se está realizando.
+- Las traducciones se almacenan en caché para no repetir consultas.
+- La traducción se pierde al cambiar de complemento; vuelve a pulsar F3 si la necesitas de nuevo.
+- Requiere conexión a internet.
 
-Decir que este cuadro es para cada servidor por lo que si en la comunidad hispanohablante tenemos configuraciones personalizadas en nuestros complementos como por ejemplo evitar la actualización de alguno u otro canal de actualización solo será para cuando elijamos dicho servidor.
+---
 
-Las demás opciones de la Tienda son globales.
+<a name="servidores-personalizados"></a>
+## Servidores personalizados
 
-El servidor que elijamos en las opciones de la tienda será el predefinido cada vez que arranquemos NVDA y la Tienda.
+Puedes añadir repositorios de complementos de terceros que usen el formato compatible con NVDA.ES.
 
-También se agrego en la ventana principal de la Tienda la posibilidad de cambiar rápidamente de servidor sin necesidad de entrar en opciones.
+### Añadir un servidor
 
-Para ello se agrego el atajo Alt+C el cual desplegará un menú con los servidores que tenemos y estará marcado el que actualmente este definido. Igualmente podemos tabular hasta encontrar en la interface el botón llamado Cambiar de servidor para desplegar dicho menú.
+1. Ve a **Opciones → Tienda de Complementos NVDA → Gestionar Servidores de complementos**.
+2. Pulsa **Añadir**.
+3. Introduce un nombre descriptivo y la URL del servidor.
+4. Acepta y el servidor aparecerá en el selector de servidores.
 
-En dicho menú podemos elegir el que deseemos y automáticamente cambiaremos a dicho servidor.
+### Ejemplo: Servidor de la comunidad rusa
 
-Si cambiamos desde la pantalla principal dicho ajuste no se guardará cuando iniciemos de nuevo NVDA siempre será el servidor predefinido el que tengamos configurado en opciones.
+- **Nombre:** Comunidad Rusa
+- **URL:** `https://nvda-addons.ru/get.php?addonslist`
 
-## Versión 0.7.1.
+### Cambiar de servidor rápidamente
 
-* Agregada opción para poder traducir las descripciones de los complementos.
+Desde la ventana principal de la tienda NVDA.ES, pulsa **Alt+C** o el botón **Cambiar de servidor** para desplegar un menú con todos los servidores configurados. El cambio es inmediato y temporal (no se guarda como predeterminado hasta que lo cambies en las opciones).
 
-Ahora pulsando F3 desde la lista de complementos o desde la ficha de un complemento se traducirá la descripción al idioma que tengamos configurado en opciones.
+> **Nota:** El servidor predeterminado de la comunidad hispanohablante no puede ser modificado ni eliminado.
 
-Esta nueva característica viene desactivada por defecto, para activarla tendremos que ir a las opciones de la Tienda y activar la opción Activar o desactivar el traductor para las descripciones de los complementos.
+---
 
-A continuación tabulamos y elegimos el idioma que deseamos que se traduzcan las descripciones.
+<a name="observaciones-y-protecciones"></a>
+## Observaciones y protecciones
 
-Cuando pulsemos F3 sonara un sonido de inicio y otro de fin para anunciar que se terminó de traducir. Estos sonidos son diferentes entre sí.
+El complemento incluye múltiples protecciones para garantizar una experiencia segura:
 
-Cuando cambiemos de complemento la traducción se pierde por lo que si deseamos de nuevo ver la traducción de la descripción tendremos que volver a pulsar F3.
+1. **Complementos pendientes de desinstalar:** Se excluyen automáticamente de las comprobaciones de actualización.
+2. **Validación de compatibilidad de API:** Aunque la versión del servidor sea más nueva, si no es compatible con tu versión de NVDA no se ofrecerá la actualización.
+3. **Notificación de errores de instalación:** Si algún complemento no se pudo actualizar, se informa con su nombre.
+4. **Bloqueo tras actualización:** La tienda no permite buscar más actualizaciones si ya se realizó una actualización y no se ha reiniciado NVDA.
+5. **Notificación post-reinicio:** Si la comprobación automática detecta que no se ha reiniciado NVDA después de actualizar, emite una notificación recordatoria.
+6. **Protección sin internet:** Si las librerías no se pueden cargar por falta de conexión, se informa en el registro de NVDA y se avisa con un mensaje hablado al intentar acceder a la tienda.
+7. **Reinicio inteligente:** La tienda detecta automáticamente si realmente se instaló un complemento. Si cancelas el instalador, no te pedirá reiniciar innecesariamente.
+8. **Comprobación de dependencias:** Antes de instalar, verifica que todas las dependencias requeridas estén satisfechas.
 
-Esta opción requiere de internet para ser usada.
+---
 
-* Solucionado un problema al recargar los complementos.
+<a name="resumen-de-teclas-rapidas"></a>
+## Resumen de teclas rápidas
 
-## Versión 0.7.
+### Ventana principal de la tienda
 
-* Solucionado problema con los filtros.
+| Acción | Tecla |
+|:-------|:------|
+| Ir al cuadro de búsqueda | `Alt+B` |
+| Ir a la lista de complementos | `Alt+L` |
+| Instalar / Actualizar | `Alt+I` |
+| Ir a la información del complemento | `Alt+I` (panel derecho) |
+| Ir a la página web del complemento | `Alt+P` |
+| Cambiar de servidor (solo NVDA.ES) | `Alt+C` |
+| Cerrar la tienda | `Alt+S` / `Escape` / `Alt+F4` |
 
-En ocasiones no dejaba regresar del filtro por descargas al filtro todos los complementos.
+### En la lista de complementos
 
-* Añadidos nuevos tiempos para buscar actualizaciones.
+| Acción | Tecla |
+|:-------|:------|
+| Saber posición actual en la lista | `F1` |
+| Explicar indicador de estado | `Ctrl+F1` |
+| Leer ficha completa del complemento | `F2` |
+| Traducir descripción | `F3` |
+| Menú contextual (filtros, copiar, gestión) | `Tecla Aplicaciones` / `Shift+F10` |
 
-Se añadió 12 horas, 1 día y 1 semana.
+### Ventana de actualizaciones
 
-Estos tiempos irán bien para ordenadores que se reinicien muy poco.
+| Acción | Tecla |
+|:-------|:------|
+| Seleccionar todos los complementos | `Alt+S` |
+| Deseleccionar todos | `Alt+D` |
+| Iniciar actualización | `Alt+A` |
+| Cerrar ventana | `Alt+C` / `Escape` / `Alt+F4` |
 
-* Añadida la posibilidad de no buscar actualizaciones para un complemento.
+---
 
-Esta opción podremos usarla de la siguiente manera, en opciones de la tienda en la lista que nos da con los Complementos instalados que hay en el servidor podremos ponernos encima del complemento que deseemos que no se busquen actualizaciones y dar espacio.
+<a name="registro-de-cambios"></a>
+## Registro de cambios
 
-En el menú desplegable ahora aparte de poder elegir el canal que deseamos tener de actualizaciones podremos elegir Descartar actualizaciones.
+### Versión 2026.05.09
 
-Cuando lo seleccionemos y demos a aceptar los complementos que tengan el valor de Descartar actualizaciones no buscaran actualizaciones en el servidor.
+* Primera versión de la Tienda Unificada de Complementos para NVDA.
+* Integración completa de la Tienda NVDA.ES y la Tienda Oficial de NV Access.
+* Nuevo sistema de indicadores de estado: [I], [U], [D], [R], [I-I], [U-I], [X].
+* Gestión local de complementos: deshabilitar, habilitar y desinstalar sin salir de la tienda.
+* Sistema de caché multinivel: caché de servidores, caché de traducciones y caché de listas.
+* Modo offline: navegación por la tienda sin conexión a internet usando datos almacenados en caché.
+* Backup y restauración de complementos instalados.
+* Empaquetador de complementos: genera archivos .nvda-addon desde complementos instalados.
+* Comprobación inteligente de dependencias y compatibilidad de API.
+* Instalación silenciosa con reinicio inteligente.
+* Traducción de descripciones con caché persistente vía Google Translate.
+* Soporte para servidores personalizados de complementos.
+* Interfaz con teclas rápidas F1, Ctrl+F1, F2, F3 para acceso rápido a funciones.
+* Notificaciones detalladas que indican origen de actualizaciones (ES / Oficial).
 
-Para revertir este aspecto tendremos que volver a la misma lista y dar espacio y elegir el canal de actualización que deseamos.
+### Versiones anteriores (Tienda para NVDA.ES)
+
+Este repositorio contenía anteriormente la versión clásica de la **Tienda para NVDA.ES** (versiones 0.1 a 0.10). A partir de la versión 2026.05.09, el repositorio ha sido reemplazado por la nueva **Tienda Unificada de Complementos para NVDA**, que es una reescritura completa del complemento.
+
+Si deseas consultar el código fuente o la documentación de la versión antigua, puedes hacerlo navegando por el historial de commits del repositorio en GitHub:
+
+1. Ve a [https://github.com/hxebolax/Tienda-para-NVDA](https://github.com/hxebolax/Tienda-para-NVDA).
+2. Haz clic en el enlace de **commits** (o pulsa en el contador de commits que aparece en la parte superior del repositorio).
+3. Busca cualquier commit anterior a la fecha **9 de mayo de 2026** para acceder al código y releases de la tienda clásica.
+4. Una vez en el commit deseado, puedes pulsar **"Browse files"** para ver el estado completo del repositorio en ese momento.
+
+Alternativamente, las releases antiguas con sus archivos `.nvda-addon` seguirán estando disponibles en la sección de [Releases](https://github.com/hxebolax/Tienda-para-NVDA/releases) del repositorio, siempre que no se eliminen manualmente.
+
+---
+
+¡Disfruta de la Tienda de Complementos para NVDA!
+
+**Con cariño:** Héctor J. Benítez Corredera.

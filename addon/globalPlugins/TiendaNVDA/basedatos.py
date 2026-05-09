@@ -1,331 +1,337 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2021 Héctor J. Benítez Corredera <xebolax@gmail.com>
+# Copyright (C) 2021-2025 Héctor J. Benítez Corredera <xebolax@gmail.com>
 # This file is covered by the GNU General Public License.
+#
+# Módulo de base de datos para TiendaNVDA_Modern
+# Maneja la conexión con servidores NVDA.ES y datos locales
+#
 
 import addonHandler
 from logHandler import log
 import globalVars
-import addonAPIVersion
-import traceback
 import json
-import re
-import urllib.request
 import os
-import sys
+import time
 from threading import Timer
-from .packaging import version
+from typing import Optional, List, Dict, Tuple
 from . import ajustes
+from . import red
+from . import version_utils
+from .cache_manager import CacheManager
 
-ADDON_API_VERSION_REGEX = re.compile(r"^(0|\d{4})\.(\d)(?:\.(\d))?$")
+addonHandler.initTranslation()
 
-def getAPIVersionTupleFromString(version):
-	"""Converts a string containing an NVDA version to a tuple of the form (versionYear, versionMajor, versionMinor)"""
-	match = ADDON_API_VERSION_REGEX.match(version)
-	if not match:
-		raise ValueError(version)
-	return tuple(int(i) if i is not None else 0 for i in match.groups())
 
-def hasAddonGotRequiredSupport(addonMin, currentAPIVersion=addonAPIVersion.CURRENT):
-	"""True if NVDA provides the add-on with an API version high enough to meet the add-on's minimum requirements
-	"""
-	return addonMin <= currentAPIVersion
+def _get_cache_manager():
+	"""Obtiene una instancia de CacheManager con la configuración actual"""
+	return CacheManager(
+		ajustes.dirDatos,
+		ajustes.tiempoDict,
+		lambda: ajustes.tempCacheInterval,
+		lambda: ajustes.tempServerCache,
+		lambda: ajustes.tempUseTranslationCache,
+	)
 
-def isAddonTested(addonMax, backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO):
-	"""True if this add-on is tested for the given API version.
-	By default, the current version of NVDA is evaluated.
-	"""
-	return addonMax >= backwardsCompatToVersion
 
-def isAddonCompatible(
-		addonMin,
-		addonMax,
-		currentAPIVersion=addonAPIVersion.CURRENT,
-		backwardsCompatToVersion=addonAPIVersion.BACK_COMPAT_TO
-):
-	"""Tests if the addon is compatible.
-	The compatibility is defined by having the required features in NVDA, and by having been tested / built against
-	an API version that is still supported by this version of NVDA.
-	"""
-	return hasAddonGotRequiredSupport(addonMin, currentAPIVersion) and isAddonTested(addonMax, backwardsCompatToVersion)
+class NVDAStoreClient:
+	"""Cliente para la tienda NVDA.ES con caché en memoria"""
 
-def generaFichero():
-	return os.path.basename(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "data%s.json" % len(os.listdir(os.path.join(globalVars.appArgs.configPath, "TiendaNVDA")))))
+	_isOffline = {}
 
-def estaenlistado(listado, buscar):
-	if not buscar in listado:
-		return False
-	return True
-
-def chkJson(url):
-	try:
-		Headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
-		p = urllib.request.Request(url, headers=Headers, method="GET")
-		json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
-		return True
-	except:
-		return False
-
-def obtenFile(url):
-	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-	p = urllib.request.urlopen(req).geturl()
-	fichero = p.headers.get_filename()
-	nombreFile = os.path.splitext(fichero)[0]
-	return nombreFile
-
-def obtenFileAlt(url):
-	req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}, method="GET")
-	p = urllib.request.urlopen(req).geturl()
-	fichero = p.headers.get_filename()
-	nombreFile = os.path.splitext(fichero)[0]
-	return nombreFile
-
-def ultimoAlternativo(url):
-	try:
-		req = urllib.request.Request(url, method='HEAD')
-		p = urllib.request.urlopen(req)
-	except:
-		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}, method="GET")
-		p = urllib.request.urlopen(req).geturl()
-	return p.info().get_filename()
-
-class NVDAStoreClient(object):
-	def __init__(self):
-		super(NVDAStoreClient, self).__init__()
+	def __init__(self, useCache: bool = True, forceRefresh: bool = False):
+		super().__init__()
+		self.dataServidor = None
+		self.urlBase = None
+		self.dataLocal = None
+		self.isOffline = False
+		self.cacheMgr = _get_cache_manager()
 
 		try:
-			Headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)' }
-			p = urllib.request.Request(ajustes.urlServidor, headers=Headers, method="GET")
-			self.dataServidor = json.loads(urllib.request.urlopen(p).read().decode("utf-8"))
-			temp = ajustes.urlServidor.split("?")
-			self.urlBase = temp[0] + "?file="
-			self.dataLocal = list(addonHandler.getAvailableAddons())
-		except (urllib.error.HTTPError, urllib.error.URLError) as http_err:
-			self.dataServidor = None
-			log.info(http_err)
+			ignore_ttl = not forceRefresh and ajustes.IS_TEMPORAL
+			cached_data, timestamp = self.cacheMgr.getStoreCache(ajustes.urlServidor, ignore_ttl=ignore_ttl)
 
-	def GetFilenameDownload(self, valor):
-		for x in range(0, len(self.dataServidor)):
-			num = len(self.dataServidor[x]['links'])
-			for i in range(num):
+			if not forceRefresh and cached_data:
+				self.dataServidor = cached_data
+				self.isOffline = NVDAStoreClient._isOffline.get(ajustes.urlServidor, False)
+				self._refreshLocalInfo()
+				return
+
+			data = red.get_json(ajustes.urlServidor, timeout=20)
+			if data is not None:
+				self.dataServidor = data
+				NVDAStoreClient._isOffline[ajustes.urlServidor] = False
+				self.cacheMgr.saveStoreCache(ajustes.urlServidor, self.dataServidor)
+				self._refreshLocalInfo()
+			else:
+				raise ConnectionError("No se pudo conectar")
+		except Exception as e:
+			if useCache and ajustes.tempListCacheEnabled:
+				cached_data, timestamp = self.cacheMgr.getStoreCache(ajustes.urlServidor, ignore_ttl=True)
+				if cached_data:
+					self.dataServidor = cached_data
+					NVDAStoreClient._isOffline[ajustes.urlServidor] = True
+					self.isOffline = True
+					self._refreshLocalInfo()
+				else:
+					self.dataServidor = None
+			else:
+				self.dataServidor = None
+
+	def _refreshLocalInfo(self):
+		if not ajustes.urlServidor:
+			return
+		temp = ajustes.urlServidor.split("?")
+		self.urlBase = temp[0] + "?file="
+		self.dataLocal = list(addonHandler.getAvailableAddons())
+
+	def GetFilenameDownload(self, valor: str) -> Optional[str]:
+		if not self.dataServidor:
+			return None
+		for x in range(len(self.dataServidor)):
+			for i in range(len(self.dataServidor[x]['links'])):
 				if self.dataServidor[x]['links'][i]['file'] == valor:
-					temp = self.dataServidor[x]['links'][i]['link']
-					return os.path.basename(temp)
+					return os.path.basename(self.dataServidor[x]['links'][i]['link'])
+		return None
 
-	def GetLinkDownload(self, valor):
-		for x in range(0, len(self.dataServidor)):
-			num = len(self.dataServidor[x]['links'])
-			for i in range(num):
+	def GetLinkDownload(self, valor: str) -> Optional[str]:
+		if not self.dataServidor:
+			return None
+		for x in range(len(self.dataServidor)):
+			for i in range(len(self.dataServidor[x]['links'])):
 				if self.dataServidor[x]['links'][i]['file'] == valor:
 					return self.dataServidor[x]['links'][i]['link']
+		return None
 
-	def indiceSummary(self, valor):
-		for x in range(0, len(self.dataServidor)):
+	def indiceSummary(self, valor: str) -> Optional[int]:
+		if not self.dataServidor:
+			return None
+		for x in range(len(self.dataServidor)):
 			if self.dataServidor[x]['summary'].lower() == valor.lower():
 				return x
-		return False
+		return None
 
-	def indiceName(self, valor):
-		for x in range(0, len(self.dataServidor)):
+	def indiceName(self, valor: str) -> Optional[int]:
+		if not self.dataServidor:
+			return None
+		for x in range(len(self.dataServidor)):
 			if self.dataServidor[x]['name'].lower() == valor.lower():
 				return x
-		return False
+		return None
 
-	def chkVersion(self, verServidor, verLocal):
-		return version.parse(verServidor) > version.parse(verLocal)
+	def chkVersion(self, verServidor: str, verLocal: str) -> bool:
+		try:
+			return version_utils.parse(verServidor) > version_utils.parse(verLocal)
+		except:
+			return self.chkVersionAlt(verServidor, verLocal)
 
-	def chkVersionAlt(self, verServidor, verLocal):
-		if (verServidor > verLocal) - (verServidor < verLocal)  == -1 or  (verServidor > verLocal) - (verServidor < verLocal)  == 0:
+	def chkVersionAlt(self, verServidor: str, verLocal: str) -> bool:
+		try:
+			return (verServidor > verLocal) - (verServidor < verLocal) == 1
+		except:
 			return False
-		else:
-			return True
 
-	def chkActualizaS(self):
+	def chkActualizaS(self, includeIncompatible: bool = False) -> Tuple[Optional[Dict], Optional[List], Optional[List]]:
 		lstActualizar = []
 		lstUrl = []
 		lstVerServidor = []
 		lstVerLocal = []
-		for i in ajustes.listaAddonsSave:
-			for x in range(0, len(self.dataServidor)):
-				if self.dataServidor[x]['name'].lower() == i[0].lower():
-					if i[1] == 9:
-						pass
-					else:
-						for z in self.dataLocal:
-							if i[0].lower() == z.manifest["name"].lower():
-								if not z.isPendingRemove:
-									verMinima = "2019.3.0" if self.dataServidor[x]['links'][i[1]]['minimum'] == "None" else self.dataServidor[x]['links'][i[1]]['minimum']
-									if isAddonCompatible(getAPIVersionTupleFromString(verMinima), getAPIVersionTupleFromString(self.dataServidor[x]['links'][i[1]]['lasttested'])):
-										if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
-											lstActualizar.append("{}".format(z.manifest["summary"]))
-											lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
-											lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
-											lstVerLocal.append(z.manifest["version"])
-										else:
-											if self.chkVersionAlt(self.dataServidor[x]['links'][i[1]]['version'], z.manifest["version"]) == True:
-												lstActualizar.append("{}".format(z.manifest["summary"]))
-												lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
-												lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
-												lstVerLocal.append(z.manifest["version"])
-											else:
-												if len(self.dataServidor[x]['links'][i[1]]['version'].replace(".", "")) >= 8:
-													if self.chkVersion(self.dataServidor[x]['links'][i[1]]['version'].replace(".", ""), z.manifest["version"].replace(".", "")):
-														lstActualizar.append("{}".format(z.manifest["summary"]))
-														lstUrl.append(self.urlBase + self.dataServidor[x]['links'][i[1]]['file'])
-														lstVerServidor.append(self.dataServidor[x]['links'][i[1]]['version'])
-														lstVerLocal.append(z.manifest["version"])
 
+		if not self.dataServidor:
+			return None, None, None
+		if not self.dataLocal:
+			self.dataLocal = list(addonHandler.getAvailableAddons())
+
+		for installedAddon in self.dataLocal:
+			if installedAddon.isPendingRemove:
+				continue
+			addonName = installedAddon.manifest["name"].lower()
+			verLocal = installedAddon.manifest["version"]
+
+			for x in range(len(self.dataServidor)):
+				if self.dataServidor[x]['name'].lower() == addonName:
+					canalIdx = 0
+					for savedAddon in ajustes.listaAddonsSave:
+						if savedAddon[0].lower() == addonName:
+							if savedAddon[1] == 9:
+								canalIdx = -1
+							else:
+								canalIdx = int(savedAddon[1])
+							break
+					if canalIdx == -1:
+						break
+					if canalIdx >= len(self.dataServidor[x]['links']):
+						canalIdx = 0
+					link = self.dataServidor[x]['links'][canalIdx]
+					verServidor = link['version']
+					verMinima = "2019.3.0" if link.get('minimum') == "None" else link.get('minimum', "2019.3.0")
+					try:
+						compatible = True
+						if not includeIncompatible:
+							compatible = version_utils.isAddonCompatible(
+								version_utils.getAPIVersionTupleFromString(verMinima),
+								version_utils.getAPIVersionTupleFromString(link['lasttested'])
+							)
+						if compatible and self.chkVersion(verServidor, verLocal):
+							lstActualizar.append(f"{addonName} - {installedAddon.manifest['summary']}")
+							lstUrl.append(self.urlBase + link['file'])
+							lstVerServidor.append(verServidor)
+							lstVerLocal.append(verLocal)
+					except Exception as e:
+						log.debug(f"Error al comprobar compatibilidad de {addonName}: {e}")
+						continue
+					break
 
 		if len(lstActualizar) == 0:
-			return False, False, False
-		else:
-			return dict(zip(lstActualizar, lstUrl)), lstVerLocal, lstVerServidor
+			return None, None, None
+		return dict(zip(lstActualizar, lstUrl)), lstVerLocal, lstVerServidor
 
-class libreriaLocal(object):
-	def __init__(self, fileJson="data.json"):
-		super(libreriaLocal, self).__init__()
 
+class libreriaLocal:
+	"""Maneja la base de datos local de complementos"""
+
+	def __init__(self, fileJson: str = "data.json"):
 		self.fileJson = fileJson
-		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", self.fileJson)
+		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA_Modern", self.fileJson)
 		self.local = list(addonHandler.getAvailableAddons())
 
-	def fileJsonAddon(self, opcion, lista=[]):
-		if opcion == 1: # Guardar
-			with open(self.file, "w") as fp:
-				json.dump(lista, fp)
-		elif opcion == 2: # Cargar
+	def fileJsonAddon(self, opcion: int, lista: List = None) -> Optional[List]:
+		if lista is None:
+			lista = []
+		if opcion == 1:
+			with open(self.file, "w", encoding="utf-8") as fp:
+				json.dump(lista, fp, ensure_ascii=False)
+			return None
+		elif opcion == 2:
 			if os.path.isfile(self.file):
-				with open(self.file, "r") as fp:
-					try:
-						data = json.load(fp)
-						return data
-					except json.decoder.JSONDecodeError:
-						self.servidor = NVDAStoreClient().dataServidor
-						lista = []
+				try:
+					with open(self.file, "r", encoding="utf-8") as fp:
+						return json.load(fp)
+				except json.decoder.JSONDecodeError:
+					self.servidor = NVDAStoreClient().dataServidor
+					lista = []
+					if self.servidor:
 						for i in self.local:
-							for x in range(0, len(self.servidor)):
+							for x in range(len(self.servidor)):
 								if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
 									lista.append([i.manifest['name'], 0])
-						self.fileJsonAddon(1, lista)
-						return lista
+					self.fileJsonAddon(1, lista)
+					return lista
 			else:
 				self.servidor = NVDAStoreClient().dataServidor
 				lista = []
-				for i in self.local:
-					for x in range(0, len(self.servidor)):
-						if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
-							lista.append([i.manifest['name'], 0])
+				if self.servidor:
+					for i in self.local:
+						for x in range(len(self.servidor)):
+							if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+								lista.append([i.manifest['name'], 0])
 				self.fileJsonAddon(1, lista)
 				return lista
+		return None
 
-	def addonsInstalados(self):
+	def addonsInstalados(self) -> List:
 		self.servidor = NVDAStoreClient().dataServidor
 		lista = []
-		for i in self.local:
-			for x in range(0, len(self.servidor)):
-				if i.manifest["name"].lower() == self.servidor[x]['name'].lower():
+		if self.servidor:
+			nombres_servidor = {s['name'].lower() for s in self.servidor}
+			for i in self.local:
+				if i.manifest["name"].lower() in nombres_servidor:
 					lista.append([i.manifest['name'], 0])
 		return lista
 
-	def returnNotMatches(self, a, b):
-		"""Pasar dos listas, a lista guardada, b lista cargada
-Devuelve 2 listas: lista1 borrar, lista2 copiar a lista1."""
-		temp1 = []
-		temp2 = []
-		for i in range(0, len(a)):
-			temp1.append(a[i][0])
-		for i in range(0, len(b)):
-			temp2.append(b[i][0])
-		return [[x for x in temp1 if x not in temp2], [x for x in temp2 if x not in temp1]]
+	def returnNotMatches(self, a: List, b: List) -> List[List]:
+		set_a = {item[0] for item in a}
+		set_b = {item[0] for item in b}
+		return [[x for x in set_a if x not in set_b], [x for x in set_b if x not in set_a]]
 
-	def GetPos(self, lista, valor):
-		temp = []
-		for x in range(0, len(lista)):
-			temp.append(lista[x][0])
-		return temp.index(valor)
+	def GetPos(self, lista: List, valor: str) -> int:
+		for i, item in enumerate(lista):
+			if item[0] == valor:
+				return i
+		raise ValueError(f"{valor} no está en la lista")
 
-	def ordenaLista(self, lista):
-		return sorted(lista, key = lambda x:(x[0], x[0]))
+	def ordenaLista(self, lista: List) -> List:
+		return sorted(lista, key=lambda x: (x[0].lower(), x[0].lower()))
 
 	def actualizaJson(self):
 		p = self.returnNotMatches(ajustes.listaAddonsSave, ajustes.listaAddonsInstalados)
-		if len(p[0]) == 0:
-			pass # Sin items para eliminar
-		else:
-			temp = []
-			for x in range(0, len(p[0])):
-				temp.append(p[0][x])
+		if len(p[0]) > 0:
+			for x in range(len(p[0])):
 				z = self.GetPos(ajustes.listaAddonsSave, p[0][x])
 				del ajustes.listaAddonsSave[z]
-		if len(p[1]) == 0:
-			pass # Sin items para añadir
-		else:
-			temp = []
-			for x in range(0, len(p[1])):
-				temp.append(p[1][x])
+		if len(p[1]) > 0:
+			for x in range(len(p[1])):
 				z = self.GetPos(ajustes.listaAddonsInstalados, p[1][x])
 				ajustes.listaAddonsSave.append(ajustes.listaAddonsInstalados[z])
 		self.fileJsonAddon(1, self.ordenaLista(ajustes.listaAddonsSave))
 
-class ServidoresComplementos(object):
+
+class ServidoresComplementos:
 	def __init__(self):
-		super(ServidoresComplementos, self).__init__()
+		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA_Modern", "servers.json")
 
-		self.file = os.path.join(globalVars.appArgs.configPath, "TiendaNVDA", "servers.json")
-
-	def fileJsonAddon(self, opcion, lista=[]):
-		if opcion == 1: # Guardar
-			with open(self.file, "w") as fp:
-				json.dump(lista, fp)
-		elif opcion == 2: # Cargar
+	def fileJsonAddon(self, opcion: int, lista: List = None) -> Optional[List]:
+		if lista is None:
+			lista = []
+		if opcion == 1:
+			with open(self.file, "w", encoding="utf-8") as fp:
+				json.dump(lista, fp, ensure_ascii=False)
+			return None
+		elif opcion == 2:
 			if os.path.isfile(self.file):
-				with open(self.file, "r") as fp:
-					return json.load(fp)
+				try:
+					with open(self.file, "r", encoding="utf-8") as fp:
+						return json.load(fp)
+				except:
+					lista = [[ajustes.nombreSRV_Fijo, ajustes.urlSVR_Fijo, ajustes.fileFijo]]
+					self.fileJsonAddon(1, lista)
+					return lista
 			else:
 				lista = [[ajustes.nombreSRV_Fijo, ajustes.urlSVR_Fijo, ajustes.fileFijo]]
 				self.fileJsonAddon(1, lista)
 				return lista
+		return None
 
-class busquedas(object):
+
+class busquedas:
 	def __init__(self):
-
-		super(busquedas, self).__init__()
-
 		self.base = NVDAStoreClient().dataServidor
 		self.author = []
 		self.name = []
 		self.summary = []
 		self.lasttested = []
-		for x in range(0, len(self.base)):
-			self.author.append(self.base[x]['author'])
-			self.name.append(self.base[x]['name'])
-			self.summary.append(self.base[x]['summary'])
-			self.lasttested.append(self.base[x]['links'][0]['lasttested'])
+		if self.base:
+			for x in range(len(self.base)):
+				self.author.append(self.base[x].get('author', ''))
+				self.name.append(self.base[x].get('name', ''))
+				self.summary.append(self.base[x].get('summary', ''))
+				if self.base[x].get('links') and len(self.base[x]['links']) > 0:
+					self.lasttested.append(self.base[x]['links'][0].get('lasttested', ''))
 
-	def indice(self, variable, busqueda):
-		"""Devuelve una lista con los indices encontrados. Podemos buscar por author, name, summary, lasttested"""
-		#print(busqueda().indice("lasttested", "2020"))
-		return [i for i, s in enumerate(			eval("self.{}".format(variable))) if busqueda in s]
+	def indice(self, variable: str, busqueda: str) -> List[int]:
+		data = getattr(self, variable, [])
+		return [i for i, s in enumerate(data) if busqueda in s]
 
-	def strBusqueda(self, variable, busqueda):
-		"""Devuelve una lista con los strings encontrados. Podemos buscar por author, name, summary, lasttested"""
-		# Ejemplo: print(busquedas().strBusqueda("summary", "Tienda"))
-		return [item for item in eval("self.{}".format(variable)) if busqueda.lower() in item.lower()]
+	def strBusqueda(self, variable: str, busqueda: str) -> List[str]:
+		data = getattr(self, variable, [])
+		return [item for item in data if busqueda.lower() in item.lower()]
 
-	def completeRetSearch(self, variable, busqueda):
-		"""Devuelbe json con todos los valores tomados del servidor, aquellos que coincidan con la busqueda"""
-		# Ejemplo: print(busquedas().completeRetSearch("['links'][0]['lasttested'].split('.')[0]", "2021"))
-		return [x for x in self.base if eval("x{}".format(variable)) == busqueda]
+	def completeRetSearch(self, variable: str, busqueda: str) -> List[Dict]:
+		if not self.base:
+			return []
+		try:
+			return [x for x in self.base if eval(f"x{variable}") == busqueda]
+		except:
+			return []
 
-class RepeatTimer(object):
-	def __init__(self, interval, function, *args, **kwargs):
 
-		self._timer     = None
-		self.interval   = interval
-		self.function   = function
-		self.args       = args
-		self.kwargs     = kwargs
+class RepeatTimer:
+	def __init__(self, interval: float, function, *args, **kwargs):
+		self._timer = None
+		self.interval = interval
+		self.function = function
+		self.args = args
+		self.kwargs = kwargs
 		self.is_running = False
-
 		self.daemon = True
 		self.start()
 
@@ -337,10 +343,11 @@ class RepeatTimer(object):
 	def start(self):
 		if not self.is_running:
 			self._timer = Timer(self.interval, self._run)
+			self._timer.daemon = True
 			self._timer.start()
 			self.is_running = True
 
 	def stop(self):
-		self._timer.cancel()
+		if self._timer:
+			self._timer.cancel()
 		self.is_running = False
-
