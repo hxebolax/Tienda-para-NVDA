@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
 
     - run: echo -e "pre-commit\nscons\nmarkdown">requirements.txt
 
@@ -53,7 +53,7 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: download releases files
       uses: actions/download-artifact@v6
     - name: Display structure of downloaded files
