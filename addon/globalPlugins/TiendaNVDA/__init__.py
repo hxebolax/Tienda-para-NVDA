@@ -29,6 +29,7 @@ from enum import Enum
 from . import ajustes
 from . import basedatos
 from . import tienda_oficial
+from .actualizadorRecursos import ActualizadorRecursos
 
 addonHandler.initTranslation()
 
@@ -96,6 +97,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.postStartupHandler()
 		core.postNvdaStartup.register(self.postStartupHandler)
 		globalVars.tienda_moderna = None
+	
+		# Actualizador de traducciones y documentación desde GitHub
+		self._actualizadorRecursos = ActualizadorRecursos(
+			"hxebolax",
+			"Tienda-para-NVDA",
+			modo_comprobacion="inicio",
+			intervalo_horas=24,
+			actualizar_idiomas=True,
+			actualizar_documentacion=True,
+			notificar_usuario=True,
+			notificar_sin_cambios=False,
+		)
 
 	def postStartupHandler(self):
 		Thread(target=self.tareasDeRed, daemon=True).start()
@@ -156,6 +169,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self):
 		global chkUpdate
+		# Detener el actualizador de recursos
+		if hasattr(self, '_actualizadorRecursos'):
+			self._actualizadorRecursos.detener()
 		try:
 			self.tools_menu.Remove(self.tiendaMenu)
 		except:

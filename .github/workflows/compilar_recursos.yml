@@ -1,0 +1,233 @@
+# Workflow de GitHub Actions para compilar y publicar traducciones
+# y documentación de complementos NVDA.
+#
+# Se ejecuta cuando se modifican archivos en addon/locale/ o addon/doc/.
+# Compila los .po a .mo y empaqueta todo en un ZIP publicado como
+# release especial, separada de las releases del complemento.
+#
+# Para reutilizar en otro complemento:
+# 1. Copiar este archivo a .github/workflows/ en tu repositorio.
+# 2. Ajustar las variables en la sección "env" de abajo.
+#
+# Licencia: GPL v2
+
+name: Compilar y Publicar Recursos
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'addon/locale/**'
+      - 'addon/doc/**'
+  workflow_dispatch:
+
+# ══════════════════════════════════════════════════════════════
+# CONFIGURACIÓN DEL DESARROLLADOR
+# Ajusta estas variables para tu complemento.
+# ══════════════════════════════════════════════════════════════
+env:
+  # Nombre del complemento (debe coincidir con manifest.ini)
+  NOMBRE_COMPLEMENTO: "TiendaNVDA"
+  # Tag de la release de recursos (debe coincidir con el parámetro
+  # tag_release del ActualizadorRecursos en tu código Python)
+  TAG_RELEASE: "recursos-latest"
+  # Qué incluir en el paquete (true/false)
+  INCLUIR_IDIOMAS: "true"
+  INCLUIR_DOCUMENTACION: "true"
+  # Extensiones de documentación a incluir (separadas por espacio)
+  EXTENSIONES_DOC: ".html .md .txt"
+
+permissions:
+  contents: write
+
+jobs:
+  compilar-y-publicar:
+    name: Compilar recursos y publicar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener código fuente
+        uses: actions/checkout@v4
+
+      - name: Instalar gettext
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Compilar archivos .po a .mo
+        if: env.INCLUIR_IDIOMAS == 'true'
+        run: |
+          echo "=== Compilando traducciones ==="
+          ERRORES=0
+          COMPILADOS=0
+
+          for po in $(find addon/locale -name "*.po" -type f); do
+            dir=$(dirname "$po")
+            base=$(basename "$po" .po)
+            mo="${dir}/${base}.mo"
+
+            echo "Compilando: ${po}"
+            if msgfmt -o "$mo" "$po" 2>&1; then
+              COMPILADOS=$((COMPILADOS + 1))
+              echo "  ✓ OK"
+            else
+              ERRORES=$((ERRORES + 1))
+              echo "  ✗ Error"
+            fi
+          done
+
+          echo ""
+          echo "Compilados: ${COMPILADOS}, Errores: ${ERRORES}"
+
+          if [ $ERRORES -gt 0 ]; then
+            echo "::warning::${ERRORES} errores de compilación"
+          fi
+
+      - name: Generar metadatos del paquete
+        id: meta
+        run: |
+          python3 << 'PYEOF'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+
+          hashes = []
+          idiomas_locale = set()
+          idiomas_doc = set()
+
+          # Hash de archivos de idiomas (.mo + manifest.ini)
+          if "${{ env.INCLUIR_IDIOMAS }}" == "true":
+              for raiz, dirs, archivos in os.walk("addon/locale"):
+                  for f in sorted(archivos):
+                      if f.endswith((".mo", ".ini")):
+                          ruta = os.path.join(raiz, f)
+                          h = hashlib.sha256(open(ruta, "rb").read()).hexdigest()
+                          rel = os.path.relpath(ruta, "addon/locale").replace(os.sep, "/")
+                          hashes.append(f"{h}  locale/{rel}")
+                          idiomas_locale.add(rel.split("/")[0])
+
+          # Hash de archivos de documentación
+          exts = tuple("${{ env.EXTENSIONES_DOC }}".split())
+          if "${{ env.INCLUIR_DOCUMENTACION }}" == "true":
+              for raiz, dirs, archivos in os.walk("addon/doc"):
+                  for f in sorted(archivos):
+                      if f.endswith(exts):
+                          ruta = os.path.join(raiz, f)
+                          h = hashlib.sha256(open(ruta, "rb").read()).hexdigest()
+                          rel = os.path.relpath(ruta, "addon/doc").replace(os.sep, "/")
+                          hashes.append(f"{h}  doc/{rel}")
+                          idiomas_doc.add(rel.split("/")[0])
+
+          contenido = "\n".join(sorted(hashes))
+          hash_combinado = hashlib.sha256(contenido.encode()).hexdigest()
+
+          info = {
+              "hash_combinado": hash_combinado,
+              "fecha": datetime.now(timezone.utc).isoformat(),
+              "complemento": "${{ env.NOMBRE_COMPLEMENTO }}",
+              "idiomas_locale": sorted(idiomas_locale),
+              "idiomas_doc": sorted(idiomas_doc),
+          }
+
+          os.makedirs("addon", exist_ok=True)
+          with open("addon/recursos_info.json", "w", encoding="utf-8") as f:
+              json.dump(info, f, ensure_ascii=False, indent="\t")
+
+          print(f"Hash combinado: {hash_combinado}")
+          print(f"Idiomas (locale): {sorted(idiomas_locale)}")
+          print(f"Idiomas (doc): {sorted(idiomas_doc)}")
+
+          # Exportar para otros steps
+          with open(os.environ["GITHUB_OUTPUT"], "a") as gh:
+              gh.write(f"hash={hash_combinado}\n")
+              gh.write(f"fecha={datetime.now(timezone.utc).strftime('%d/%m/%Y %H:%M UTC')}\n")
+          PYEOF
+
+      - name: Crear paquete de recursos
+        run: |
+          mkdir -p _paquete
+
+          # Incluir idiomas: .mo + manifest.ini por idioma
+          if [ "${{ env.INCLUIR_IDIOMAS }}" = "true" ]; then
+            echo "Incluyendo idiomas..."
+            if [ -d "addon/locale" ]; then
+              mkdir -p _paquete/locale
+              cd addon/locale
+              find . -type f \( -name "*.mo" -o -name "manifest.ini" \) | while read f; do
+                mkdir -p "../../_paquete/locale/$(dirname "$f")"
+                cp "$f" "../../_paquete/locale/$f"
+              done
+              cd ../..
+            fi
+          fi
+
+          # Incluir documentación
+          if [ "${{ env.INCLUIR_DOCUMENTACION }}" = "true" ]; then
+            echo "Incluyendo documentación..."
+            if [ -d "addon/doc" ]; then
+              mkdir -p _paquete/doc
+              cd addon/doc
+              EXTS="${{ env.EXTENSIONES_DOC }}"
+              FIND_ARGS=""
+              FIRST=true
+              for ext in $EXTS; do
+                if [ "$FIRST" = true ]; then
+                  FIND_ARGS="-name \"*${ext}\""
+                  FIRST=false
+                else
+                  FIND_ARGS="$FIND_ARGS -o -name \"*${ext}\""
+                fi
+              done
+              eval "find . -type f \( $FIND_ARGS \)" | while read f; do
+                mkdir -p "../../_paquete/doc/$(dirname "$f")"
+                cp "$f" "../../_paquete/doc/$f"
+              done
+              cd ../..
+            fi
+          fi
+
+          # Incluir metadatos
+          cp addon/recursos_info.json _paquete/
+
+          # Crear ZIP
+          cd _paquete
+          zip -r "../${{ env.NOMBRE_COMPLEMENTO }}_recursos.zip" .
+          cd ..
+          echo "Paquete creado:"
+          ls -lh "${{ env.NOMBRE_COMPLEMENTO }}_recursos.zip"
+
+      - name: Publicar paquete de recursos
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_RELEASE }}
+          name: "🌐 Recursos - ${{ steps.meta.outputs.fecha }}"
+          body: |
+            ## Actualización automática de recursos
+
+            **Complemento:** `${{ env.NOMBRE_COMPLEMENTO }}`
+            **Fecha:** ${{ steps.meta.outputs.fecha }}
+            **Hash:** `${{ steps.meta.outputs.hash }}`
+
+            Este paquete contiene traducciones y/o documentación actualizada.
+            El complemento lo descarga automáticamente.
+
+            > ⚠️ Esta release es solo para recursos de idioma/documentación.
+          files: |
+            ${{ env.NOMBRE_COMPLEMENTO }}_recursos.zip
+          prerelease: true
+          make_latest: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Subir archivos compilados al repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add addon/locale/**/*.mo addon/recursos_info.json || true
+
+          if git diff --staged --quiet; then
+            echo "Sin cambios en archivos compilados"
+          else
+            git commit -m "🌐 Recursos compilados automáticamente [skip ci]"
+            git push
+          fi
