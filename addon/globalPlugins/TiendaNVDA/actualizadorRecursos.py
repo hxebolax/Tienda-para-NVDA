@@ -62,8 +62,8 @@ class ActualizadorRecursos:
 		"directorio_documentacion": "doc",
 		
 		# ── Extensiones ──
-		"extensiones_idiomas": [".mo", ".ini"],
-		"extensiones_documentacion": [".html", ".md", ".txt"],
+		"extensiones_idiomas": [".mo", ".po", ".ini"],
+		"extensiones_documentacion": [".html", ".md", ".txt", ".css"],
 		
 		# ── Modo de comprobación ──
 		# "inicio"    → solo al cargar el complemento (respeta intervalo_horas)

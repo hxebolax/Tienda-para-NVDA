@@ -2,7 +2,8 @@
 # y documentación de complementos NVDA.
 #
 # Se ejecuta cuando se modifican archivos en addon/locale/ o addon/doc/.
-# Compila los .po a .mo y empaqueta todo en un ZIP publicado como
+# Compila los .po a .mo, genera manifest.ini traducidos por idioma,
+# convierte .md a .html y empaqueta todo en un ZIP publicado como
 # release especial, separada de las releases del complemento.
 #
 # Para reutilizar en otro complemento:
@@ -36,8 +37,13 @@ env:
   # Qué incluir en el paquete (true/false)
   INCLUIR_IDIOMAS: "true"
   INCLUIR_DOCUMENTACION: "true"
+  # Generar manifest.ini traducidos por idioma (requiere buildVars.py
+  # y manifest-translated.ini.tpl en la raíz del repositorio)
+  GENERAR_MANIFEST: "true"
+  # Generar HTML desde archivos Markdown de documentación
+  GENERAR_HTML: "true"
   # Extensiones de documentación a incluir (separadas por espacio)
-  EXTENSIONES_DOC: ".html .md .txt"
+  EXTENSIONES_DOC: ".html .md .txt .css"
 
 permissions:
   contents: write
@@ -51,8 +57,10 @@ jobs:
       - name: Obtener código fuente
         uses: actions/checkout@v4
 
-      - name: Instalar gettext
-        run: sudo apt-get update && sudo apt-get install -y gettext
+      - name: Instalar dependencias
+        run: |
+          sudo apt-get update && sudo apt-get install -y gettext
+          pip install markdown
 
       - name: Compilar archivos .po a .mo
         if: env.INCLUIR_IDIOMAS == 'true'
@@ -83,6 +91,168 @@ jobs:
             echo "::warning::${ERRORES} errores de compilación"
           fi
 
+      - name: Generar manifest.ini traducidos
+        if: env.INCLUIR_IDIOMAS == 'true' && env.GENERAR_MANIFEST == 'true'
+        run: |
+          python3 << 'PYEOF'
+          import gettext, codecs, os, sys, types
+
+          # ── Mock de SCons para poder importar buildVars.py ──
+          for mod in ['SCons', 'SCons.Script', 'SCons.Node', 'SCons.Node.FS']:
+              sys.modules[mod] = types.ModuleType(mod)
+          m = sys.modules['SCons.Script']
+          for attr in ['EnsurePythonVersion','Variables','BoolVariable','Environment','Copy','Builder']:
+              setattr(m, attr, lambda *a, **kw: None)
+
+          sys.path.insert(0, '.')
+          import buildVars
+
+          plantilla = "manifest-translated.ini.tpl"
+          if not os.path.exists(plantilla):
+              print(f"⚠ No se encontró {plantilla}, omitiendo manifest.ini")
+              sys.exit(0)
+
+          with open(plantilla, "r", encoding="utf-8") as f:
+              tpl = f.read()
+
+          addon_info = buildVars.addon_info
+          generados = 0
+          errores = 0
+
+          for lang in sorted(os.listdir("addon/locale")):
+              lang_path = os.path.join("addon/locale", lang)
+              if not os.path.isdir(lang_path):
+                  continue
+              mo_path = os.path.join(lang_path, "LC_MESSAGES", "nvda.mo")
+              if not os.path.exists(mo_path):
+                  print(f"  ⚠ Sin .mo para {lang}, omitiendo manifest.ini")
+                  continue
+              try:
+                  with open(mo_path, "rb") as f:
+                      _ = gettext.GNUTranslations(f).gettext
+                  vars = {}
+                  for var in ("addon_summary", "addon_description", "addon_changelog"):
+                      vars[var] = _(addon_info[var])
+                  manifest = tpl.format(**vars)
+                  dest = os.path.join(lang_path, "manifest.ini")
+                  with codecs.open(dest, "w", "utf-8") as f:
+                      f.write(manifest)
+                  generados += 1
+                  print(f"  ✓ {lang}/manifest.ini")
+              except Exception as e:
+                  errores += 1
+                  print(f"  ✗ {lang}: {e}")
+
+          print(f"\nManifest traducidos: {generados} generados, {errores} errores")
+          PYEOF
+
+      - name: Generar HTML desde Markdown
+        if: env.INCLUIR_DOCUMENTACION == 'true' && env.GENERAR_HTML == 'true'
+        run: |
+          python3 << 'PYEOF'
+          import gettext, os, sys, types, shutil
+          import markdown
+
+          # ── Mock de SCons para poder importar buildVars.py ──
+          for mod in ['SCons', 'SCons.Script', 'SCons.Node', 'SCons.Node.FS']:
+              sys.modules[mod] = types.ModuleType(mod)
+          m = sys.modules['SCons.Script']
+          for attr in ['EnsurePythonVersion','Variables','BoolVariable','Environment','Copy','Builder']:
+              setattr(m, attr, lambda *a, **kw: None)
+
+          sys.path.insert(0, '.')
+          import buildVars
+
+          addon_info = buildVars.addon_info
+          md_extensions = getattr(buildVars, 'markdownExtensions', [])
+          base_lang = getattr(buildVars, 'baseLanguage', 'en')
+          doc_dir = "addon/doc"
+
+          # ── Copiar style.css a addon/doc/ ──
+          if os.path.exists("style.css"):
+              os.makedirs(doc_dir, exist_ok=True)
+              shutil.copy2("style.css", os.path.join(doc_dir, "style.css"))
+              print("✓ style.css copiado a addon/doc/")
+
+          # ── Copiar readme.md raíz a addon/doc/{baseLanguage}/ ──
+          if os.path.exists("readme.md"):
+              dest_dir = os.path.join(doc_dir, base_lang)
+              os.makedirs(dest_dir, exist_ok=True)
+              shutil.copy2("readme.md", os.path.join(dest_dir, "readme.md"))
+              print(f"✓ readme.md copiado a addon/doc/{base_lang}/")
+
+          if not os.path.isdir(doc_dir):
+              print("No existe addon/doc/, omitiendo HTML")
+              sys.exit(0)
+
+          # ── Mapear .mo por idioma para títulos traducidos ──
+          mo_por_idioma = {}
+          locale_dir = "addon/locale"
+          if os.path.isdir(locale_dir):
+              for lang in os.listdir(locale_dir):
+                  mo = os.path.join(locale_dir, lang, "LC_MESSAGES", "nvda.mo")
+                  if os.path.exists(mo):
+                      mo_por_idioma[lang] = mo
+
+          header_dic = {
+              '[[!meta title="': "# ",
+              '"]]': " #",
+          }
+
+          generados = 0
+          for lang_dir in sorted(os.listdir(doc_dir)):
+              lang_path = os.path.join(doc_dir, lang_dir)
+              if not os.path.isdir(lang_path):
+                  continue
+              for fname in sorted(os.listdir(lang_path)):
+                  if not fname.endswith(".md"):
+                      continue
+
+                  md_path = os.path.join(lang_path, fname)
+                  html_path = os.path.join(lang_path, fname.rsplit(".", 1)[0] + ".html")
+
+                  # Título traducido
+                  mo_path = mo_por_idioma.get(lang_dir)
+                  try:
+                      if mo_path:
+                          with open(mo_path, "rb") as f:
+                              _ = gettext.GNUTranslations(f).gettext
+                          summary = _(addon_info["addon_summary"])
+                      else:
+                          summary = addon_info["addon_summary"]
+                  except Exception:
+                      summary = addon_info["addon_summary"]
+
+                  version = addon_info["addon_version"]
+                  title = f"{summary} {version}"
+                  lang_html = lang_dir.replace("_", "-")
+
+                  with open(md_path, "r", encoding="utf-8") as f:
+                      md_text = f.read()
+                  for k, v in header_dic.items():
+                      md_text = md_text.replace(k, v, 1)
+
+                  html_text = markdown.markdown(md_text, extensions=md_extensions)
+                  doc_text = "\n".join((
+                      "<!DOCTYPE html>",
+                      f'<html lang="{lang_html}">',
+                      "<head>",
+                      '<meta charset="UTF-8">',
+                      '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                      '<link rel="stylesheet" type="text/css" href="../style.css" media="screen">',
+                      f"<title>{title}</title>",
+                      "</head>\n<body>",
+                      html_text,
+                      "</body>\n</html>",
+                  ))
+                  with open(html_path, "w", encoding="utf-8") as f:
+                      f.write(doc_text)
+                  generados += 1
+                  print(f"  ✓ {lang_dir}/{fname} → .html")
+
+          print(f"\nHTML generados: {generados}")
+          PYEOF
+
       - name: Generar metadatos del paquete
         id: meta
         run: |
@@ -94,11 +264,11 @@ jobs:
           idiomas_locale = set()
           idiomas_doc = set()
 
-          # Hash de archivos de idiomas (.mo + manifest.ini)
+          # Hash de archivos de idiomas (.mo + .po + manifest.ini)
           if "${{ env.INCLUIR_IDIOMAS }}" == "true":
               for raiz, dirs, archivos in os.walk("addon/locale"):
                   for f in sorted(archivos):
-                      if f.endswith((".mo", ".ini")):
+                      if f.endswith((".mo", ".po", ".ini")):
                           ruta = os.path.join(raiz, f)
                           h = hashlib.sha256(open(ruta, "rb").read()).hexdigest()
                           rel = os.path.relpath(ruta, "addon/locale").replace(os.sep, "/")
@@ -146,13 +316,13 @@ jobs:
         run: |
           mkdir -p _paquete
 
-          # Incluir idiomas: .mo + manifest.ini por idioma
+          # Incluir idiomas: .mo + .po + manifest.ini por idioma
           if [ "${{ env.INCLUIR_IDIOMAS }}" = "true" ]; then
             echo "Incluyendo idiomas..."
             if [ -d "addon/locale" ]; then
               mkdir -p _paquete/locale
               cd addon/locale
-              find . -type f \( -name "*.mo" -o -name "manifest.ini" \) | while read f; do
+              find . -type f \( -name "*.mo" -o -name "*.po" -o -name "manifest.ini" \) | while read f; do
                 mkdir -p "../../_paquete/locale/$(dirname "$f")"
                 cp "$f" "../../_paquete/locale/$f"
               done
@@ -223,7 +393,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add addon/locale/**/*.mo addon/recursos_info.json || true
+          git add addon/locale/**/*.mo addon/locale/*/manifest.ini addon/doc/**/*.html addon/doc/style.css addon/recursos_info.json || true
 
           if git diff --staged --quiet; then
             echo "Sin cambios en archivos compilados"
