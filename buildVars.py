@@ -27,7 +27,7 @@ Características: indicadores de estado, gestión local (deshabilitar/eliminar),
 modo offline, traducción con caché, reintentos de descarga, comprobación de dependencias
 y empaquetador de complementos."""),
 	# version
-	addon_version="2026.05.09",
+	addon_version="2026.05.10",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
 	addon_changelog=_("""Primera versión de la Tienda Unificada.

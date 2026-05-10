@@ -8,7 +8,7 @@ echo ============================================================
 echo.
 set REPO_URL=https://github.com/hxebolax/Tienda-para-NVDA.git
 set BRANCH=master
-set VERSION=2026.05.09
+set VERSION=2026.05.10
 echo  Version: %VERSION%
 echo  Repositorio: %REPO_URL%
 echo  Rama: %BRANCH%
