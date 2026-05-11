@@ -1,0 +1,1444 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TiendaNVDA\n"
+"POT-Creation-Date: 2026-05-10 21:40+0300\n"
+"PO-Revision-Date: 2026-05-10 22:15+0300\n"
+"Last-Translator: nvda.ru\n"
+"Language-Team: nvda.ru\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ../../../globalPlugins\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: TiendaNVDA/__init__.py:49
+msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
+msgstr "Необходимо перезапустить NVDA, чтобы применить обновления."
+
+#: TiendaNVDA/__init__.py:50 TiendaNVDA/dialogos_servidores.py:183
+#: TiendaNVDA/hilos.py:80 TiendaNVDA/hilos.py:99
+msgid "Información"
+msgstr "Информация"
+
+#: TiendaNVDA/__init__.py:76
+msgid "Se encontraron {} actualizaciones."
+msgstr "Найдено {} обновлений."
+
+#: TiendaNVDA/__init__.py:76
+msgid "Se encontró una actualización."
+msgstr "Найдено одно обновление."
+
+#: TiendaNVDA/__init__.py:79
+msgid ""
+"\n"
+"- NVDA.ES ({}): {}"
+msgstr ""
+"\n"
+"- NVDA.ES ({}): {}"
+
+#: TiendaNVDA/__init__.py:81
+msgid ""
+"\n"
+"- Tienda Oficial ({}): {}"
+msgstr ""
+"\n"
+"- Официальный магазин ({}): {}"
+
+#: TiendaNVDA/__init__.py:82
+msgid ""
+"\n"
+"\n"
+"Ejecute Buscar actualizaciones de complementos."
+msgstr ""
+"\n"
+"\n"
+"Запустите проверку обновлений дополнений."
+
+#: TiendaNVDA/__init__.py:83
+msgid "Tienda NVDA: Actualizaciones"
+msgstr "Магазин NVDA: обновления"
+
+#: TiendaNVDA/__init__.py:109
+msgid "No se pudieron cargar las librerías necesarias para la Tienda"
+msgstr "Не удалось загрузить библиотеки, необходимые для работы магазина"
+
+#: TiendaNVDA/__init__.py:125
+msgid "Listado de complementos NVDA.ES"
+msgstr "Список дополнений NVDA.ES"
+
+#: TiendaNVDA/__init__.py:127
+msgid "Buscar actualizaciones NVDA.ES"
+msgstr "Проверить обновления NVDA.ES"
+
+#: TiendaNVDA/__init__.py:129 TiendaNVDA/__init__.py:269
+msgid "Tienda NVDA.ES"
+msgstr "Магазин NVDA.ES"
+
+#: TiendaNVDA/__init__.py:133
+msgid "Listado de complementos oficiales"
+msgstr "Список официальных дополнений"
+
+#: TiendaNVDA/__init__.py:135
+msgid "Buscar actualizaciones oficiales"
+msgstr "Проверить официальные обновления"
+
+#: TiendaNVDA/__init__.py:137 TiendaNVDA/__init__.py:293
+#: TiendaNVDA/dialogos_tienda_oficial.py:34
+msgid "Tienda Oficial NVDA"
+msgstr "Официальный магазин NVDA"
+
+#: TiendaNVDA/__init__.py:141
+msgid "Tienda Unificada (Todas las fuentes)"
+msgstr "Единый магазин (все источники)"
+
+#: TiendaNVDA/__init__.py:146 TiendaNVDA/__init__.py:233
+#: TiendaNVDA/dialogos_comunes.py:139
+msgid "Empaquetador de complementos"
+msgstr "Упаковщик дополнений"
+
+#: TiendaNVDA/__init__.py:150
+msgid "Documentación del complemento"
+msgstr "Документация дополнения"
+
+#: TiendaNVDA/__init__.py:153 TiendaNVDA/__init__.py:201
+#: TiendaNVDA/__init__.py:205 TiendaNVDA/__init__.py:209
+#: TiendaNVDA/__init__.py:213 TiendaNVDA/__init__.py:217
+#: TiendaNVDA/__init__.py:260 TiendaNVDA/ajustes.py:148
+msgid "Tienda de Complementos NVDA"
+msgstr "Магазин дополнений NVDA"
+
+#: TiendaNVDA/__init__.py:155
+msgid "Inicio del complemento cancelado."
+msgstr "Запуск дополнения отменён."
+
+#: TiendaNVDA/__init__.py:197
+msgid "Ya hay una instancia de la Tienda NVDA abierta."
+msgstr "Окно магазина NVDA уже открыто."
+
+#: TiendaNVDA/__init__.py:201
+msgid "Muestra la ventana con todos los complementos de NVDA.ES"
+msgstr "Показывает окно со всеми дополнениями NVDA.ES"
+
+#: TiendaNVDA/__init__.py:205
+msgid "Busca actualizaciones de los complementos instalados en NVDA.ES"
+msgstr "Ищет обновления для установленных дополнений в NVDA.ES"
+
+#: TiendaNVDA/__init__.py:209
+msgid "Muestra la ventana con todos los complementos de la tienda oficial"
+msgstr "Показывает окно со всеми дополнениями официального магазина"
+
+#: TiendaNVDA/__init__.py:213
+msgid "Busca actualizaciones de los complementos oficiales"
+msgstr "Ищет обновления официальных дополнений"
+
+#: TiendaNVDA/__init__.py:217
+msgid "Muestra la tienda unificada con todas las fuentes de complementos"
+msgstr "Показывает единый магазин со всеми источниками дополнений"
+
+#: TiendaNVDA/__init__.py:230
+msgid "No hay complementos instalados."
+msgstr "Нет установленных дополнений."
+
+#: TiendaNVDA/__init__.py:233
+msgid "Seleccione un complemento para empaquetar:"
+msgstr "Выберите дополнение для упаковки:"
+
+#: TiendaNVDA/__init__.py:237 TiendaNVDA/dialogos_comunes.py:159
+msgid "Seleccione un directorio para guardar:"
+msgstr "Выберите каталог для сохранения:"
+
+#: TiendaNVDA/__init__.py:251
+msgid ""
+"El complemento falló al iniciar NVDA.\n"
+"Reinice NVDA para intentar solucionar el problema."
+msgstr ""
+"Не удалось запустить дополнение при запуске NVDA.\n"
+"Перезапустите NVDA, чтобы попытаться решить проблему."
+
+#: TiendaNVDA/__init__.py:275
+msgid "Seleccione un servidor de complementos"
+msgstr "Выберите сервер дополнений"
+
+#: TiendaNVDA/__init__.py:283
+msgid "&Gestionar Servidores de complementos"
+msgstr "&Управление серверами дополнений"
+
+#: TiendaNVDA/__init__.py:299
+msgid "Habilitar tienda oficial de NVDA"
+msgstr "Включить официальный магазин NVDA"
+
+#: TiendaNVDA/__init__.py:304
+msgid "Permitir complementos incompatibles de la tienda oficial"
+msgstr "Разрешить несовместимые дополнения из официального магазина"
+
+#: TiendaNVDA/__init__.py:314
+msgid "Actualizaciones"
+msgstr "Обновления"
+
+#: TiendaNVDA/__init__.py:320
+msgid "Activar comprobación automática de actualizaciones"
+msgstr "Включить автоматическую проверку обновлений"
+
+#: TiendaNVDA/__init__.py:327
+msgid "Tiempo para comprobar actualizaciones:"
+msgstr "Интервал проверки обновлений:"
+
+#: TiendaNVDA/__init__.py:339
+msgid "Incluir actualizaciones de la tienda oficial"
+msgstr "Включать обновления из официального магазина"
+
+#: TiendaNVDA/__init__.py:349
+msgid "Traducción"
+msgstr "Перевод"
+
+#: TiendaNVDA/__init__.py:355
+msgid "Activar traductor para descripciones"
+msgstr "Включить переводчик для описаний"
+
+#: TiendaNVDA/__init__.py:362
+msgid "Idioma para traducir descripciones:"
+msgstr "Язык перевода описаний:"
+
+#: TiendaNVDA/__init__.py:379
+msgid "Opciones Generales"
+msgstr "Общие параметры"
+
+#: TiendaNVDA/__init__.py:385
+msgid "Ordenar complementos alfabéticamente"
+msgstr "Сортировать дополнения по алфавиту"
+
+#: TiendaNVDA/__init__.py:390
+msgid "Instalar complementos después de descargar"
+msgstr "Устанавливать дополнения после загрузки"
+
+#: TiendaNVDA/__init__.py:395
+msgid "Instalar en silencio (pide reiniciar al finalizar)"
+msgstr "Тихая установка (запрашивать перезапуск по окончании)"
+
+#: TiendaNVDA/__init__.py:400
+msgid "Habilitar caché de servidores (Mejora la velocidad de carga)"
+msgstr "Включить кэш серверов (повышает скорость загрузки)"
+
+#: TiendaNVDA/__init__.py:407
+msgid "Actualizar caché cada:"
+msgstr "Обновлять кэш каждые:"
+
+#: TiendaNVDA/__init__.py:419
+msgid "Usar caché para traducciones (Mejora el rendimiento)"
+msgstr "Использовать кэш для переводов (повышает производительность)"
+
+#: TiendaNVDA/__init__.py:424
+msgid "Habilitar modo offline (Caché de listas de la tienda)"
+msgstr "Включить офлайн-режим (кэш списков магазина)"
+
+#: TiendaNVDA/__init__.py:429
+msgid "&Crear Backup de complementos"
+msgstr "&Создать резервную копию дополнений"
+
+#: TiendaNVDA/__init__.py:430
+msgid "&Restaurar desde Backup"
+msgstr "&Восстановить из резервной копии"
+
+#: TiendaNVDA/__init__.py:444
+msgid "Complementos instalados que hay en el servidor:"
+msgstr "Установленные дополнения, присутствующие на сервере:"
+
+#: TiendaNVDA/__init__.py:459 TiendaNVDA/__init__.py:564
+#: TiendaNVDA/__init__.py:610
+msgid "No se pudo tener acceso al servidor"
+msgstr "Не удалось получить доступ к серверу"
+
+#: TiendaNVDA/__init__.py:463 TiendaNVDA/__init__.py:608
+msgid "Sin complementos compatibles"
+msgstr "Нет совместимых дополнений"
+
+#: TiendaNVDA/__init__.py:473 TiendaNVDA/__init__.py:623
+#: TiendaNVDA/__init__.py:636
+msgid "Descartar actualizaciones"
+msgstr "Отклонить обновления"
+
+#: TiendaNVDA/__init__.py:621 TiendaNVDA/dialogos_tienda_es.py:401
+#: TiendaNVDA/dialogos_tienda_es.py:486
+#: TiendaNVDA/dialogos_tienda_unificada.py:293
+#: TiendaNVDA/dialogos_tienda_unificada.py:417
+msgid "Canal {}"
+msgstr "Канал «{}»"
+
+#: TiendaNVDA/__init__.py:653
+msgid ""
+"Ya hay una instancia de la Tienda NVDA abierta.\n"
+"\n"
+"Para gestionar los servidores es necesario que la Tienda este cerrada."
+msgstr ""
+"Окно магазина NVDA уже открыто.\n"
+"\n"
+"Для управления серверами необходимо закрыть магазин."
+
+#: TiendaNVDA/__init__.py:674
+msgid "Guardar copia de seguridad de complementos"
+msgstr "Сохранить резервную копию дополнений"
+
+#: TiendaNVDA/__init__.py:685
+msgid "Copia de seguridad guardada con éxito en: {}"
+msgstr "Резервная копия успешно сохранена в: {}"
+
+#: TiendaNVDA/__init__.py:687
+msgid "Error al crear la copia de seguridad: {}"
+msgstr "Ошибка при создании резервной копии: {}"
+
+#: TiendaNVDA/__init__.py:692
+msgid "Seleccionar archivo de copia de seguridad"
+msgstr "Выберите файл резервной копии"
+
+#: TiendaNVDA/__init__.py:706
+msgid "El archivo seleccionado no es una copia de seguridad válida."
+msgstr "Выбранный файл не является допустимой резервной копией."
+
+#: TiendaNVDA/__init__.py:709
+msgid ""
+"¿Desea restaurar los complementos desde el archivo seleccionado? Esto abrirá "
+"el asistente de instalación por lotes."
+msgstr ""
+"Восстановить дополнения из выбранного файла? Откроется мастер пакетной "
+"установки."
+
+#: TiendaNVDA/__init__.py:710
+msgid "Restaurar"
+msgstr "Восстановить"
+
+#: TiendaNVDA/__init__.py:718
+msgid "Cierre la tienda antes de proceder con la restauración."
+msgstr "Закройте магазин перед восстановлением."
+
+#: TiendaNVDA/__init__.py:720
+msgid "Error al cargar el backup: {}"
+msgstr "Ошибка загрузки резервной копии: {}"
+
+#: TiendaNVDA/addon_manager.py:162
+msgid "El complemento está instalado y activo."
+msgstr "Дополнение установлено и активно."
+
+#: TiendaNVDA/addon_manager.py:163
+msgid "Hay una actualización disponible para este complemento."
+msgstr "Для этого дополнения доступно обновление."
+
+#: TiendaNVDA/addon_manager.py:164
+msgid ""
+"Hay una actualización disponible pero no es compatible con su versión de "
+"NVDA."
+msgstr "Доступно обновление, но оно несовместимо с вашей версией NVDA."
+
+#: TiendaNVDA/addon_manager.py:165
+msgid "El complemento está instalado pero deshabilitado."
+msgstr "Дополнение установлено, но отключено."
+
+#: TiendaNVDA/addon_manager.py:166
+msgid "El complemento está pendiente de eliminar. Requiere reiniciar NVDA."
+msgstr "Дополнение ожидает удаления. Требуется перезапуск NVDA."
+
+#: TiendaNVDA/addon_manager.py:167
+msgid ""
+"El complemento está instalado pero bloqueado por incompatibilidad con su "
+"versión de NVDA."
+msgstr ""
+"Дополнение установлено, но заблокировано из-за несовместимости с вашей "
+"версией NVDA."
+
+#: TiendaNVDA/addon_manager.py:168
+msgid ""
+"El complemento no es compatible con su versión de NVDA y no está instalado."
+msgstr "Дополнение несовместимо с вашей версией NVDA и не установлено."
+
+#: TiendaNVDA/addon_manager.py:169
+msgid "El complemento no está instalado."
+msgstr "Дополнение не установлено."
+
+#: TiendaNVDA/addon_manager.py:171
+msgid "Estado desconocido."
+msgstr "Состояние неизвестно."
+
+#: TiendaNVDA/addon_manager.py:174
+msgid "Fuente: Tienda NVDA.ES (comunidad hispana)"
+msgstr "Источник: Магазин NVDA.ES (испаноязычное сообщество)"
+
+#: TiendaNVDA/addon_manager.py:175
+msgid "Fuente: Tienda Oficial de NVDA"
+msgstr "Источник: Официальный магазин NVDA"
+
+#: TiendaNVDA/addon_manager.py:176
+msgid "Fuente: Tienda Unificada de Complementos"
+msgstr "Источник: Единый магазин дополнений"
+
+#: TiendaNVDA/ajustes.py:79
+msgid "Servidor comunidad hispanohablante"
+msgstr "Сервер испаноязычного сообщества"
+
+#: TiendaNVDA/ajustes.py:168
+msgid "15 minutos"
+msgstr "15 минут"
+
+#: TiendaNVDA/ajustes.py:169
+msgid "30 minutos"
+msgstr "30 минут"
+
+#: TiendaNVDA/ajustes.py:170
+msgid "45 minutos"
+msgstr "45 минут"
+
+#: TiendaNVDA/ajustes.py:171
+msgid "1 hora"
+msgstr "1 час"
+
+#: TiendaNVDA/ajustes.py:172
+msgid "12 horas"
+msgstr "12 часов"
+
+#: TiendaNVDA/ajustes.py:173
+msgid "1 día"
+msgstr "1 день"
+
+#: TiendaNVDA/ajustes.py:174
+msgid "1 semana"
+msgstr "1 неделя"
+
+#: TiendaNVDA/ajustes.py:179
+msgid "Alemán"
+msgstr "Немецкий"
+
+#: TiendaNVDA/ajustes.py:180
+msgid "Árabe"
+msgstr "Арабский"
+
+#: TiendaNVDA/ajustes.py:181
+msgid "Croata"
+msgstr "Хорватский"
+
+#: TiendaNVDA/ajustes.py:182
+msgid "Español"
+msgstr "Испанский"
+
+#: TiendaNVDA/ajustes.py:183
+msgid "Francés"
+msgstr "Французский"
+
+#: TiendaNVDA/ajustes.py:184
+msgid "Inglés"
+msgstr "Английский"
+
+#: TiendaNVDA/ajustes.py:185
+msgid "Italiano"
+msgstr "Итальянский"
+
+#: TiendaNVDA/ajustes.py:186
+msgid "Polaco"
+msgstr "Польский"
+
+#: TiendaNVDA/ajustes.py:187
+msgid "Portugués"
+msgstr "Португальский"
+
+#: TiendaNVDA/ajustes.py:188
+msgid "Ruso"
+msgstr "Русский"
+
+#: TiendaNVDA/ajustes.py:189
+msgid "Turco"
+msgstr "Турецкий"
+
+#: TiendaNVDA/ajustes.py:190
+msgid "Ucraniano"
+msgstr "Украинский"
+
+#: TiendaNVDA/ajustes.py:208 TiendaNVDA/dialogos_tienda_oficial.py:56
+#: TiendaNVDA/dialogos_tienda_oficial.py:230 TiendaNVDA/tienda_oficial.py:41
+msgid "Todos"
+msgstr "Все"
+
+#: TiendaNVDA/ajustes.py:208 TiendaNVDA/dialogos_tienda_oficial.py:56
+#: TiendaNVDA/dialogos_tienda_oficial.py:230 TiendaNVDA/tienda_oficial.py:41
+#: TiendaNVDA/tienda_oficial.py:79
+msgid "Estable"
+msgstr "Стабильный"
+
+#: TiendaNVDA/ajustes.py:208 TiendaNVDA/dialogos_tienda_oficial.py:56
+#: TiendaNVDA/dialogos_tienda_oficial.py:230 TiendaNVDA/tienda_oficial.py:42
+#: TiendaNVDA/tienda_oficial.py:79
+msgid "Beta"
+msgstr "Бета"
+
+#: TiendaNVDA/ajustes.py:209 TiendaNVDA/dialogos_tienda_oficial.py:56
+#: TiendaNVDA/dialogos_tienda_oficial.py:230 TiendaNVDA/tienda_oficial.py:42
+#: TiendaNVDA/tienda_oficial.py:80
+msgid "Desarrollo"
+msgstr "Разработка"
+
+#: TiendaNVDA/ajustes.py:209 TiendaNVDA/tienda_oficial.py:43
+#: TiendaNVDA/tienda_oficial.py:80
+msgid "Externo"
+msgstr "Внешний"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:51
+#: TiendaNVDA/dialogos_servidores.py:121 TiendaNVDA/dialogos_servidores.py:171
+msgid "&Aceptar"
+msgstr "&ОК"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:52
+#: TiendaNVDA/dialogos_actualizaciones.py:117
+#: TiendaNVDA/dialogos_actualizaciones.py:190
+#: TiendaNVDA/dialogos_actualizaciones.py:361
+#: TiendaNVDA/dialogos_servidores.py:42 TiendaNVDA/dialogos_servidores.py:172
+msgid "&Cerrar"
+msgstr "&Закрыть"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:79
+msgid ""
+"\n"
+"Descarga completada correctamente."
+msgstr ""
+"\n"
+"Загрузка успешно завершена."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:84
+msgid ""
+"\n"
+"Error en la descarga tras varios intentos."
+msgstr ""
+"\n"
+"Ошибка загрузки после нескольких попыток."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:98
+msgid "Actualizaciones disponibles"
+msgstr "Доступные обновления"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:114
+#: TiendaNVDA/dialogos_actualizaciones.py:353
+msgid "&Seleccionar todo"
+msgstr "&Выбрать всё"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:115
+#: TiendaNVDA/dialogos_actualizaciones.py:354
+msgid "&Deseleccionar todo"
+msgstr "&Снять выделение"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:116
+#: TiendaNVDA/dialogos_tienda_es.py:229
+#: TiendaNVDA/dialogos_tienda_oficial.py:156
+#: TiendaNVDA/dialogos_tienda_unificada.py:188
+msgid "&Actualizar"
+msgstr "&Обновить"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:143
+msgid "Seleccione al menos una actualización."
+msgstr "Выберите хотя бы одно обновление."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:143 TiendaNVDA/hilos.py:64
+#: TiendaNVDA/hilos.py:90
+msgid "Error"
+msgstr "Ошибка"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:167
+msgid "Actualizando complementos"
+msgstr "Обновление дополнений"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:182
+msgid "Progreso descarga:"
+msgstr "Прогресс загрузки:"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:184
+msgid "Progreso total:"
+msgstr "Общий прогресс:"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:189
+msgid "&Reiniciar NVDA"
+msgstr "&Перезапустить NVDA"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:214
+msgid "Descargando: {}"
+msgstr "Загрузка: {}"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:251
+msgid "Instalando: {}"
+msgstr "Установка: {}"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:269
+msgid "RESUMEN DE OPERACIÓN:\n"
+msgstr "СВОДКА ОПЕРАЦИИ:\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:272
+msgid "Instalados con éxito ({}):\n"
+msgstr "Успешно установлено ({}):\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:278
+msgid "Errores/Fallos ({}):\n"
+msgstr "Ошибки/сбои ({}):\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:287
+msgid "No se procesó ningún complemento."
+msgstr "Не обработано ни одного дополнения."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:293
+msgid "Operación completada. Reinicie NVDA para aplicar cambios."
+msgstr "Операция завершена. Перезапустите NVDA для применения изменений."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:316
+#: TiendaNVDA/dialogos_comunes.py:100
+msgid ""
+"Se han realizado cambios en los complementos que requieren reiniciar NVDA "
+"para surtir efecto. ¿Desea reiniciar ahora?"
+msgstr ""
+"В дополнениях были сделаны изменения, требующие перезапуска NVDA. "
+"Перезапустить сейчас?"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:317
+#: TiendaNVDA/dialogos_comunes.py:101
+msgid "Reiniciar NVDA"
+msgstr "Перезапустить NVDA"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:328
+msgid "Restaurar desde Backup"
+msgstr "Восстановление из резервной копии"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:338
+msgid "&Seleccione complementos a restaurar:"
+msgstr "&Выберите дополнения для восстановления:"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:344
+msgid "&Información de la versión encontrada:"
+msgstr "&Информация о найденной версии:"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:360
+msgid "&Instalar seleccionados"
+msgstr "&Установить выбранные"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:376
+msgid "Buscando mejores versiones en los servidores..."
+msgstr "Поиск лучших версий на серверах..."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:410
+msgid "Búsqueda de backup finalizada."
+msgstr "Поиск в резервной копии завершён."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:413
+msgid "Error al procesar el backup"
+msgstr "Ошибка обработки резервной копии"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:423
+msgid "(No encontrado en servidores)"
+msgstr "(Не найдено на серверах)"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:436
+msgid "Este complemento no se ha encontrado en los servidores actuales."
+msgstr "Это дополнение не найдено на текущих серверах."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:439
+msgid "FUENTE: NVDA.ES\n"
+msgstr "ИСТОЧНИК: NVDA.ES\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:441
+#: TiendaNVDA/dialogos_actualizaciones.py:451
+#: TiendaNVDA/dialogos_tienda_es.py:292 TiendaNVDA/dialogos_tienda_es.py:351
+#: TiendaNVDA/dialogos_tienda_oficial.py:175
+#: TiendaNVDA/dialogos_tienda_oficial.py:210
+#: TiendaNVDA/dialogos_tienda_unificada.py:206
+#: TiendaNVDA/dialogos_tienda_unificada.py:220
+#: TiendaNVDA/dialogos_tienda_unificada.py:256
+#: TiendaNVDA/dialogos_tienda_unificada.py:264
+msgid "Nombre: {}\n"
+msgstr "Название: {}\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:442
+#: TiendaNVDA/dialogos_actualizaciones.py:452
+#: TiendaNVDA/dialogos_tienda_es.py:352
+#: TiendaNVDA/dialogos_tienda_oficial.py:176
+#: TiendaNVDA/dialogos_tienda_oficial.py:211
+#: TiendaNVDA/dialogos_tienda_unificada.py:207
+#: TiendaNVDA/dialogos_tienda_unificada.py:221
+#: TiendaNVDA/dialogos_tienda_unificada.py:257
+#: TiendaNVDA/dialogos_tienda_unificada.py:265
+msgid "ID: {}\n"
+msgstr "ID: {}\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:443
+#: TiendaNVDA/dialogos_actualizaciones.py:453
+msgid "Versión disponible: {}\n"
+msgstr "Доступная версия: {}\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:444
+#: TiendaNVDA/dialogos_tienda_es.py:294 TiendaNVDA/dialogos_tienda_es.py:353
+#: TiendaNVDA/dialogos_tienda_unificada.py:208
+msgid "Autor: {}\n"
+msgstr "Автор: {}\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:445
+#: TiendaNVDA/dialogos_actualizaciones.py:455
+msgid "Descripción:"
+msgstr "Описание:"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:447
+#: TiendaNVDA/dialogos_actualizaciones.py:457
+#: TiendaNVDA/dialogos_tienda_oficial.py:184
+#: TiendaNVDA/dialogos_tienda_unificada.py:213
+#: TiendaNVDA/dialogos_tienda_unificada.py:228
+msgid "Sin descripción."
+msgstr "Без описания."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:449
+msgid "FUENTE: TIENDA OFICIAL\n"
+msgstr "ИСТОЧНИК: ОФИЦИАЛЬНЫЙ МАГАЗИН\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:454
+#: TiendaNVDA/dialogos_tienda_oficial.py:177
+#: TiendaNVDA/dialogos_tienda_oficial.py:212
+#: TiendaNVDA/dialogos_tienda_unificada.py:222
+msgid "Editor: {}\n"
+msgstr "Издатель: {}\n"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:472
+msgid "Seleccione al menos un complemento."
+msgstr "Выберите хотя бы одно дополнение."
+
+#: TiendaNVDA/dialogos_actualizaciones.py:472
+msgid "Aviso"
+msgstr "Предупреждение"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:499
+#, python-format
+msgid ""
+"Los siguientes complementos no son compatibles:\n"
+"\n"
+"%s\n"
+"\n"
+"¿Desea intentar instalarlos de todos modos?"
+msgstr ""
+"Следующие дополнения несовместимы:\n"
+"\n"
+"%s\n"
+"\n"
+"Попытаться установить их в любом случае?"
+
+#: TiendaNVDA/dialogos_actualizaciones.py:500
+#: TiendaNVDA/dialogos_tienda_es.py:446
+#: TiendaNVDA/dialogos_tienda_oficial.py:288
+#: TiendaNVDA/dialogos_tienda_unificada.py:372
+msgid "Advertencia"
+msgstr "Предупреждение"
+
+#: TiendaNVDA/dialogos_comunes.py:43
+msgid "Copiado al portapapeles"
+msgstr "Скопировано в буфер обмена"
+
+#: TiendaNVDA/dialogos_comunes.py:70
+msgid "¿Está seguro de que desea desinstalar este complemento?"
+msgstr "Вы действительно хотите удалить это дополнение?"
+
+#: TiendaNVDA/dialogos_comunes.py:71 TiendaNVDA/dialogos_servidores.py:81
+msgid "Confirmar"
+msgstr "Подтверждение"
+
+#: TiendaNVDA/dialogos_comunes.py:77
+msgid ""
+"Este complemento no es compatible con su versión de NVDA. ¿Desea intentar "
+"habilitarlo de todos modos?"
+msgstr ""
+"Это дополнение несовместимо с вашей версией NVDA. Попытаться включить его в "
+"любом случае?"
+
+#: TiendaNVDA/dialogos_comunes.py:78
+msgid "Advertencia de compatibilidad"
+msgstr "Предупреждение о совместимости"
+
+#: TiendaNVDA/dialogos_comunes.py:87
+msgid ""
+"Operación realizada con éxito. Algunos cambios requieren reiniciar NVDA."
+msgstr ""
+"Операция выполнена успешно. Некоторые изменения требуют перезапуска NVDA."
+
+#: TiendaNVDA/dialogos_comunes.py:124
+msgid "Habilitar complemento"
+msgstr "Включить дополнение"
+
+#: TiendaNVDA/dialogos_comunes.py:127
+msgid "Deshabilitar complemento"
+msgstr "Отключить дополнение"
+
+#: TiendaNVDA/dialogos_comunes.py:131
+msgid "Desinstalar complemento"
+msgstr "Удалить дополнение"
+
+#: TiendaNVDA/dialogos_comunes.py:149
+msgid "Ver documentación"
+msgstr "Просмотреть документацию"
+
+#: TiendaNVDA/dialogos_servidores.py:23
+msgid "Gestor de servidores de complementos"
+msgstr "Управление серверами дополнений"
+
+#: TiendaNVDA/dialogos_servidores.py:27
+msgid "&Lista de servidores:"
+msgstr "&Список серверов:"
+
+#: TiendaNVDA/dialogos_servidores.py:35
+msgid "&Añadir"
+msgstr "&Добавить"
+
+#: TiendaNVDA/dialogos_servidores.py:36
+msgid "&Editar"
+msgstr "&Изменить"
+
+#: TiendaNVDA/dialogos_servidores.py:37
+msgid "&Borrar"
+msgstr "&Удалить"
+
+#: TiendaNVDA/dialogos_servidores.py:65
+msgid "El servidor de la comunidad hispanohablante no puede ser editado."
+msgstr "Сервер испаноязычного сообщества не может быть изменён."
+
+#: TiendaNVDA/dialogos_servidores.py:78
+msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
+msgstr "Сервер испаноязычного сообщества не может быть удалён."
+
+#: TiendaNVDA/dialogos_servidores.py:80
+msgid "¿Está seguro que desea borrar el servidor: {}?"
+msgstr "Вы действительно хотите удалить сервер «{}»?"
+
+#: TiendaNVDA/dialogos_servidores.py:109
+msgid "Añadir servidor"
+msgstr "Добавление сервера"
+
+#: TiendaNVDA/dialogos_servidores.py:109
+msgid "Editar servidor"
+msgstr "Изменение сервера"
+
+#: TiendaNVDA/dialogos_servidores.py:114
+msgid "&Nombre del servidor:"
+msgstr "&Имя сервера:"
+
+#: TiendaNVDA/dialogos_servidores.py:117
+msgid "&URL del servidor:"
+msgstr "&URL-адрес сервера:"
+
+#: TiendaNVDA/dialogos_servidores.py:122
+msgid "&Cancelar"
+msgstr "&Отмена"
+
+#: TiendaNVDA/dialogos_servidores.py:137
+msgid "El nombre del servidor no puede estar vacío."
+msgstr "Имя сервера не может быть пустым."
+
+#: TiendaNVDA/dialogos_servidores.py:141
+msgid "La URL del servidor no puede estar vacía."
+msgstr "URL-адрес сервера не может быть пустым."
+
+#: TiendaNVDA/dialogos_servidores.py:146
+msgid "Ya existe un servidor con ese nombre."
+msgstr "Сервер с таким именем уже существует."
+
+#: TiendaNVDA/dialogos_servidores.py:149
+msgid "La URL introducida no es válida."
+msgstr "Введённый URL-адрес недействителен."
+
+#: TiendaNVDA/dialogos_servidores.py:162
+msgid "Servidor sin complementos"
+msgstr "На сервере нет дополнений"
+
+#: TiendaNVDA/dialogos_servidores.py:167
+msgid "Seleccione un servidor"
+msgstr "Выберите сервер"
+
+#: TiendaNVDA/dialogos_servidores.py:183
+msgid "Debe seleccionar un servidor."
+msgstr "Необходимо выбрать сервер."
+
+#: TiendaNVDA/dialogos_tienda_es.py:57 TiendaNVDA/dialogos_tienda_oficial.py:50
+#: TiendaNVDA/dialogos_tienda_unificada.py:53
+msgid "&Buscar:"
+msgstr "&Поиск:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:61
+msgid "B&uscar"
+msgstr "&Найти"
+
+#: TiendaNVDA/dialogos_tienda_es.py:65 TiendaNVDA/dialogos_tienda_oficial.py:61
+#: TiendaNVDA/dialogos_tienda_unificada.py:64
+msgid "&Lista complementos:"
+msgstr "Список &дополнений:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:70 TiendaNVDA/dialogos_tienda_oficial.py:67
+#: TiendaNVDA/dialogos_tienda_unificada.py:70
+msgid "&Acción"
+msgstr "&Действие"
+
+#: TiendaNVDA/dialogos_tienda_es.py:74 TiendaNVDA/dialogos_tienda_oficial.py:71
+#: TiendaNVDA/dialogos_tienda_unificada.py:74
+msgid "&Información:"
+msgstr "&Сведения:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:80 TiendaNVDA/dialogos_tienda_es.py:231
+#: TiendaNVDA/dialogos_tienda_oficial.py:77
+#: TiendaNVDA/dialogos_tienda_oficial.py:156
+#: TiendaNVDA/dialogos_tienda_unificada.py:80
+#: TiendaNVDA/dialogos_tienda_unificada.py:188
+msgid "&Instalar"
+msgstr "&Установить"
+
+#: TiendaNVDA/dialogos_tienda_es.py:81 TiendaNVDA/dialogos_tienda_oficial.py:78
+#: TiendaNVDA/dialogos_tienda_unificada.py:81
+msgid "&Descargar"
+msgstr "&Загрузить"
+
+#: TiendaNVDA/dialogos_tienda_es.py:82 TiendaNVDA/dialogos_tienda_oficial.py:79
+msgid "&Página WEB"
+msgstr "Веб-&сайт"
+
+#: TiendaNVDA/dialogos_tienda_es.py:83
+msgid "&Cambiar servidor"
+msgstr "&Сменить сервер"
+
+#: TiendaNVDA/dialogos_tienda_es.py:84 TiendaNVDA/dialogos_tienda_oficial.py:80
+#: TiendaNVDA/dialogos_tienda_unificada.py:82
+msgid "&Salir"
+msgstr "&Выход"
+
+#: TiendaNVDA/dialogos_tienda_es.py:140
+msgid " - Todos los complementos"
+msgstr " — Все дополнения"
+
+#: TiendaNVDA/dialogos_tienda_es.py:141
+msgid " - Complementos API 2026"
+msgstr " — Дополнения API 2026"
+
+#: TiendaNVDA/dialogos_tienda_es.py:142
+msgid " - Complementos API 2025"
+msgstr " — Дополнения API 2025"
+
+#: TiendaNVDA/dialogos_tienda_es.py:143
+msgid " - Complementos API 2024"
+msgstr " — Дополнения API 2024"
+
+#: TiendaNVDA/dialogos_tienda_es.py:144
+msgid " - Complementos API 2023"
+msgstr " — Дополнения API 2023"
+
+#: TiendaNVDA/dialogos_tienda_es.py:145
+msgid " - Por autor"
+msgstr " — По автору"
+
+#: TiendaNVDA/dialogos_tienda_es.py:146
+msgid " - Por descargas"
+msgstr " — По загрузкам"
+
+#: TiendaNVDA/dialogos_tienda_es.py:187 TiendaNVDA/dialogos_tienda_es.py:200
+#: TiendaNVDA/dialogos_tienda_es.py:232
+#: TiendaNVDA/dialogos_tienda_oficial.py:138
+#: TiendaNVDA/dialogos_tienda_unificada.py:167
+msgid "No se encontraron resultados"
+msgstr "Ничего не найдено"
+
+#: TiendaNVDA/dialogos_tienda_es.py:217
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: [ES] Tienda NVDA.ES\n"
+"{explanation}"
+msgstr ""
+"Индикатор: {indicator}\n"
+"Источник: [ES] Магазин NVDA.ES\n"
+"{explanation}"
+
+#: TiendaNVDA/dialogos_tienda_es.py:218
+#: TiendaNVDA/dialogos_tienda_oficial.py:278
+#: TiendaNVDA/dialogos_tienda_unificada.py:344
+msgid "Sin indicador"
+msgstr "Нет индикатора"
+
+#: TiendaNVDA/dialogos_tienda_es.py:247
+#: TiendaNVDA/dialogos_tienda_oficial.py:262
+#: TiendaNVDA/dialogos_tienda_unificada.py:323
+msgid "Complemento {} de {}"
+msgstr "Дополнение {} из {}"
+
+#: TiendaNVDA/dialogos_tienda_es.py:273 TiendaNVDA/dialogos_tienda_es.py:340
+#: TiendaNVDA/dialogos_tienda_oficial.py:164
+#: TiendaNVDA/dialogos_tienda_unificada.py:196
+msgid "Activo"
+msgstr "Активно"
+
+#: TiendaNVDA/dialogos_tienda_es.py:275 TiendaNVDA/dialogos_tienda_es.py:342
+#: TiendaNVDA/dialogos_tienda_oficial.py:166
+#: TiendaNVDA/dialogos_tienda_unificada.py:198
+msgid "Deshabilitado (incompatible)"
+msgstr "Отключено (несовместимо)"
+
+#: TiendaNVDA/dialogos_tienda_es.py:275
+#: TiendaNVDA/dialogos_tienda_oficial.py:166
+#: TiendaNVDA/dialogos_tienda_unificada.py:198
+msgid "Habilitado (compatibilidad anulada)"
+msgstr "Включено (совместимость принудительная)"
+
+#: TiendaNVDA/dialogos_tienda_es.py:277 TiendaNVDA/dialogos_tienda_es.py:344
+#: TiendaNVDA/dialogos_tienda_oficial.py:168
+#: TiendaNVDA/dialogos_tienda_unificada.py:200
+msgid "Deshabilitado"
+msgstr "Отключено"
+
+#: TiendaNVDA/dialogos_tienda_es.py:279
+msgid "Marcado para eliminar"
+msgstr "Отмечено на удаление"
+
+#: TiendaNVDA/dialogos_tienda_es.py:281
+msgid "Pendiente de instalar"
+msgstr "Ожидает установки"
+
+#: TiendaNVDA/dialogos_tienda_es.py:282 TiendaNVDA/dialogos_tienda_es.py:345
+#: TiendaNVDA/dialogos_tienda_oficial.py:169
+msgid ""
+"\n"
+"--- INFORMACIÓN DE INSTALACIÓN LOCAL ---\n"
+msgstr ""
+"\n"
+"--- СВЕДЕНИЯ О ЛОКАЛЬНОЙ УСТАНОВКЕ ---\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:283
+msgid "Estado actual: {}\n"
+msgstr "Текущее состояние: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:284
+msgid "Versión instalada: {}\n"
+msgstr "Установленная версия: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:286
+msgid "AVISO: Cambios pendientes. Reinicie NVDA.\n"
+msgstr "ВНИМАНИЕ: Ожидаются изменения. Перезапустите NVDA.\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:288
+msgid "ADVERTENCIA: Complemento incompatible con este NVDA.\n"
+msgstr "ПРЕДУПРЕЖДЕНИЕ: Дополнение несовместимо с этой версией NVDA.\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:290
+msgid "RESUMEN DEL COMPLEMENTO\n"
+msgstr "СВОДКА ПО ДОПОЛНЕНИЮ\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:293
+msgid "ID (Nombre interno): {}\n"
+msgstr "ID (внутреннее имя): {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:295
+msgid "Página web: {}\n"
+msgstr "Веб-сайт: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:296
+msgid "Desarrollo: {}\n"
+msgstr "Разработка: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:296
+msgid "Con soporte"
+msgstr "Поддерживается"
+
+#: TiendaNVDA/dialogos_tienda_es.py:296
+msgid "Sin soporte"
+msgstr "Не поддерживается"
+
+#: TiendaNVDA/dialogos_tienda_es.py:298
+#: TiendaNVDA/dialogos_tienda_oficial.py:182
+#: TiendaNVDA/dialogos_tienda_unificada.py:211
+#: TiendaNVDA/dialogos_tienda_unificada.py:226
+msgid "DESCRIPCIÓN:"
+msgstr "ОПИСАНИЕ:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:300
+msgid "Sin descripción disponible."
+msgstr "Описание отсутствует."
+
+#: TiendaNVDA/dialogos_tienda_es.py:301
+msgid "CANALES DE DESCARGA:"
+msgstr "КАНАЛЫ ЗАГРУЗКИ:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:305
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Última prueba: {}\n"
+"Descargas: {}\n"
+msgstr ""
+"Канал: {}\n"
+"Версия: {}\n"
+"Минимальная версия NVDA: {}\n"
+"Последнее тестирование: {}\n"
+"Загрузок: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:313
+#: TiendaNVDA/dialogos_tienda_oficial.py:190
+#: TiendaNVDA/dialogos_tienda_unificada.py:234
+msgid "Active la traducción en opciones de la tienda."
+msgstr "Активируйте перевод в настройках магазина."
+
+#: TiendaNVDA/dialogos_tienda_es.py:334
+#: TiendaNVDA/dialogos_tienda_oficial.py:207
+#: TiendaNVDA/dialogos_tienda_unificada.py:252
+msgid "No se pudo traducir"
+msgstr "Не удалось перевести"
+
+#: TiendaNVDA/dialogos_tienda_es.py:346
+#: TiendaNVDA/dialogos_tienda_oficial.py:170
+msgid "Estado: {}\n"
+msgstr "Состояние: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:347
+#: TiendaNVDA/dialogos_tienda_oficial.py:171
+#: TiendaNVDA/dialogos_tienda_oficial.py:178
+#: TiendaNVDA/dialogos_tienda_oficial.py:213
+#: TiendaNVDA/dialogos_tienda_unificada.py:223
+msgid "Versión: {}\n"
+msgstr "Версия: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:349
+msgid "RESUMEN (TRADUCIDO)\n"
+msgstr "СВОДКА (ПЕРЕВЕДЕНА)\n"
+
+#: TiendaNVDA/dialogos_tienda_es.py:355
+#: TiendaNVDA/dialogos_tienda_oficial.py:214
+#: TiendaNVDA/dialogos_tienda_unificada.py:258
+#: TiendaNVDA/dialogos_tienda_unificada.py:266
+msgid "DESCRIPCIÓN TRADUCIDA:"
+msgstr "ПЕРЕВЕДЁННОЕ ОПИСАНИЕ:"
+
+#: TiendaNVDA/dialogos_tienda_es.py:372
+msgid "Mostrar todos"
+msgstr "Показать все"
+
+#: TiendaNVDA/dialogos_tienda_es.py:373
+msgid "API 2026"
+msgstr "API 2026"
+
+#: TiendaNVDA/dialogos_tienda_es.py:374
+msgid "API 2025"
+msgstr "API 2025"
+
+#: TiendaNVDA/dialogos_tienda_es.py:375
+msgid "API 2024"
+msgstr "API 2024"
+
+#: TiendaNVDA/dialogos_tienda_es.py:376
+msgid "API 2023"
+msgstr "API 2023"
+
+#: TiendaNVDA/dialogos_tienda_es.py:377
+msgid "Por autor"
+msgstr "По автору"
+
+#: TiendaNVDA/dialogos_tienda_es.py:378
+msgid "Por descargas"
+msgstr "По загрузкам"
+
+#: TiendaNVDA/dialogos_tienda_es.py:379
+msgid "&Filtros"
+msgstr "&Фильтры"
+
+#: TiendaNVDA/dialogos_tienda_es.py:392
+msgid "Copiar información"
+msgstr "Копировать сведения"
+
+#: TiendaNVDA/dialogos_tienda_es.py:393
+msgid "Copiar URL página"
+msgstr "Копировать URL страницы"
+
+#: TiendaNVDA/dialogos_tienda_es.py:395
+#: TiendaNVDA/dialogos_tienda_unificada.py:288
+msgid "Copiar enlace interno NVDA.ES"
+msgstr "Копировать внутреннюю ссылку NVDA.ES"
+
+#: TiendaNVDA/dialogos_tienda_es.py:403 TiendaNVDA/dialogos_tienda_es.py:405
+#: TiendaNVDA/dialogos_tienda_oficial.py:239
+#: TiendaNVDA/dialogos_tienda_unificada.py:295
+#: TiendaNVDA/dialogos_tienda_unificada.py:297
+#: TiendaNVDA/dialogos_tienda_unificada.py:300
+msgid "Copiar enlace de descarga"
+msgstr "Копировать ссылку для загрузки"
+
+#: TiendaNVDA/dialogos_tienda_es.py:408
+msgid "&Copiar"
+msgstr "&Копировать"
+
+#: TiendaNVDA/dialogos_tienda_es.py:416
+#: TiendaNVDA/dialogos_tienda_oficial.py:247
+#: TiendaNVDA/dialogos_tienda_unificada.py:308
+msgid "&Gestión instalado"
+msgstr "&Управление установленным"
+
+#: TiendaNVDA/dialogos_tienda_es.py:443
+#: TiendaNVDA/dialogos_tienda_oficial.py:286
+#: TiendaNVDA/dialogos_tienda_unificada.py:370
+msgid "Este complemento no es compatible con su versión de NVDA."
+msgstr "Это дополнение несовместимо с вашей версией NVDA."
+
+#: TiendaNVDA/dialogos_tienda_es.py:443
+#: TiendaNVDA/dialogos_tienda_oficial.py:286
+#: TiendaNVDA/dialogos_tienda_unificada.py:370
+msgid "Incompatible"
+msgstr "Несовместимо"
+
+#: TiendaNVDA/dialogos_tienda_es.py:446
+#: TiendaNVDA/dialogos_tienda_oficial.py:288
+#: TiendaNVDA/dialogos_tienda_unificada.py:372
+msgid ""
+"Este complemento no es compatible. ¿Desea intentar instalarlo de todos modos?"
+msgstr "Это дополнение несовместимо. Попытаться установить его в любом случае?"
+
+#: TiendaNVDA/dialogos_tienda_es.py:454
+#: TiendaNVDA/dialogos_tienda_oficial.py:292
+#: TiendaNVDA/dialogos_tienda_unificada.py:377
+#, python-format
+msgid "Preparando instalación de %s..."
+msgstr "Подготовка установки %s..."
+
+#: TiendaNVDA/dialogos_tienda_es.py:458
+#: TiendaNVDA/dialogos_tienda_oficial.py:297
+#: TiendaNVDA/dialogos_tienda_unificada.py:385
+#, python-format
+msgid "Instalación de %s completada."
+msgstr "Установка %s завершена."
+
+#: TiendaNVDA/dialogos_tienda_es.py:459
+msgid "Instalación completada. ¿Desea reiniciar NVDA ahora?"
+msgstr "Установка завершена. Перезапустить NVDA сейчас?"
+
+#: TiendaNVDA/dialogos_tienda_es.py:459
+#: TiendaNVDA/dialogos_tienda_oficial.py:298
+#: TiendaNVDA/dialogos_tienda_unificada.py:386
+msgid "Reiniciar"
+msgstr "Перезапустить"
+
+#: TiendaNVDA/dialogos_tienda_es.py:492
+#: TiendaNVDA/dialogos_tienda_oficial.py:318
+#: TiendaNVDA/dialogos_tienda_unificada.py:406
+msgid "Ya hay una descarga en progreso"
+msgstr "Загрузка уже выполняется"
+
+#: TiendaNVDA/dialogos_tienda_es.py:506
+#: TiendaNVDA/dialogos_tienda_oficial.py:321
+#: TiendaNVDA/dialogos_tienda_unificada.py:422
+#: TiendaNVDA/dialogos_tienda_unificada.py:453
+msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
+msgstr "Дополнение NVDA (*.nvda-addon)|*.nvda-addon"
+
+#: TiendaNVDA/dialogos_tienda_es.py:507
+#: TiendaNVDA/dialogos_tienda_oficial.py:322
+#: TiendaNVDA/dialogos_tienda_unificada.py:423
+#: TiendaNVDA/dialogos_tienda_unificada.py:454
+msgid "Guardar en..."
+msgstr "Сохранить как..."
+
+#: TiendaNVDA/dialogos_tienda_es.py:519
+#: TiendaNVDA/dialogos_tienda_oficial.py:328
+#: TiendaNVDA/dialogos_tienda_unificada.py:429
+#: TiendaNVDA/dialogos_tienda_unificada.py:460
+#, python-format
+msgid "Descargando %s..."
+msgstr "Загрузка %s..."
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:55
+msgid "&Canal:"
+msgstr "&Канал:"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:173
+msgid "RESUMEN DEL COMPLEMENTO (OFICIAL)\n"
+msgstr "СВОДКА ПО ДОПОЛНЕНИЮ (ОФИЦИАЛЬНОЕ)\n"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:179
+#: TiendaNVDA/dialogos_tienda_unificada.py:224
+msgid "Canal: {}\n"
+msgstr "Канал: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:180
+msgid "Compatible: {}\n"
+msgstr "Совместимо: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:180
+msgid "Sí"
+msgstr "Да"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:180
+msgid "No"
+msgstr "Нет"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:208
+#: TiendaNVDA/dialogos_tienda_unificada.py:262
+msgid "RESUMEN (TRADUCIDO - OFICIAL)\n"
+msgstr "СВОДКА (ПЕРЕВЕДЕНА — ОФИЦИАЛЬНАЯ)\n"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:233
+msgid "&Canales"
+msgstr "&Каналы"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:238
+#: TiendaNVDA/dialogos_tienda_unificada.py:283
+msgid "Copiar ficha"
+msgstr "Копировать карточку"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:278
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: [OF] Tienda Oficial NVDA\n"
+"{explanation}"
+msgstr ""
+"Индикатор: {indicator}\n"
+"Источник: [OF] Официальный магазин NVDA\n"
+"{explanation}"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:298
+#: TiendaNVDA/dialogos_tienda_unificada.py:386
+msgid "¿Desea reiniciar NVDA ahora?"
+msgstr "Перезапустить NVDA сейчас?"
+
+#: TiendaNVDA/dialogos_tienda_oficial.py:302
+#: TiendaNVDA/dialogos_tienda_oficial.py:335
+#: TiendaNVDA/dialogos_tienda_unificada.py:390
+#: TiendaNVDA/dialogos_tienda_unificada.py:436
+msgid "Error: El archivo descargado está corrupto"
+msgstr "Ошибка: загруженный файл повреждён"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:36
+msgid "Tienda Unificada de Complementos"
+msgstr "Единый магазин дополнений"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:58
+msgid "&Fuente:"
+msgstr "&Источник:"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:59
+msgid "Todas las fuentes"
+msgstr "Все источники"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:59
+msgid "NVDA.ES"
+msgstr "NVDA.ES"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:59
+msgid "Tienda Oficial"
+msgstr "Официальный магазин"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:201
+msgid ""
+"\n"
+"ESTADO LOCAL: {} (v{})\n"
+msgstr ""
+"\n"
+"ЛОКАЛЬНОЕ СОСТОЯНИЕ: {} (v{})\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:204
+msgid "RESUMEN DEL COMPLEMENTO [NVDA.ES]\n"
+msgstr "СВОДКА ПО ДОПОЛНЕНИЮ [NVDA.ES]\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:209
+msgid "Web: {}\n"
+msgstr "Сайт: {}\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:209
+msgid "No disponible"
+msgstr "Н/Д"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:214
+msgid "ENLACES:"
+msgstr "ССЫЛКИ:"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:216
+msgid "Canal {}: v{} (Min NVDA: {})\n"
+msgstr "Канал {}: v{} (Min NVDA: {})\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:218
+msgid "RESUMEN DEL COMPLEMENTO [OFICIAL]\n"
+msgstr "СВОДКА ПО ДОПОЛНЕНИЮ [ОФИЦИАЛЬНОЕ]\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:254
+msgid "RESUMEN (TRADUCIDO - NVDA.ES)\n"
+msgstr "СВОДКА (ПЕРЕВЕДЕНА — NVDA.ES)\n"
+
+#: TiendaNVDA/dialogos_tienda_unificada.py:344
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: {source}\n"
+"{explanation}"
+msgstr ""
+"Индикатор: {indicator}\n"
+"Источник: {source}\n"
+"{explanation}"
+
+#: TiendaNVDA/empaquetador.py:46
+msgid "Complemento empaquetado correctamente en: {}"
+msgstr "Дополнение успешно упаковано в: {}"
+
+#: TiendaNVDA/empaquetador.py:49
+msgid "Error al empaquetar el complemento: {}"
+msgstr "Ошибка упаковки дополнения: {}"
+
+#: TiendaNVDA/hilos.py:63
+msgid ""
+"No se pudo conectar al servidor y no hay datos en caché. ¿Desea intentar "
+"cambiar de servidor?"
+msgstr ""
+"Не удалось подключиться к серверу, и нет данных в кэше. Попробовать сменить "
+"сервер?"
+
+#: TiendaNVDA/hilos.py:69
+msgid ""
+"Trabajando en modo OFFLINE. Los datos mostrados pueden estar "
+"desactualizados. Algunas descargas podrían no funcionar."
+msgstr ""
+"Работа в ОФЛАЙН-режиме. Отображаемые данные могут быть устаревшими. "
+"Некоторые загрузки могут не работать."
+
+#: TiendaNVDA/hilos.py:80
+msgid "No hay actualizaciones disponibles."
+msgstr "Нет доступных обновлений."
+
+#: TiendaNVDA/hilos.py:90
+msgid "No se pudieron obtener complementos de la tienda oficial."
+msgstr "Не удалось получить дополнения из официального магазина."
+
+#: TiendaNVDA/hilos.py:99
+msgid "No hay actualizaciones oficiales disponibles."
+msgstr "Нет доступных официальных обновлений."
+
+#: buildVars.py:21
+msgid "Tienda de Complementos para NVDA"
+msgstr "TiendaNVDA (Магазин дополнений NVDA)"
+
+#: buildVars.py:24
+msgid ""
+"Tienda Unificada de Complementos para NVDA.\n"
+"Integra la tienda de NVDA.ES y la tienda oficial de NV Access en una única "
+"interfaz.\n"
+"Características: indicadores de estado, gestión local (deshabilitar/"
+"eliminar), backup/restauración,\n"
+"modo offline, traducción con caché, reintentos de descarga, comprobación de "
+"dependencias\n"
+"y empaquetador de complementos."
+msgstr ""
+"Единый магазин дополнений для NVDA.\n"
+"Дополнение TiendaNVDA - интегрирует магазин NVDA.ES и официальный магазин NV "
+"Access в единый интерфейс.\n"
+"Возможности: индикаторы состояния, локальное управление (отключение/"
+"удаление), резервное копирование/восстановление,\n"
+"офлайн-режим, перевод с кэшированием, повторные попытки загрузки, проверка "
+"зависимостей\n"
+"и упаковщик дополнений.\n"
+"Все особенности дополнения описаны в подробном справочном руководстве."
+
+#: buildVars.py:33
+msgid ""
+"Primera versión de la Tienda Unificada.\n"
+"Integración completa de NVDA.ES y tienda oficial.\n"
+"Nuevo sistema de caché multinivel, backup/restauración y modo offline."
+msgstr ""
+"Первая версия единого магазина.\n"
+"Полная интеграция NVDA.ES и официального магазина.\n"
+"Новая многоуровневая система кэширования, резервное копирование/"
+"восстановление и офлайн-режим."
