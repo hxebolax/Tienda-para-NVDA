@@ -27,12 +27,12 @@ Características: indicadores de estado, gestión local (deshabilitar/eliminar),
 modo offline, traducción con caché, reintentos de descarga, comprobación de dependencias
 y empaquetador de complementos."""),
 	# version
-	addon_version="2026.05.10",
+	addon_version="2026.05.11",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""Primera versión de la Tienda Unificada.
-Integración completa de NVDA.ES y tienda oficial.
-Nuevo sistema de caché multinivel, backup/restauración y modo offline."""),
+	addon_changelog=_("""*Agregado un actualizador silencioso de idiomas del complemento (en fase beta).
+* Agregado idioma ruso (Valentín N. Kupriyanov).
+* Agregado idioma turco (Umut Korkmaz)."""),
 	# Author(s)
 	addon_author="Héctor J. Benítez Corredera <xebolax@gmail.com>",
 	# URL for the add-on documentation support

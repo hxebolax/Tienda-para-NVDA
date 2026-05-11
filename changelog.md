@@ -1,3 +1,4 @@
-## Versión 2026.05.10
+## Versión 2026.05.11
 
-* Agregado idioma turco.
+*Agregado un actualizador silencioso de idiomas del complemento (en fase beta)
+* Agregado idioma ruso (Valentín N. Kupriyanov)

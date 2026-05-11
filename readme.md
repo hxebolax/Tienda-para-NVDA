@@ -505,6 +505,12 @@ El complemento incluye múltiples protecciones para garantizar una experiencia s
 <a name="registro-de-cambios"></a>
 ## Registro de cambios
 
+### Versión 2026.05.11
+
+*Agregado un actualizador silencioso de idiomas del complemento (en fase beta)
+* Agregado idioma ruso (Valentín N. Kupriyanov)
+
+
 ### Versión 2026.05.10
 
 * Agregado idioma turco (Umut Korkmaz)
