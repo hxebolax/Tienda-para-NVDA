@@ -435,6 +435,14 @@ Koruma özellikleri:
 
 ## Değişiklik günlüğü
 
+### Sürüm 2026.05.11
+
+* Rusça dil desteği eklendi. (Valentín N. Kupriyanov)
+
+### Sürüm 2026.05.10
+
+* Türkçe dil desteği eklendi. (Umut KORKMAZ)
+
 ### Sürüm 2026.05.09
 
 * NVDA için Birleşik Eklenti Mağazası’nın ilk sürümü
