@@ -12,6 +12,7 @@
 import os
 import json
 import hashlib
+import ssl
 import zipfile
 import shutil
 import threading
@@ -73,7 +74,7 @@ class ActualizadorRecursos:
 		"intervalo_horas": 24,
 		
 		# ── Notificaciones ──
-		"notificar_usuario": True,
+		"notificar_usuario": False,
 		"notificar_sin_cambios": False,
 		"mensaje_exito": "Recursos del complemento actualizados. Reinicie NVDA para aplicar todos los cambios.",
 		"mensaje_sin_cambios": "Los recursos ya están actualizados.",
@@ -152,6 +153,9 @@ class ActualizadorRecursos:
 			f"docs={self._config['actualizar_documentacion']}"
 		)
 		
+		# Contexto SSL robusto (resuelve problemas de certificados en NVDA)
+		self._contexto_ssl = self._crearContextoSSL()
+		
 		# Arrancar según el modo
 		modo = self._config["modo_comprobacion"]
 		if modo == "inicio":
@@ -210,7 +214,14 @@ class ActualizadorRecursos:
 	# ══════════════════════════════════════════════════════════════
 	
 	def _ejecutarComprobacion(self):
-		"""Proceso completo en hilo secundario."""
+		"""Proceso completo en hilo secundario.
+		
+		Manejo de errores de red:
+		- Si no hay conexión o la API falla, NO se actualiza fecha_comprobacion
+		  para que reintente en el próximo inicio de NVDA.
+		- Los errores de red se registran con log.info (visibles para diagnóstico).
+		- Solo los errores inesperados (no de red) se notifican al usuario.
+		"""
 		resultado = {"exito": False, "instalados": 0, "idiomas": [], "docs": []}
 		try:
 			if not self._debeComprobar():
@@ -221,23 +232,42 @@ class ActualizadorRecursos:
 			self._invocarCallback("callback_progreso", 0, 0, "comprobando")
 			
 			from datetime import datetime, timezone
+			
+			# Asegurar que el archivo de estado siempre existe
+			estado = self._cargarEstado()
+			if not os.path.exists(self._ruta_estado):
+				self._guardarEstado(estado)
+			
+			# Obtener info de la release (incluye hash del body)
+			# Si falla por red, NO guardamos fecha_comprobacion → reintenta después
+			try:
+				info = self._obtenerInfoRelease()
+			except (URLError, HTTPError, OSError) as e:
+				# Sin conexión o error de red → no molestar, reintentará
+				log.info(f"ActualizadorRecursos: sin conexión o error de red, reintentará: {e}")
+				self._invocarCallback("callback_finalizado", True, resultado)
+				return
+			except Exception as e:
+				log.warning(f"ActualizadorRecursos: sin release de recursos: {e}")
+				self._invocarCallback("callback_finalizado", True, resultado)
+				return
+			
+			# La API respondió correctamente → ahora sí guardar fecha de comprobación
 			estado = self._cargarEstado()
 			estado["fecha_comprobacion"] = datetime.now(timezone.utc).isoformat()
 			self._guardarEstado(estado)
 			
-			# Obtener info de la release
-			try:
-				info = self._obtenerInfoRelease()
-			except Exception as e:
-				log.debug(f"Sin release de recursos: {e}")
-				self._invocarCallback("callback_finalizado", True, resultado)
-				return
-			
-			# Comparar hashes
-			hash_remoto = self._obtenerHashRemoto()
+			# Comparar hash de la release con el local
+			hash_remoto = info.get("hash_remoto", "")
 			hash_local = estado.get("hash_combinado", "")
+			
+			log.info(
+				f"ActualizadorRecursos: hash_remoto={hash_remoto[:16] if hash_remoto else '(vacío)'}, "
+				f"hash_local={hash_local[:16] if hash_local else '(vacío)'}"
+			)
+			
 			if hash_remoto and hash_local and hash_remoto == hash_local:
-				log.debug("ActualizadorRecursos: sin cambios")
+				log.info("ActualizadorRecursos: recursos actualizados, sin cambios")
 				if self._config["notificar_sin_cambios"]:
 					self._notificar(self._config["mensaje_sin_cambios"])
 				resultado["exito"] = True
@@ -253,9 +283,29 @@ class ActualizadorRecursos:
 					return
 			
 			# Descargar con progreso
-			datos = self._descargarConProgreso(info["url_descarga"])
+			try:
+				datos = self._descargarConProgreso(info["url_descarga"])
+			except (URLError, HTTPError, OSError) as e:
+				log.info(f"ActualizadorRecursos: error de red en descarga, reintentará: {e}")
+				self._invocarCallback("callback_finalizado", True, resultado)
+				return
+			
 			if not datos:
 				self._invocarCallback("callback_error", Exception("Descarga fallida"))
+				return
+			
+			# Extraer hash del recursos_info.json dentro del ZIP
+			hash_zip = self._extraerHashDelZip(datos)
+			if hash_zip and hash_local and hash_zip == hash_local:
+				log.info("ActualizadorRecursos: ZIP verificado, sin cambios reales")
+				if self._config["notificar_sin_cambios"]:
+					self._notificar(self._config["mensaje_sin_cambios"])
+				resultado["exito"] = True
+				# Guardar el hash del ZIP como referencia
+				estado = self._cargarEstado()
+				estado["hash_combinado"] = hash_zip
+				self._guardarEstado(estado)
+				self._invocarCallback("callback_finalizado", True, resultado)
 				return
 			
 			# Respaldo si está configurado
@@ -267,7 +317,9 @@ class ActualizadorRecursos:
 			
 			if resultado["instalados"] > 0:
 				estado = self._cargarEstado()
-				estado["hash_combinado"] = self._calcularHashCombinado()
+				# Usar el hash del ZIP si está disponible (fuente de verdad),
+				# sino calcular localmente
+				estado["hash_combinado"] = hash_zip if hash_zip else self._calcularHashCombinado()
 				estado["fecha_actualizacion"] = datetime.now(timezone.utc).isoformat()
 				estado["ultimo_resultado"] = {
 					"idiomas": resultado["idiomas"],
@@ -280,11 +332,27 @@ class ActualizadorRecursos:
 					self._recargarTraducciones()
 				
 				resultado["exito"] = True
+				log.info(
+					f"ActualizadorRecursos: actualización completada, "
+					f"hash={estado['hash_combinado'][:16]}..."
+				)
 				if self._config["notificar_usuario"]:
 					self._notificar(self._config["mensaje_exito"])
+			else:
+				log.info("ActualizadorRecursos: 0 archivos instalados del paquete")
+				# Aun así guardar el hash del ZIP para no re-descargar
+				if hash_zip:
+					estado = self._cargarEstado()
+					estado["hash_combinado"] = hash_zip
+					self._guardarEstado(estado)
+				resultado["exito"] = True
 			
 			self._invocarCallback("callback_finalizado", resultado["exito"], resultado)
 		
+		except (URLError, HTTPError, OSError) as e:
+			# Error de red genérico no capturado antes
+			log.info(f"ActualizadorRecursos: error de red: {e}")
+			self._invocarCallback("callback_finalizado", False, resultado)
 		except Exception as e:
 			log.error(f"ActualizadorRecursos: {e}", exc_info=True)
 			if self._config["notificar_usuario"]:
@@ -297,7 +365,7 @@ class ActualizadorRecursos:
 		log.info(f"ActualizadorRecursos: descargando {url}")
 		req = Request(url, headers=self._encabezados)
 		
-		with urlopen(req, timeout=self._config["timeout_http"]) as resp:
+		with urlopen(req, timeout=self._config["timeout_http"], context=self._contexto_ssl) as resp:
 			total = int(resp.headers.get("Content-Length", 0))
 			descargados = 0
 			bloques = []
@@ -525,42 +593,93 @@ class ActualizadorRecursos:
 		return self._nombre_cache
 	
 	def _obtenerInfoRelease(self) -> dict:
+		"""Obtiene URL de descarga y hash remoto desde la release de GitHub.
+		
+		El hash se extrae del body de la release (línea **Hash:** `xxx`).
+		Esto es más fiable que depender de un archivo en el repositorio.
+		"""
 		url = f"{self._url_api}/releases/tags/{self._config['tag_release']}"
 		datos = self._peticionHTTP(url)
+		
+		# Buscar el asset del paquete de recursos
+		url_descarga = None
 		for asset in datos.get("assets", []):
 			if asset.get("name", "").endswith("_recursos.zip"):
-				return {"url_descarga": asset["browser_download_url"]}
-		raise Exception("Paquete de recursos no encontrado en la release")
+				url_descarga = asset["browser_download_url"]
+				break
+		
+		if not url_descarga:
+			raise Exception("Paquete de recursos no encontrado en la release")
+		
+		# Extraer hash del body de la release
+		hash_remoto = ""
+		body = datos.get("body", "")
+		if body:
+			import re
+			# Buscar patrón: **Hash:** `hash_hex`
+			m = re.search(r'\*\*Hash:\*\*\s*`([a-fA-F0-9]{64})`', body)
+			if m:
+				hash_remoto = m.group(1)
+				log.debug(f"ActualizadorRecursos: hash de release={hash_remoto[:16]}...")
+		
+		return {"url_descarga": url_descarga, "hash_remoto": hash_remoto}
 	
-	def _obtenerHashRemoto(self) -> str:
+	def _extraerHashDelZip(self, datos_zip: bytes) -> str:
+		"""Extrae el hash_combinado del recursos_info.json dentro del ZIP.
+		
+		Esta es la fuente de verdad más fiable para el hash, ya que el
+		archivo se genera en el mismo workflow que crea el ZIP.
+		"""
 		try:
-			url = (
-				f"https://raw.githubusercontent.com/"
-				f"{self.usuario_github}/{self.nombre_repositorio}/"
-				f"{self._config['rama']}/addon/{self._config['archivo_info_remoto']}"
-			)
-			return self._peticionHTTP(url).get("hash_combinado", "")
-		except Exception:
-			return ""
+			with zipfile.ZipFile(BytesIO(datos_zip)) as zf:
+				nombre_info = self._config["archivo_info_remoto"]
+				if nombre_info in zf.namelist():
+					info = json.loads(zf.read(nombre_info).decode("utf-8"))
+					hash_val = info.get("hash_combinado", "")
+					if hash_val:
+						log.debug(f"ActualizadorRecursos: hash del ZIP={hash_val[:16]}...")
+					return hash_val
+		except Exception as e:
+			log.warning(f"ActualizadorRecursos: no se pudo leer hash del ZIP: {e}")
+		return ""
 	
 	def _calcularHashCombinado(self) -> str:
+		"""Calcula hash combinado local con formato idéntico al workflow.
+		
+		IMPORTANTE: Las rutas en los hashes deben incluir el prefijo
+		'locale/' o 'doc/' para coincidir con el formato del workflow
+		de GitHub Actions.
+		"""
 		hashes = []
 		if self._config["actualizar_idiomas"] and os.path.isdir(self._ruta_idiomas):
-			hashes.extend(self._hashDir(self._ruta_idiomas, self._config["extensiones_idiomas"]))
+			hashes.extend(self._hashDir(
+				self._ruta_idiomas,
+				self._config["extensiones_idiomas"],
+				prefijo=self._config["directorio_idiomas"],
+			))
 		if self._config["actualizar_documentacion"] and os.path.isdir(self._ruta_docs):
-			hashes.extend(self._hashDir(self._ruta_docs, self._config["extensiones_documentacion"]))
+			hashes.extend(self._hashDir(
+				self._ruta_docs,
+				self._config["extensiones_documentacion"],
+				prefijo=self._config["directorio_documentacion"],
+			))
 		if not hashes:
 			return ""
 		return hashlib.sha256("\n".join(sorted(hashes)).encode()).hexdigest()
 	
-	def _hashDir(self, directorio, extensiones) -> list:
+	def _hashDir(self, directorio, extensiones, prefijo="") -> list:
+		"""Genera lista de hashes de archivos en formato 'hash  prefijo/ruta'."""
 		r = []
 		for raiz, _, archivos in os.walk(directorio):
 			for f in sorted(archivos):
 				if any(f.endswith(e) for e in extensiones):
 					ruta = os.path.join(raiz, f)
-					h = hashlib.sha256(open(ruta, "rb").read()).hexdigest()
+					with open(ruta, "rb") as fh:
+						h = hashlib.sha256(fh.read()).hexdigest()
 					rel = os.path.relpath(ruta, directorio).replace(os.sep, "/")
+					# Incluir prefijo para coincidir con formato del workflow
+					if prefijo:
+						rel = f"{prefijo}/{rel}"
 					r.append(f"{h}  {rel}")
 		return r
 	
@@ -615,9 +734,61 @@ class ActualizadorRecursos:
 	
 	def _peticionHTTP(self, url, binario=False):
 		req = Request(url, headers=self._encabezados)
-		with urlopen(req, timeout=self._config["timeout_http"]) as resp:
+		with urlopen(req, timeout=self._config["timeout_http"], context=self._contexto_ssl) as resp:
 			datos = resp.read()
 			return datos if binario else json.loads(datos.decode("utf-8"))
+	
+	@staticmethod
+	def _crearContextoSSL() -> ssl.SSLContext:
+		"""Crea un contexto SSL robusto probando múltiples fuentes de certificados.
+		
+		Orden de prioridad:
+		1. certifi (si está instalado como dependencia)
+		2. Certificados del sistema operativo (Windows/macOS/Linux)
+		3. Contexto sin verificación (último recurso, con advertencia)
+		
+		Esto resuelve el error SSL_CERTIFICATE_VERIFY_FAILED que ocurre
+		en Python embebido (como NVDA) cuando no tiene acceso al almacén
+		de certificados del sistema.
+		"""
+		# 1. Intentar con certifi
+		try:
+			import certifi
+			ctx = ssl.create_default_context(cafile=certifi.where())
+			log.debug("ActualizadorRecursos: SSL usando certifi")
+			return ctx
+		except (ImportError, Exception):
+			pass
+		
+		# 2. Intentar con certificados del sistema
+		try:
+			ctx = ssl.create_default_context()
+			# En Windows, cargar desde el almacén del sistema
+			if hasattr(ctx, 'load_default_certs'):
+				ctx.load_default_certs()
+			# Verificar que funciona con una conexión de prueba
+			import urllib.request
+			req = urllib.request.Request(
+				"https://api.github.com",
+				method="HEAD",
+				headers={"User-Agent": "NVDA-SSL-Test"}
+			)
+			with urlopen(req, timeout=10, context=ctx) as resp:
+				pass
+			log.debug("ActualizadorRecursos: SSL usando certificados del sistema")
+			return ctx
+		except Exception:
+			pass
+		
+		# 3. Último recurso: sin verificación (con advertencia)
+		log.warning(
+			"ActualizadorRecursos: no se encontraron certificados SSL válidos. "
+			"Usando conexión sin verificación de certificados."
+		)
+		ctx = ssl.create_default_context()
+		ctx.check_hostname = False
+		ctx.verify_mode = ssl.CERT_NONE
+		return ctx
 	
 	def _recargarTraducciones(self):
 		if not _EN_NVDA:
@@ -633,15 +804,20 @@ class ActualizadorRecursos:
 				]
 				for k in claves:
 					del _gt._translations[k]
-			log.info("Caché de traducciones invalidada")
+			log.info(
+				"ActualizadorRecursos: caché de traducciones limpiada, "
+				"los nuevos archivos .mo se cargarán en el próximo reinicio de NVDA"
+			)
 		except Exception as e:
 			log.warning(f"No se pudo recargar: {e}")
 	
 	def _notificar(self, mensaje):
+		"""Registra el mensaje en el log. Si notificar_usuario=True, también lo habla."""
+		log.info(f"ActualizadorRecursos: {mensaje}")
 		if not _EN_NVDA:
-			log.info(f"[Notificación] {mensaje}")
 			return
-		try:
-			wx.CallAfter(ui.message, mensaje)
-		except Exception:
-			pass
+		if self._config["notificar_usuario"]:
+			try:
+				wx.CallAfter(ui.message, mensaje)
+			except Exception:
+				pass
