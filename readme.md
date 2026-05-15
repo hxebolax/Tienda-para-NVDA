@@ -34,7 +34,8 @@ Tienda Unificada de Complementos para NVDA: integra la **Tienda de la Comunidad 
 17. [Servidores personalizados](#servidores-personalizados)
 18. [Observaciones y protecciones](#observaciones-y-protecciones)
 19. [Resumen de teclas rápidas](#resumen-de-teclas-rapidas)
-20. [Registro de cambios](#registro-de-cambios)
+20. [Colaboradores](#colaboradores)
+21. [Registro de cambios](#registro-de-cambios)
 
 ---
 
@@ -501,15 +502,24 @@ El complemento incluye múltiples protecciones para garantizar una experiencia s
 | Cerrar ventana | `Alt+C` / `Escape` / `Alt+F4` |
 
 ---
+<a name="colaboradores"></a>
+## Colaboradores
+
+* Idioma turco (Umut Korkmaz)
+* Idioma ruso (Valentín N. Kupriyanov)
+* Idioma polaco (Kazimierz Parzych)
 
 <a name="registro-de-cambios"></a>
 ## Registro de cambios
+
+### Versión 2026.05.13
+
+*Corregido  el actualizador silencioso de idiomas del complemento (en fase beta)
 
 ### Versión 2026.05.11
 
 *Agregado un actualizador silencioso de idiomas del complemento (en fase beta)
 * Agregado idioma ruso (Valentín N. Kupriyanov)
-
 
 ### Versión 2026.05.10
 
