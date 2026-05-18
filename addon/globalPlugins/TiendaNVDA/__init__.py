@@ -108,6 +108,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			actualizar_documentacion=True,
 			notificar_usuario=True,
 			notificar_sin_cambios=False,
+			menuHerramientas=True,
 		)
 
 	def postStartupHandler(self):

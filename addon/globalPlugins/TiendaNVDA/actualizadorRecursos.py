@@ -80,6 +80,7 @@ class ActualizadorRecursos:
 		"mensaje_sin_cambios": "Los recursos ya están actualizados.",
 		"mensaje_error": "Error al actualizar los recursos del complemento.",
 		"mensaje_comprobando": "Comprobando actualizaciones de recursos...",
+		"menuHerramientas": False,  # Integrar menú en Herramientas de NVDA
 		
 		# ── Callbacks del desarrollador ──
 		# callback_progreso(descargados: int, total: int, etapa: str)
@@ -137,6 +138,7 @@ class ActualizadorRecursos:
 		self._timer = None
 		self._detenido = threading.Event()
 		self._nombre_cache = None
+		self._dialogo_progreso = None
 		
 		# Encabezados HTTP (con token opcional para repos privados)
 		self._encabezados = {
@@ -163,6 +165,10 @@ class ActualizadorRecursos:
 		elif modo == "periodico":
 			self.comprobarActualizacion()
 			self._iniciarTimer()
+		
+		# Integrar menú en Herramientas si está configurado
+		if self._config["menuHerramientas"]:
+			self.integrarMenuHerramientas()
 	
 	# ══════════════════════════════════════════════════════════════
 	# API PÚBLICA
@@ -810,6 +816,233 @@ class ActualizadorRecursos:
 			)
 		except Exception as e:
 			log.warning(f"No se pudo recargar: {e}")
+	
+	# ══════════════════════════════════════════════════════════════
+	# INTEGRACIÓN CON MENÚ HERRAMIENTAS
+	# ══════════════════════════════════════════════════════════════
+	
+	def integrarMenuHerramientas(self):
+		"""
+		Integra un menú en Herramientas > Actualizar recursos del complemento.
+		Crea el submenú si no existe y agrega un item con el nombre del complemento.
+		
+		Llamar desde __init__ del globalPlugin después de instanciar ActualizadorRecursos.
+		Ejemplo:
+			self._actualizador = ActualizadorRecursos(...)
+			self._actualizador.integrarMenuHerramientas()
+		"""
+		if not _EN_NVDA:
+			log.warning("integrarMenuHerramientas: no disponible fuera de NVDA")
+			return
+		
+		try:
+			import gui
+			from gui import guiHelper
+			from gui.settingsDialogs import SettingsPanel
+			
+			# Obtener el menú Herramientas (Tools menu)
+			menu_herramientas = gui.mainFrame.sysTrayIcon.toolsMenu
+			if not menu_herramientas:
+				log.error("ActualizadorRecursos: no se encontró el menú Herramientas")
+				return
+			
+			# Buscar si ya existe el submenú "Actualizar recursos del complemento"
+			submenu_actualizar = None
+			for item in menu_herramientas.GetMenuItems():
+				# Verificar si el item tiene un submenú y coincide con nuestro nombre
+				submenu = item.GetSubMenu()
+				if submenu and item.GetItemLabel() == "Actualizar recursos del complemento":
+					submenu_actualizar = submenu
+					break
+			
+			# Si no existe, crearlo
+			if not submenu_actualizar:
+				submenu_actualizar = wx.Menu()
+				menu_herramientas.AppendSubMenu(
+					submenu_actualizar,
+					"Actualizar recursos del complemento",
+					"Opciones para actualizar los recursos del complemento"
+				)
+				log.info("ActualizadorRecursos: submenú 'Actualizar recursos' creado")
+			else:
+				log.debug("ActualizadorRecursos: submenú 'Actualizar recursos' ya existe")
+			
+			# Agregar item de menú con el nombre del complemento
+			nombre_complemento = self._obtenerNombre()
+			item_id = wx.NewId()
+			submenu_actualizar.Append(
+				item_id,
+				nombre_complemento,
+				f"Actualizar recursos de {nombre_complemento}"
+			)
+			
+			# Vincular el evento del menú al manejador
+			gui.mainFrame.sysTrayIcon.Bind(
+				wx.EVT_MENU,
+				lambda evt: self._actualizarDesdeMenu(),
+				id=item_id
+			)
+			
+			log.info(f"ActualizadorRecursos: item de menú '{nombre_complemento}' agregado")
+		
+		except Exception as e:
+			log.error(f"ActualizadorRecursos: error al integrar menú: {e}", exc_info=True)
+	
+	def _actualizarDesdeMenu(self):
+		"""Manejador de evento del menú. Inicia la actualización con diálogo de progreso."""
+		try:
+			import gui
+			
+			# Mostrar diálogo de progreso
+			self._dialogo_progreso = wx.ProgressDialog(
+				"Actualizando recursos",
+				"Preparando actualización...",
+				maximum=100,
+				parent=gui.mainFrame,
+				style=wx.PD_APP_MODAL | wx.PD_AUTO_HIDE | wx.PD_CAN_ABORT,
+			)
+			
+			# Configurar callbacks para mostrar progreso
+			config_original = {
+				"callback_progreso": self._config.get("callback_progreso"),
+				"callback_finalizado": self._config.get("callback_finalizado"),
+				"callback_error": self._config.get("callback_error"),
+			}
+			
+			# Usar nuestros callbacks que manejan el diálogo
+			self._config["callback_progreso"] = self._alProgreso
+			self._config["callback_finalizado"] = self._alFinalizado
+			self._config["callback_error"] = self._alError
+			
+			# Guardar los callbacks originales para restaurarlos después
+			self._config_callbacks_originales = config_original
+			
+			# Iniciar la actualización
+			self.forzarActualizacion()
+		
+		except Exception as e:
+			log.error(f"ActualizadorRecursos: error al iniciar actualización desde menú: {e}", exc_info=True)
+			if hasattr(self, '_dialogo_progreso') and self._dialogo_progreso:
+				wx.CallAfter(self._dialogo_progreso.Destroy)
+	
+	def _alProgreso(self, descargados, total, etapa):
+		"""Callback de progreso para actualizar el diálogo."""
+		if not hasattr(self, '_dialogo_progreso') or not self._dialogo_progreso:
+			return
+		
+		try:
+			if etapa == "descargando" and total > 0:
+				porcentaje = int((descargados / total) * 100)
+				mensaje = f"Descargando recursos... {porcentaje}%"
+				wx.CallAfter(self._actualizarDialogoProgreso, porcentaje, mensaje)
+			elif etapa == "instalando_idiomas":
+				wx.CallAfter(self._actualizarDialogoProgreso, -1, "Instalando traducciones...")
+			elif etapa == "instalando_docs":
+				wx.CallAfter(self._actualizarDialogoProgreso, -1, "Instalando documentación...")
+			elif etapa == "comprobando":
+				wx.CallAfter(self._actualizarDialogoProgreso, -1, "Comprobando actualizaciones...")
+		except Exception as e:
+			log.warning(f"ActualizadorRecursos: error en callback de progreso: {e}")
+	
+	def _actualizarDialogoProgreso(self, valor, mensaje):
+		"""Actualiza el diálogo de progreso de forma segura."""
+		if not hasattr(self, '_dialogo_progreso') or not self._dialogo_progreso:
+			return
+		
+		try:
+			if valor < 0:
+				# Usar Pulse para progreso indeterminado
+				self._dialogo_progreso.Pulse(mensaje)
+			else:
+				# Usar Update para progreso determinado
+				self._dialogo_progreso.Update(valor, mensaje)
+		except Exception:
+			pass
+	
+	def _alFinalizado(self, exito, resultado):
+		"""Callback de finalización. Muestra el resultado y cierra el diálogo."""
+		# Cerrar el diálogo de progreso
+		wx.CallAfter(self._cerrarDialogoProgreso)
+		
+		# Restaurar callbacks originales
+		if hasattr(self, '_config_callbacks_originales'):
+			for clave, valor in self._config_callbacks_originales.items():
+				self._config[clave] = valor
+			del self._config_callbacks_originales
+		
+		try:
+			import gui
+			
+			if exito:
+				if resultado.get("instalados", 0) > 0:
+					# Actualizaciones instaladas
+					idiomas = resultado.get("idiomas", [])
+					docs = resultado.get("docs", [])
+					mensaje = f"Se actualizaron {resultado['instalados']} archivos.\n"
+					if idiomas:
+						mensaje += f"Idiomas: {', '.join(idiomas)}\n"
+					if docs:
+						mensaje += f"Documentación: {', '.join(docs)}\n"
+					mensaje += "\nReinicie NVDA para aplicar todos los cambios."
+					
+					wx.CallAfter(
+						gui.messageBox,
+						mensaje,
+						"Actualización completada",
+						wx.OK | wx.ICON_INFORMATION,
+					)
+				else:
+					# Sin cambios
+					wx.CallAfter(
+						gui.messageBox,
+						"Los recursos ya están actualizados.",
+						"Sin cambios",
+						wx.OK | wx.ICON_INFORMATION,
+					)
+			else:
+				wx.CallAfter(
+					gui.messageBox,
+					"No se encontraron actualizaciones o hubo un error de conexión.",
+					"Actualización",
+					wx.OK | wx.ICON_INFORMATION,
+				)
+		except Exception as e:
+			log.error(f"ActualizadorRecursos: error en callback finalizado: {e}", exc_info=True)
+	
+	def _alError(self, excepcion):
+		"""Callback de error. Muestra el error y cierra el diálogo."""
+		# Cerrar el diálogo de progreso
+		wx.CallAfter(self._cerrarDialogoProgreso)
+		
+		# Restaurar callbacks originales
+		if hasattr(self, '_config_callbacks_originales'):
+			for clave, valor in self._config_callbacks_originales.items():
+				self._config[clave] = valor
+			del self._config_callbacks_originales
+		
+		try:
+			import gui
+			
+			mensaje_error = str(excepcion)
+			log.error(f"ActualizadorRecursos: error en actualización desde menú: {mensaje_error}", exc_info=True)
+			
+			wx.CallAfter(
+				gui.messageBox,
+				f"Error al actualizar recursos:\n\n{mensaje_error}",
+				"Error de actualización",
+				wx.OK | wx.ICON_ERROR,
+			)
+		except Exception as e:
+			log.error(f"ActualizadorRecursos: error en callback de error: {e}", exc_info=True)
+	
+	def _cerrarDialogoProgreso(self):
+		"""Cierra y destruye el diálogo de progreso de forma segura."""
+		if hasattr(self, '_dialogo_progreso') and self._dialogo_progreso:
+			try:
+				self._dialogo_progreso.Destroy()
+			except Exception:
+				pass
+			self._dialogo_progreso = None
 	
 	def _notificar(self, mensaje):
 		"""Registra el mensaje en el log. Si notificar_usuario=True, también lo habla."""
