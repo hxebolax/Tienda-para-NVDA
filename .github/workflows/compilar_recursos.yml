@@ -366,7 +366,7 @@ jobs:
           ls -lh "${{ env.NOMBRE_COMPLEMENTO }}_recursos.zip"
 
       - name: Publicar paquete de recursos
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ env.TAG_RELEASE }}
           name: "🌐 Recursos - ${{ steps.meta.outputs.fecha }}"
