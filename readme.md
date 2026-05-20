@@ -512,6 +512,12 @@ El complemento incluye múltiples protecciones para garantizar una experiencia s
 <a name="registro-de-cambios"></a>
 ## Registro de cambios
 
+### Versión 2026.05.20
+
+*Corregido  el actualizador silencioso de idiomas del complemento (en fase beta)
+
+Agregadas las mejoras de Javi Dominguez (PR #1 y #2)
+
 ### Versión 2026.05.13
 
 *Corregido  el actualizador silencioso de idiomas del complemento (en fase beta)
