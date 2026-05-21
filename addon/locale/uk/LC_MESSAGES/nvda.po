@@ -1,0 +1,1842 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the 'TiendaNVDA' package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TiendaNVDA\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2026-05-17 14:31+0300\n"
+"PO-Revision-Date: 2026-05-21 17:29+0300\n"
+"Last-Translator: Volodymyr Pyrih <vp88.mobile@gmail.com>\n"
+"Language-Team: Volodymyr Pyrih\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SearchPath-0: addon/globalPlugins/TiendaNVDA/__init__.py\n"
+"X-Poedit-SearchPath-1: addon/globalPlugins/TiendaNVDA/ajustes.py\n"
+"X-Poedit-SearchPath-2: addon/globalPlugins/TiendaNVDA/basedatos.py\n"
+"X-Poedit-SearchPath-3: buildVars.py\n"
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:162
+msgid "El complemento está instalado y activo."
+msgstr "Додаток встановлено та увімкнено."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:163
+msgid "Hay una actualización disponible para este complemento."
+msgstr "Доступне оновлення для цього додатка."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:164
+msgid ""
+"Hay una actualización disponible pero no es compatible con su versión de "
+"NVDA."
+msgstr "Доступне оновлення, але воно не сумісне з вашою версією NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:165
+msgid "El complemento está instalado pero deshabilitado."
+msgstr "Додаток встановлено, але його вимкнено."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:166
+msgid "El complemento está pendiente de eliminar. Requiere reiniciar NVDA."
+msgstr "Додаток очікує на видалення. Необхідно перезапустити NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:167
+msgid ""
+"El complemento está instalado pero bloqueado por incompatibilidad con su "
+"versión de NVDA."
+msgstr ""
+"Додаток встановлено, але його роботу заблоковано через несумісність із вашою "
+"версією NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:168
+msgid ""
+"El complemento no es compatible con su versión de NVDA y no está instalado."
+msgstr "Додаток не встановлено, оскільки він не сумісний з вашою версією NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:169
+msgid "El complemento no está instalado."
+msgstr "Додаток не встановлено."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:171
+msgid "Estado desconocido."
+msgstr "Невідомий стан."
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:174
+msgid "Fuente: Tienda NVDA.ES (comunidad hispana)"
+msgstr "Джерело: Магазин NVDA.ES (іспаномовна спільнота)"
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:175
+msgid "Fuente: Tienda Oficial de NVDA"
+msgstr "Джерело: офіційний магазин NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\addon_manager.py:176
+msgid "Fuente: Tienda Unificada de Complementos"
+msgstr "Джерело: об'єднаний магазин додатків"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:79
+msgid "Servidor comunidad hispanohablante"
+msgstr "Сервер іспаномовної спільноти"
+
+#. Título de la aplicación
+#. Translators: title for the addon store settings category
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:148
+#: addon\globalPlugins\TiendaNVDA\__init__.py:166
+#: addon\globalPlugins\TiendaNVDA\__init__.py:217
+#: addon\globalPlugins\TiendaNVDA\__init__.py:221
+#: addon\globalPlugins\TiendaNVDA\__init__.py:225
+#: addon\globalPlugins\TiendaNVDA\__init__.py:229
+#: addon\globalPlugins\TiendaNVDA\__init__.py:233
+#: addon\globalPlugins\TiendaNVDA\__init__.py:276
+msgid "Tienda de Complementos NVDA"
+msgstr "Магазин додатків NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:168
+msgid "15 minutos"
+msgstr "15 хвилин"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:169
+msgid "30 minutos"
+msgstr "30 хвилин"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:170
+msgid "45 minutos"
+msgstr "45 хвилин"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:171
+msgid "1 hora"
+msgstr "1 година"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:172
+msgid "12 horas"
+msgstr "12 годин"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:173
+msgid "1 día"
+msgstr "1 день"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:174
+msgid "1 semana"
+msgstr "1 тиждень"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:179
+msgid "Alemán"
+msgstr "Німецька"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:180
+msgid "Árabe"
+msgstr "Арабська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:181
+msgid "Croata"
+msgstr "Хорватська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:182
+msgid "Español"
+msgstr "Іспанська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:183
+msgid "Francés"
+msgstr "Французька"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:184
+msgid "Inglés"
+msgstr "Англійська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:185
+msgid "Italiano"
+msgstr "Італійська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:186
+msgid "Polaco"
+msgstr "Польська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:187
+msgid "Portugués"
+msgstr "Португальська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:188
+msgid "Ruso"
+msgstr "Російська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:189
+msgid "Turco"
+msgstr "Турецька"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:190
+msgid "Ucraniano"
+msgstr "Українська"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:208
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:56
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:230
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:41
+msgid "Todos"
+msgstr "Усі"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:208
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:56
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:230
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:41
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:79
+msgid "Estable"
+msgstr "Стабільний"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:208
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:56
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:230
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:42
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:79
+msgid "Beta"
+msgstr "Бета"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:209
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:56
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:230
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:42
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:80
+msgid "Desarrollo"
+msgstr "Розробницький"
+
+#: addon\globalPlugins\TiendaNVDA\ajustes.py:209
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:43
+#: addon\globalPlugins\TiendaNVDA\tienda_oficial.py:80
+msgid "Externo"
+msgstr "Зовнішній"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:51
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:121
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:171
+msgid "&Aceptar"
+msgstr "&Гаразд"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:52
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:117
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:190
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:361
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:42
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:172
+msgid "&Cerrar"
+msgstr "&Закрити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:79
+msgid ""
+"\n"
+"Descarga completada correctamente."
+msgstr ""
+"\n"
+"Завантаження успішно завершено."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:84
+msgid ""
+"\n"
+"Error en la descarga tras varios intentos."
+msgstr ""
+"\n"
+"Помилка під час завантаження після кількох спроб."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:98
+msgid "Actualizaciones disponibles"
+msgstr "Доступні оновлення"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:114
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:353
+msgid "&Seleccionar todo"
+msgstr "&Вибрати всі"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:115
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:354
+msgid "&Deseleccionar todo"
+msgstr "&Скасувати вибір усіх"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:116
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:229
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:156
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:188
+msgid "&Actualizar"
+msgstr "&Оновити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:143
+msgid "Seleccione al menos una actualización."
+msgstr "Виберіть принаймні одне оновлення."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:143
+#: addon\globalPlugins\TiendaNVDA\hilos.py:64
+#: addon\globalPlugins\TiendaNVDA\hilos.py:90
+msgid "Error"
+msgstr "Помилка"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:167
+msgid "Actualizando complementos"
+msgstr "Оновлення додатків"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:182
+msgid "Progreso descarga:"
+msgstr "Перебіг завантаження:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:184
+msgid "Progreso total:"
+msgstr "Загальний перебіг:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:189
+msgid "&Reiniciar NVDA"
+msgstr "&Перезапустити NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:214
+#, python-brace-format
+msgid "Descargando: {}"
+msgstr "Завантаження: {}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:251
+#, python-brace-format
+msgid "Instalando: {}"
+msgstr "Встановлення: {}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:269
+msgid "RESUMEN DE OPERACIÓN:\n"
+msgstr "ОГЛЯД ОПЕРАЦІЇ:\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:272
+#, python-brace-format
+msgid "Instalados con éxito ({}):\n"
+msgstr "Успішно встановлено ({}):\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:278
+#, python-brace-format
+msgid "Errores/Fallos ({}):\n"
+msgstr "Помилки/збої ({}):\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:287
+msgid "No se procesó ningún complemento."
+msgstr "Не вдалося встановити додаток."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:293
+msgid "Operación completada. Reinicie NVDA para aplicar cambios."
+msgstr "Операція завершена. Перезапустіть NVDA, щоб застосувати зміни."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:316
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:100
+msgid ""
+"Se han realizado cambios en los complementos que requieren reiniciar NVDA "
+"para surtir efecto. ¿Desea reiniciar ahora?"
+msgstr ""
+"До додатків були внесені зміни, для застосування яких потрібно перезапустити "
+"NVDA. Бажаєте перезапустити зараз?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:317
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:101
+msgid "Reiniciar NVDA"
+msgstr "Перезапустіть NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:328
+msgid "Restaurar desde Backup"
+msgstr "Відновити з резервної копії"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:338
+msgid "&Seleccione complementos a restaurar:"
+msgstr "&Виберіть додаткові компоненти для відновлення:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:344
+msgid "&Información de la versión encontrada:"
+msgstr "&Інформація про знайдену версію:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:360
+msgid "&Instalar seleccionados"
+msgstr "&Встановити обране"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:376
+msgid "Buscando mejores versiones en los servidores..."
+msgstr "Шукаю кращі версії на серверах..."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:410
+msgid "Búsqueda de backup finalizada."
+msgstr "Пошук резервної копії завершено."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:413
+msgid "Error al procesar el backup"
+msgstr "Помилка обробки резервної копії"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:423
+msgid "(No encontrado en servidores)"
+msgstr "(Не знайдено на серверах)"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:436
+msgid "Este complemento no se ha encontrado en los servidores actuales."
+msgstr "Цього додатка не знайдено на поточних серверах."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:439
+msgid "FUENTE: NVDA.ES\n"
+msgstr "ДЖЕРЕЛО: NVDA.ES\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:441
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:451
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:292
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:351
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:175
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:210
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:206
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:220
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:256
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:264
+#, python-brace-format
+msgid "Nombre: {}\n"
+msgstr "Назва: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:442
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:452
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:352
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:176
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:211
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:207
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:221
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:257
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:265
+#, python-brace-format
+msgid "ID: {}\n"
+msgstr "ID: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:443
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:453
+#, python-brace-format
+msgid "Versión disponible: {}\n"
+msgstr "Доступна версія: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:444
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:294
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:353
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:208
+#, python-brace-format
+msgid "Autor: {}\n"
+msgstr "Автор: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:445
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:455
+msgid "Descripción:"
+msgstr "Опис:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:447
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:457
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:184
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:213
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:228
+msgid "Sin descripción."
+msgstr "Без опису."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:449
+msgid "FUENTE: TIENDA OFICIAL\n"
+msgstr "ДЖЕРЕЛО: ОФІЦІЙНИЙ МАГАЗИН\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:454
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:177
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:212
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:222
+#, python-brace-format
+msgid "Editor: {}\n"
+msgstr "Редактор: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:472
+msgid "Seleccione al menos un complemento."
+msgstr "Виберіть принаймні один додаток."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:472
+msgid "Aviso"
+msgstr "Повідомлення"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:499
+#, python-format
+msgid ""
+"Los siguientes complementos no son compatibles:\n"
+"\n"
+"%s\n"
+"\n"
+"¿Desea intentar instalarlos de todos modos?"
+msgstr ""
+"Наступні додатки не підтримуються:\n"
+"\n"
+"%s\n"
+"\n"
+"Все одно спробувати їх встановити?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_actualizaciones.py:500
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:446
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:288
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:372
+msgid "Advertencia"
+msgstr "УВАГА"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:43
+msgid "Copiado al portapapeles"
+msgstr "Скопійовано в буфер обміну"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:70
+msgid "¿Está seguro de que desea desinstalar este complemento?"
+msgstr "Ви впевнені, що хочете видалити цей додаток?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:71
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:81
+msgid "Confirmar"
+msgstr "Підтвердити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:77
+msgid ""
+"Este complemento no es compatible con su versión de NVDA. ¿Desea intentar "
+"habilitarlo de todos modos?"
+msgstr ""
+"Цей додаток не сумісний із вашою версією NVDA. Все одно спробувати ввімкнути "
+"його?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:78
+msgid "Advertencia de compatibilidad"
+msgstr "Попередження про сумісність"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:87
+msgid ""
+"Operación realizada con éxito. Algunos cambios requieren reiniciar NVDA."
+msgstr ""
+"Операція виконана успішно. Для деяких змін потрібно перезапустити NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:124
+msgid "Habilitar complemento"
+msgstr "Увімкнути додаток"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:127
+msgid "Deshabilitar complemento"
+msgstr "Вимкнути додаток"
+
+#. Desinstalar
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:131
+msgid "Desinstalar complemento"
+msgstr "Видалети додаток"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:139
+#: addon\globalPlugins\TiendaNVDA\__init__.py:159
+#: addon\globalPlugins\TiendaNVDA\__init__.py:249
+msgid "Empaquetador de complementos"
+msgstr "Пакувальник додатків"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:149
+msgid "Ver documentación"
+msgstr "Переглянути документацію"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_comunes.py:159
+#: addon\globalPlugins\TiendaNVDA\__init__.py:253
+msgid "Seleccione un directorio para guardar:"
+msgstr "Виберіть каталог для збереження:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:23
+msgid "Gestor de servidores de complementos"
+msgstr "Керування серверами додатків"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:27
+msgid "&Lista de servidores:"
+msgstr "&Список серверів:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:35
+msgid "&Añadir"
+msgstr "&Додати"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:36
+msgid "&Editar"
+msgstr "&Редагувати"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:37
+msgid "&Borrar"
+msgstr "&Видалити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:65
+msgid "El servidor de la comunidad hispanohablante no puede ser editado."
+msgstr "Сервер іспаномовної спільноти неможливо редагувати."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:78
+msgid "El servidor de la comunidad hispanohablante no puede ser borrado."
+msgstr "Сервер іспаномовної спільноти видалити неможливо."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:80
+#, python-brace-format
+msgid "¿Está seguro que desea borrar el servidor: {}?"
+msgstr "Ви впевнені, що бажаєте видалити сервер: {}?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:109
+msgid "Añadir servidor"
+msgstr "Додати сервер"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:109
+msgid "Editar servidor"
+msgstr "Редагувати сервер"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:114
+msgid "&Nombre del servidor:"
+msgstr "&Ім’я сервера:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:117
+msgid "&URL del servidor:"
+msgstr "&Адреса сервера:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:122
+msgid "&Cancelar"
+msgstr "&Скасувати"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:137
+msgid "El nombre del servidor no puede estar vacío."
+msgstr "Назва сервера не може бути порожнім."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:141
+msgid "La URL del servidor no puede estar vacía."
+msgstr "URL сервера не може бути порожнім."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:146
+msgid "Ya existe un servidor con ese nombre."
+msgstr "Сервер із такою назвою вже існує."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:149
+msgid "La URL introducida no es válida."
+msgstr "Введений URL недійсний."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:162
+msgid "Servidor sin complementos"
+msgstr "Сервер без додатків"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:167
+msgid "Seleccione un servidor"
+msgstr "Виберіть сервер"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:183
+msgid "Debe seleccionar un servidor."
+msgstr "Ви повинні вибрати сервер."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_servidores.py:183
+#: addon\globalPlugins\TiendaNVDA\hilos.py:80
+#: addon\globalPlugins\TiendaNVDA\hilos.py:99
+#: addon\globalPlugins\TiendaNVDA\__init__.py:51
+msgid "Información"
+msgstr "Інформація"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:57
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:50
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:53
+msgid "&Buscar:"
+msgstr "&Пошук:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:61
+msgid "B&uscar"
+msgstr "П&ошук"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:65
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:61
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:64
+msgid "&Lista complementos:"
+msgstr "&Список додатків:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:70
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:67
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:70
+msgid "&Acción"
+msgstr "&Дії"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:74
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:71
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:74
+msgid "&Información:"
+msgstr "&Інформація:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:80
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:231
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:77
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:156
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:80
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:188
+msgid "&Instalar"
+msgstr "& Встановити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:81
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:78
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:81
+msgid "&Descargar"
+msgstr "& Завантажити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:82
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:79
+msgid "&Página WEB"
+msgstr "&ВЕБ-сайт"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:83
+msgid "&Cambiar servidor"
+msgstr "&Змінити сервер"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:84
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:80
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:82
+msgid "&Salir"
+msgstr "&Вийти"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:140
+msgid " - Todos los complementos"
+msgstr " - Усі додатки"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:141
+msgid " - Complementos API 2026"
+msgstr " - Додатки, сумісні з API 2026"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:142
+msgid " - Complementos API 2025"
+msgstr " - Додатки, сумісні з API 2025"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:143
+msgid " - Complementos API 2024"
+msgstr " - Додатки, сумісні з API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:144
+msgid " - Complementos API 2023"
+msgstr " - Додатки, сумісні з API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:145
+msgid " - Por autor"
+msgstr " - За автором"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:146
+msgid " - Por descargas"
+msgstr " - За завантаженнями"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:187
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:200
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:232
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:138
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:167
+msgid "No se encontraron resultados"
+msgstr "Результатів не знайдено"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:217
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: [ES] Tienda NVDA.ES\n"
+"{explanation}"
+msgstr ""
+"Індикатор: {indicator}\n"
+"Джерело: [ES] Магазин NVDA.ES\n"
+"{explanation}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:218
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:278
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:344
+msgid "Sin indicador"
+msgstr "Без індикатора"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:247
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:262
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:323
+#, python-brace-format
+msgid "Complemento {} de {}"
+msgstr "Додаток {} з {}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:273
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:340
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:164
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:196
+msgid "Activo"
+msgstr "Активний"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:275
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:342
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:166
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:198
+msgid "Deshabilitado (incompatible)"
+msgstr "Вимкнено (несумісний)"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:275
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:166
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:198
+msgid "Habilitado (compatibilidad anulada)"
+msgstr "Увімкнено (сумісність вимкнено)"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:277
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:344
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:168
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:200
+msgid "Deshabilitado"
+msgstr "Вимкнено"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:279
+msgid "Marcado para eliminar"
+msgstr "Позначено для видалення"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:281
+msgid "Pendiente de instalar"
+msgstr "Очікує встановлення"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:282
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:345
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:169
+msgid ""
+"\n"
+"--- INFORMACIÓN DE INSTALACIÓN LOCAL ---\n"
+msgstr ""
+"\n"
+"--- ІНФОРМАЦІЯ ПРО ЛОКАЛЬНЕ ВСТАНОВЛЕННЯ ---\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:283
+#, python-brace-format
+msgid "Estado actual: {}\n"
+msgstr "Поточний стан: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:284
+#, python-brace-format
+msgid "Versión instalada: {}\n"
+msgstr "Встановлена ​​версія: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:286
+msgid "AVISO: Cambios pendientes. Reinicie NVDA.\n"
+msgstr "ПОПЕРЕДЖЕННЯ: Є незбережені зміни. Перезапустіть NVDA.\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:288
+msgid "ADVERTENCIA: Complemento incompatible con este NVDA.\n"
+msgstr "ПОПЕРЕДЖЕННЯ: Додаток несумісний із цією NVDA.\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:290
+msgid "RESUMEN DEL COMPLEMENTO\n"
+msgstr "КОРОТКИЙ ОГЛЯД ДОДАТКА\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:293
+#, python-brace-format
+msgid "ID (Nombre interno): {}\n"
+msgstr "Ідентифікатор (внутрішня назва): {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:295
+#, python-brace-format
+msgid "Página web: {}\n"
+msgstr "Веб сайт: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:296
+#, python-brace-format
+msgid "Desarrollo: {}\n"
+msgstr "Розробка: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:296
+msgid "Con soporte"
+msgstr "З підтримкою"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:296
+msgid "Sin soporte"
+msgstr "Без підтримки"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:298
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:182
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:211
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:226
+msgid "DESCRIPCIÓN:"
+msgstr "ОПИС:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:300
+msgid "Sin descripción disponible."
+msgstr "Немає опису."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:301
+msgid "CANALES DE DESCARGA:"
+msgstr "КАНАЛИ ЗАВАНТАЖЕННЯ:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:305
+#, python-brace-format
+msgid ""
+"Canal: {}\n"
+"Versión: {}\n"
+"Mínimo NVDA: {}\n"
+"Última prueba: {}\n"
+"Descargas: {}\n"
+msgstr ""
+"Канал: {}\n"
+"Версія: {}\n"
+"Мінімальна версія NVDA: {}\n"
+"Востаннє протестовано на версії  NVDA: {}\n"
+"Кількість завантажень: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:313
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:190
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:234
+msgid "Active la traducción en opciones de la tienda."
+msgstr "Активуйте переклад у налаштуваннях магазину."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:334
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:207
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:252
+msgid "No se pudo traducir"
+msgstr "Не вдалося перекласти"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:346
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:170
+#, python-brace-format
+msgid "Estado: {}\n"
+msgstr "Статус: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:347
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:171
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:178
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:213
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:223
+#, python-brace-format
+msgid "Versión: {}\n"
+msgstr "Версія: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:349
+msgid "RESUMEN (TRADUCIDO)\n"
+msgstr "СТИСЛИЙ ОГЛЯД (ПЕРЕКЛАД)\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:355
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:214
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:258
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:266
+msgid "DESCRIPCIÓN TRADUCIDA:"
+msgstr "ПЕРЕКЛАД ОПИСУ:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:372
+msgid "Mostrar todos"
+msgstr "Показати все"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:373
+msgid "API 2026"
+msgstr "API 2026"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:374
+msgid "API 2025"
+msgstr "API 2025"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:375
+msgid "API 2024"
+msgstr "API 2024"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:376
+msgid "API 2023"
+msgstr "API 2023"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:377
+msgid "Por autor"
+msgstr "За автором"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:378
+msgid "Por descargas"
+msgstr "За завантаженнями"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:379
+msgid "&Filtros"
+msgstr "&Фільтри"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:392
+msgid "Copiar información"
+msgstr "Копіювати інформацію"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:393
+msgid "Copiar URL página"
+msgstr "Копіювати URL сторінки"
+
+#. Copiar enlace interno NVDA.ES
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:395
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:288
+msgid "Copiar enlace interno NVDA.ES"
+msgstr "Копіювати внутрішнє посилання NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:401
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:486
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:293
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:417
+#: addon\globalPlugins\TiendaNVDA\__init__.py:637
+#, python-brace-format
+msgid "Canal {}"
+msgstr "Канал {}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:403
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:405
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:239
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:295
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:297
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:300
+msgid "Copiar enlace de descarga"
+msgstr "Копіювати посилання для завантаження"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:408
+msgid "&Copiar"
+msgstr "&Копіювати"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:416
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:247
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:308
+msgid "&Gestión instalado"
+msgstr "&Керування встановлено"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:443
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:286
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:370
+msgid "Este complemento no es compatible con su versión de NVDA."
+msgstr "Цей додаток не сумісний із вашою версією NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:443
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:286
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:370
+msgid "Incompatible"
+msgstr "Несумісний"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:446
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:288
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:372
+msgid ""
+"Este complemento no es compatible. ¿Desea intentar instalarlo de todos modos?"
+msgstr "Цей додаток несумісний. Все одно спробувати його встановити?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:454
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:292
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:377
+#, python-format
+msgid "Preparando instalación de %s..."
+msgstr "Підготовка до встановлення %s..."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:458
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:297
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:385
+#, python-format
+msgid "Instalación de %s completada."
+msgstr "Встановлення %s завершено."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:459
+msgid "Instalación completada. ¿Desea reiniciar NVDA ahora?"
+msgstr "Встановлення завершено. Перезапустити NVDA зараз?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:459
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:298
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:386
+msgid "Reiniciar"
+msgstr "Перезапустити"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:492
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:318
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:406
+msgid "Ya hay una descarga en progreso"
+msgstr "Завантаження вже триває"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:506
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:321
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:422
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:453
+msgid "Complemento de NVDA (*.nvda-addon)|*.nvda-addon"
+msgstr "Файли додатків для NVDA (*.nvda-addon)|*.nvda-addon"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:507
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:322
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:423
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:454
+msgid "Guardar en..."
+msgstr "Зберегти як..."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_es.py:519
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:328
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:429
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:460
+#, python-format
+msgid "Descargando %s..."
+msgstr "Завантаження %s..."
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:34
+#: addon\globalPlugins\TiendaNVDA\__init__.py:150
+#: addon\globalPlugins\TiendaNVDA\__init__.py:309
+msgid "Tienda Oficial NVDA"
+msgstr "Офіційний магазин NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:55
+msgid "&Canal:"
+msgstr "&Канал:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:173
+msgid "RESUMEN DEL COMPLEMENTO (OFICIAL)\n"
+msgstr "КОРОТКИЙ ОГЛЯД ДОДАТКА (ОФІЦІЙНИЙ)\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:179
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:224
+#, python-brace-format
+msgid "Canal: {}\n"
+msgstr "Канал: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:180
+#, python-brace-format
+msgid "Compatible: {}\n"
+msgstr "Сумісність: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:180
+msgid "Sí"
+msgstr "Так"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:180
+msgid "No"
+msgstr "Ні"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:208
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:262
+msgid "RESUMEN (TRADUCIDO - OFICIAL)\n"
+msgstr "КОРОТКИЙ ОГЛЯД (ОФІЦІЙНИЙ ПЕРЕКЛАД)\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:233
+msgid "&Canales"
+msgstr "&Канали"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:238
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:283
+msgid "Copiar ficha"
+msgstr "Копіювати інформацію"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:278
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: [OF] Tienda Oficial NVDA\n"
+"{explanation}"
+msgstr ""
+"Індикатор: {indicator}\n"
+"Джерело: [OF] Офіційний магазин NVDA\n"
+"{explanation}"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:298
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:386
+msgid "¿Desea reiniciar NVDA ahora?"
+msgstr "Бажаєте перезавантажити NVDA зараз?"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:302
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py:335
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:390
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:436
+msgid "Error: El archivo descargado está corrupto"
+msgstr "Помилка: завантажений файл пошкоджено"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:36
+msgid "Tienda Unificada de Complementos"
+msgstr "Об'єднаний магазин додатків"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:58
+msgid "&Fuente:"
+msgstr "&Джерело:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:59
+msgid "Todas las fuentes"
+msgstr "Всі джерела"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:59
+msgid "NVDA.ES"
+msgstr "NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:59
+msgid "Tienda Oficial"
+msgstr "Офіційний магазин"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:201
+#, python-brace-format
+msgid ""
+"\n"
+"ESTADO LOCAL: {} (v{})\n"
+msgstr ""
+"\n"
+"ЛОКАЛЬНИЙ СТАН: {} (v{})\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:204
+msgid "RESUMEN DEL COMPLEMENTO [NVDA.ES]\n"
+msgstr "КОРОТКИЙ ОГЛЯД ДОДАТКА [NVDA.ES]\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:209
+#, python-brace-format
+msgid "Web: {}\n"
+msgstr "Веб сайт: {}\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:209
+msgid "No disponible"
+msgstr "Не доступно"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:214
+msgid "ENLACES:"
+msgstr "ПОСИЛАННЯ:"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:216
+#, python-brace-format
+msgid "Canal {}: v{} (Min NVDA: {})\n"
+msgstr "Канал {}: v{} (Мінімальна версія NVDA: {})\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:218
+msgid "RESUMEN DEL COMPLEMENTO [OFICIAL]\n"
+msgstr "ОГЛЯД ДОДАТКА (ОФІЦІЙНИЙ)\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:254
+msgid "RESUMEN (TRADUCIDO - NVDA.ES)\n"
+msgstr "ОГЛЯД (ПЕРЕКЛАД — NVDA.ES)\n"
+
+#: addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py:344
+#, python-brace-format
+msgid ""
+"Indicador: {indicator}\n"
+"Fuente: {source}\n"
+"{explanation}"
+msgstr ""
+"Індикатор: {indicator}\n"
+"Джерело: {source}\n"
+"{explanation}"
+
+#: addon\globalPlugins\TiendaNVDA\empaquetador.py:46
+#, python-brace-format
+msgid "Complemento empaquetado correctamente en: {}"
+msgstr "Додаток правильно упаковано в: {}"
+
+#: addon\globalPlugins\TiendaNVDA\empaquetador.py:49
+#, python-brace-format
+msgid "Error al empaquetar el complemento: {}"
+msgstr "Помилка пакування додатка: {}"
+
+#: addon\globalPlugins\TiendaNVDA\hilos.py:63
+msgid ""
+"No se pudo conectar al servidor y no hay datos en caché. ¿Desea intentar "
+"cambiar de servidor?"
+msgstr ""
+"Не вдалося підключитися до сервера, немає кешованих даних. Ви хочете "
+"спробувати змінити сервер?"
+
+#: addon\globalPlugins\TiendaNVDA\hilos.py:69
+msgid ""
+"Trabajando en modo OFFLINE. Los datos mostrados pueden estar "
+"desactualizados. Algunas descargas podrían no funcionar."
+msgstr ""
+"Робота в офлайн-режимі. Дані можуть бути неактуальними. Деякі завантаження "
+"можуть не працювати."
+
+#: addon\globalPlugins\TiendaNVDA\hilos.py:80
+msgid "No hay actualizaciones disponibles."
+msgstr "Немає оновлень."
+
+#: addon\globalPlugins\TiendaNVDA\hilos.py:90
+msgid "No se pudieron obtener complementos de la tienda oficial."
+msgstr "Не вдалося отримати додатки з офіційного магазину."
+
+#: addon\globalPlugins\TiendaNVDA\hilos.py:99
+msgid "No hay actualizaciones oficiales disponibles."
+msgstr "Немає офіційних оновлень."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:50
+msgid "Necesita reiniciar NVDA para aplicar las actualizaciones."
+msgstr "Для застосування оновлень ви повинні перезапустити NVDA."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:77
+#, python-brace-format
+msgid "Se encontraron {} actualizaciones."
+msgstr "Знайдено оновлень: {}."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:77
+msgid "Se encontró una actualización."
+msgstr "Знайдено оновлення."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:80
+#, python-brace-format
+msgid ""
+"\n"
+"- NVDA.ES ({}): {}"
+msgstr ""
+"\n"
+"- NVDA.ES ({}): {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:82
+#, python-brace-format
+msgid ""
+"\n"
+"- Tienda Oficial ({}): {}"
+msgstr ""
+"\n"
+"- Офіційний магазин ({}): {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:83
+msgid ""
+"\n"
+"\n"
+"Ejecute Buscar actualizaciones de complementos."
+msgstr ""
+"\n"
+"\n"
+"Перевірка оновлень для додатків."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:84
+msgid "Tienda NVDA: Actualizaciones"
+msgstr "Магазин NVDA: Оновлення"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:122
+msgid "No se pudieron cargar las librerías necesarias para la Tienda"
+msgstr "Не вдалося завантажити модулі, необхідні для роботи магазину"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:138
+msgid "Listado de complementos NVDA.ES"
+msgstr "Список додатків NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:140
+msgid "Buscar actualizaciones NVDA.ES"
+msgstr "Перевірети наявність оновлень NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:142
+#: addon\globalPlugins\TiendaNVDA\__init__.py:285
+msgid "Tienda NVDA.ES"
+msgstr "Магазин NVDA.es"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:146
+msgid "Listado de complementos oficiales"
+msgstr "Список офіційних додатків"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:148
+msgid "Buscar actualizaciones oficiales"
+msgstr "Перевірети наявність офіційних оновлень"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:154
+msgid "Tienda Unificada (Todas las fuentes)"
+msgstr "Об'єднаний магазин (усі джерела)"
+
+#. Documentación
+#: addon\globalPlugins\TiendaNVDA\__init__.py:163
+msgid "Documentación del complemento"
+msgstr "Документація додатка"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:168
+msgid "Inicio del complemento cancelado."
+msgstr "Запуск додатка перервано."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:213
+msgid "Ya hay una instancia de la Tienda NVDA abierta."
+msgstr "Одну копію магазину додатків для NVDA вже відкрито."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:217
+msgid "Muestra la ventana con todos los complementos de NVDA.ES"
+msgstr "Показує діалог з усіма додатками NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:221
+msgid "Busca actualizaciones de los complementos instalados en NVDA.ES"
+msgstr "Перевірети наявність оновлень для встановлених додатків на NVDA.ES"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:225
+msgid "Muestra la ventana con todos los complementos de la tienda oficial"
+msgstr "Показує діалог з усіма додатками з офіційного магазину"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:229
+msgid "Busca actualizaciones de los complementos oficiales"
+msgstr "Перевірети наявність офіційних оновлень додатка"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:233
+msgid "Muestra la tienda unificada con todas las fuentes de complementos"
+msgstr "Показати об'єднаний магазин з усіма джерелами додатків"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:246
+msgid "No hay complementos instalados."
+msgstr "Додатки не встановлено."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:249
+msgid "Seleccione un complemento para empaquetar:"
+msgstr "Виберіть додаток для пакування:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:267
+msgid ""
+"El complemento falló al iniciar NVDA.\n"
+"Reinice NVDA para intentar solucionar el problema."
+msgstr ""
+"Помилка додатка під час запуску NVDA.\n"
+"Перезапустіть NVDA, щоб спробувати вирішити проблему."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:291
+msgid "Seleccione un servidor de complementos"
+msgstr "Виберіть сервер додатків"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:299
+msgid "&Gestionar Servidores de complementos"
+msgstr "&Керування серверами додатків"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:315
+msgid "Habilitar tienda oficial de NVDA"
+msgstr "Увімкнути офіційний магазин NVDA"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:320
+msgid "Permitir complementos incompatibles de la tienda oficial"
+msgstr "Дозволити несумісні додатки з офіційного магазину"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:330
+msgid "Actualizaciones"
+msgstr "Оновлення"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:336
+msgid "Activar comprobación automática de actualizaciones"
+msgstr "Увімкнути автоматичну перевірку оновлень"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:343
+msgid "Tiempo para comprobar actualizaciones:"
+msgstr "Час перевірки наявності оновлень:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:355
+msgid "Incluir actualizaciones de la tienda oficial"
+msgstr "Додавати оновлення з офіційного магазину"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:365
+msgid "Traducción"
+msgstr "Переклад"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:371
+msgid "Activar traductor para descripciones"
+msgstr "Увімкнути переклад для описів"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:378
+msgid "Idioma para traducir descripciones:"
+msgstr "Мова для перекладу описів:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:395
+msgid "Opciones Generales"
+msgstr "Загальні параметри"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:401
+msgid "Ordenar complementos alfabéticamente"
+msgstr "Сортувати додатки за алфавітом"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:406
+msgid "Instalar complementos después de descargar"
+msgstr "Встановити додаток після завантаження"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:411
+msgid "Instalar en silencio (pide reiniciar al finalizar)"
+msgstr "Встановити без звуку (запитує перезавантаження після завершення)"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:416
+msgid "Habilitar caché de servidores (Mejora la velocidad de carga)"
+msgstr "Увімкнути кеш сервера (покращує швидкість завантаження)"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:423
+msgid "Actualizar caché cada:"
+msgstr "Оновлювати кеш кожні:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:435
+msgid "Usar caché para traducciones (Mejora el rendimiento)"
+msgstr "Використовувати кеш для перекладів (підвищує продуктивність)"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:440
+msgid "Habilitar modo offline (Caché de listas de la tienda)"
+msgstr "Увімкнути режим офлайн (кеш списків магазину)"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:445
+msgid "&Crear Backup de complementos"
+msgstr "&Створити резервну копію додатка"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:446
+msgid "&Restaurar desde Backup"
+msgstr "&Відновити з резервної копії"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:460
+msgid "Complementos instalados que hay en el servidor:"
+msgstr "Встановлені додатки на сервері:"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:475
+#: addon\globalPlugins\TiendaNVDA\__init__.py:580
+#: addon\globalPlugins\TiendaNVDA\__init__.py:626
+msgid "No se pudo tener acceso al servidor"
+msgstr "Не вдалося отримати доступ до сервера"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:479
+#: addon\globalPlugins\TiendaNVDA\__init__.py:624
+msgid "Sin complementos compatibles"
+msgstr "Відсутні сумісні додатки"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:489
+#: addon\globalPlugins\TiendaNVDA\__init__.py:639
+#: addon\globalPlugins\TiendaNVDA\__init__.py:652
+msgid "Descartar actualizaciones"
+msgstr "Скасувати оновлення"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:669
+msgid ""
+"Ya hay una instancia de la Tienda NVDA abierta.\n"
+"\n"
+"Para gestionar los servidores es necesario que la Tienda este cerrada."
+msgstr ""
+"Магазин NVDA.ES вже запущено.\n"
+"\n"
+"Для керування серверами його необхідно закрити."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:690
+msgid "Guardar copia de seguridad de complementos"
+msgstr "Зберегти резервну копію додатка"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:701
+#, python-brace-format
+msgid "Copia de seguridad guardada con éxito en: {}"
+msgstr "Резервну копію успішно збережено в: {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:703
+#, python-brace-format
+msgid "Error al crear la copia de seguridad: {}"
+msgstr "Помилка створення резервної копії: {}"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:708
+msgid "Seleccionar archivo de copia de seguridad"
+msgstr "Виберіть файл резервної копії"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:722
+msgid "El archivo seleccionado no es una copia de seguridad válida."
+msgstr "Вибраний файл не є дійсною резервною копією."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:725
+msgid ""
+"¿Desea restaurar los complementos desde el archivo seleccionado? Esto abrirá "
+"el asistente de instalación por lotes."
+msgstr ""
+"Ви бажаєте відновити додатки з обраного файлу? Це відкриє майстер пакетного "
+"встановлення."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:726
+msgid "Restaurar"
+msgstr "Відновити"
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:734
+msgid "Cierre la tienda antes de proceder con la restauración."
+msgstr "Перш ніж продовжити відновлення, закрийте магазин."
+
+#: addon\globalPlugins\TiendaNVDA\__init__.py:736
+#, python-brace-format
+msgid "Error al cargar el backup: {}"
+msgstr "Помилка завантаження резервної копії: {}"
+
+#. Add-on summary/title, usually the user visible name of the add-on
+#. Translators: Summary/title for this add-on
+#. to be shown on installation and add-on information found in add-on store
+#: buildVars.py:21
+msgid "Tienda de Complementos para NVDA"
+msgstr "Магазин додатків NVDA"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-on store
+#: buildVars.py:24
+msgid ""
+"Tienda Unificada de Complementos para NVDA.\n"
+"Integra la tienda de NVDA.ES y la tienda oficial de NV Access en una única "
+"interfaz.\n"
+"Características: indicadores de estado, gestión local (deshabilitar/"
+"eliminar), backup/restauración,\n"
+"modo offline, traducción con caché, reintentos de descarga, comprobación de "
+"dependencias\n"
+"y empaquetador de complementos."
+msgstr ""
+"Об'єднаний магазин додатків для NVDA.\n"
+"Інтегрує магазин NVDA.ES і офіційний магазин NV Access в єдиний інтерфейс.\n"
+"Особливості: індикатори стану, локальне керування (вимкнення/видалення), "
+"резервне копіювання/відновлення,\n"
+"офлайн режим, кешований переклад, повторні спроби завантаження, перевірка "
+"залежностей\n"
+"та пакувальник плагінів."
+
+#. Brief changelog for this version
+#. Translators: what's new content for the add-on version to be shown in the add-on store
+#: buildVars.py:33
+msgid ""
+"*Agregado un actualizador silencioso de idiomas del complemento (en fase "
+"beta).\n"
+"* Agregado idioma ruso (Valentín N. Kupriyanov).\n"
+"* Agregado idioma turco (Umut Korkmaz)."
+msgstr ""
+"*Додано автоматичне оновлення мов для додатка (у бета-версії).\n"
+"* Додано російську мову (Валентин Н. Купріянов).\n"
+"* Додано турецьку мову (Умут Коркмаз)."
+
+#~ msgid "Tienda para NVDA.ES"
+#~ msgstr "Магазин додатків NVDA.ES"
+
+#~ msgid "Tienda de complementos no oficial de https://www.nvda.es"
+#~ msgstr "Неофіційний магазин додатків від https://www.nvda.es"
+
+#~ msgid ""
+#~ "Se encontró una actualización. \n"
+#~ "\n"
+#~ "Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
+#~ msgstr ""
+#~ "Знайдено оновлення. \n"
+#~ "\n"
+#~ "Запустіть перевірку оновлень додатків у меню магазину Tienda NVDA.ES"
+
+#~ msgid ""
+#~ "Se encontraron  {} actualizaciones. \n"
+#~ "\n"
+#~ "Ejecute Buscar actualizaciones de complementos de la Tienda NVDA.ES"
+#~ msgstr ""
+#~ "Знайдено {} оновлень. \n"
+#~ "\n"
+#~ "Запустіть перевірку оновлень з меню магазину додатків для NVDA"
+
+#~ msgid ""
+#~ "Error producido en las librerías::\n"
+#~ "\n"
+#~ "{}"
+#~ msgstr ""
+#~ "Сталася помилка в бібліотеках::\n"
+#~ "\n"
+#~ "{}"
+
+#~ msgid ""
+#~ "Seleccione un idioma para traducir las descripciones de los complementos"
+#~ msgstr "Виберіть мову для перекладу описів"
+
+#~ msgid ""
+#~ "Ordenar por orden alfabético los complementos de la tienda y las búsquedas"
+#~ msgstr "Сортування додатків за абеткою"
+
+#~ msgid ""
+#~ "ADVERTENCIA:\n"
+#~ "\n"
+#~ "Esta acción no es reversible.\n"
+#~ "\n"
+#~ "Va a borrar el servidor:\n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "¿Esta seguro que desea continuar?"
+#~ msgstr ""
+#~ "УВАГА:\n"
+#~ "\n"
+#~ "Ця дія незворотна.\n"
+#~ "\n"
+#~ "Це призведе до видалення сервера:\n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "Ви впевнені, що бажаєте продовжити?"
+
+#~ msgid "Pregunta"
+#~ msgstr "Попередження"
+
+#~ msgid ""
+#~ "El campo de nombre de servidor no puede quedar en blanco.\n"
+#~ "\n"
+#~ "Introduzca uno para poder continuar."
+#~ msgstr ""
+#~ "Поле «Ім’я сервера» не може бути порожнім.\n"
+#~ "\n"
+#~ "Введіть щонайменше один символ для продовження."
+
+#~ msgid ""
+#~ "El campo de URL de servidor no puede quedar en blanco.\n"
+#~ "\n"
+#~ "Introduzca uno para poder continuar."
+#~ msgstr ""
+#~ "Поле «URL сервера» не може бути порожнім.\n"
+#~ "\n"
+#~ "Введіть щонайменше один символ для продовження."
+
+#~ msgid ""
+#~ "Ya tiene un servidor con el mismo nombre.\n"
+#~ "\n"
+#~ "Modifique el nombre del servidor para poder continuar."
+#~ msgstr ""
+#~ "Сервер з таким ім’ям вже існує.\n"
+#~ "\n"
+#~ "Для продовження змініть ім’я сервера."
+
+#~ msgid ""
+#~ "La URL introducida dio error.\n"
+#~ "\n"
+#~ "Compruebe que es una URL correcta de base de datos de complementos."
+#~ msgstr ""
+#~ "Введена адреса видала помилку.\n"
+#~ "\n"
+#~ "Переконайтеся, що це правильна адреса бази додатків."
+
+#~ msgid ""
+#~ "Autor: {}\n"
+#~ "Nombre del complemento: {}\n"
+#~ "Nombre interno: {}\n"
+#~ "Descripción: {}\n"
+#~ "Desarrollo: {}\n"
+#~ msgstr ""
+#~ "Автор: {}\n"
+#~ "Ім’я додатка: {}\n"
+#~ "ВВнутрішнє ім’я: {}\n"
+#~ "Опис: {}\n"
+#~ "Розробка: {}\n"
+
+#~ msgid "Mostrar los complementos con compatibilidad de API 2023"
+#~ msgstr "Показати додатки з підтримкою API 2023"
+
+#~ msgid "Mostrar los complementos con compatibilidad de API 2022"
+#~ msgstr "Показати додатки з підтримкою API 2022"
+
+#~ msgid "Mostrar los complementos ordenados por autor"
+#~ msgstr "Показати додатки, відсортовані за автором"
+
+#~ msgid "Mostrar por descargas de mayor a menor"
+#~ msgstr "Показати за кількістю завантажень від найвищої до найнижчої"
+
+#~ msgid "Copiar enlace a la página web del complemento"
+#~ msgstr "Копіювати посилання на сайт додатка"
+
+#~ msgid "Ver documentación del complemento instalado"
+#~ msgstr "Переглянути документацію встановленого додатка"
+
+#~ msgid " - Complementos compatibles con API 2022"
+#~ msgstr " - Додатки, сумісні з API 2022"
+
+#~ msgid " - Complementos por autor"
+#~ msgstr " - Додатки за автором"
+
+#~ msgid " - Complementos por descarga de mayor a menor"
+#~ msgstr " - Додатки за кількістю завантажень від найвищої до найнижчої"
+
+#~ msgid "Se copio la información del complemento al portapapeles"
+#~ msgstr "Інформацію про додаток скопійовано в буфер обміну"
+
+#~ msgid "Se copio la URL de la página oficial del complemento al portapapeles"
+#~ msgstr "Посилання на офіційну сторінку додатка скопійовано в буфер обміну"
+
+#~ msgid "Se copio la URL de descarga al portapapeles"
+#~ msgstr "Посилання на завантаження додатка скопійовано в буфер обміну"
+
+#~ msgid "No se pudo llevar a cabo la copia al portapapeles"
+#~ msgstr "Не вдалося виконати копіювання в буфер обміну"
+
+#~ msgid ""
+#~ "No tiene activada la opción traducir la descripción de complementos en "
+#~ "opciones de la tienda.\n"
+#~ "\n"
+#~ "Active dicha opción y elija un idioma para poder usar esta característica."
+#~ msgstr ""
+#~ "Ви не увімкнули параметр перекладу опису додатків у налаштуваннях "
+#~ "магазину.\n"
+#~ "\n"
+#~ "Увімкніть цей параметр і оберіть мову, щоб могти використовувати цю "
+#~ "функцію."
+
+#~ msgid "Ya tiene un proceso de descarga activo, espere a que termine."
+#~ msgstr ""
+#~ "У вас вже запущено процес завантаження додатків, будь ласка, дочекайтеся "
+#~ "його завершення."
+
+#~ msgid "Tiene que seleccionar una actualización para poder continuar."
+#~ msgstr "Щоб продовжити, ви повинні вибрати оновлення."
+
+#~ msgid "Espere por favor...\n"
+#~ msgstr "Зачекайте, будь ласка...\n"
+
+#~ msgid "Descargando Un complemento grande..."
+#~ msgstr "Завантажується великий додаток..."
+
+#~ msgid "La descarga se completó.\n"
+#~ msgstr "Завантаження завершено.\n"
+
+#~ msgid "Ya puede cerrar esta ventana."
+#~ msgstr "Тепер ви можете закрити це вікно."
+
+#~ msgid "Algo salió mal.\n"
+#~ msgstr "Виникла помилка.\n"
+
+#~ msgid "Compruebe que tiene conexión a internet y vuelva a intentarlo.\n"
+#~ msgstr ""
+#~ "Будь ласка, перевірте ваше з’єднання з інтернетом і повторіть спробу.\n"
+
+#~ msgid ""
+#~ "Error:\n"
+#~ "\n"
+#~ "{}\n"
+#~ msgstr ""
+#~ "Помилка:\n"
+#~ "\n"
+#~ "{}\n"
+
+#~ msgid "NVDA necesita reiniciarse para aplicar las actualizaciones.\n"
+#~ msgstr "Щоб оновлення були застосовані, необхідно перезапустити NVDA.\n"
+
+#~ msgid "Busque una actualización compatible."
+#~ msgstr "Пошук сумісного додатка."
+
+#~ msgid ""
+#~ "Se completo la instalación correctamente.\n"
+#~ "\n"
+#~ "Pero hay complementos que no se pudieron instalar.\n"
+#~ "\n"
+#~ "Los siguientes complementos son incompatibles, busque una versión "
+#~ "compatible:\n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "NVDA necesita reiniciarse para aplicar las instalaciones.\n"
+#~ "¿Desea reiniciar NVDA ahora?"
+#~ msgstr ""
+#~ "Встановлення завершено успішно.\n"
+#~ "\n"
+#~ "Але є додатки, які встановити не вдалось.\n"
+#~ "\n"
+#~ "Нижченаведені додатки несумісні, будь ласка, знайдіть сумісну версію:\n"
+#~ "\n"
+#~ "{}\n"
+#~ "\n"
+#~ "Для застосування змін необхідно перезапустити NVDA.\n"
+#~ "Хочете перезапустити NVDA зараз?"
+
+#~ msgid ""
+#~ "No se pudo obtener el nombre del archivo a descargar.\n"
+#~ "\n"
+#~ "{} del canal {}\n"
+#~ "\n"
+#~ "Se va a proceder a descargar con su navegador predefinido."
+#~ msgstr ""
+#~ "Не вдалося отримати ім’я файлу для завантаження.\n"
+#~ "\n"
+#~ "{} канал {}\n"
+#~ "\n"
+#~ "Для продовження завантаження буде відкрито ваш браузер."
+
+#~ msgid ""
+#~ "Este complemento necesita ser descargado desde su página web.\n"
+#~ "\n"
+#~ "Se abrirá con su navegador predefinido en la pagina de descarga del "
+#~ "complemento."
+#~ msgstr ""
+#~ "Цей додаток потрібно завантажувати з його веб-сторінки.\n"
+#~ "\n"
+#~ "Сторінку додатка буде відкрито у вашому браузері."
+
+#~ msgid ""
+#~ "No se pudo tener acceso al servidor de complementos.\n"
+#~ "\n"
+#~ "Inténtelo en unos minutos."
+#~ msgstr ""
+#~ "Сервер додатків зараз недоступний.\n"
+#~ "\n"
+#~ "Будь ласка, повторіть спробу через кілька хвилин."
+
+#~ msgid ""
+#~ "Autor: {}\n"
+#~ "Nombre del complemento: {}\n"
+#~ "Nombre interno: {}\n"
+#~ "Descripción: {}\n"
+#~ "Página web: {}\n"
+#~ "Desarrollo: {}\n"
+#~ msgstr ""
+#~ "Автор: {}\n"
+#~ "Назва додатка: {}\n"
+#~ "Внутрішнє ім'я: {}\n"
+#~ "Опис: {}\n"
+#~ "Веб-сторінка: {}\n"
+#~ "Розробка: {}\n"
+
+#~ msgid ""
+#~ "Canal: {}\n"
+#~ "Versión: {}\n"
+#~ "Mínimo NVDA: {}\n"
+#~ "Testeado hasta versión de NVDA: {}\n"
+#~ "Clave interna en la tienda: {}\n"
+#~ "Enlace de descarga: {}\n"
+#~ "Total descargas: {}\n"
+#~ msgstr ""
+#~ "Канал: {}\n"
+#~ "Версія: {}\n"
+#~ "Мінімальна версія NVDA: {}\n"
+#~ "Востаннє протестовано на версії NVDA: {}\n"
+#~ "Внутрішній ключ у магазині: {}\n"
+#~ "Посилання для завантаження: {}\n"
+#~ "Усього завантажень: {}\n"
+
+#~ msgid "Mostrar los complementos con compatibilidad de API 2024"
+#~ msgstr "Показати додатки з підтримкою API 2024"
+
+#~ msgid "Mostrar los complementos con compatibilidad de API 2021"
+#~ msgstr "Показати плагіни з підтримкою API 2021"
+
+#~ msgid " - Complementos compatibles con API 2021"
+#~ msgstr "- API 2021 сумісні плагіни"
