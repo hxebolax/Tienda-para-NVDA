@@ -32,7 +32,8 @@ y empaquetador de complementos."""),
 	# Translators: what's new content for the add-on version to be shown in the add-on store
 	addon_changelog=_("""*Agregado un actualizador silencioso de idiomas del complemento (en fase beta).
 * Agregado idioma ruso (Valentín N. Kupriyanov).
-* Agregado idioma turco (Umut Korkmaz)."""),
+* Agregado idioma turco (Umut Korkmaz).
+* Agregado idioma polaco (Kazimierz Parzych)."""),
 	# Author(s)
 	addon_author="Héctor J. Benítez Corredera <xebolax@gmail.com>",
 	# URL for the add-on documentation support
