@@ -508,6 +508,8 @@ El complemento incluye múltiples protecciones para garantizar una experiencia s
 * Idioma turco (Umut Korkmaz)
 * Idioma ruso (Valentín N. Kupriyanov)
 * Idioma polaco (Kazimierz Parzych)
+* Idioma inglés (Hoang-Long2012)
+* Idioma ucraniano (George-br)
 
 <a name="registro-de-cambios"></a>
 ## Registro de cambios
