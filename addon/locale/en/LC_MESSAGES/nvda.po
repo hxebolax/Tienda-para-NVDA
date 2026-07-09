@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-15 13:39+0700\n"
-"PO-Revision-Date: 2026-06-15 14:23+0700\n"
+"PO-Revision-Date: 2026-07-09 11:33+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.8\n"
 
 #: ⁨D:\wfo\Software\Tienda NVDA.ES\Tienda-para-NVDA\addon\globalPlugins\TiendaNVDA\addon_manager.py⁩:162
 msgid "El complemento está instalado y activo."
@@ -1052,12 +1052,12 @@ msgstr "SUMMARY (TRANSLATED - OFFICIAL)\n"
 
 #: ⁨D:\wfo\Software\Tienda NVDA.ES\Tienda-para-NVDA\addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py⁩:233
 msgid "&Canales"
-msgstr "&Channels"
+msgstr "&Channel"
 
 #: ⁨D:\wfo\Software\Tienda NVDA.ES\Tienda-para-NVDA\addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py⁩:238
 #: ⁨D:\wfo\Software\Tienda NVDA.ES\Tienda-para-NVDA\addon\globalPlugins\TiendaNVDA\dialogos_tienda_unificada.py⁩:283
 msgid "Copiar ficha"
-msgstr "Copy form"
+msgstr "Copy INFORMATION"
 
 #: ⁨D:\wfo\Software\Tienda NVDA.ES\Tienda-para-NVDA\addon\globalPlugins\TiendaNVDA\dialogos_tienda_oficial.py⁩:278
 #, python-brace-format
