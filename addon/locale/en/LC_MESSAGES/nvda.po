@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-15 13:39+0700\n"
-"PO-Revision-Date: 2026-07-09 11:33+0700\n"
+"PO-Revision-Date: 2026-07-09 12:49+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1464,7 +1464,7 @@ msgstr "Error loading backup: {}"
 
 #: buildVars.py:21
 msgid "Tienda de Complementos para NVDA"
-msgstr "NVDA Es Store"
+msgstr "NVDA add-ons Store"
 
 #: buildVars.py:24
 msgid ""
